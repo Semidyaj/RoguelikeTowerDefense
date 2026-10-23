@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RoguelikeTD.Core.SceneManagment
+namespace RoguelikeTD.Core.SceneManagement
 {
     public abstract class SceneBootstrap : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Entities;
 using RoguelikeTD.Configs.Gameplay.Experience;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;

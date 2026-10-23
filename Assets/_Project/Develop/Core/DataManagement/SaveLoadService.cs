@@ -1,10 +1,10 @@
-﻿using RoguelikeTD.Core.DataManagment.DataRepository;
-using RoguelikeTD.Core.DataManagment.KeysStorage;
-using RoguelikeTD.Core.DataManagment.Serializers;
+﻿using RoguelikeTD.Core.DataManagement.DataRepository;
+using RoguelikeTD.Core.DataManagement.KeysStorage;
+using RoguelikeTD.Core.DataManagement.Serializers;
 using System;
 using System.Collections;
 
-namespace RoguelikeTD.Core.DataManagment
+namespace RoguelikeTD.Core.DataManagement
 {
     public class SaveLoadService : ISaveLoadService
     {

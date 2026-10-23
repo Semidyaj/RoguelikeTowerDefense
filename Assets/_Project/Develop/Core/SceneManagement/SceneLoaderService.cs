@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RoguelikeTD.Core.SceneManagment
+namespace RoguelikeTD.Core.SceneManagement
 {
     public class SceneLoaderService
     {

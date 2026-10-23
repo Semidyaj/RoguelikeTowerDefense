@@ -11,16 +11,16 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
     {
         private readonly PlaceablesFactory _placeablesFactory;
         private readonly MainHeroHolderService _mainHeroHolderService;
-        private readonly EndProcessStageRealeser _endProcessStageRealeser;
+        private readonly EndProcessStageReleaser _endProcessStageReleaser;
 
         public PlaceablesSpawner(
             PlaceablesFactory placeablesFactory, 
             MainHeroHolderService mainHeroHolderService, 
-            EndProcessStageRealeser endProcessStageRealeser)
+            EndProcessStageReleaser endProcessStageReleaser)
         {
             _placeablesFactory = placeablesFactory;
             _mainHeroHolderService = mainHeroHolderService;
-            _endProcessStageRealeser = endProcessStageRealeser;
+            _endProcessStageReleaser = endProcessStageReleaser;
         }
 
         public Entity Spawn(PlaceableConfig config, Vector3 position)
@@ -46,7 +46,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             }
 
             if(entity.HasComponent<PlaceableToRelease>())
-                _endProcessStageRealeser.Add(entity);
+                _endProcessStageReleaser.Add(entity);
 
             return entity;
         }

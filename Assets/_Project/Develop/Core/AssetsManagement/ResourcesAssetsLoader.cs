@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RoguelikeTD.Core.AssetsManagment
+namespace RoguelikeTD.Core.AssetsManagement
 {
     public class ResourcesAssetsLoader
     {

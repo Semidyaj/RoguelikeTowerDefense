@@ -60,9 +60,9 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 
         public bool TryGetComponent<TComponent>(out TComponent component) where TComponent : class, IEntityComponent
         {
-            if (_components.TryGetValue(typeof(TComponent), out IEntityComponent findedObject))
+            if (_components.TryGetValue(typeof(TComponent), out IEntityComponent foundObject))
             {
-                component = (TComponent)findedObject;
+                component = (TComponent)foundObject;
                 return true;
             }
 

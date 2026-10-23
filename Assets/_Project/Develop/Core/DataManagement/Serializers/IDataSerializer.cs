@@ -1,4 +1,4 @@
-﻿namespace RoguelikeTD.Core.DataManagment.Serializers
+﻿namespace RoguelikeTD.Core.DataManagement.Serializers
 {
     public interface IDataSerializer
     {

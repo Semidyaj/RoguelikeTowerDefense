@@ -33,7 +33,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion
             _entity = _mainHeroHolderService.MainHero;
 
             _raycastClickPosition = _entity.InputMouseClickGroundPosition;
-            _positionFoundEvent = _entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = _entity.InputMouseClickPositionFoundEvent;
 
             _damage = _entity.AOEDamage;
             _radius = _entity.AOERadius;
@@ -46,7 +46,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion
 
         public void Enable()
         {
-            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFinded);
+            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFound);
 
             _isEnabled.Value = true;
         }
@@ -58,7 +58,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion
             _isEnabled.Value = false;
         }
 
-        private void OnPositionFinded()
+        private void OnPositionFound()
         {
             if (_isEnabled.Value == false)
                 return;

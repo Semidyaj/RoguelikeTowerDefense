@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace RoguelikeTD.Core.SceneManagment
+namespace RoguelikeTD.Core.SceneManagement
 {
     public class SceneSwitcherService
     {

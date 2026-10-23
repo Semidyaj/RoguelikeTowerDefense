@@ -126,7 +126,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddIsAOEAttackEnded()
                 .AddInputMouseClickGroundPosition()
                 .AddInputFindMouseClickPositionRequest()
-                .AddInputMouseClickPositionFindedEvent()
+                .AddInputMouseClickPositionFoundEvent()
                 .AddInputIsPositionFound()
                 .AddPlaceableIsPlaced()
                 .AddPlaceableIsEnoughMoney();
@@ -526,11 +526,11 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddRotationDirection(new ReactiveVariable<Vector3>(direction))
                 .AddRotationSpeed(new ReactiveVariable<float>(9000))
                 .AddIsDead()
-                .AddContactsDetectingMask(UnityLayers.LayerMaskCharacters | UnityLayers.LayerMaskEnviroment)
+                .AddContactsDetectingMask(UnityLayers.LayerMaskCharacters | UnityLayers.LayerMaskEnvironment)
                 .AddContactCollidersBuffer(new Buffer<Collider>(64))
                 .AddContactEntitiesBuffer(new Buffer<Entity>(64))
                 .AddBodyContactDamage(new ReactiveVariable<float>(damage))
-                .AddDeathMask(UnityLayers.LayerMaskEnviroment)
+                .AddDeathMask(UnityLayers.LayerMaskEnvironment)
                 .AddIsTouchDeathMask()
                 .AddIsTouchAnotherTeam()
                 .AddTeam(new ReactiveVariable<Teams>(owner.Team.Value));

@@ -1,7 +1,7 @@
 ﻿using RoguelikeTD.Configs.Meta.Wallet;
-using RoguelikeTD.Core.ConfigsManagment;
-using RoguelikeTD.Core.DataManagment;
-using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.DataManagement;
+using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Meta.Features.Wallet;
 using System;

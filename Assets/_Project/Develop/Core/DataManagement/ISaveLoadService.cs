@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RoguelikeTD.Core.DataManagment
+namespace RoguelikeTD.Core.DataManagement
 {
     public interface ISaveLoadService
     {

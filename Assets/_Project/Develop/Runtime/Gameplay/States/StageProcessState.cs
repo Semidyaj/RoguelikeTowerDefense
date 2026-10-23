@@ -9,16 +9,16 @@ namespace RoguelikeTD.Gameplay.States
     public class StageProcessState : State, IUpdatableState
     {
         private readonly StageProviderService _stageProviderService;
-        private readonly EndProcessStageRealeser _endProcessStageRealeser;
+        private readonly EndProcessStageReleaser _endProcessStageReleaser;
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
         public StageProcessState(
             StageProviderService stageProviderService,
-            EndProcessStageRealeser endProcessStageRealeser,
+            EndProcessStageReleaser endProcessStageReleaser,
             EntitiesLifeContext entitiesLifeContext)
         {
             _stageProviderService = stageProviderService;
-            _endProcessStageRealeser = endProcessStageRealeser;
+            _endProcessStageReleaser = endProcessStageReleaser;
             _entitiesLifeContext = entitiesLifeContext;
         }
 
@@ -42,7 +42,7 @@ namespace RoguelikeTD.Gameplay.States
             base.Exit();
 
             _stageProviderService.CleanupCurrent();
-            _endProcessStageRealeser.EndStageRelease();
+            _endProcessStageReleaser.EndStageRelease();
         }
 
         private void StartWaveAbilityActivate()

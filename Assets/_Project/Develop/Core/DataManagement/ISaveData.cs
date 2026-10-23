@@ -1,4 +1,4 @@
-﻿namespace RoguelikeTD.Core.DataManagment
+﻿namespace RoguelikeTD.Core.DataManagement
 {
     public interface ISaveData
     {

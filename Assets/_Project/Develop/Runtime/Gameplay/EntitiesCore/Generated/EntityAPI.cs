@@ -1866,13 +1866,13 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition() {Value = value});
 		}
 
-		public RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent InputMouseClickPositionFindedEventC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent>();
+		public RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFoundEvent InputMouseClickPositionFoundEventC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFoundEvent>();
 
-		public RoguelikeTD.Core.Reactive.ReactiveEvent InputMouseClickPositionFindedEvent => InputMouseClickPositionFindedEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent InputMouseClickPositionFoundEvent => InputMouseClickPositionFoundEventC.Value;
 
-		public bool TryGetInputMouseClickPositionFindedEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
+		public bool TryGetInputMouseClickPositionFoundEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFoundEvent component);
 			if(result)
 				value = component.Value;
 			else
@@ -1880,14 +1880,14 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFoundEvent()
 		{
-			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFoundEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFoundEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFoundEvent() {Value = value});
 		}
 
 		public RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience ExperienceC => GetComponent<RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience>();

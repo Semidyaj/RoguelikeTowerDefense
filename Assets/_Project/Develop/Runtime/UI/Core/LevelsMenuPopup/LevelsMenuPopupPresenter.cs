@@ -1,5 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Levels;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using System.Collections.Generic;
 

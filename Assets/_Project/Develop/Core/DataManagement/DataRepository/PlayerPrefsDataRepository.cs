@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RoguelikeTD.Core.DataManagment.DataRepository
+namespace RoguelikeTD.Core.DataManagement.DataRepository
 {
     public class PlayerPrefsDataRepository : IDataRepository
     {

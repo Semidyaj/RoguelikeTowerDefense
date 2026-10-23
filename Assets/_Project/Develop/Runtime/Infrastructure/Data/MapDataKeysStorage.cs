@@ -1,5 +1,5 @@
-﻿using RoguelikeTD.Core.DataManagment;
-using RoguelikeTD.Core.DataManagment.KeysStorage;
+﻿using RoguelikeTD.Core.DataManagement;
+using RoguelikeTD.Core.DataManagement.KeysStorage;
 using System;
 using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.DataManagment.DataProviders;
+﻿using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Infrastructure.Data;
 using System;

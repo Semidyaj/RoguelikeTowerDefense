@@ -14,7 +14,7 @@ namespace RoguelikeTD.Gameplay.Features.InputFeature
         public ReactiveEvent Value;
     }
 
-    public class InputMouseClickPositionFindedEvent : IEntityComponent
+    public class InputMouseClickPositionFoundEvent : IEntityComponent
     {
         public ReactiveEvent Value;
     }

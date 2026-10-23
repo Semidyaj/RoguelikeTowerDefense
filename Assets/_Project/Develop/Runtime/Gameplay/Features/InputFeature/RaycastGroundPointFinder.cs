@@ -29,7 +29,7 @@ namespace RoguelikeTD.Gameplay.Features.InputFeature
             _clickPointPosition = entity.InputMouseClickGroundPosition;
 
             _findPointRequest = entity.InputFindMouseClickPositionRequest;
-            _positionFoundEvent = entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = entity.InputMouseClickPositionFoundEvent;
             _isPositionFound = entity.InputIsPositionFound;
 
             _findPointRequestDisposable = _findPointRequest.Subscribe(OnFindPosition);

@@ -1,6 +1,6 @@
 ﻿using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
 using System.Collections;
 using UnityEngine;

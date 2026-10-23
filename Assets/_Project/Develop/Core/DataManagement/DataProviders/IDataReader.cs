@@ -1,4 +1,4 @@
-﻿namespace RoguelikeTD.Core.DataManagment.DataProviders
+﻿namespace RoguelikeTD.Core.DataManagement.DataProviders
 {
     public interface IDataReader<TData> where TData: ISaveData
     {

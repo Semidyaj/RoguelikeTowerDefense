@@ -2,8 +2,8 @@
 using RoguelikeTD.Configs.Gameplay.Levels;
 using RoguelikeTD.Configs.Gameplay.Loot;
 using RoguelikeTD.Configs.Meta.Economy;
-using RoguelikeTD.Core.AssetsManagment;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
@@ -73,7 +73,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateStagesFactory);
             container.RegisterAsSingle(CreateStageProviderService);
-            container.RegisterAsSingle(CreatePreperationTriggerService);
+            container.RegisterAsSingle(CreatePreparationTriggerService);
 
             container.RegisterAsSingle(CreateGameplayStatesFactory);
             container.RegisterAsSingle(CreateGameplayStatesContext);
@@ -90,7 +90,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateDropLootService);
             container.RegisterAsSingle(CreateLootPullingService).NonLazy();
 
-            container.RegisterAsSingle<IPauseService>(CreareTimeScalePauseService);
+            container.RegisterAsSingle<IPauseService>(CreateTimeScalePauseService);
 
             container.RegisterAsSingle<IInputService>(CreateDesktopInput);
 
@@ -100,7 +100,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateGameplayResultHandler).NonLazy();
 
-            container.RegisterAsSingle(CreateEndProcessStageRealeser);
+            container.RegisterAsSingle(CreateEndProcessStageReleaser);
         }
 
         private static BoostAbilitiesStartGameplayApplier CreateBoostAbilitiesStartGameplayApplier(DIContainer c)
@@ -110,8 +110,8 @@ namespace RoguelikeTD.Gameplay.Infrastructure
                 c.Resolve<ICoroutinesPerformer>(),
                 c.Resolve<PlayerDataProvider>());
 
-        private static EndProcessStageRealeser CreateEndProcessStageRealeser(DIContainer c)
-            => new EndProcessStageRealeser(c.Resolve<EntitiesLifeContext>());
+        private static EndProcessStageReleaser CreateEndProcessStageReleaser(DIContainer c)
+            => new EndProcessStageReleaser(c.Resolve<EntitiesLifeContext>());
 
         private static PlaceableService CreatePlaceableService(DIContainer c)
             => new PlaceableService(c.Resolve<WalletService>(), c.Resolve<MainHeroHolderService>(), c.Resolve<PlaceablesSpawner>());
@@ -120,7 +120,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new PlaceablesFactory(c);
 
         private static PlaceablesSpawner CreatePlaceablesSpawner(DIContainer c)
-            => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageRealeser>());
+            => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageReleaser>());
 
         private static GameplayRewardsService CreateGameplayRewardsService(DIContainer c)
             => new GameplayRewardsService(
@@ -139,7 +139,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
         private static LootFactory CreateLootFactory(DIContainer c)
             => new LootFactory(c);
 
-        private static TimeScalePauseService CreareTimeScalePauseService(DIContainer c)
+        private static TimeScalePauseService CreateTimeScalePauseService(DIContainer c)
             => new TimeScalePauseService();
 
         private static DropAbilityOnMainHeroLevelUpService CreateDropAbilityOnMainHeroLevelUpService(DIContainer c)
@@ -220,8 +220,8 @@ namespace RoguelikeTD.Gameplay.Infrastructure
         private static MainHeroHolderService CreateMainHeroHolderService(DIContainer c)
             => new MainHeroHolderService(c.Resolve<EntitiesLifeContext>());
 
-        private static PreperationTriggerService CreatePreperationTriggerService(DIContainer c)
-            => new PreperationTriggerService(
+        private static PreparationTriggerService CreatePreparationTriggerService(DIContainer c)
+            => new PreparationTriggerService(
                 c.Resolve<EntitiesFactory>(),
                 c.Resolve<EntitiesLifeContext>());
 

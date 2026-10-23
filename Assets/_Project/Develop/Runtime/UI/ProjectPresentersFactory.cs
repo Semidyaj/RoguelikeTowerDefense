@@ -1,11 +1,11 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
 using RoguelikeTD.Configs.Meta.HeroStats;
 using RoguelikeTD.Configs.Meta.Wallet;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
-using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Meta.Features.LevelsProgression;

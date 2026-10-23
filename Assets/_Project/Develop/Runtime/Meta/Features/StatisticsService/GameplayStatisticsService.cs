@@ -1,5 +1,5 @@
 ﻿using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Infrastructure.Data;
 
 namespace RoguelikeTD.Meta.Features.StatisticsService

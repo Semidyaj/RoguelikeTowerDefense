@@ -2,10 +2,10 @@
 using RoguelikeTD.Configs.Gameplay.Experience;
 using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Configs.Meta.Wallet;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;

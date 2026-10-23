@@ -10,7 +10,7 @@ namespace RoguelikeTD.Gameplay.States
 {
     public class PreparationState : State, IUpdatableState
     {
-        private readonly PreperationTriggerService _triggerService;
+        private readonly PreparationTriggerService _triggerService;
 
         private readonly PlaceableService _placeableService;
         private readonly PointClickExplosionService _explosionService;
@@ -22,7 +22,7 @@ namespace RoguelikeTD.Gameplay.States
         public PreparationState(
             PointClickExplosionService explosionService,
             PlaceableService placeableService,
-            PreperationTriggerService triggerService,
+            PreparationTriggerService triggerService,
             GameplayPopupService popupService)
         {
             _triggerService = triggerService;

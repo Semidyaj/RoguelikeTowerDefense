@@ -1,6 +1,6 @@
 ﻿using RoguelikeTD.Configs.Meta.HeroStats;
-using RoguelikeTD.Core.ConfigsManagment;
-using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Infrastructure.Data;

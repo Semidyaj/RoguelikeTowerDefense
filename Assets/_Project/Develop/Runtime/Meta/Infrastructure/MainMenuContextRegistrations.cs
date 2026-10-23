@@ -1,5 +1,5 @@
 ﻿using RoguelikeTD.Configs.Meta.Economy;
-using RoguelikeTD.Core.AssetsManagment;
+using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.DI;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.Meta.Features.Wallet;

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RoguelikeTD.Core.DataManagment.Serializers
+namespace RoguelikeTD.Core.DataManagement.Serializers
 {
     public class JsonSerializer : IDataSerializer
     {

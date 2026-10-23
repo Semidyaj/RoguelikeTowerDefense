@@ -36,7 +36,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             _entity = _mainHeroHolderService.MainHero;
 
             _raycastClickPosition = _entity.InputMouseClickGroundPosition;
-            _positionFoundEvent = _entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = _entity.InputMouseClickPositionFoundEvent;
 
             _isEnoughMoney = _entity.PlaceableIsEnoughMoney;
             _isPlaced = _entity.PlaceableIsPlaced;
@@ -46,7 +46,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 
         public void Enable()
         {
-            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFinded);
+            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFound);
 
             _isEnabled.Value = true;
         }
@@ -60,7 +60,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 
         public void SetSelectedPlaceable(PlaceableConfig config) => _selectedConfig = config;
 
-        private void OnPositionFinded()
+        private void OnPositionFound()
         {
             if (_isEnabled.Value == false)
                 return;

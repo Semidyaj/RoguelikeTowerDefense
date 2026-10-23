@@ -39,7 +39,7 @@ namespace RoguelikeTD.Editor
                 string typeName = componentType.Name;
                 string fullTypeName = componentType.FullName;
 
-                string componentName = RemoveSuffixIsExists(typeName, ComponentSuffix);
+                string componentName = RemoveSuffixIfExists(typeName, ComponentSuffix);
                 string modifiedComponentName = componentName + "C";
 
                 //свойство для получения компонента
@@ -78,7 +78,7 @@ namespace RoguelikeTD.Editor
                     }
                 }
 
-                string componentParameters = GetParametrs(componentType);
+                string componentParameters = GetParameters(componentType);
 
                 sb.AppendLine($"\t\tpublic {typeof(Entity).FullName} Add{componentName}({componentParameters})");
                 sb.AppendLine("\t\t{");
@@ -112,7 +112,7 @@ namespace RoguelikeTD.Editor
                 .OrderBy(type => type.FullName);
         }
 
-        private static string RemoveSuffixIsExists(string str, string suffix)
+        private static string RemoveSuffixIfExists(string str, string suffix)
         {
             if (str.EndsWith(suffix))
                 return str.Substring(0, str.Length - suffix.Length);
@@ -141,7 +141,7 @@ namespace RoguelikeTD.Editor
                 && type.IsSubclassOf(typeof(UnityEngine.Object)) == false;
         }
 
-        private static string GetParametrs(Type type)
+        private static string GetParameters(Type type)
         {
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
 

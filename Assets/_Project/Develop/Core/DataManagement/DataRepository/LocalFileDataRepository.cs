@@ -2,7 +2,7 @@
 using System.Collections;
 using System.IO;
 
-namespace RoguelikeTD.Core.DataManagment.DataRepository
+namespace RoguelikeTD.Core.DataManagement.DataRepository
 {
     public class LocalFileDataRepository : IDataRepository
     {

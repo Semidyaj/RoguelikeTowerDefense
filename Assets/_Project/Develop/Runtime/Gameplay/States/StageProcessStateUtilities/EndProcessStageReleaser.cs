@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace RoguelikeTD.Gameplay.States.StageProcessStateUtilities
 {
-    public class EndProcessStageRealeser
+    public class EndProcessStageReleaser
     {
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
         private List<Entity> _entities = new();
 
-        public EndProcessStageRealeser(EntitiesLifeContext entitiesLifeContext)
+        public EndProcessStageReleaser(EntitiesLifeContext entitiesLifeContext)
         {
             _entitiesLifeContext = entitiesLifeContext;
         }

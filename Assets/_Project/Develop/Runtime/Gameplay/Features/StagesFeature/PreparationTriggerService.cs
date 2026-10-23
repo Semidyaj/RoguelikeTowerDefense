@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.StagesFeature
 {
-    public class PreperationTriggerService
+    public class PreparationTriggerService
     {
         private readonly EntitiesFactory _entitiesFactory;
         private readonly EntitiesLifeContext _entitiesLifeContext;
@@ -17,7 +17,7 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
         private Entity _nextStageTrigger;
         private Buffer<Entity> _nextStageTriggerContacts;
 
-        public PreperationTriggerService(EntitiesFactory entitiesFactory, EntitiesLifeContext entitiesLifeContext)
+        public PreparationTriggerService(EntitiesFactory entitiesFactory, EntitiesLifeContext entitiesLifeContext)
         {
             _entitiesFactory = entitiesFactory;
             _entitiesLifeContext = entitiesLifeContext;

@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Characters
   - Projectiles
-  - Enviroment
+  - Environment
   - Ground
   - Loot
   - TextureRender

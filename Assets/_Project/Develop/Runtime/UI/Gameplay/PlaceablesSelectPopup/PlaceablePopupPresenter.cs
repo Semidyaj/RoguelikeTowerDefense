@@ -1,5 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Placeables;
-using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.UI.Core;
