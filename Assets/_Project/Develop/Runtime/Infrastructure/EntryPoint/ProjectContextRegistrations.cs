@@ -21,6 +21,7 @@ using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
 using Assets._Project.Develop.Runtime.Utilities.Timer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -28,6 +29,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 {
     public class ProjectContextRegistrations
     {
+        private const string EditorSavesFolderName = "Saves";
+
         public static void Process(DIContainer container)
         {
             container.RegisterAsSingle<ICoroutinesPerformer>(CreateCoroutinesPerformer);
@@ -108,7 +111,12 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             IDataKeysStorage keysStorage = new MapDataKeysStorage();
 
-            string saveFolderPath = Application.isEditor ? Application.dataPath : Application.persistentDataPath;
+            string saveFolderPath = Application.isEditor
+                ? Path.Combine(Path.GetDirectoryName(Application.dataPath), EditorSavesFolderName)
+                : Application.persistentDataPath;
+
+            Directory.CreateDirectory(saveFolderPath);
+
             IDataRepository repository = new LocalFileDataRepository(saveFolderPath, "json");
 
             return new SaveLoadService(serializer, keysStorage, repository);

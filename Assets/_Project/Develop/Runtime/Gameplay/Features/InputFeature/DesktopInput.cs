@@ -28,8 +28,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
                 if (IsEnabled == false)
                     return Vector3.zero;
 
-                float mouseX = Input.GetAxis(HorizontalMouseAxisName);
-
                 return new Vector3(0, Input.GetAxis(HorizontalMouseAxisName), 0);
             }
         }

@@ -81,12 +81,14 @@ crashlytics-build.properties
 /[Aa]ssets/_Project/Art/
 /[Aa]ssets/_Project/Art.meta
 
-# Editor save file (written to Assets/ when running in the Editor)
-/[Aa]ssets/PlayerData.json
-/[Aa]ssets/PlayerData.json.meta
+# Editor saves (written to Saves/ next to Assets/ when running in the Editor)
+/[Ss]aves/
 
 # Local working notes (not part of the public repository)
 /CLAUDE.md
 /Журнал.md
 /docs/achievements.md
 /docs/interview-notes.md
+
+# Local Claude Code settings
+/.claude/
