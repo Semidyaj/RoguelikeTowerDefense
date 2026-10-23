@@ -31,7 +31,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
         {
             if (_canMove.Evaluate() == false)
             {
-                _rigidbody.velocity = Vector3.zero;
+                _rigidbody.linearVelocity = Vector3.zero;
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
 
             _isMoving.Value = velocity.magnitude > 0;
 
-            _rigidbody.velocity = velocity;
+            _rigidbody.linearVelocity = velocity;
         }
     }
 }

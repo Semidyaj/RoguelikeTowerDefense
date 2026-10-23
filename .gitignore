@@ -90,3 +90,6 @@ crashlytics-build.properties
 /Журнал.md
 /docs/achievements.md
 /docs/interview-notes.md
+
+# Local Claude Code settings
+/.claude/
