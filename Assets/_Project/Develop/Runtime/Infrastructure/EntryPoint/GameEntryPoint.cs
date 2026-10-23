@@ -49,11 +49,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             else
                 playerDataProvider.Reset();
 
-            //yield return new WaitForSeconds(0.5f);
-
             loadingScreen.Hide();
 
-            //yield return sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(1));
             yield return sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu);
         }
     }
