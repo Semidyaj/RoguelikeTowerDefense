@@ -1,0 +1,20 @@
+﻿using Assets._Project.Develop.Runtime.UI.Core;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup
+{
+    public class AbilityIcon : MonoBehaviour, IView
+    {
+        [SerializeField] private Image _icon;
+        [SerializeField] private Transform _levelParent;
+        [SerializeField] private TextMeshProUGUI _level;
+
+        public void HideLevel() => _levelParent.gameObject.SetActive(false);
+        public void ShowLevel() => _levelParent.gameObject.SetActive(true);
+
+        public void SetIcon(Sprite icon) => _icon.sprite = icon;
+        public void SetLevel(string level) => _level.text = level;
+    }
+}

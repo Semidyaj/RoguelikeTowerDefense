@@ -1,0 +1,136 @@
+﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
+using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+using Assets._Project.Develop.Runtime.Utilities.Reactive;
+using System;
+using UnityEngine;
+
+namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
+{
+    public class IsAbility : IEntityComponent
+    {
+    }
+
+    public class IsOnAddAbility : IEntityComponent
+    {
+    }
+
+    public class IsPerWaveAbility : IEntityComponent
+    {
+    }
+
+    public class AbilityOwner : IEntityComponent
+    {
+        public ReactiveVariable<Entity> Value;
+    }
+
+    public class Abilities : IEntityComponent
+    {
+        public AbilitiesList Value;
+    }
+
+    public class AbilityOnAddActivatorRequest : IEntityComponent
+    {
+        public ReactiveEvent Value;
+    }
+
+    public class AbilityPerWaveActivatorRequest : IEntityComponent
+    {
+        public ReactiveEvent Value;
+    }
+
+    public class AbilityActivateRequest : IEntityComponent
+    {
+        public ReactiveEvent Value;
+    }
+
+    public class IsAbilityUsed : IEntityComponent
+    {
+        public ReactiveVariable<bool> Value;
+    }
+
+    // StartWaveHealTowerAbility
+    public class AbilityHealPercent : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+
+    // StartWaveTakeDamageAbility
+    public class AbilityTakeDamagePercent : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+
+    // IncreaseDamageAbility
+    public class AbilityIncreaseDamagePercent : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+
+    // StatChangeAbility
+    public class AbilityStatType : IEntityComponent
+    {
+        public StatTypes Value;
+    }
+
+    public class AbilityOperation : IEntityComponent
+    {
+        public Func<float, float> Value;
+    }
+
+    public class AbilityStatChangeValue : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
+    }
+
+    // Config data
+    public class IsAbilityAvailableToDrop : IEntityComponent
+    {
+        public ReactiveVariable<bool> Value;
+    }
+
+    public class AbilityID : IEntityComponent
+    {
+        public ReactiveVariable<string> Value;
+    }
+
+    public class AbilityMaxLevel : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+
+    public class AbilityCurrentLevel : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+
+    public class AbilityName : IEntityComponent
+    {
+        public ReactiveVariable<string> Value;
+    }
+
+    public class AbilityDescription : IEntityComponent
+    {
+        public ReactiveVariable<string> Value;
+    }
+
+    public class AbilityIcon : IEntityComponent
+    {
+        public Sprite Value;
+    }
+
+    public class IsAbilityUpgradable : IEntityComponent
+    {
+        public ReactiveVariable<bool> Value;
+    }
+
+    public class AbilityCurrencyType : IEntityComponent
+    {
+        public CurrencyTypes Value;
+    }
+
+    public class AbilityPrice : IEntityComponent
+    {
+        public ReactiveVariable<int> Value;
+    }
+}

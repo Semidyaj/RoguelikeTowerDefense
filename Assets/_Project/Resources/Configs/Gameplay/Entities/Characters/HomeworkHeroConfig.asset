@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa682e71661b67e4291a2c97a3bb8261, type: 3}
+  m_Name: HomeworkHeroConfig
+  m_EditorClassIdentifier: 
+  <PrefabPath>k__BackingField: Entities/HomeworkHero
+  <MoveSpeed>k__BackingField: 10
+  <RotationSpeed>k__BackingField: 900
+  <AttackCooldown>k__BackingField: 1
+  <MaxHealth>k__BackingField: 100
+  <MaxEnergy>k__BackingField: 100
+  <EnergyRecoveryTimePeriod>k__BackingField: 5
+  <PercentToEnergyRecoveryByPeriod>k__BackingField: 0.1
+  <DeathProcessTime>k__BackingField: 2
+  <TeleportationRadius>k__BackingField: 10
+  <TeleportationEnergyCost>k__BackingField: 50
+  <TeleportationCooldown>k__BackingField: 2
+  <AOEDamage>k__BackingField: 100
+  <AOERadius>k__BackingField: 5

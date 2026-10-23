@@ -1,0 +1,107 @@
+﻿using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
+using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
+using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
+using Assets._Project.Develop.Runtime.UI.Core;
+using Assets._Project.Develop.Runtime.UI.Core.Statistics;
+using Assets._Project.Develop.Runtime.UI.Wallet;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Assets._Project.Develop.Runtime.UI.MainMenu
+{
+    public class MainMenuScreenPresenter : IPresenter
+    {
+        private readonly MainMenuScreenView _screen;
+        private readonly ProjectPresentersFactory _projectPresentersFactory;
+        private readonly MainMenuPresentersFactory _mainMenuPresentersFactory;
+
+        private readonly LevelsProgressionService _levelsProgressionService;
+        private readonly MainMenuPopupService _popupService;
+        private readonly ResetStatistics _resetService;
+        private readonly SceneSwitcherService _sceneSwitcherService;
+        private readonly ICoroutinesPerformer _coroutinesPerformer;
+
+        private readonly List<IPresenter> _childPresenters = new();
+
+        public MainMenuScreenPresenter(
+            MainMenuScreenView screen,
+            ProjectPresentersFactory projectPresentersFactory,
+            MainMenuPopupService popupService,
+            ResetStatistics resetService,
+            MainMenuPresentersFactory mainMenuPresentersFactory,
+            LevelsProgressionService levelsProgressionService,
+            SceneSwitcherService sceneSwitcherService,
+            ICoroutinesPerformer coroutinesPerformer)
+        {
+            _screen = screen;
+            _projectPresentersFactory = projectPresentersFactory;
+            _popupService = popupService;
+            _resetService = resetService;
+            _mainMenuPresentersFactory = mainMenuPresentersFactory;
+            _levelsProgressionService = levelsProgressionService;
+            _sceneSwitcherService = sceneSwitcherService;
+            _coroutinesPerformer = coroutinesPerformer;
+        }
+
+        public void Initialize()
+        {
+            _screen.OpenLevelsMenuButtonClicked += OnOpenLevelsMenuButtonClicked;
+            _screen.PlayRandomLevelMenuButtonClicked += OnPlayRandomLevelMenuButtonClicked;
+            _screen.OpenStatsUpgradeButtonClicked += OnOpenStatsUpgradeButtonClicked;
+            _screen.OpenBoostsShopButtonClicked += OnOpenBoostsShopButtonClicked;
+            _screen.ResetStatsButtonClicked += OnResetStatsButtonClicked;
+
+            CreateWallet();
+            CreateStatisticsView();
+
+            foreach (IPresenter presenter in _childPresenters)
+                presenter.Initialize();
+        }
+
+        public void Dispose()
+        {
+            _screen.OpenLevelsMenuButtonClicked -= OnOpenLevelsMenuButtonClicked;
+            _screen.PlayRandomLevelMenuButtonClicked -= OnPlayRandomLevelMenuButtonClicked;
+            _screen.OpenStatsUpgradeButtonClicked -= OnOpenStatsUpgradeButtonClicked;
+            _screen.OpenBoostsShopButtonClicked -= OnOpenBoostsShopButtonClicked;
+            _screen.ResetStatsButtonClicked -= OnResetStatsButtonClicked;
+
+            foreach (IPresenter presenter in _childPresenters)
+                presenter.Dispose();
+
+            _childPresenters.Clear();
+        }
+
+        private void CreateWallet()
+        {
+            WalletPresenter walletPresenter = _projectPresentersFactory.CreateWalletPresenter(_screen.WalletView);
+            _childPresenters.Add(walletPresenter);
+        }
+
+        private void CreateStatisticsView()
+        {
+            StatisticsPresenter statisticsPresenter = _mainMenuPresentersFactory.CreateStatisticsPresenter(_screen.StatisticsView);
+            _childPresenters.Add(statisticsPresenter);
+        }
+
+        private void OnOpenLevelsMenuButtonClicked() => _popupService.OpenLevelsMenuPopup();
+
+        private void OnPlayRandomLevelMenuButtonClicked()
+        {
+            if(_levelsProgressionService.CompletedLevels.Count == 0)
+                _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(1)));
+
+            int randomLevel = _levelsProgressionService.CompletedLevels[Random.Range(0, _levelsProgressionService.CompletedLevels.Count)];
+
+            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(randomLevel)));
+        }
+
+        private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopup();
+
+        private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopup();
+
+        private void OnResetStatsButtonClicked() => _resetService.Reset();
+    }
+}

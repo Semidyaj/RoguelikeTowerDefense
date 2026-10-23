@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c8cf499df1031498703ab0052a7f1b, type: 3}
+  m_Name: AcidConfig
+  m_EditorClassIdentifier: 
+  <ID>k__BackingField: ACID
+  <Name>k__BackingField: Acid
+  <Icon>k__BackingField: {fileID: 21300000, guid: ac4e40c725e864e1482c453a75f7caae,
+    type: 3}
+  <CurrencyType>k__BackingField: 0
+  <Costs>k__BackingField: 10
+  <Damage>k__BackingField: 20
+  <Radius>k__BackingField: 2
+  <TickInitialTime>k__BackingField: 0.5
