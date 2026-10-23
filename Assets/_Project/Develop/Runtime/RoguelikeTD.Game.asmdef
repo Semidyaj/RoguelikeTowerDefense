@@ -1,0 +1,19 @@
+{
+    "name": "RoguelikeTD.Game",
+    "rootNamespace": "",
+    "references": [
+        "RoguelikeTD.Core",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

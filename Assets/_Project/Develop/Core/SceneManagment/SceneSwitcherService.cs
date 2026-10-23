@@ -13,14 +13,20 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
         private readonly SceneLoaderService _sceneLoaderService;
         private readonly ILoadingScreen _loadingScreen;
         private readonly DIContainer _projectContainer;
+        private readonly string _emptySceneName;
 
         private DIContainer _currentSceneContainer;
 
-        public SceneSwitcherService(SceneLoaderService sceneLoaderService, ILoadingScreen loadingScreen, DIContainer projectContainer)
+        public SceneSwitcherService(
+            SceneLoaderService sceneLoaderService,
+            ILoadingScreen loadingScreen,
+            DIContainer projectContainer,
+            string emptySceneName)
         {
             _sceneLoaderService = sceneLoaderService;
             _loadingScreen = loadingScreen;
             _projectContainer = projectContainer;
+            _emptySceneName = emptySceneName;
         }
 
         public IEnumerator ProcessSwitchTo(string sceneName, IInputSceneArgs sceneArgs = null)
@@ -29,7 +35,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
 
             _currentSceneContainer?.Dispose();
 
-            yield return _sceneLoaderService.LoadAsync(Scenes.Empty);
+            yield return _sceneLoaderService.LoadAsync(_emptySceneName);
 
             yield return _sceneLoaderService.LoadAsync(sceneName);
 

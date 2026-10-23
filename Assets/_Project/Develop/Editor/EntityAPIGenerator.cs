@@ -12,7 +12,7 @@ namespace Assets._Project.Develop.Editor
 {
     public class EntityAPIGenerator
     {
-        private const string AssemblyName = "Assembly-CSharp";
+        private const string AssemblyName = "RoguelikeTD.Game";
         private const string ComponentSuffix = "Component";
 
         private static string OutputPath
@@ -91,7 +91,12 @@ namespace Assets._Project.Develop.Editor
 
             sb.AppendLine("}");
 
-            File.WriteAllText(OutputPath, sb.ToString());
+            string code = sb.ToString();
+
+            if (File.Exists(OutputPath) && File.ReadAllText(OutputPath) == code)
+                return;
+
+            File.WriteAllText(OutputPath, code);
 
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
@@ -103,7 +108,8 @@ namespace Assets._Project.Develop.Editor
                 .GetTypes()
                 .Where(type => type.IsInterface == false
                     && type.IsAbstract == false
-                    && typeof(IEntityComponent).IsAssignableFrom(type));
+                    && typeof(IEntityComponent).IsAssignableFrom(type))
+                .OrderBy(type => type.FullName);
         }
 
         private static string RemoveSuffixIsExists(string str, string suffix)

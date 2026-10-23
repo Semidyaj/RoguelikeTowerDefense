@@ -138,7 +138,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             ILoadingScreen loadingScreen = c.Resolve<ILoadingScreen>();
 
-            return new SceneSwitcherService(sceneLoaderService, loadingScreen, c);
+            return new SceneSwitcherService(sceneLoaderService, loadingScreen, c, Scenes.Empty);
         }
 
         private static StandardLoadingScreen CreateStandardLoadingScreen(DIContainer c)
