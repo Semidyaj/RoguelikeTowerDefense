@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Stages
+namespace RoguelikeTD.Configs.Gameplay.Stages
 {
     public abstract class StageConfig : ScriptableObject
     {

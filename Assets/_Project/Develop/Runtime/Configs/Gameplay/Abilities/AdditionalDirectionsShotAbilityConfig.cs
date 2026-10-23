@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities
+namespace RoguelikeTD.Configs.Gameplay.Abilities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Abilities/AdditionalDirectionsShotAbilityConfig", fileName = "AdditionalDirectionsShotAbilityConfig")]
     public class AdditionalDirectionsShotAbilityConfig : AbilityConfig

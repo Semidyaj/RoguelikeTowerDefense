@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.TeamsFeature;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.HealthDisplay
+namespace RoguelikeTD.UI.Gameplay.HealthDisplay
 {
     public class EntityHealthPresenter : IPresenter
     {

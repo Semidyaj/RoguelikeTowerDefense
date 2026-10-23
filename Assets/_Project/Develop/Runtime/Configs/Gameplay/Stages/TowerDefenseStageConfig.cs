@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Stages
+namespace RoguelikeTD.Configs.Gameplay.Stages
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Stages/NewTowerDefenseStage", fileName = "TowerDefenseStage")]
     public class TowerDefenseStageConfig : StageConfig

@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup
+namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 {
     public class AbilityIcon : MonoBehaviour, IView
     {

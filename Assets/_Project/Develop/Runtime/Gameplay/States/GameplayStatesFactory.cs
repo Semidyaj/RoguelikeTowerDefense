@@ -1,24 +1,24 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Allies;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion;
-using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ResultHandler;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
-using Assets._Project.Develop.Runtime.Gameplay.States.StageProcessStateUtilities;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Gameplay.Features.Allies;
+using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.LootFeature;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.ResultHandler;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.Gameplay.Infrastructure;
+using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
+using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.UI.Gameplay;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class GameplayStatesFactory
     {

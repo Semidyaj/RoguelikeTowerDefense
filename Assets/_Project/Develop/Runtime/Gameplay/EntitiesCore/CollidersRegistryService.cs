@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public class CollidersRegistryService
     {

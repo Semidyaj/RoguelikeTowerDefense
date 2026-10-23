@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup
+namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelsMenuPopupView : PopupViewBase
     {

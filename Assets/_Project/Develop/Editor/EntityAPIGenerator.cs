@@ -1,4 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Editor
+namespace RoguelikeTD.Editor
 {
     public class EntityAPIGenerator
     {

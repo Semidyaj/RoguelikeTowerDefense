@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States.StageProcessStateUtilities
+namespace RoguelikeTD.Gameplay.States.StageProcessStateUtilities
 {
     public class EndProcessStageRealeser
     {

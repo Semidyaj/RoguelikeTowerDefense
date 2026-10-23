@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
+﻿using RoguelikeTD.UI.CommonViews;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.HealthDisplay
+namespace RoguelikeTD.UI.Gameplay.HealthDisplay
 {
     public class EntitiesHealthDisplay : ElementsListView<BarWithText>
     {

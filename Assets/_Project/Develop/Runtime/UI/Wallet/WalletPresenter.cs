@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Wallet
+namespace RoguelikeTD.UI.Wallet
 {
     public class WalletPresenter : IPresenter
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
+﻿namespace RoguelikeTD.Core.StateMachineCore
 {
     public interface IUpdatableState  : IState
     {

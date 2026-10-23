@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Utilities.LoadingScreen
+namespace RoguelikeTD.Core.LoadingScreen
 {
     public class StandardLoadingScreen : MonoBehaviour, ILoadingScreen
     {

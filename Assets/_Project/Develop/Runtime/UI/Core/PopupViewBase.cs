@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public class PopupViewBase : MonoBehaviour, IShowableView
     {

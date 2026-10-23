@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEditor;
 
-namespace Assets._Project.Develop.Editor.Pipeline
+namespace RoguelikeTD.Editor.Pipeline
 {
     [InitializeOnLoad]
     public static class EditorActivityTracker

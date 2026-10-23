@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders
+namespace RoguelikeTD.Core.DataManagment.DataProviders
 {
     public abstract class DataProvider<TData> where TData : ISaveData
     {

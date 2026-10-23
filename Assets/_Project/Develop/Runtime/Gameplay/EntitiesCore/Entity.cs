@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
+﻿using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public partial class Entity : IDisposable
     {

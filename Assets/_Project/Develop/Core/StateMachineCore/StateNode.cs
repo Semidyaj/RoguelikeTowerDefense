@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
+namespace RoguelikeTD.Core.StateMachineCore
 {
     public class StateNode<TState> where TState : class, IState
     {

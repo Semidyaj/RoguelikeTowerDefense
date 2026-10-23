@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Gameplay.HealthDisplay;
+﻿using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay.HealthDisplay;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay
+namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayScreenView : MonoBehaviour, IView
     {

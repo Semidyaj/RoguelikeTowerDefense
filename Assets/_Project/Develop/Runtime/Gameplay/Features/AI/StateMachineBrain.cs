@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
+﻿namespace RoguelikeTD.Gameplay.Features.AI
 {
     public class StateMachineBrain : IBrain
     {

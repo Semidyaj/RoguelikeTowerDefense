@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.SynchronizerSystems
+namespace RoguelikeTD.Gameplay.Features.StatsFeature.SynchronizerSystems
 {
     public class DamageStatSynchronizerSystem : IInitializableSystem, IUpdatableSystem
     {

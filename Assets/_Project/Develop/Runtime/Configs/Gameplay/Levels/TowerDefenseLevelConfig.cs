@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Levels
+namespace RoguelikeTD.Configs.Gameplay.Levels
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Levels/NewTowerDefenseLevelConfig", fileName = "TowerDefenseLevelConfig")]
     public class TowerDefenseLevelConfig : LevelConfig

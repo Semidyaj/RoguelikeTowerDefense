@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature
+﻿namespace RoguelikeTD.Gameplay.Features.TeamsFeature
 {
     public enum Teams
     {

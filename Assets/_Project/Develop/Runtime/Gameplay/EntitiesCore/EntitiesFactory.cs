@@ -1,30 +1,30 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
-using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Sensors;
-using Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.SynchronizerSystems;
-using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Entities;
+using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Core;
+using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore.Mono;
+using RoguelikeTD.Gameplay.Features.ApplyDamage;
+using RoguelikeTD.Gameplay.Features.Attack;
+using RoguelikeTD.Gameplay.Features.Attack.AOE;
+using RoguelikeTD.Gameplay.Features.Attack.Shoot;
+using RoguelikeTD.Gameplay.Features.ContactTakeDamage;
+using RoguelikeTD.Gameplay.Features.Enemies;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.LifeCycle;
+using RoguelikeTD.Gameplay.Features.LootFeature;
+using RoguelikeTD.Gameplay.Features.MovementFeature;
+using RoguelikeTD.Gameplay.Features.Sensors;
+using RoguelikeTD.Gameplay.Features.SpawnFeature;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Gameplay.Features.StatsFeature.SynchronizerSystems;
+using RoguelikeTD.Gameplay.Features.TeamsFeature;
+using RoguelikeTD.Utilities.LayersConstsGenerated;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public class EntitiesFactory
     {

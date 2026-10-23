@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature
+namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
 {
     public class AbilitiesActivatorSystem : IInitializableSystem, IDisposableSystem
     {

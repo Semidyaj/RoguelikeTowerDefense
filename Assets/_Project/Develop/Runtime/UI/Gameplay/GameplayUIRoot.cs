@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay
+namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayUIRoot : MonoBehaviour
     {

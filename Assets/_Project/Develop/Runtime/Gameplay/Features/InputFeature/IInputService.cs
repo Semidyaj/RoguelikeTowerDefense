@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
+namespace RoguelikeTD.Gameplay.Features.InputFeature
 {
     public interface IInputService
     {

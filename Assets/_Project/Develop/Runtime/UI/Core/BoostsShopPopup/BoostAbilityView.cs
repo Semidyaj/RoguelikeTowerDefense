@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup;
+﻿using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.BoostsShopPopup
+namespace RoguelikeTD.UI.Core.BoostsShopPopup
 {
     public class BoostAbilityView : MonoBehaviour, IView
     {

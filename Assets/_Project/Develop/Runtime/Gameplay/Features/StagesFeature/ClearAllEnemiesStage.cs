@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Stages;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Stages;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.Enemies;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature
+namespace RoguelikeTD.Gameplay.Features.StagesFeature
 {
     public class ClearAllEnemiesStage : IStage
     {

@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.States.StageProcessStateUtilities;
+﻿using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
+namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 {
     public class PlaceablesSpawner
     {

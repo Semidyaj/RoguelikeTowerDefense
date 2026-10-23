@@ -1,14 +1,14 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.HeroStats;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
+namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 {
     public class UpgradableStatPresenter : IPresenter
     {

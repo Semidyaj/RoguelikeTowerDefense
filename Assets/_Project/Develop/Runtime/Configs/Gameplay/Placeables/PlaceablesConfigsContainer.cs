@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables
+namespace RoguelikeTD.Configs.Gameplay.Placeables
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Placeables/PlaceablesConfigsContainer", fileName = "PlaceablesConfigsContainer")]
     public class PlaceablesConfigsContainer : ScriptableObject

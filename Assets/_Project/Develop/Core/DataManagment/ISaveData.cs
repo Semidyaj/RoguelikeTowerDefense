@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.DataManagment
+﻿namespace RoguelikeTD.Core.DataManagment
 {
     public interface ISaveData
     {

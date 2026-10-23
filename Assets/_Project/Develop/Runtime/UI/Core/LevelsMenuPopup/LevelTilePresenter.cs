@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features;
-using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Gameplay.Infrastructure;
+using RoguelikeTD.Infrastructure;
+using RoguelikeTD.Meta.Features.LevelsProgression;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup
+namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelTilePresenter : ISubscribedPresenter
     {

@@ -1,4 +1,5 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
+﻿
+namespace RoguelikeTD.Infrastructure
 {
     internal class Scenes
     {

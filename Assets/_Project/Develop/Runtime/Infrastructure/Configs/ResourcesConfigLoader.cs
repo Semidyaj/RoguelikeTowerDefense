@@ -1,20 +1,21 @@
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities.Boosts;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Loot;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Configs.Meta.Economy;
-using Assets._Project.Develop.Runtime.Configs.Meta.HeroStats;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+using RoguelikeTD.Configs.Gameplay.Entities;
+using RoguelikeTD.Configs.Gameplay.Experience;
+using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Configs.Gameplay.Loot;
+using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Configs.Meta.Economy;
+using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.AssetsManagment;
+using RoguelikeTD.Core.ConfigsManagment;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Utilities.ConfigsManagment
+namespace RoguelikeTD.Infrastructure.Configs
 {
     public class ResourcesConfigLoader : IConfigsLoader
     {

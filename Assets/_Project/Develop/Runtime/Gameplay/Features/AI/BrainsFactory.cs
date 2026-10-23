@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States.Attack;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.TargetSelectors;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AI.States;
+using RoguelikeTD.Gameplay.Features.AI.States.Attack;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
+namespace RoguelikeTD.Gameplay.Features.AI
 {
     public class BrainsFactory
     {

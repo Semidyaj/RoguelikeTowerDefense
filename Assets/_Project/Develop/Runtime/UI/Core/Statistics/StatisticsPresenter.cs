@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.MainMenu;
+﻿using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.MainMenu;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.Statistics
+namespace RoguelikeTD.UI.Core.Statistics
 {
     public class StatisticsPresenter : IPresenter
     {

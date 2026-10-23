@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Allies
+namespace RoguelikeTD.Gameplay.Features.Allies
 {
     public class IsTower : IEntityComponent
     {

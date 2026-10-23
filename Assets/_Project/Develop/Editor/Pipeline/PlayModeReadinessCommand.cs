@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEditorInternal;
 
-namespace Assets._Project.Develop.Editor.Pipeline
+namespace RoguelikeTD.Editor.Pipeline
 {
     public static class PlayModeReadinessCommand
     {

@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
 
-namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
+namespace RoguelikeTD.Core.StateMachineCore
 {
     public interface IState
     {

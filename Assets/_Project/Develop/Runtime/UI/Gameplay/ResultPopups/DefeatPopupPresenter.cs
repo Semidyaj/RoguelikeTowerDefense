@@ -1,9 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Gameplay.Infrastructure;
+using RoguelikeTD.Infrastructure;
+using RoguelikeTD.UI.Core;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.ResultPopups
+namespace RoguelikeTD.UI.Gameplay.ResultPopups
 {
     public class DefeatPopupPresenter : PopupPresenterBase
     {

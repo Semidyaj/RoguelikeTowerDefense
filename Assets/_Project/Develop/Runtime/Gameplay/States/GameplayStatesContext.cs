@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class GameplayStatesContext : IDisposable
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
+﻿namespace RoguelikeTD.Core.SceneManagment
 {
     public interface IInputSceneArgs
     {

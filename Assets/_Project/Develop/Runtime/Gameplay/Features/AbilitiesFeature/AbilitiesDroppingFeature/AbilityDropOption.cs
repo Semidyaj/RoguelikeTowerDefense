@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature
+namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature
 {
     public class AbilityDropOption
     {

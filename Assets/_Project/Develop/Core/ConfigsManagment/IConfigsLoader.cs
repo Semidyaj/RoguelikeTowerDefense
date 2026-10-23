@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.ConfigsManagment
+namespace RoguelikeTD.Core.ConfigsManagment
 {
     public interface IConfigsLoader
     {

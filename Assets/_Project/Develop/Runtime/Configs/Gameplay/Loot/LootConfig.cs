@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Loot
+namespace RoguelikeTD.Configs.Gameplay.Loot
 {
     public abstract class LootConfig : ScriptableObject
     {

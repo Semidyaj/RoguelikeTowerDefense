@@ -1,7 +1,7 @@
 ﻿using System;
-using static Assets._Project.Develop.Runtime.Infrastructure.DI.DIContainer;
+using static RoguelikeTD.Core.DI.DIContainer;
 
-namespace Assets._Project.Develop.Runtime.Infrastructure.DI
+namespace RoguelikeTD.Core.DI
 {
     public class Registration : IRegistrationOptions
     {

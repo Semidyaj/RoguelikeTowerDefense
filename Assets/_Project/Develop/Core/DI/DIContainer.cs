@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Infrastructure.DI
+namespace RoguelikeTD.Core.DI
 {
     public partial class DIContainer
     {

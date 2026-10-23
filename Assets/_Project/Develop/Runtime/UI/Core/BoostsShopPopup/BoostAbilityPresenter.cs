@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities.Boosts;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.BoostsShopPopup
+namespace RoguelikeTD.UI.Core.BoostsShopPopup
 {
     public class BoostAbilityPresenter : IPresenter
     {

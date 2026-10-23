@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders
+﻿namespace RoguelikeTD.Core.DataManagment.DataProviders
 {
     public interface IDataWriter<TData> where TData : ISaveData
     {

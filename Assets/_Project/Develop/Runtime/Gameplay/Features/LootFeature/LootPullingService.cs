@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
+namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
     public class LootPullingService : IInitializable, IDisposable
     {

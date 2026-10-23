@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Experience
+namespace RoguelikeTD.Configs.Gameplay.Experience
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Experience/ExperienceForUpgradeLevelConfig", fileName = "ExperienceForUpgradeLevelConfig")]
     public class ExperienceForUpgradeLevelConfig : ScriptableObject

@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.SceneManagment;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
+namespace RoguelikeTD.Gameplay.Infrastructure
 {
     public class GameplayInputArgs : IInputSceneArgs
     {

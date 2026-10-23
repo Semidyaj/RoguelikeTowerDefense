@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.Stages
+namespace RoguelikeTD.UI.Gameplay.Stages
 {
     public class StagePresenter : IPresenter
     {

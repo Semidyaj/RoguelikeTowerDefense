@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
+namespace RoguelikeTD.Configs.Gameplay.Entities
 {
     public abstract class EntityConfig : ScriptableObject
     {

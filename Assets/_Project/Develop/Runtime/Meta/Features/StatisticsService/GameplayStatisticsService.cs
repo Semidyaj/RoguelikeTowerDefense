@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Infrastructure.Data;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.StatisticsService
+namespace RoguelikeTD.Meta.Features.StatisticsService
 {
     public class GameplayStatisticsService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {

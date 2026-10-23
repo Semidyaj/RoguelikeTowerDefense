@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Utilities.CoroutinesManager
+namespace RoguelikeTD.Core.CoroutinesManager
 {
     public class CoroutinesPerformer : MonoBehaviour, ICoroutinesPerformer
     {

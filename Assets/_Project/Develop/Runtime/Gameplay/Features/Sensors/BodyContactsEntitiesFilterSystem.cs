@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities;
+﻿using RoguelikeTD.Core;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Sensors
+namespace RoguelikeTD.Gameplay.Features.Sensors
 {
     public class BodyContactsEntitiesFilterSystem : IInitializableSystem, IUpdatableSystem
     {

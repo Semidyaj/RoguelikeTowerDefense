@@ -1,14 +1,14 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.HeroStats;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Meta.Features.Wallet;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade
+namespace RoguelikeTD.Meta.Features.StatsUpgrade
 {
     public class StatsUpgradeService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {

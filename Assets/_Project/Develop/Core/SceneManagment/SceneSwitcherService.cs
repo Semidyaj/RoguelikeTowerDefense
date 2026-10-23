@@ -1,12 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
+﻿using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.LoadingScreen;
+using System;
 using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using System;
 
-namespace Assets._Project.Develop.Runtime.Utilities.SceneManagment
+namespace RoguelikeTD.Core.SceneManagment
 {
     public class SceneSwitcherService
     {

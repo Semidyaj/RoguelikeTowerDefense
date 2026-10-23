@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated
+namespace RoguelikeTD.Utilities.LayersConstsGenerated
 {
 	public static class UnityLayers
 	{

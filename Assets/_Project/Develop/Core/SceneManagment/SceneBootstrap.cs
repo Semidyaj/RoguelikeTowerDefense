@@ -1,9 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.DI;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Infrastructure
+namespace RoguelikeTD.Core.SceneManagment
 {
     public abstract class SceneBootstrap : MonoBehaviour
     {

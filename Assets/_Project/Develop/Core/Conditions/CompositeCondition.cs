@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Utilities.Conditions
+namespace RoguelikeTD.Core.Conditions
 {
     public class CompositeCondition : ICompositeCondition
     {

@@ -1,8 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Core.DataManagment;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.Wallet;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.DataManagment
+namespace RoguelikeTD.Infrastructure.Data
 {
     public class PlayerData : ISaveData
     {

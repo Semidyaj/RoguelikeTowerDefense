@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project.Develop.Runtime.Utilities.Reactive
+namespace RoguelikeTD.Core.Reactive
 {
     public class Subscriber : IDisposable
 

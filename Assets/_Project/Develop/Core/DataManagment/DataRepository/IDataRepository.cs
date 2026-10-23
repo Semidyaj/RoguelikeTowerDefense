@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.DataRepository
+namespace RoguelikeTD.Core.DataManagment.DataRepository
 {
     public interface IDataRepository
     {

@@ -1,14 +1,14 @@
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
 	public partial class Entity
 	{
-		public Assets._Project.Develop.Runtime.Gameplay.Common.CharacterControllerComponent CharacterControllerC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Common.CharacterControllerComponent>();
+		public RoguelikeTD.Gameplay.Common.CharacterControllerComponent CharacterControllerC => GetComponent<RoguelikeTD.Gameplay.Common.CharacterControllerComponent>();
 
 		public UnityEngine.CharacterController CharacterController => CharacterControllerC.Value;
 
 		public bool TryGetCharacterController(out UnityEngine.CharacterController value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Common.CharacterControllerComponent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Common.CharacterControllerComponent component);
 			if(result)
 				value = component.Value;
 			else
@@ -16,42 +16,42 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCharacterController(UnityEngine.CharacterController value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCharacterController(UnityEngine.CharacterController value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.CharacterControllerComponent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Common.CharacterControllerComponent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Common.Owner OwnerC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Common.Owner>();
+		public RoguelikeTD.Gameplay.Common.Owner OwnerC => GetComponent<RoguelikeTD.Gameplay.Common.Owner>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> Owner => OwnerC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> Owner => OwnerC.Value;
 
-		public bool TryGetOwner(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetOwner(out RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Common.Owner component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Common.Owner component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddOwner()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddOwner()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.Owner() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Common.Owner() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddOwner(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddOwner(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.Owner() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Common.Owner() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Common.RigidbodyComponent RigidbodyC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Common.RigidbodyComponent>();
+		public RoguelikeTD.Gameplay.Common.RigidbodyComponent RigidbodyC => GetComponent<RoguelikeTD.Gameplay.Common.RigidbodyComponent>();
 
 		public UnityEngine.Rigidbody Rigidbody => RigidbodyC.Value;
 
 		public bool TryGetRigidbody(out UnityEngine.Rigidbody value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Common.RigidbodyComponent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Common.RigidbodyComponent component);
 			if(result)
 				value = component.Value;
 			else
@@ -59,18 +59,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddRigidbody(UnityEngine.Rigidbody value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddRigidbody(UnityEngine.Rigidbody value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.RigidbodyComponent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Common.RigidbodyComponent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Common.TransformComponent TransformC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Common.TransformComponent>();
+		public RoguelikeTD.Gameplay.Common.TransformComponent TransformC => GetComponent<RoguelikeTD.Gameplay.Common.TransformComponent>();
 
 		public UnityEngine.Transform Transform => TransformC.Value;
 
 		public bool TryGetTransform(out UnityEngine.Transform value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Common.TransformComponent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Common.TransformComponent component);
 			if(result)
 				value = component.Value;
 			else
@@ -78,157 +78,157 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTransform(UnityEngine.Transform value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTransform(UnityEngine.Transform value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.TransformComponent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Common.TransformComponent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities AbilitiesC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities AbilitiesC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesList Abilities => AbilitiesC.Value;
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesList Abilities => AbilitiesC.Value;
 
-		public bool TryGetAbilities(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesList value)
+		public bool TryGetAbilities(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesList value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesList);
+				value = default(RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesList);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilities()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilities()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities() {Value = new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesList() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities() {Value = new RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesList() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilities(Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesList value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilities(RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesList value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.Abilities() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest AbilityActivateRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest AbilityActivateRequestC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AbilityActivateRequest => AbilityActivateRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AbilityActivateRequest => AbilityActivateRequestC.Value;
 
-		public bool TryGetAbilityActivateRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAbilityActivateRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityActivateRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityActivateRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityActivateRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityActivateRequest(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType AbilityCurrencyTypeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType AbilityCurrencyTypeC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType>();
 
-		public Assets._Project.Develop.Runtime.Meta.Features.Wallet.CurrencyTypes AbilityCurrencyType => AbilityCurrencyTypeC.Value;
+		public RoguelikeTD.Meta.Features.Wallet.CurrencyTypes AbilityCurrencyType => AbilityCurrencyTypeC.Value;
 
-		public bool TryGetAbilityCurrencyType(out Assets._Project.Develop.Runtime.Meta.Features.Wallet.CurrencyTypes value)
+		public bool TryGetAbilityCurrencyType(out RoguelikeTD.Meta.Features.Wallet.CurrencyTypes value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Meta.Features.Wallet.CurrencyTypes);
+				value = default(RoguelikeTD.Meta.Features.Wallet.CurrencyTypes);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityCurrencyType(Assets._Project.Develop.Runtime.Meta.Features.Wallet.CurrencyTypes value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityCurrencyType(RoguelikeTD.Meta.Features.Wallet.CurrencyTypes value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel AbilityCurrentLevelC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel AbilityCurrentLevelC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityCurrentLevel => AbilityCurrentLevelC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityCurrentLevel => AbilityCurrentLevelC.Value;
 
-		public bool TryGetAbilityCurrentLevel(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityCurrentLevel(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityCurrentLevel()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityCurrentLevel()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityCurrentLevel(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityCurrentLevel(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrentLevel() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription AbilityDescriptionC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription AbilityDescriptionC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> AbilityDescription => AbilityDescriptionC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> AbilityDescription => AbilityDescriptionC.Value;
 
-		public bool TryGetAbilityDescription(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public bool TryGetAbilityDescription(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityDescription()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityDescription()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityDescription(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityDescription(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityDescription() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent AbilityHealPercentC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent AbilityHealPercentC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityHealPercent => AbilityHealPercentC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityHealPercent => AbilityHealPercentC.Value;
 
-		public bool TryGetAbilityHealPercent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityHealPercent(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityHealPercent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityHealPercent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityHealPercent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityHealPercent(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityHealPercent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon AbilityIconC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon AbilityIconC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon>();
 
 		public UnityEngine.Sprite AbilityIcon => AbilityIconC.Value;
 
 		public bool TryGetAbilityIcon(out UnityEngine.Sprite value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon component);
 			if(result)
 				value = component.Value;
 			else
@@ -236,138 +236,138 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityIcon(UnityEngine.Sprite value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityIcon(UnityEngine.Sprite value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIcon() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID AbilityIDC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID AbilityIDC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> AbilityID => AbilityIDC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> AbilityID => AbilityIDC.Value;
 
-		public bool TryGetAbilityID(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public bool TryGetAbilityID(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityID()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityID()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityID(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityID(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityID() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent AbilityIncreaseDamagePercentC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent AbilityIncreaseDamagePercentC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityIncreaseDamagePercent => AbilityIncreaseDamagePercentC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityIncreaseDamagePercent => AbilityIncreaseDamagePercentC.Value;
 
-		public bool TryGetAbilityIncreaseDamagePercent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityIncreaseDamagePercent(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityIncreaseDamagePercent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityIncreaseDamagePercent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityIncreaseDamagePercent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityIncreaseDamagePercent(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityIncreaseDamagePercent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel AbilityMaxLevelC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel AbilityMaxLevelC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityMaxLevel => AbilityMaxLevelC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityMaxLevel => AbilityMaxLevelC.Value;
 
-		public bool TryGetAbilityMaxLevel(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityMaxLevel(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityMaxLevel()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityMaxLevel()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityMaxLevel(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityMaxLevel(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityMaxLevel() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName AbilityNameC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName AbilityNameC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> AbilityName => AbilityNameC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> AbilityName => AbilityNameC.Value;
 
-		public bool TryGetAbilityName(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public bool TryGetAbilityName(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityName()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityName()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.String>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityName(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.String> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityName(RoguelikeTD.Core.Reactive.ReactiveVariable<System.String> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityName() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest AbilityOnAddActivatorRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest AbilityOnAddActivatorRequestC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AbilityOnAddActivatorRequest => AbilityOnAddActivatorRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AbilityOnAddActivatorRequest => AbilityOnAddActivatorRequestC.Value;
 
-		public bool TryGetAbilityOnAddActivatorRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAbilityOnAddActivatorRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityOnAddActivatorRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityOnAddActivatorRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityOnAddActivatorRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityOnAddActivatorRequest(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOnAddActivatorRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation AbilityOperationC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation AbilityOperationC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation>();
 
 		public System.Func<System.Single, System.Single> AbilityOperation => AbilityOperationC.Value;
 
 		public bool TryGetAbilityOperation(out System.Func<System.Single, System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation component);
 			if(result)
 				value = component.Value;
 			else
@@ -375,554 +375,554 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityOperation(System.Func<System.Single, System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityOperation(System.Func<System.Single, System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOperation() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner AbilityOwnerC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner AbilityOwnerC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> AbilityOwner => AbilityOwnerC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> AbilityOwner => AbilityOwnerC.Value;
 
-		public bool TryGetAbilityOwner(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetAbilityOwner(out RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityOwner()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityOwner()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityOwner(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityOwner(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityOwner() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest AbilityPerWaveActivatorRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest AbilityPerWaveActivatorRequestC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AbilityPerWaveActivatorRequest => AbilityPerWaveActivatorRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AbilityPerWaveActivatorRequest => AbilityPerWaveActivatorRequestC.Value;
 
-		public bool TryGetAbilityPerWaveActivatorRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAbilityPerWaveActivatorRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityPerWaveActivatorRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityPerWaveActivatorRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityPerWaveActivatorRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityPerWaveActivatorRequest(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPerWaveActivatorRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice AbilityPriceC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice AbilityPriceC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityPrice => AbilityPriceC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityPrice => AbilityPriceC.Value;
 
-		public bool TryGetAbilityPrice(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityPrice(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityPrice()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityPrice()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityPrice(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityPrice(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue AbilityStatChangeValueC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue AbilityStatChangeValueC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AbilityStatChangeValue => AbilityStatChangeValueC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AbilityStatChangeValue => AbilityStatChangeValueC.Value;
 
-		public bool TryGetAbilityStatChangeValue(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAbilityStatChangeValue(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityStatChangeValue()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityStatChangeValue()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityStatChangeValue(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityStatChangeValue(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType AbilityStatTypeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType AbilityStatTypeC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes AbilityStatType => AbilityStatTypeC.Value;
+		public RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes AbilityStatType => AbilityStatTypeC.Value;
 
-		public bool TryGetAbilityStatType(out Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes value)
+		public bool TryGetAbilityStatType(out RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes);
+				value = default(RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityStatType(Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityStatType(RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatType() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent AbilityTakeDamagePercentC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent AbilityTakeDamagePercentC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> AbilityTakeDamagePercent => AbilityTakeDamagePercentC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> AbilityTakeDamagePercent => AbilityTakeDamagePercentC.Value;
 
-		public bool TryGetAbilityTakeDamagePercent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetAbilityTakeDamagePercent(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityTakeDamagePercent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityTakeDamagePercent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAbilityTakeDamagePercent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityTakeDamagePercent(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityTakeDamagePercent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility IsAbilityC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility IsAbilityC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbility()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbility()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbility() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop IsAbilityAvailableToDropC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop IsAbilityAvailableToDropC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsAbilityAvailableToDrop => IsAbilityAvailableToDropC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsAbilityAvailableToDrop => IsAbilityAvailableToDropC.Value;
 
-		public bool TryGetIsAbilityAvailableToDrop(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsAbilityAvailableToDrop(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityAvailableToDrop()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityAvailableToDrop()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityAvailableToDrop(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityAvailableToDrop(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityAvailableToDrop() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable IsAbilityUpgradableC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable IsAbilityUpgradableC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsAbilityUpgradable => IsAbilityUpgradableC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsAbilityUpgradable => IsAbilityUpgradableC.Value;
 
-		public bool TryGetIsAbilityUpgradable(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsAbilityUpgradable(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityUpgradable()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityUpgradable()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityUpgradable(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityUpgradable(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUpgradable() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed IsAbilityUsedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed IsAbilityUsedC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsAbilityUsed => IsAbilityUsedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsAbilityUsed => IsAbilityUsedC.Value;
 
-		public bool TryGetIsAbilityUsed(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsAbilityUsed(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityUsed()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityUsed()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAbilityUsed(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAbilityUsed(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsAbilityUsed() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility IsOnAddAbilityC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility IsOnAddAbilityC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsOnAddAbility()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsOnAddAbility()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsOnAddAbility() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility IsPerWaveAbilityC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility>();
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility IsPerWaveAbilityC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsPerWaveAbility()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsPerWaveAbility()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.IsPerWaveAbility() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AI.CurrentTarget CurrentTargetC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AI.CurrentTarget>();
+		public RoguelikeTD.Gameplay.Features.AI.CurrentTarget CurrentTargetC => GetComponent<RoguelikeTD.Gameplay.Features.AI.CurrentTarget>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> CurrentTarget => CurrentTargetC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> CurrentTarget => CurrentTargetC.Value;
 
-		public bool TryGetCurrentTarget(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetCurrentTarget(out RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.AI.CurrentTarget component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AI.CurrentTarget component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCurrentTarget()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCurrentTarget()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AI.CurrentTarget() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AI.CurrentTarget() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCurrentTarget(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCurrentTarget(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AI.CurrentTarget() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AI.CurrentTarget() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Allies.IsTower IsTowerC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Allies.IsTower>();
+		public RoguelikeTD.Gameplay.Features.Allies.IsTower IsTowerC => GetComponent<RoguelikeTD.Gameplay.Features.Allies.IsTower>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsTower()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsTower()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Allies.IsTower() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Allies.IsTower() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.CanApplyDamage CanApplyDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.CanApplyDamage>();
+		public RoguelikeTD.Gameplay.Features.ApplyDamage.CanApplyDamage CanApplyDamageC => GetComponent<RoguelikeTD.Gameplay.Features.ApplyDamage.CanApplyDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanApplyDamage => CanApplyDamageC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanApplyDamage => CanApplyDamageC.Value;
 
-		public bool TryGetCanApplyDamage(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanApplyDamage(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.CanApplyDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.ApplyDamage.CanApplyDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanApplyDamage(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanApplyDamage(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.CanApplyDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ApplyDamage.CanApplyDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageEvent TakeDamageEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageEvent>();
+		public RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageEvent TakeDamageEventC => GetComponent<RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> TakeDamageEvent => TakeDamageEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> TakeDamageEvent => TakeDamageEventC.Value;
 
-		public bool TryGetTakeDamageEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> value)
+		public bool TryGetTakeDamageEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTakeDamageEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTakeDamageEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTakeDamageEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTakeDamageEvent(RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest TakeDamageRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest>();
+		public RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageRequest TakeDamageRequestC => GetComponent<RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> TakeDamageRequest => TakeDamageRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> TakeDamageRequest => TakeDamageRequestC.Value;
 
-		public bool TryGetTakeDamageRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> value)
+		public bool TryGetTakeDamageRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTakeDamageRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTakeDamageRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTakeDamageRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTakeDamageRequest(RoguelikeTD.Core.Reactive.ReactiveEvent<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ApplyDamage.TakeDamageRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackEvent AOEAttackEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackEvent>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackEvent AOEAttackEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AOEAttackEvent => AOEAttackEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AOEAttackEvent => AOEAttackEventC.Value;
 
-		public bool TryGetAOEAttackEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAOEAttackEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackRequest AOEAttackRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackRequest>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackRequest AOEAttackRequestC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEInfoStruct> AOEAttackRequest => AOEAttackRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEInfoStruct> AOEAttackRequest => AOEAttackRequestC.Value;
 
-		public bool TryGetAOEAttackRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEInfoStruct> value)
+		public bool TryGetAOEAttackRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEInfoStruct> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEInfoStruct>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEInfoStruct>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEInfoStruct>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEInfoStruct>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEInfoStruct> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackRequest(RoguelikeTD.Core.Reactive.ReactiveEvent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEInfoStruct> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint AOEAttackTargetPointC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint AOEAttackTargetPointC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> AOEAttackTargetPoint => AOEAttackTargetPointC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> AOEAttackTargetPoint => AOEAttackTargetPointC.Value;
 
-		public bool TryGetAOEAttackTargetPoint(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public bool TryGetAOEAttackTargetPoint(out RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackTargetPoint()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackTargetPoint()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEAttackTargetPoint(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEAttackTargetPoint(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEAttackTargetPoint() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOECollidersBuffer AOECollidersBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOECollidersBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOECollidersBuffer AOECollidersBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOECollidersBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> AOECollidersBuffer => AOECollidersBufferC.Value;
+		public RoguelikeTD.Core.Buffer<UnityEngine.Collider> AOECollidersBuffer => AOECollidersBufferC.Value;
 
-		public bool TryGetAOECollidersBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public bool TryGetAOECollidersBuffer(out RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOECollidersBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOECollidersBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider>);
+				value = default(RoguelikeTD.Core.Buffer<UnityEngine.Collider>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOECollidersBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOECollidersBuffer(RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOECollidersBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOECollidersBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDamage AOEDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDamage>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDamage AOEDamageC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AOEDamage => AOEDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AOEDamage => AOEDamageC.Value;
 
-		public bool TryGetAOEDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAOEDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage AOEDelayBeforeTakeDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage AOEDelayBeforeTakeDamageC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AOEDelayBeforeTakeDamage => AOEDelayBeforeTakeDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AOEDelayBeforeTakeDamage => AOEDelayBeforeTakeDamageC.Value;
 
-		public bool TryGetAOEDelayBeforeTakeDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAOEDelayBeforeTakeDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDelayBeforeTakeDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDelayBeforeTakeDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDelayBeforeTakeDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDelayBeforeTakeDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayBeforeTakeDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer AOEDelayCurrentTimerC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer AOEDelayCurrentTimerC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AOEDelayCurrentTimer => AOEDelayCurrentTimerC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AOEDelayCurrentTimer => AOEDelayCurrentTimerC.Value;
 
-		public bool TryGetAOEDelayCurrentTimer(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAOEDelayCurrentTimer(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDelayCurrentTimer()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDelayCurrentTimer()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEDelayCurrentTimer(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEDelayCurrentTimer(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEDelayCurrentTimer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer AOEEntitiesBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer AOEEntitiesBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> AOEEntitiesBuffer => AOEEntitiesBufferC.Value;
+		public RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> AOEEntitiesBuffer => AOEEntitiesBufferC.Value;
 
-		public bool TryGetAOEEntitiesBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetAOEEntitiesBuffer(out RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOEEntitiesBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOEEntitiesBuffer(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOEEntitiesBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOERadius AOERadiusC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOERadius>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOERadius AOERadiusC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOERadius>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AOERadius => AOERadiusC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AOERadius => AOERadiusC.Value;
 
-		public bool TryGetAOERadius(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAOERadius(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOERadius component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOERadius component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOERadius()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOERadius()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOERadius() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOERadius() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOERadius(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOERadius(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOERadius() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOERadius() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOETakeDamageMask AOETakeDamageMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOETakeDamageMask>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.AOETakeDamageMask AOETakeDamageMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.AOETakeDamageMask>();
 
 		public UnityEngine.LayerMask AOETakeDamageMask => AOETakeDamageMaskC.Value;
 
 		public bool TryGetAOETakeDamageMask(out UnityEngine.LayerMask value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOETakeDamageMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.AOETakeDamageMask component);
 			if(result)
 				value = component.Value;
 			else
@@ -930,528 +930,528 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAOETakeDamageMask(UnityEngine.LayerMask value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAOETakeDamageMask(UnityEngine.LayerMask value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.AOETakeDamageMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.AOETakeDamageMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.IsAOEAttackEnded IsAOEAttackEndedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.IsAOEAttackEnded>();
+		public RoguelikeTD.Gameplay.Features.Attack.AOE.IsAOEAttackEnded IsAOEAttackEndedC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AOE.IsAOEAttackEnded>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsAOEAttackEnded => IsAOEAttackEndedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsAOEAttackEnded => IsAOEAttackEndedC.Value;
 
-		public bool TryGetIsAOEAttackEnded(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsAOEAttackEnded(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.IsAOEAttackEnded component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AOE.IsAOEAttackEnded component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAOEAttackEnded()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAOEAttackEnded()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.IsAOEAttackEnded() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.IsAOEAttackEnded() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsAOEAttackEnded(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsAOEAttackEnded(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE.IsAOEAttackEnded() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AOE.IsAOEAttackEnded() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCancelEvent AttackCancelEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCancelEvent>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackCancelEvent AttackCancelEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackCancelEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AttackCancelEvent => AttackCancelEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AttackCancelEvent => AttackCancelEventC.Value;
 
-		public bool TryGetAttackCancelEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAttackCancelEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCancelEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackCancelEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCancelEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCancelEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCancelEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCancelEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCancelEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCancelEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCancelEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCancelEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownCurrentTime AttackCooldownCurrentTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownCurrentTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackCooldownCurrentTime AttackCooldownCurrentTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackCooldownCurrentTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AttackCooldownCurrentTime => AttackCooldownCurrentTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackCooldownCurrentTime => AttackCooldownCurrentTimeC.Value;
 
-		public bool TryGetAttackCooldownCurrentTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAttackCooldownCurrentTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownCurrentTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackCooldownCurrentTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCooldownCurrentTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownCurrentTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownCurrentTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownCurrentTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCooldownCurrentTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownCurrentTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownCurrentTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownCurrentTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownInitialTime AttackCooldownInitialTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownInitialTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime AttackCooldownInitialTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AttackCooldownInitialTime => AttackCooldownInitialTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackCooldownInitialTime => AttackCooldownInitialTimeC.Value;
 
-		public bool TryGetAttackCooldownInitialTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAttackCooldownInitialTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownInitialTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCooldownInitialTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownInitialTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackCooldownInitialTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayEndEvent AttackDelayEndEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayEndEvent>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent AttackDelayEndEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent AttackDelayEndEvent => AttackDelayEndEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent AttackDelayEndEvent => AttackDelayEndEventC.Value;
 
-		public bool TryGetAttackDelayEndEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetAttackDelayEndEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayEndEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackDelayEndEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayEndEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackDelayEndEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayEndEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayTime AttackDelayTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime AttackDelayTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AttackDelayTime => AttackDelayTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackDelayTime => AttackDelayTimeC.Value;
 
-		public bool TryGetAttackDelayTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAttackDelayTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackDelayTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackDelayTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackDelayTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessCurrentTime AttackProcessCurrentTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessCurrentTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackProcessCurrentTime AttackProcessCurrentTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackProcessCurrentTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AttackProcessCurrentTime => AttackProcessCurrentTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackProcessCurrentTime => AttackProcessCurrentTimeC.Value;
 
-		public bool TryGetAttackProcessCurrentTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAttackProcessCurrentTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessCurrentTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackProcessCurrentTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackProcessCurrentTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessCurrentTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackProcessCurrentTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessCurrentTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessInitialTime AttackProcessInitialTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessInitialTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime AttackProcessInitialTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AttackProcessInitialTime => AttackProcessInitialTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackProcessInitialTime => AttackProcessInitialTimeC.Value;
 
-		public bool TryGetAttackProcessInitialTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetAttackProcessInitialTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessInitialTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackProcessInitialTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessInitialTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAttackProcessInitialTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.CanStartAttack>();
+		public RoguelikeTD.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.CanStartAttack>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanStartAttack => CanStartAttackC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanStartAttack => CanStartAttackC.Value;
 
-		public bool TryGetCanStartAttack(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanStartAttack(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.CanStartAttack component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.CanStartAttack component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanStartAttack(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanStartAttack(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.CanStartAttack() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.CanStartAttack() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.EndAttackEvent EndAttackEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.EndAttackEvent>();
+		public RoguelikeTD.Gameplay.Features.Attack.EndAttackEvent EndAttackEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.EndAttackEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent EndAttackEvent => EndAttackEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent EndAttackEvent => EndAttackEventC.Value;
 
-		public bool TryGetEndAttackEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetEndAttackEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.EndAttackEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.EndAttackEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddEndAttackEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddEndAttackEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.EndAttackEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.EndAttackEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddEndAttackEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddEndAttackEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.EndAttackEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.EndAttackEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown InAttackCooldownC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown>();
+		public RoguelikeTD.Gameplay.Features.Attack.InAttackCooldown InAttackCooldownC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.InAttackCooldown>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InAttackCooldown => InAttackCooldownC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InAttackCooldown => InAttackCooldownC.Value;
 
-		public bool TryGetInAttackCooldown(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInAttackCooldown(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.InAttackCooldown component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInAttackCooldown()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInAttackCooldown()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InAttackCooldown() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInAttackCooldown(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInAttackCooldown(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InAttackCooldown() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackProcess InAttackProcessC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackProcess>();
+		public RoguelikeTD.Gameplay.Features.Attack.InAttackProcess InAttackProcessC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.InAttackProcess>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InAttackProcess => InAttackProcessC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InAttackProcess => InAttackProcessC.Value;
 
-		public bool TryGetInAttackProcess(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInAttackProcess(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackProcess component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.InAttackProcess component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInAttackProcess()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInAttackProcess()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackProcess() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InAttackProcess() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInAttackProcess(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInAttackProcess(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackProcess() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InAttackProcess() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantAttackDamage InstantAttackDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantAttackDamage>();
+		public RoguelikeTD.Gameplay.Features.Attack.InstantAttackDamage InstantAttackDamageC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.InstantAttackDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> InstantAttackDamage => InstantAttackDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> InstantAttackDamage => InstantAttackDamageC.Value;
 
-		public bool TryGetInstantAttackDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetInstantAttackDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantAttackDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.InstantAttackDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInstantAttackDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInstantAttackDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantAttackDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InstantAttackDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInstantAttackDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInstantAttackDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantAttackDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InstantAttackDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantShootingDirections InstantShootingDirectionsC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantShootingDirections>();
+		public RoguelikeTD.Gameplay.Features.Attack.InstantShootingDirections InstantShootingDirectionsC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.InstantShootingDirections>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs InstantShootingDirections => InstantShootingDirectionsC.Value;
+		public RoguelikeTD.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs InstantShootingDirections => InstantShootingDirectionsC.Value;
 
-		public bool TryGetInstantShootingDirections(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs value)
+		public bool TryGetInstantShootingDirections(out RoguelikeTD.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantShootingDirections component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.InstantShootingDirections component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs);
+				value = default(RoguelikeTD.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInstantShootingDirections(Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInstantShootingDirections(RoguelikeTD.Gameplay.Features.Attack.Shoot.InstantShootingDirectionArgs value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InstantShootingDirections() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.InstantShootingDirections() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsMinDistanceToAttack IsMinDistanceToAttackC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsMinDistanceToAttack>();
+		public RoguelikeTD.Gameplay.Features.Attack.IsMinDistanceToAttack IsMinDistanceToAttackC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.IsMinDistanceToAttack>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsMinDistanceToAttack => IsMinDistanceToAttackC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsMinDistanceToAttack => IsMinDistanceToAttackC.Value;
 
-		public bool TryGetIsMinDistanceToAttack(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsMinDistanceToAttack(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsMinDistanceToAttack component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.IsMinDistanceToAttack component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsMinDistanceToAttack()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsMinDistanceToAttack()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsMinDistanceToAttack() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.IsMinDistanceToAttack() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsMinDistanceToAttack(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsMinDistanceToAttack(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsMinDistanceToAttack() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.IsMinDistanceToAttack() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsProjectile IsProjectileC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsProjectile>();
+		public RoguelikeTD.Gameplay.Features.Attack.IsProjectile IsProjectileC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.IsProjectile>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsProjectile()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsProjectile()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.IsProjectile() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.IsProjectile() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.CanMining CanMiningC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.CanMining>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.CanMining CanMiningC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.CanMining>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanMining => CanMiningC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanMining => CanMiningC.Value;
 
-		public bool TryGetCanMining(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanMining(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.CanMining component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.CanMining component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanMining(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanMining(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.CanMining() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.CanMining() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineCollidersBuffer MineCollidersBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineCollidersBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineCollidersBuffer MineCollidersBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineCollidersBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> MineCollidersBuffer => MineCollidersBufferC.Value;
+		public RoguelikeTD.Core.Buffer<UnityEngine.Collider> MineCollidersBuffer => MineCollidersBufferC.Value;
 
-		public bool TryGetMineCollidersBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public bool TryGetMineCollidersBuffer(out RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineCollidersBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineCollidersBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider>);
+				value = default(RoguelikeTD.Core.Buffer<UnityEngine.Collider>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineCollidersBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineCollidersBuffer(RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineCollidersBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineCollidersBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineDamage MineDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineDamage>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineDamage MineDamageC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> MineDamage => MineDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> MineDamage => MineDamageC.Value;
 
-		public bool TryGetMineDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetMineDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineEntitiesBuffer MineEntitiesBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineEntitiesBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineEntitiesBuffer MineEntitiesBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineEntitiesBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> MineEntitiesBuffer => MineEntitiesBufferC.Value;
+		public RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> MineEntitiesBuffer => MineEntitiesBufferC.Value;
 
-		public bool TryGetMineEntitiesBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetMineEntitiesBuffer(out RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineEntitiesBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineEntitiesBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineEntitiesBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineEntitiesBuffer(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineEntitiesBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineEntitiesBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsEnoughGold MineIsEnoughGoldC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsEnoughGold>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsEnoughGold MineIsEnoughGoldC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsEnoughGold>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> MineIsEnoughGold => MineIsEnoughGoldC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> MineIsEnoughGold => MineIsEnoughGoldC.Value;
 
-		public bool TryGetMineIsEnoughGold(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetMineIsEnoughGold(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsEnoughGold component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsEnoughGold component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsEnoughGold()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsEnoughGold()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsEnoughGold() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsEnoughGold() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsEnoughGold(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsEnoughGold(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsEnoughGold() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsEnoughGold() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsExploded MineIsExplodedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsExploded>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsExploded MineIsExplodedC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsExploded>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> MineIsExploded => MineIsExplodedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> MineIsExploded => MineIsExplodedC.Value;
 
-		public bool TryGetMineIsExploded(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetMineIsExploded(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsExploded component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsExploded component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsExploded()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsExploded()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsExploded() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsExploded() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsExploded(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsExploded(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsExploded() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsExploded() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsPlaced MineIsPlacedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsPlaced>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsPlaced MineIsPlacedC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsPlaced>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> MineIsPlaced => MineIsPlacedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> MineIsPlaced => MineIsPlacedC.Value;
 
-		public bool TryGetMineIsPlaced(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetMineIsPlaced(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsPlaced component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsPlaced component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsPlaced()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsPlaced()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsPlaced() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsPlaced() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineIsPlaced(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineIsPlaced(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineIsPlaced() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineIsPlaced() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTakeDamageMask MineTakeDamageMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTakeDamageMask>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineTakeDamageMask MineTakeDamageMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineTakeDamageMask>();
 
 		public UnityEngine.LayerMask MineTakeDamageMask => MineTakeDamageMaskC.Value;
 
 		public bool TryGetMineTakeDamageMask(out UnityEngine.LayerMask value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTakeDamageMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineTakeDamageMask component);
 			if(result)
 				value = component.Value;
 			else
@@ -1459,104 +1459,104 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineTakeDamageMask(UnityEngine.LayerMask value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineTakeDamageMask(UnityEngine.LayerMask value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTakeDamageMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineTakeDamageMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTriggerRadius MineTriggerRadiusC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTriggerRadius>();
+		public RoguelikeTD.Gameplay.Features.Attack.Mining.MineTriggerRadius MineTriggerRadiusC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.Mining.MineTriggerRadius>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> MineTriggerRadius => MineTriggerRadiusC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> MineTriggerRadius => MineTriggerRadiusC.Value;
 
-		public bool TryGetMineTriggerRadius(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetMineTriggerRadius(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTriggerRadius component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.Mining.MineTriggerRadius component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineTriggerRadius()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineTriggerRadius()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTriggerRadius() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineTriggerRadius() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMineTriggerRadius(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMineTriggerRadius(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining.MineTriggerRadius() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.Mining.MineTriggerRadius() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.MustCancelAttack MustCancelAttackC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.MustCancelAttack>();
+		public RoguelikeTD.Gameplay.Features.Attack.MustCancelAttack MustCancelAttackC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.MustCancelAttack>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustCancelAttack => MustCancelAttackC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition MustCancelAttack => MustCancelAttackC.Value;
 
-		public bool TryGetMustCancelAttack(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetMustCancelAttack(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.MustCancelAttack component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.MustCancelAttack component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMustCancelAttack(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMustCancelAttack(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.MustCancelAttack() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.MustCancelAttack() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion.CanExplode CanExplodeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion.CanExplode>();
+		public RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode CanExplodeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanExplode => CanExplodeC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanExplode => CanExplodeC.Value;
 
-		public bool TryGetCanExplode(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanExplode(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion.CanExplode component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanExplode(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanExplode(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion.CanExplode() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootingMinDistance ShootingMinDistanceC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootingMinDistance>();
+		public RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance ShootingMinDistanceC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> ShootingMinDistance => ShootingMinDistanceC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> ShootingMinDistance => ShootingMinDistanceC.Value;
 
-		public bool TryGetShootingMinDistance(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetShootingMinDistance(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootingMinDistance component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddShootingMinDistance()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddShootingMinDistance()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootingMinDistance() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddShootingMinDistance(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddShootingMinDistance(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootingMinDistance() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootPoint ShootPointC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootPoint>();
+		public RoguelikeTD.Gameplay.Features.Attack.ShootPoint ShootPointC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.ShootPoint>();
 
 		public UnityEngine.Transform ShootPoint => ShootPointC.Value;
 
 		public bool TryGetShootPoint(out UnityEngine.Transform value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootPoint component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.ShootPoint component);
 			if(result)
 				value = component.Value;
 			else
@@ -1564,200 +1564,200 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddShootPoint(UnityEngine.Transform value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddShootPoint(UnityEngine.Transform value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.ShootPoint() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.ShootPoint() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackEvent StartAttackEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackEvent>();
+		public RoguelikeTD.Gameplay.Features.Attack.StartAttackEvent StartAttackEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.StartAttackEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent StartAttackEvent => StartAttackEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent StartAttackEvent => StartAttackEventC.Value;
 
-		public bool TryGetStartAttackEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetStartAttackEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.StartAttackEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartAttackEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStartAttackEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.StartAttackEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartAttackEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStartAttackEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.StartAttackEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackRequest StartAttackRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackRequest>();
+		public RoguelikeTD.Gameplay.Features.Attack.StartAttackRequest StartAttackRequestC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.StartAttackRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent StartAttackRequest => StartAttackRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent StartAttackRequest => StartAttackRequestC.Value;
 
-		public bool TryGetStartAttackRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetStartAttackRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.StartAttackRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartAttackRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStartAttackRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.StartAttackRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStartAttackRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStartAttackRequest(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.StartAttackRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.StartAttackRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer TickableCollidersBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer TickableCollidersBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> TickableCollidersBuffer => TickableCollidersBufferC.Value;
+		public RoguelikeTD.Core.Buffer<UnityEngine.Collider> TickableCollidersBuffer => TickableCollidersBufferC.Value;
 
-		public bool TryGetTickableCollidersBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public bool TryGetTickableCollidersBuffer(out RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider>);
+				value = default(RoguelikeTD.Core.Buffer<UnityEngine.Collider>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableCollidersBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableCollidersBuffer(RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCollidersBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime TickableCurrentTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime TickableCurrentTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> TickableCurrentTime => TickableCurrentTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> TickableCurrentTime => TickableCurrentTimeC.Value;
 
-		public bool TryGetTickableCurrentTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetTickableCurrentTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableCurrentTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableCurrentTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableCurrentTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableCurrentTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableCurrentTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableDamage TickableDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableDamage>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableDamage TickableDamageC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> TickableDamage => TickableDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> TickableDamage => TickableDamageC.Value;
 
-		public bool TryGetTickableDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetTickableDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer TickableEntitiesBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer TickableEntitiesBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> TickableEntitiesBuffer => TickableEntitiesBufferC.Value;
+		public RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> TickableEntitiesBuffer => TickableEntitiesBufferC.Value;
 
-		public bool TryGetTickableEntitiesBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetTickableEntitiesBuffer(out RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableEntitiesBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableEntitiesBuffer(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableEntitiesBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableInitialTime TickableInitialTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableInitialTime>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableInitialTime TickableInitialTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableInitialTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> TickableInitialTime => TickableInitialTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> TickableInitialTime => TickableInitialTimeC.Value;
 
-		public bool TryGetTickableInitialTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetTickableInitialTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableInitialTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableInitialTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableInitialTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableInitialTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableInitialTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableInitialTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableInitialTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableInitialTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableInitialTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableRadius TickableRadiusC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableRadius>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableRadius TickableRadiusC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableRadius>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> TickableRadius => TickableRadiusC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> TickableRadius => TickableRadiusC.Value;
 
-		public bool TryGetTickableRadius(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetTickableRadius(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableRadius component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableRadius component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableRadius()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableRadius()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableRadius() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableRadius() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableRadius(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableRadius(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableRadius() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableRadius() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask TickableTakeDamageMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask>();
+		public RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask TickableTakeDamageMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask>();
 
 		public UnityEngine.LayerMask TickableTakeDamageMask => TickableTakeDamageMaskC.Value;
 
 		public bool TryGetTickableTakeDamageMask(out UnityEngine.LayerMask value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask component);
 			if(result)
 				value = component.Value;
 			else
@@ -1765,258 +1765,258 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTickableTakeDamageMask(UnityEngine.LayerMask value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableTakeDamageMask(UnityEngine.LayerMask value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage.BodyContactDamage BodyContactDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage.BodyContactDamage>();
+		public RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage BodyContactDamageC => GetComponent<RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> BodyContactDamage => BodyContactDamageC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> BodyContactDamage => BodyContactDamageC.Value;
 
-		public bool TryGetBodyContactDamage(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetBodyContactDamage(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage.BodyContactDamage component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddBodyContactDamage()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBodyContactDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage.BodyContactDamage() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddBodyContactDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBodyContactDamage(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage.BodyContactDamage() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest InputFindMouseClickPositionRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest>();
+		public RoguelikeTD.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest InputFindMouseClickPositionRequestC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent InputFindMouseClickPositionRequest => InputFindMouseClickPositionRequestC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent InputFindMouseClickPositionRequest => InputFindMouseClickPositionRequestC.Value;
 
-		public bool TryGetInputFindMouseClickPositionRequest(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetInputFindMouseClickPositionRequest(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputFindMouseClickPositionRequest()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputFindMouseClickPositionRequest()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputFindMouseClickPositionRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputFindMouseClickPositionRequest(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputFindMouseClickPositionRequest() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputIsPositionFound InputIsPositionFoundC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputIsPositionFound>();
+		public RoguelikeTD.Gameplay.Features.InputFeature.InputIsPositionFound InputIsPositionFoundC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputIsPositionFound>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InputIsPositionFound => InputIsPositionFoundC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InputIsPositionFound => InputIsPositionFoundC.Value;
 
-		public bool TryGetInputIsPositionFound(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInputIsPositionFound(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputIsPositionFound component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputIsPositionFound component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputIsPositionFound()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputIsPositionFound()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputIsPositionFound() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputIsPositionFound() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputIsPositionFound(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputIsPositionFound(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputIsPositionFound() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputIsPositionFound() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickGroundPosition InputMouseClickGroundPositionC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickGroundPosition>();
+		public RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition InputMouseClickGroundPositionC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> InputMouseClickGroundPosition => InputMouseClickGroundPositionC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> InputMouseClickGroundPosition => InputMouseClickGroundPositionC.Value;
 
-		public bool TryGetInputMouseClickGroundPosition(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public bool TryGetInputMouseClickGroundPosition(out RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickGroundPosition component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputMouseClickGroundPosition()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickGroundPosition()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickGroundPosition() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputMouseClickGroundPosition(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickGroundPosition(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickGroundPosition() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickGroundPosition() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent InputMouseClickPositionFindedEventC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent>();
+		public RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent InputMouseClickPositionFindedEventC => GetComponent<RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent InputMouseClickPositionFindedEvent => InputMouseClickPositionFindedEventC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveEvent InputMouseClickPositionFindedEvent => InputMouseClickPositionFindedEventC.Value;
 
-		public bool TryGetInputMouseClickPositionFindedEvent(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public bool TryGetInputMouseClickPositionFindedEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInputMouseClickPositionFindedEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.InputFeature.InputMouseClickPositionFindedEvent() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Experience ExperienceC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Experience>();
+		public RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience ExperienceC => GetComponent<RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> Experience => ExperienceC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> Experience => ExperienceC.Value;
 
-		public bool TryGetExperience(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetExperience(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Experience component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddExperience()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddExperience()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Experience() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddExperience(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddExperience(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Experience() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LevelUpFeature.Experience() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Level LevelC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Level>();
+		public RoguelikeTD.Gameplay.Features.LevelUpFeature.Level LevelC => GetComponent<RoguelikeTD.Gameplay.Features.LevelUpFeature.Level>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> Level => LevelC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> Level => LevelC.Value;
 
-		public bool TryGetLevel(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetLevel(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Level component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LevelUpFeature.Level component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddLevel()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddLevel()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Level() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LevelUpFeature.Level() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddLevel(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddLevel(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature.Level() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LevelUpFeature.Level() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.CurrentHealth CurrentHealthC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.CurrentHealth>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.CurrentHealth CurrentHealthC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.CurrentHealth>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> CurrentHealth => CurrentHealthC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> CurrentHealth => CurrentHealthC.Value;
 
-		public bool TryGetCurrentHealth(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetCurrentHealth(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.CurrentHealth component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.CurrentHealth component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCurrentHealth()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCurrentHealth()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.CurrentHealth() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.CurrentHealth() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCurrentHealth(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCurrentHealth(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.CurrentHealth() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.CurrentHealth() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessCurrentTime DeathProcessCurrentTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessCurrentTime>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessCurrentTime DeathProcessCurrentTimeC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessCurrentTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> DeathProcessCurrentTime => DeathProcessCurrentTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> DeathProcessCurrentTime => DeathProcessCurrentTimeC.Value;
 
-		public bool TryGetDeathProcessCurrentTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetDeathProcessCurrentTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessCurrentTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessCurrentTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDeathProcessCurrentTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDeathProcessCurrentTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessCurrentTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessCurrentTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDeathProcessCurrentTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDeathProcessCurrentTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessCurrentTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessCurrentTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessInitialTime DeathProcessInitialTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessInitialTime>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessInitialTime DeathProcessInitialTimeC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessInitialTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> DeathProcessInitialTime => DeathProcessInitialTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> DeathProcessInitialTime => DeathProcessInitialTimeC.Value;
 
-		public bool TryGetDeathProcessInitialTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetDeathProcessInitialTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessInitialTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessInitialTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDeathProcessInitialTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDeathProcessInitialTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessInitialTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessInitialTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDeathProcessInitialTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDeathProcessInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DeathProcessInitialTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DeathProcessInitialTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeath DisableCollidersOnDeathC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeath>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.DisableCollidersOnDeath DisableCollidersOnDeathC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.DisableCollidersOnDeath>();
 
 		public System.Collections.Generic.List<UnityEngine.Collider> DisableCollidersOnDeath => DisableCollidersOnDeathC.Value;
 
 		public bool TryGetDisableCollidersOnDeath(out System.Collections.Generic.List<UnityEngine.Collider> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeath component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.DisableCollidersOnDeath component);
 			if(result)
 				value = component.Value;
 			else
@@ -2024,23 +2024,23 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDisableCollidersOnDeath()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDisableCollidersOnDeath()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeath() {Value = new System.Collections.Generic.List<UnityEngine.Collider>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DisableCollidersOnDeath() {Value = new System.Collections.Generic.List<UnityEngine.Collider>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDisableCollidersOnDeath(System.Collections.Generic.List<UnityEngine.Collider> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDisableCollidersOnDeath(System.Collections.Generic.List<UnityEngine.Collider> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.DisableCollidersOnDeath() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.DisableCollidersOnDeath() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.HealthBarPoint HealthBarPointC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.HealthBarPoint>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.HealthBarPoint HealthBarPointC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.HealthBarPoint>();
 
 		public UnityEngine.Transform HealthBarPoint => HealthBarPointC.Value;
 
 		public bool TryGetHealthBarPoint(out UnityEngine.Transform value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.HealthBarPoint component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.HealthBarPoint component);
 			if(result)
 				value = component.Value;
 			else
@@ -2048,470 +2048,470 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddHealthBarPoint(UnityEngine.Transform value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddHealthBarPoint(UnityEngine.Transform value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.HealthBarPoint() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.HealthBarPoint() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.InDeathProcess InDeathProcessC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.InDeathProcess>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.InDeathProcess InDeathProcessC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.InDeathProcess>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InDeathProcess => InDeathProcessC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InDeathProcess => InDeathProcessC.Value;
 
-		public bool TryGetInDeathProcess(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInDeathProcess(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.InDeathProcess component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.InDeathProcess component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInDeathProcess()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInDeathProcess()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.InDeathProcess() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.InDeathProcess() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInDeathProcess(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInDeathProcess(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.InDeathProcess() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.InDeathProcess() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.IsDead IsDeadC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.IsDead>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.IsDead IsDeadC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.IsDead>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsDead => IsDeadC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsDead => IsDeadC.Value;
 
-		public bool TryGetIsDead(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsDead(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.IsDead component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.IsDead component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsDead()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsDead()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.IsDead() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.IsDead() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsDead(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsDead(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.IsDead() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.IsDead() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MaxHealth MaxHealthC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MaxHealth>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.MaxHealth MaxHealthC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.MaxHealth>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> MaxHealth => MaxHealthC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> MaxHealth => MaxHealthC.Value;
 
-		public bool TryGetMaxHealth(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetMaxHealth(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MaxHealth component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.MaxHealth component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMaxHealth()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMaxHealth()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MaxHealth() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.MaxHealth() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMaxHealth(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMaxHealth(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MaxHealth() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.MaxHealth() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustDie MustDieC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustDie>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.MustDie MustDieC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.MustDie>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustDie => MustDieC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition MustDie => MustDieC.Value;
 
-		public bool TryGetMustDie(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetMustDie(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustDie component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.MustDie component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMustDie(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMustDie(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustDie() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.MustDie() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustSelfRelease MustSelfReleaseC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustSelfRelease>();
+		public RoguelikeTD.Gameplay.Features.LifeCycle.MustSelfRelease MustSelfReleaseC => GetComponent<RoguelikeTD.Gameplay.Features.LifeCycle.MustSelfRelease>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustSelfRelease => MustSelfReleaseC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition MustSelfRelease => MustSelfReleaseC.Value;
 
-		public bool TryGetMustSelfRelease(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetMustSelfRelease(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustSelfRelease component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LifeCycle.MustSelfRelease component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMustSelfRelease(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMustSelfRelease(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle.MustSelfRelease() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LifeCycle.MustSelfRelease() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.CanDropLoot CanDropLootC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.CanDropLoot>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.CanDropLoot CanDropLootC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.CanDropLoot>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanDropLoot => CanDropLootC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanDropLoot => CanDropLootC.Value;
 
-		public bool TryGetCanDropLoot(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanDropLoot(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.CanDropLoot component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LootFeature.CanDropLoot component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanDropLoot(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanDropLoot(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.CanDropLoot() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.CanDropLoot() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.Coins CoinsC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.Coins>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.Coins CoinsC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.Coins>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> Coins => CoinsC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> Coins => CoinsC.Value;
 
-		public bool TryGetCoins(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public bool TryGetCoins(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.Coins component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LootFeature.Coins component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCoins()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCoins()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.Coins() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.Coins() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCoins(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Int32> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCoins(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.Coins() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.Coins() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.InPullingProcess InPullingProcessC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.InPullingProcess>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.InPullingProcess InPullingProcessC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.InPullingProcess>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InPullingProcess => InPullingProcessC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InPullingProcess => InPullingProcessC.Value;
 
-		public bool TryGetInPullingProcess(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInPullingProcess(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.InPullingProcess component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LootFeature.InPullingProcess component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInPullingProcess()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInPullingProcess()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.InPullingProcess() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.InPullingProcess() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInPullingProcess(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInPullingProcess(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.InPullingProcess() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.InPullingProcess() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsCollected IsCollectedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsCollected>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.IsCollected IsCollectedC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.IsCollected>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsCollected => IsCollectedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsCollected => IsCollectedC.Value;
 
-		public bool TryGetIsCollected(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsCollected(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsCollected component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LootFeature.IsCollected component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsCollected()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsCollected()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsCollected() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.IsCollected() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsCollected(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsCollected(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsCollected() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.IsCollected() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsPullable IsPullableC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsPullable>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.IsPullable IsPullableC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.IsPullable>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsPullable()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsPullable()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.IsPullable() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.IsPullable() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.LootIsDropped LootIsDroppedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.LootIsDropped>();
+		public RoguelikeTD.Gameplay.Features.LootFeature.LootIsDropped LootIsDroppedC => GetComponent<RoguelikeTD.Gameplay.Features.LootFeature.LootIsDropped>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> LootIsDropped => LootIsDroppedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> LootIsDropped => LootIsDroppedC.Value;
 
-		public bool TryGetLootIsDropped(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetLootIsDropped(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.LootIsDropped component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.LootFeature.LootIsDropped component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddLootIsDropped()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddLootIsDropped()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.LootIsDropped() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.LootIsDropped() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddLootIsDropped(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddLootIsDropped(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature.LootIsDropped() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.LootFeature.LootIsDropped() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MainHero.IsMainHero IsMainHeroC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MainHero.IsMainHero>();
+		public RoguelikeTD.Gameplay.Features.MainHero.IsMainHero IsMainHeroC => GetComponent<RoguelikeTD.Gameplay.Features.MainHero.IsMainHero>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsMainHero()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsMainHero()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MainHero.IsMainHero() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MainHero.IsMainHero() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanMove CanMoveC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanMove>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.CanMove CanMoveC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.CanMove>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanMove => CanMoveC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanMove => CanMoveC.Value;
 
-		public bool TryGetCanMove(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanMove(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanMove component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.CanMove component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanMove(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanMove(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanMove() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.CanMove() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanRotate CanRotateC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanRotate>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.CanRotate CanRotateC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.CanRotate>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanRotate => CanRotateC.Value;
+		public RoguelikeTD.Core.Conditions.ICompositeCondition CanRotate => CanRotateC.Value;
 
-		public bool TryGetCanRotate(out Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public bool TryGetCanRotate(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanRotate component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.CanRotate component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddCanRotate(Assets._Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanRotate(RoguelikeTD.Core.Conditions.ICompositeCondition value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.CanRotate() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.CanRotate() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.IsMoving IsMovingC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.IsMoving>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.IsMoving IsMovingC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.IsMoving>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsMoving => IsMovingC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsMoving => IsMovingC.Value;
 
-		public bool TryGetIsMoving(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsMoving(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.IsMoving component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.IsMoving component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsMoving()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsMoving()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.IsMoving() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.IsMoving() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsMoving(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsMoving(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.IsMoving() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.IsMoving() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveDirection MoveDirectionC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveDirection>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.MoveDirection MoveDirectionC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.MoveDirection>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
 
-		public bool TryGetMoveDirection(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public bool TryGetMoveDirection(out RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveDirection component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.MoveDirection component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMoveDirection()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMoveDirection()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveDirection() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.MoveDirection() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMoveDirection(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMoveDirection(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveDirection() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.MoveDirection() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveSpeed MoveSpeedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveSpeed>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.MoveSpeed MoveSpeedC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.MoveSpeed>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> MoveSpeed => MoveSpeedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> MoveSpeed => MoveSpeedC.Value;
 
-		public bool TryGetMoveSpeed(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetMoveSpeed(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveSpeed component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.MoveSpeed component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMoveSpeed()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMoveSpeed()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveSpeed() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.MoveSpeed() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddMoveSpeed(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddMoveSpeed(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.MoveSpeed() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.MoveSpeed() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationDirection RotationDirectionC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationDirection>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.RotationDirection RotationDirectionC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.RotationDirection>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> RotationDirection => RotationDirectionC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> RotationDirection => RotationDirectionC.Value;
 
-		public bool TryGetRotationDirection(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public bool TryGetRotationDirection(out RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationDirection component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.RotationDirection component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddRotationDirection()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddRotationDirection()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationDirection() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.RotationDirection() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddRotationDirection(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddRotationDirection(RoguelikeTD.Core.Reactive.ReactiveVariable<UnityEngine.Vector3> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationDirection() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.RotationDirection() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationSpeed RotationSpeedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationSpeed>();
+		public RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed RotationSpeedC => GetComponent<RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> RotationSpeed => RotationSpeedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> RotationSpeed => RotationSpeedC.Value;
 
-		public bool TryGetRotationSpeed(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetRotationSpeed(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationSpeed component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddRotationSpeed()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddRotationSpeed()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationSpeed() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddRotationSpeed(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddRotationSpeed(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature.RotationSpeed() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney PlaceableIsEnoughMoneyC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney>();
+		public RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney PlaceableIsEnoughMoneyC => GetComponent<RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> PlaceableIsEnoughMoney => PlaceableIsEnoughMoneyC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> PlaceableIsEnoughMoney => PlaceableIsEnoughMoneyC.Value;
 
-		public bool TryGetPlaceableIsEnoughMoney(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetPlaceableIsEnoughMoney(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddPlaceableIsEnoughMoney()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddPlaceableIsEnoughMoney()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddPlaceableIsEnoughMoney(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddPlaceableIsEnoughMoney(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced PlaceableIsPlacedC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced>();
+		public RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced PlaceableIsPlacedC => GetComponent<RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> PlaceableIsPlaced => PlaceableIsPlacedC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> PlaceableIsPlaced => PlaceableIsPlacedC.Value;
 
-		public bool TryGetPlaceableIsPlaced(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetPlaceableIsPlaced(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddPlaceableIsPlaced()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddPlaceableIsPlaced()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddPlaceableIsPlaced(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddPlaceableIsPlaced(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsPlaced() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableToRelease PlaceableToReleaseC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableToRelease>();
+		public RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableToRelease PlaceableToReleaseC => GetComponent<RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableToRelease>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddPlaceableToRelease()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddPlaceableToRelease()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature.PlaceableToRelease() );
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableToRelease() );
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.BodyCollider BodyColliderC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.BodyCollider>();
+		public RoguelikeTD.Gameplay.Features.Sensors.BodyCollider BodyColliderC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.BodyCollider>();
 
 		public UnityEngine.CapsuleCollider BodyCollider => BodyColliderC.Value;
 
 		public bool TryGetBodyCollider(out UnityEngine.CapsuleCollider value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.BodyCollider component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.BodyCollider component);
 			if(result)
 				value = component.Value;
 			else
@@ -2519,56 +2519,56 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddBodyCollider(UnityEngine.CapsuleCollider value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBodyCollider(UnityEngine.CapsuleCollider value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.BodyCollider() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.BodyCollider() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactCollidersBuffer ContactCollidersBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactCollidersBuffer>();
+		public RoguelikeTD.Gameplay.Features.Sensors.ContactCollidersBuffer ContactCollidersBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.ContactCollidersBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> ContactCollidersBuffer => ContactCollidersBufferC.Value;
+		public RoguelikeTD.Core.Buffer<UnityEngine.Collider> ContactCollidersBuffer => ContactCollidersBufferC.Value;
 
-		public bool TryGetContactCollidersBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public bool TryGetContactCollidersBuffer(out RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactCollidersBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.ContactCollidersBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider>);
+				value = default(RoguelikeTD.Core.Buffer<UnityEngine.Collider>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddContactCollidersBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddContactCollidersBuffer(RoguelikeTD.Core.Buffer<UnityEngine.Collider> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactCollidersBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.ContactCollidersBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactEntitiesBuffer ContactEntitiesBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactEntitiesBuffer>();
+		public RoguelikeTD.Gameplay.Features.Sensors.ContactEntitiesBuffer ContactEntitiesBufferC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.ContactEntitiesBuffer>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> ContactEntitiesBuffer => ContactEntitiesBufferC.Value;
+		public RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> ContactEntitiesBuffer => ContactEntitiesBufferC.Value;
 
-		public bool TryGetContactEntitiesBuffer(out Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public bool TryGetContactEntitiesBuffer(out RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactEntitiesBuffer component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.ContactEntitiesBuffer component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity>);
+				value = default(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddContactEntitiesBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddContactEntitiesBuffer(RoguelikeTD.Core.Buffer<RoguelikeTD.Gameplay.EntitiesCore.Entity> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactEntitiesBuffer() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.ContactEntitiesBuffer() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactsDetectingMask ContactsDetectingMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactsDetectingMask>();
+		public RoguelikeTD.Gameplay.Features.Sensors.ContactsDetectingMask ContactsDetectingMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.ContactsDetectingMask>();
 
 		public UnityEngine.LayerMask ContactsDetectingMask => ContactsDetectingMaskC.Value;
 
 		public bool TryGetContactsDetectingMask(out UnityEngine.LayerMask value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactsDetectingMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.ContactsDetectingMask component);
 			if(result)
 				value = component.Value;
 			else
@@ -2576,18 +2576,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddContactsDetectingMask(UnityEngine.LayerMask value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddContactsDetectingMask(UnityEngine.LayerMask value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.ContactsDetectingMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.ContactsDetectingMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.DeathMask DeathMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.DeathMask>();
+		public RoguelikeTD.Gameplay.Features.Sensors.DeathMask DeathMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.DeathMask>();
 
 		public UnityEngine.LayerMask DeathMask => DeathMaskC.Value;
 
 		public bool TryGetDeathMask(out UnityEngine.LayerMask value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.DeathMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.DeathMask component);
 			if(result)
 				value = component.Value;
 			else
@@ -2595,225 +2595,225 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDeathMask(UnityEngine.LayerMask value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddDeathMask(UnityEngine.LayerMask value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.DeathMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.DeathMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam IsTouchAnotherTeamC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam>();
+		public RoguelikeTD.Gameplay.Features.Sensors.IsTouchAnotherTeam IsTouchAnotherTeamC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.IsTouchAnotherTeam>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsTouchAnotherTeam => IsTouchAnotherTeamC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsTouchAnotherTeam => IsTouchAnotherTeamC.Value;
 
-		public bool TryGetIsTouchAnotherTeam(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsTouchAnotherTeam(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.IsTouchAnotherTeam component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsTouchAnotherTeam()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsTouchAnotherTeam()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsTouchAnotherTeam(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsTouchAnotherTeam(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchDeathMask IsTouchDeathMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchDeathMask>();
+		public RoguelikeTD.Gameplay.Features.Sensors.IsTouchDeathMask IsTouchDeathMaskC => GetComponent<RoguelikeTD.Gameplay.Features.Sensors.IsTouchDeathMask>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> IsTouchDeathMask => IsTouchDeathMaskC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> IsTouchDeathMask => IsTouchDeathMaskC.Value;
 
-		public bool TryGetIsTouchDeathMask(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsTouchDeathMask(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchDeathMask component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Sensors.IsTouchDeathMask component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsTouchDeathMask()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsTouchDeathMask()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchDeathMask() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.IsTouchDeathMask() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddIsTouchDeathMask(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsTouchDeathMask(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Sensors.IsTouchDeathMask() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Sensors.IsTouchDeathMask() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.InSpawnProcess InSpawnProcessC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.InSpawnProcess>();
+		public RoguelikeTD.Gameplay.Features.SpawnFeature.InSpawnProcess InSpawnProcessC => GetComponent<RoguelikeTD.Gameplay.Features.SpawnFeature.InSpawnProcess>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> InSpawnProcess => InSpawnProcessC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> InSpawnProcess => InSpawnProcessC.Value;
 
-		public bool TryGetInSpawnProcess(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public bool TryGetInSpawnProcess(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.InSpawnProcess component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.SpawnFeature.InSpawnProcess component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInSpawnProcess()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInSpawnProcess()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.InSpawnProcess() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.InSpawnProcess() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddInSpawnProcess(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Boolean> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddInSpawnProcess(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.InSpawnProcess() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.InSpawnProcess() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnCurrentTime SpawnCurrentTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnCurrentTime>();
+		public RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnCurrentTime SpawnCurrentTimeC => GetComponent<RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnCurrentTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> SpawnCurrentTime => SpawnCurrentTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> SpawnCurrentTime => SpawnCurrentTimeC.Value;
 
-		public bool TryGetSpawnCurrentTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetSpawnCurrentTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnCurrentTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnCurrentTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddSpawnCurrentTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddSpawnCurrentTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnCurrentTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnCurrentTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddSpawnCurrentTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddSpawnCurrentTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnCurrentTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnCurrentTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnInitialTime SpawnInitialTimeC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnInitialTime>();
+		public RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime SpawnInitialTimeC => GetComponent<RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> SpawnInitialTime => SpawnInitialTimeC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> SpawnInitialTime => SpawnInitialTimeC.Value;
 
-		public bool TryGetSpawnInitialTime(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public bool TryGetSpawnInitialTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnInitialTime component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddSpawnInitialTime()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddSpawnInitialTime()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnInitialTime() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddSpawnInitialTime(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddSpawnInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature.SpawnInitialTime() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.BaseStats BaseStatsC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.BaseStats>();
+		public RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats BaseStatsC => GetComponent<RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats>();
 
-		public System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> BaseStats => BaseStatsC.Value;
+		public System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> BaseStats => BaseStatsC.Value;
 
-		public bool TryGetBaseStats(out System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
+		public bool TryGetBaseStats(out System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.BaseStats component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single>);
+				value = default(System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddBaseStats()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBaseStats()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.BaseStats() {Value = new System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats() {Value = new System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddBaseStats(System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBaseStats(System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.BaseStats() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.ModifiesStats ModifiesStatsC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.ModifiesStats>();
+		public RoguelikeTD.Gameplay.Features.StatsFeature.ModifiesStats ModifiesStatsC => GetComponent<RoguelikeTD.Gameplay.Features.StatsFeature.ModifiesStats>();
 
-		public System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> ModifiesStats => ModifiesStatsC.Value;
+		public System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> ModifiesStats => ModifiesStatsC.Value;
 
-		public bool TryGetModifiesStats(out System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
+		public bool TryGetModifiesStats(out System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.ModifiesStats component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.StatsFeature.ModifiesStats component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single>);
+				value = default(System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddModifiesStats()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddModifiesStats()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.ModifiesStats() {Value = new System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.ModifiesStats() {Value = new System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddModifiesStats(System.Collections.Generic.Dictionary<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddModifiesStats(System.Collections.Generic.Dictionary<RoguelikeTD.Gameplay.Features.StatsFeature.StatTypes, System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.ModifiesStats() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.ModifiesStats() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffects StatsEffectsC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffects>();
+		public RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffects StatsEffectsC => GetComponent<RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffects>();
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffectsList StatsEffects => StatsEffectsC.Value;
+		public RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffectsList StatsEffects => StatsEffectsC.Value;
 
-		public bool TryGetStatsEffects(out Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffectsList value)
+		public bool TryGetStatsEffects(out RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffectsList value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffects component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffects component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffectsList);
+				value = default(RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffectsList);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStatsEffects()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStatsEffects()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffects() {Value = new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffectsList() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffects() {Value = new RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffectsList() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddStatsEffects(Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffectsList value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddStatsEffects(RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffectsList value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature.StatsEffects() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.StatsEffects() {Value = value});
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Team TeamC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Team>();
+		public RoguelikeTD.Gameplay.Features.TeamsFeature.Team TeamC => GetComponent<RoguelikeTD.Gameplay.Features.TeamsFeature.Team>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Teams> Team => TeamC.Value;
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.Features.TeamsFeature.Teams> Team => TeamC.Value;
 
-		public bool TryGetTeam(out Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Teams> value)
+		public bool TryGetTeam(out RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.Features.TeamsFeature.Teams> value)
 		{
-			bool result = TryGetComponent(out Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Team component);
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.TeamsFeature.Team component);
 			if(result)
 				value = component.Value;
 			else
-				value = default(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Teams>);
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.Features.TeamsFeature.Teams>);
 			return result;
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTeam()
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTeam()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Team() {Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Teams>() });
+			return AddComponent(new RoguelikeTD.Gameplay.Features.TeamsFeature.Team() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.Features.TeamsFeature.Teams>() });
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddTeam(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Teams> value)
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTeam(RoguelikeTD.Core.Reactive.ReactiveVariable<RoguelikeTD.Gameplay.Features.TeamsFeature.Teams> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature.Team() {Value = value});
+			return AddComponent(new RoguelikeTD.Gameplay.Features.TeamsFeature.Team() {Value = value});
 		}
 
 	}

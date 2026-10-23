@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
+﻿using RoguelikeTD.UI.CommonViews;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.BoostsShopPopup
+namespace RoguelikeTD.UI.Core.BoostsShopPopup
 {
     public class BoostAbilitiesShopPopupView : PopupViewBase
     {

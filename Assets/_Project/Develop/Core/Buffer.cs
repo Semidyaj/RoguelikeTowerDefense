@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities
+﻿namespace RoguelikeTD.Core
 {
     public class Buffer<T>
     {

@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
 
-namespace Assets._Project.Develop.Runtime.Utilities.Timer
+namespace RoguelikeTD.Core.Timer
 {
     public class TimerServiceFactory
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.Serializers
+﻿namespace RoguelikeTD.Core.DataManagment.Serializers
 {
     public interface IDataSerializer
     {

@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Conditions;
+﻿using RoguelikeTD.Core.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
+namespace RoguelikeTD.Core.StateMachineCore
 {
     public abstract class StateMachine<TState> : State, IUpdatableState, IDisposable where TState : class, IState
     {

@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Conditions;
+﻿using RoguelikeTD.Core.Conditions;
 
-namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
+namespace RoguelikeTD.Core.StateMachineCore
 {
     public class StateTransition<TState> where TState : class, IState
     {

@@ -1,20 +1,20 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Entities;
+using RoguelikeTD.Configs.Gameplay.Experience;
+using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
+using RoguelikeTD.Gameplay.Features.LevelUpFeature;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Gameplay.Features.TeamsFeature;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
+namespace RoguelikeTD.Gameplay.Features.MainHero
 {
     public class MainHeroFactory
     {

@@ -1,15 +1,16 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Core.Statistics;
-using Assets._Project.Develop.Runtime.UI.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Gameplay.Infrastructure;
+using RoguelikeTD.Infrastructure;
+using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Core.Statistics;
+using RoguelikeTD.UI.Wallet;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.MainMenu
+namespace RoguelikeTD.UI.MainMenu
 {
     public class MainMenuScreenPresenter : IPresenter
     {

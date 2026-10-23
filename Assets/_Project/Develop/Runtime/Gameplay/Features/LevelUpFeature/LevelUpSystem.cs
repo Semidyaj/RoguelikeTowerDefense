@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Experience;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature
+namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 {
     public class LevelUpSystem : IInitializableSystem, IDisposableSystem
     {

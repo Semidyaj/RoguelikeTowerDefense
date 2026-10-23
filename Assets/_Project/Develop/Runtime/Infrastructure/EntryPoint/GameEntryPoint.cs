@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.LoadingScreen;
+using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Infrastructure.Data;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
+namespace RoguelikeTD.Infrastructure.EntryPoint
 {
     public class GameEntryPoint : MonoBehaviour
     {

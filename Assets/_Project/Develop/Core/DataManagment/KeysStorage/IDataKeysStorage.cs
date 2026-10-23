@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.KeysStorage
+﻿namespace RoguelikeTD.Core.DataManagment.KeysStorage
 {
     public interface IDataKeysStorage
     {

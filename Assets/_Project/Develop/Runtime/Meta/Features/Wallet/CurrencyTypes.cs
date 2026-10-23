@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Meta.Features.Wallet
+﻿namespace RoguelikeTD.Meta.Features.Wallet
 {
     public enum CurrencyTypes
     {

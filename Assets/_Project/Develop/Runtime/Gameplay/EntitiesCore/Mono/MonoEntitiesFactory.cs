@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+﻿using RoguelikeTD.Core.AssetsManagment;
+using RoguelikeTD.Core.DI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
+namespace RoguelikeTD.Gameplay.EntitiesCore.Mono
 {
     public class MonoEntitiesFactory : IInitializable, IDisposable
     {

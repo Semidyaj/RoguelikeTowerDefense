@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.Reactive;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Utilities.Timer
+namespace RoguelikeTD.Core.Timer
 {
     public class TimerService : IDisposable
     {

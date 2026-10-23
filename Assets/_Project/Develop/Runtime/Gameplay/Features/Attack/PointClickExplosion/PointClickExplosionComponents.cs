@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Gameplay.EntitiesCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion
+namespace RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion
 {
     public class CanExplode : IEntityComponent
     {

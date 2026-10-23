@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.Economy;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Configs.Meta.Economy;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.StatisticsService
+namespace RoguelikeTD.Meta.Features.StatisticsService
 {
     public class ResetStatistics
     {

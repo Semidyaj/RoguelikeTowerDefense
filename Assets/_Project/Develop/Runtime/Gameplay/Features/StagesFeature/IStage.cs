@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
 using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature
+namespace RoguelikeTD.Gameplay.Features.StagesFeature
 {
     public interface IStage : IDisposable
     {

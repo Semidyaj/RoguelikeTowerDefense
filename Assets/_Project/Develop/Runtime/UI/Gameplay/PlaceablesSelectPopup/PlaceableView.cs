@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup
+namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
 {
     public class PlaceableView : MonoBehaviour, IView
     {

@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Mono;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Common
+namespace RoguelikeTD.Gameplay.Common
 {
     public class RigidbodyEntityRegistrator : MonoEntityRegistrator
     {

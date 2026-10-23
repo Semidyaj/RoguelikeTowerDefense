@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.Wallet
+namespace RoguelikeTD.Meta.Features.Wallet
 {
     public class WalletService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Utilities.Conditions
+﻿namespace RoguelikeTD.Core.Conditions
 {
     public interface ICondition
     {

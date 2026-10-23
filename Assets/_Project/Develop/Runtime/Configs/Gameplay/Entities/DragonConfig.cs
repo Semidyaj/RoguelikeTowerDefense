@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
+namespace RoguelikeTD.Configs.Gameplay.Entities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Entities/NewDragonConfig", fileName = "DragonConfig")]
     public class DragonConfig : EntityConfig

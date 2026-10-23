@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Meta.Wallet
+namespace RoguelikeTD.Configs.Meta.Wallet
 {
     [CreateAssetMenu(menuName = "Configs/Meta/Wallet/NewStartWalletConfig", fileName = "StartWalletConfig")]
     public class StartWalletConfig : ScriptableObject

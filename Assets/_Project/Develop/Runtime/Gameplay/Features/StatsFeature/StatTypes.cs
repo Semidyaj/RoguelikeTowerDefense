@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature
+﻿namespace RoguelikeTD.Gameplay.Features.StatsFeature
 {
     public enum StatTypes
     {

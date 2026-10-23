@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.MainMenu
+namespace RoguelikeTD.UI.MainMenu
 {
     public class MainMenuScreenView : MonoBehaviour, IView
     {

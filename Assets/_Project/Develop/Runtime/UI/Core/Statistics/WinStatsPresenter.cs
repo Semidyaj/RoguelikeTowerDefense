@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
+﻿using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.UI.CommonViews;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.Statistics
+namespace RoguelikeTD.UI.Core.Statistics
 {
     public class WinStatsPresenter : IPresenter
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities
+namespace RoguelikeTD.Configs.Gameplay.Abilities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Abilities/AbilitiesConfigsContainer", fileName = "AbilitiesConfigsContainer")]
     public class AbilitiesConfigsContainer : ScriptableObject

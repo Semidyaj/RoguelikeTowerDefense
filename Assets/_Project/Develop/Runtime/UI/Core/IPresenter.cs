@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
+﻿using RoguelikeTD.Core.DI;
 using System;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public interface IPresenter : IInitializable, IDisposable
     {

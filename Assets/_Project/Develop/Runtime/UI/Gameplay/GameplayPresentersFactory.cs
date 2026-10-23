@@ -1,28 +1,28 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup;
-using Assets._Project.Develop.Runtime.UI.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.UI.Gameplay.HealthDisplay;
-using Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup;
-using Assets._Project.Develop.Runtime.UI.Gameplay.ResultPopups;
-using Assets._Project.Develop.Runtime.UI.Gameplay.Stages;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Configs.Gameplay.Experience;
+using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagment;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.Gameplay.Infrastructure;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
+using RoguelikeTD.UI.Gameplay.Experience;
+using RoguelikeTD.UI.Gameplay.HealthDisplay;
+using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
+using RoguelikeTD.UI.Gameplay.ResultPopups;
+using RoguelikeTD.UI.Gameplay.Stages;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay
+namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayPresentersFactory
     {

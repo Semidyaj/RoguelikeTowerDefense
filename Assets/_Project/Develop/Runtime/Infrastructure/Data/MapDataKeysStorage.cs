@@ -1,7 +1,9 @@
-﻿using System;
+﻿using RoguelikeTD.Core.DataManagment;
+using RoguelikeTD.Core.DataManagment.KeysStorage;
+using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.KeysStorage
+namespace RoguelikeTD.Infrastructure.Data
 {
     public class MapDataKeysStorage : IDataKeysStorage
     {

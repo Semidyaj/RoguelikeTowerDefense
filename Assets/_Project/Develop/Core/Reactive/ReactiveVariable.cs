@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.Reactive
+namespace RoguelikeTD.Core.Reactive
 {
     public class ReactiveVariable<T> : IReadOnlyVariable<T>
     {

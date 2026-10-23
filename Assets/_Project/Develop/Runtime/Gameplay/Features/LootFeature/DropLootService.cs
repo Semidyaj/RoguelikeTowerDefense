@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Loot;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Configs.Gameplay.Loot;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
+namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
     public class DropLootService
     {

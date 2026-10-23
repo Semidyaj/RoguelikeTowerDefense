@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.TargetSelectors;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States.Attack
+namespace RoguelikeTD.Gameplay.Features.AI.States.Attack
 {
     public class FindTargetState : State, IUpdatableState
     {

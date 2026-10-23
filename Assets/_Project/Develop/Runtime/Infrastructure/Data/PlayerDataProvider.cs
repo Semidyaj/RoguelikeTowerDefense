@@ -1,11 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
+﻿using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.ConfigsManagment;
+using RoguelikeTD.Core.DataManagment;
+using RoguelikeTD.Core.DataManagment.DataProviders;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders
+namespace RoguelikeTD.Infrastructure.Data
 {
     public class PlayerDataProvider : DataProvider<PlayerData>
     {

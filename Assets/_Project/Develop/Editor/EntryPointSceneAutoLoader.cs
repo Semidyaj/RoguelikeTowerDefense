@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-namespace Assets._Project.Develop.Editor
+namespace RoguelikeTD.Editor
 {
     [InitializeOnLoad]
     public static class EntryPointSceneAutoLoader
