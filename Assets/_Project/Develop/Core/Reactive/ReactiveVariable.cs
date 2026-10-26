@@ -5,9 +5,7 @@ namespace RoguelikeTD.Core.Reactive
 {
     public class ReactiveVariable<T> : IReadOnlyVariable<T>
     {
-        private readonly List<Subscriber<T, T>> _subscribers = new();
-        private readonly List<Subscriber<T, T>> _toAdd = new();
-        private readonly List<Subscriber<T, T>> _toRemove = new();
+        private readonly SubscribersList<Subscriber<T, T>> _subscribers = new();
 
         private T _value;
         private IEqualityComparer<T> _comparer;
@@ -43,31 +41,26 @@ namespace RoguelikeTD.Core.Reactive
         public IDisposable Subscribe(Action<T, T> action)
         {
             Subscriber<T, T> subscriber = new Subscriber<T, T>(action, Remove);
-            _toAdd.Add(subscriber);
+            _subscribers.Add(subscriber);
 
             return subscriber;
         }
 
-        private void Remove(Subscriber<T, T> subscriber) => _toRemove.Add(subscriber);
+        private void Remove(Subscriber<T, T> subscriber) => _subscribers.Remove(subscriber);
 
         private void Invoke(T oldValue, T newValue)
         {
-            if (_toAdd.Count > 0)
+            IReadOnlyList<Subscriber<T, T>> subscribers = _subscribers.BeginInvoke();
+
+            try
             {
-                _subscribers.AddRange(_toAdd);
-                _toAdd.Clear();
+                for (int i = 0; i < subscribers.Count; i++)
+                    subscribers[i].Invoke(oldValue, newValue);
             }
-
-            if (_toRemove.Count > 0)
+            finally
             {
-                foreach (Subscriber<T, T> subscriber in _toRemove)
-                    _subscribers.Remove(subscriber);
-
-                _toRemove.Clear();
+                _subscribers.EndInvoke();
             }
-
-            foreach (Subscriber<T, T> subscriber in _subscribers)
-                subscriber.Invoke(oldValue, newValue);
         }
     }
 }

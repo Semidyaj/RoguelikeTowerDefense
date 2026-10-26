@@ -61,6 +61,25 @@ namespace RoguelikeTD.Tests.Core.Reactive
         }
 
         [Test]
+        public void SetValue_FromHandlerWhileSubscriptionPending_DoesNotThrow()
+        {
+            // Same shape as LevelUpSystem: the handler writes the remainder back into the variable,
+            // and something subscribes during the level-up (pending subscription).
+            ReactiveVariable<int> experience = new ReactiveVariable<int>(0);
+            experience.Subscribe((oldValue, newValue) =>
+            {
+                if (newValue < 100)
+                    return;
+
+                experience.Subscribe((lateOld, lateNew) => { });
+                experience.Value = newValue - 100;
+            });
+
+            Assert.DoesNotThrow(() => experience.Value = 120);
+            Assert.AreEqual(20, experience.Value);
+        }
+
+        [Test]
         public void SetValue_WhenComparerTreatsValuesAsEqual_DoesNotNotifyButStoresValue()
         {
             ReactiveVariable<string> variable = new ReactiveVariable<string>("abc", StringComparer.OrdinalIgnoreCase);

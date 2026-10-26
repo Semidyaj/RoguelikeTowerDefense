@@ -5,75 +5,61 @@ namespace RoguelikeTD.Core.Reactive
 {
     public class ReactiveEvent<T> : IReadOnlyEvent<T>
     {
-        private readonly List<Subscriber<T>> _subscribers = new();
-        private readonly List<Subscriber<T>> _toAdd = new();
-        private readonly List<Subscriber<T>> _toRemove = new();
+        private readonly SubscribersList<Subscriber<T>> _subscribers = new();
 
         public IDisposable Subscribe(Action<T> action)
         {
             Subscriber<T> subscriber = new Subscriber<T>(action, Remove);
-            _toAdd.Add(subscriber);
+            _subscribers.Add(subscriber);
 
             return subscriber;
         }
 
-        private void Remove(Subscriber<T> subscriber) => _toRemove.Add(subscriber);
+        private void Remove(Subscriber<T> subscriber) => _subscribers.Remove(subscriber);
 
         public void Invoke(T arg)
         {
-            if (_toAdd.Count > 0)
+            IReadOnlyList<Subscriber<T>> subscribers = _subscribers.BeginInvoke();
+
+            try
             {
-                _subscribers.AddRange(_toAdd);
-                _toAdd.Clear();
+                for (int i = 0; i < subscribers.Count; i++)
+                    subscribers[i].Invoke(arg);
             }
-
-            if (_toRemove.Count > 0)
+            finally
             {
-                foreach (Subscriber<T> subscriber in _toRemove)
-                    _subscribers.Remove(subscriber);
-
-                _toRemove.Clear();
+                _subscribers.EndInvoke();
             }
-
-            foreach (Subscriber<T> subscriber in _subscribers)
-                subscriber.Invoke(arg);
         }
     }
 
     public class ReactiveEvent : IReadOnlyEvent
     {
-        private readonly List<Subscriber> _subscribers = new();
-        private readonly List<Subscriber> _toAdd = new();
-        private readonly List<Subscriber> _toRemove = new();
+        private readonly SubscribersList<Subscriber> _subscribers = new();
 
         public IDisposable Subscribe(Action action)
         {
             Subscriber subscriber = new Subscriber(action, Remove);
-            _toAdd.Add(subscriber);
+            _subscribers.Add(subscriber);
 
             return subscriber;
         }
 
-        private void Remove(Subscriber subscriber) => _toRemove.Add(subscriber);
+        private void Remove(Subscriber subscriber) => _subscribers.Remove(subscriber);
 
         public void Invoke()
         {
-            if (_toAdd.Count > 0)
+            IReadOnlyList<Subscriber> subscribers = _subscribers.BeginInvoke();
+
+            try
             {
-                _subscribers.AddRange(_toAdd);
-                _toAdd.Clear();
+                for (int i = 0; i < subscribers.Count; i++)
+                    subscribers[i].Invoke();
             }
-
-            if (_toRemove.Count > 0)
+            finally
             {
-                foreach (Subscriber subscriber in _toRemove)
-                    _subscribers.Remove(subscriber);
-
-                _toRemove.Clear();
+                _subscribers.EndInvoke();
             }
-
-            foreach (Subscriber subscriber in _subscribers)
-                subscriber.Invoke();
         }
     }
 }

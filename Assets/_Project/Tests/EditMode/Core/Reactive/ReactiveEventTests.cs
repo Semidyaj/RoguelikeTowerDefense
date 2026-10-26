@@ -76,6 +76,47 @@ namespace RoguelikeTD.Tests.Core.Reactive
         }
 
         [Test]
+        public void Invoke_FromHandlerWhileSubscriptionPending_DoesNotThrow()
+        {
+            ReactiveEvent<int> reactiveEvent = new ReactiveEvent<int>();
+            int nestedCallCount = 0;
+            reactiveEvent.Subscribe(arg =>
+            {
+                if (arg == 2)
+                {
+                    nestedCallCount++;
+                    return;
+                }
+
+                reactiveEvent.Subscribe(lateArg => { });
+                reactiveEvent.Invoke(2);
+            });
+
+            Assert.DoesNotThrow(() => reactiveEvent.Invoke(1));
+            Assert.AreEqual(1, nestedCallCount);
+        }
+
+        [Test]
+        public void Invoke_WithoutArgument_FromHandlerWhileSubscriptionPending_DoesNotThrow()
+        {
+            ReactiveEvent reactiveEvent = new ReactiveEvent();
+            int callCount = 0;
+            reactiveEvent.Subscribe(() =>
+            {
+                callCount++;
+
+                if (callCount > 1)
+                    return;
+
+                reactiveEvent.Subscribe(() => { });
+                reactiveEvent.Invoke();
+            });
+
+            Assert.DoesNotThrow(() => reactiveEvent.Invoke());
+            Assert.AreEqual(2, callCount);
+        }
+
+        [Test]
         public void Invoke_WithoutArgument_NotifiesSubscriber()
         {
             ReactiveEvent reactiveEvent = new ReactiveEvent();
