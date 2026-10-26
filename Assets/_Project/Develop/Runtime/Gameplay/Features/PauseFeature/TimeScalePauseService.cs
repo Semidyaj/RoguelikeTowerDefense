@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.PauseFeature
 {
-    public class TimeScalePauseService : IPauseService
+    public class TimeScalePauseService : IPauseService, IDisposable
     {
         public bool IsPaused { get; private set; }
 
@@ -16,6 +17,12 @@ namespace RoguelikeTD.Gameplay.Features.PauseFeature
         {
             Time.timeScale = 1;
             IsPaused = false;
+        }
+
+        public void Dispose()
+        {
+            if (IsPaused)
+                Unpause();
         }
     }
 }
