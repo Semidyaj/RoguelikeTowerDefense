@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI.States;
 using RoguelikeTD.Gameplay.Features.AI.States.Attack;
@@ -9,20 +8,18 @@ namespace RoguelikeTD.Gameplay.Features.AI
 {
     public class BrainsFactory
     {
-        private readonly DIContainer _container;
         private readonly StateMachineFactory _stateMachineFactory;
         private readonly AIBrainsContext _brainsContext;
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
-        public BrainsFactory(DIContainer container)
+        public BrainsFactory(
+            StateMachineFactory stateMachineFactory,
+            AIBrainsContext brainsContext,
+            EntitiesLifeContext entitiesLifeContext)
         {
-            _container = container;
-
-            _stateMachineFactory = _container.Resolve<StateMachineFactory>();
-
-            _brainsContext = _container.Resolve<AIBrainsContext>();
-
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
+            _stateMachineFactory = stateMachineFactory;
+            _brainsContext = brainsContext;
+            _entitiesLifeContext = entitiesLifeContext;
         }
 
         // MAIN HERO

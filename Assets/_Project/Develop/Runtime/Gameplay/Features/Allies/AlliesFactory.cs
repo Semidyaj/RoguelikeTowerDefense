@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Entities;
 using RoguelikeTD.Configs.Gameplay.Levels;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
@@ -11,21 +10,21 @@ namespace RoguelikeTD.Gameplay.Features.Allies
 {
     public class AlliesFactory
     {
-        private readonly DIContainer _container;
-
         private readonly EntitiesFactory _entitiesFactory;
         private readonly BrainsFactory _brainsFactory;
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly BoostAbilitiesStartGameplayApplier _boostAbilitiesStartGameplayApplier;
 
-        public AlliesFactory(DIContainer container)
+        public AlliesFactory(
+            EntitiesFactory entitiesFactory,
+            BrainsFactory brainsFactory,
+            EntitiesLifeContext entitiesLifeContext,
+            BoostAbilitiesStartGameplayApplier boostAbilitiesStartGameplayApplier)
         {
-            _container = container;
-
-            _entitiesFactory = _container.Resolve<EntitiesFactory>();
-            _brainsFactory = _container.Resolve<BrainsFactory>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _boostAbilitiesStartGameplayApplier = _container.Resolve<BoostAbilitiesStartGameplayApplier>();
+            _entitiesFactory = entitiesFactory;
+            _brainsFactory = brainsFactory;
+            _entitiesLifeContext = entitiesLifeContext;
+            _boostAbilitiesStartGameplayApplier = boostAbilitiesStartGameplayApplier;
         }
 
         public Entity Create(Vector3 position, EntityConfig config, LevelConfig levelConfig = null)

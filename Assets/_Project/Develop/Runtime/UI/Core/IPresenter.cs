@@ -1,5 +1,5 @@
-﻿using RoguelikeTD.Core.DI;
-using System;
+﻿using System;
+using VContainer.Unity;
 
 namespace RoguelikeTD.UI.Core
 {

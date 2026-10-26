@@ -2,7 +2,6 @@
 using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.DataManagement;
 using RoguelikeTD.Core.DataManagement.DataRepository;
 using RoguelikeTD.Core.DataManagement.KeysStorage;
@@ -24,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 using Object = UnityEngine.Object;
 
 namespace RoguelikeTD.Infrastructure.EntryPoint
@@ -32,82 +33,47 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
     {
         private const string EditorSavesFolderName = "Saves";
 
-        public static void Process(DIContainer container)
+        public static void Configure(IContainerBuilder builder)
         {
-            container.RegisterAsSingle<ICoroutinesPerformer>(CreateCoroutinesPerformer);
+            builder.Register<ICoroutinesPerformer>(CreateCoroutinesPerformer, Lifetime.Singleton);
+            builder.Register<ILoadingScreen>(CreateStandardLoadingScreen, Lifetime.Singleton);
 
-            container.RegisterAsSingle<ILoadingScreen>(CreateStandardLoadingScreen);
+            builder.Register(CreateConfigsProviderService, Lifetime.Singleton);
+            builder.Register<ResourcesAssetsLoader>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateConfigsProviderService);
+            builder.Register<SceneLoaderService>(Lifetime.Singleton);
+            builder.Register(CreateSceneSwitcherService, Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateResourcesAssetsLoader);
+            builder.Register(CreateWalletService, Lifetime.Singleton);
+            builder.Register<ISaveLoadService>(CreateSaveLoadService, Lifetime.Singleton);
+            builder.Register<PlayerDataProvider>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateSceneLoaderService);
+            builder.Register<ProjectPresentersFactory>(Lifetime.Singleton);
+            builder.Register<ViewsFactory>(Lifetime.Singleton);
+            builder.Register<TimerServiceFactory>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateSceneSwitcherService);
+            builder.Register<LevelsProgressionService>(Lifetime.Singleton);
+            builder.Register(CreateGameplayEconomyConfig, Lifetime.Singleton);
+            builder.Register<GameplayStatisticsService>(Lifetime.Singleton);
+            builder.Register<StatsUpgradeService>(Lifetime.Singleton);
+            builder.Register<BoostAbilitiesShopService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateWalletService).NonLazy();
-
-            container.RegisterAsSingle<ISaveLoadService>(CreateSaveLoadService);
-
-            container.RegisterAsSingle(CreatePlayerDataProvider);
-
-            container.RegisterAsSingle(CreateProjectPresentersFactory);
-
-            container.RegisterAsSingle(CreateViewsFactory);
-
-            container.RegisterAsSingle(CreateTimerServiceFactory);
-
-            container.RegisterAsSingle(CreateLevelsProgressionService).NonLazy();
-
-            container.RegisterAsSingle(CreateGameplayEconomyConfig);
-
-            container.RegisterAsSingle(CreateGameplayStatisticsService).NonLazy();
-
-            container.RegisterAsSingle(CreateStatsUpgradeService).NonLazy();
-
-            container.RegisterAsSingle(CreateBoostAbilitiesShopService).NonLazy();
+            builder.RegisterBuildCallback(CreatePlayerDataReadersAndWriters);
         }
 
-        private static BoostAbilitiesShopService CreateBoostAbilitiesShopService(DIContainer c)
-            => new BoostAbilitiesShopService(
-                c.Resolve<ConfigsProviderService>(),
-                c.Resolve<WalletService>(),
-                c.Resolve<PlayerDataProvider>(),
-                c.Resolve<ICoroutinesPerformer>());
-
-        private static StatsUpgradeService CreateStatsUpgradeService(DIContainer c)
-            => new StatsUpgradeService(
-                c.Resolve<ConfigsProviderService>(),
-                c.Resolve<WalletService>(),
-                c.Resolve<PlayerDataProvider>());
-
-        private static GameplayStatisticsService CreateGameplayStatisticsService(DIContainer c)
-            => new GameplayStatisticsService(c.Resolve<PlayerDataProvider>(), c.Resolve<ICoroutinesPerformer>());
-
-        private static GameplayEconomyConfig CreateGameplayEconomyConfig(DIContainer c)
+        private static void CreatePlayerDataReadersAndWriters(IObjectResolver c)
         {
-            ConfigsProviderService configsProviderService = c.Resolve<ConfigsProviderService>();
-
-            return configsProviderService.GetConfig<GameplayEconomyConfig>();
+            c.Resolve<WalletService>();
+            c.Resolve<LevelsProgressionService>();
+            c.Resolve<GameplayStatisticsService>();
+            c.Resolve<StatsUpgradeService>();
+            c.Resolve<BoostAbilitiesShopService>();
         }
 
-        private static TimerServiceFactory CreateTimerServiceFactory(DIContainer c)
-            => new TimerServiceFactory(c);
+        private static GameplayEconomyConfig CreateGameplayEconomyConfig(IObjectResolver c)
+            => c.Resolve<ConfigsProviderService>().GetConfig<GameplayEconomyConfig>();
 
-        private static LevelsProgressionService CreateLevelsProgressionService(DIContainer c)
-            => new LevelsProgressionService(c.Resolve<PlayerDataProvider>());
-
-        private static ViewsFactory CreateViewsFactory(DIContainer c)
-            => new ViewsFactory(c.Resolve<ResourcesAssetsLoader>());
-
-        private static ProjectPresentersFactory CreateProjectPresentersFactory(DIContainer c)
-            => new ProjectPresentersFactory(c);
-
-        private static PlayerDataProvider CreatePlayerDataProvider(DIContainer c)
-            => new PlayerDataProvider(c.Resolve<ISaveLoadService>(), c.Resolve<ConfigsProviderService>());
-
-        private static SaveLoadService CreateSaveLoadService(DIContainer c)
+        private static SaveLoadService CreateSaveLoadService(IObjectResolver c)
         {
             IDataSerializer serializer = new JsonSerializer();
 
@@ -124,7 +90,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             return new SaveLoadService(serializer, keysStorage, repository);
         }
 
-        private static WalletService CreateWalletService(DIContainer c)
+        private static WalletService CreateWalletService(IObjectResolver c)
         {
             Dictionary<CurrencyTypes, ReactiveVariable<int>> currencies = new();
 
@@ -134,16 +100,14 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             return new WalletService(currencies, c.Resolve<PlayerDataProvider>());
         }
 
-        private static SceneSwitcherService CreateSceneSwitcherService(DIContainer c)
-        {
-            SceneLoaderService sceneLoaderService = c.Resolve<SceneLoaderService>();
+        private static SceneSwitcherService CreateSceneSwitcherService(IObjectResolver c)
+            => new SceneSwitcherService(
+                c.Resolve<SceneLoaderService>(),
+                c.Resolve<ILoadingScreen>(),
+                c.Resolve<LifetimeScope>(),
+                Scenes.Empty);
 
-            ILoadingScreen loadingScreen = c.Resolve<ILoadingScreen>();
-
-            return new SceneSwitcherService(sceneLoaderService, loadingScreen, c, Scenes.Empty);
-        }
-
-        private static StandardLoadingScreen CreateStandardLoadingScreen(DIContainer c)
+        private static StandardLoadingScreen CreateStandardLoadingScreen(IObjectResolver c)
         {
             StandardLoadingScreen standardLoadingScreenPrefab = c.Resolve<ResourcesAssetsLoader>()
                 .Load<StandardLoadingScreen>("Utilities/StandardLoadingScreen");
@@ -151,10 +115,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             return Object.Instantiate(standardLoadingScreenPrefab);
         }
 
-        private static SceneLoaderService CreateSceneLoaderService(DIContainer c)
-            => new SceneLoaderService();
-
-        private static ConfigsProviderService CreateConfigsProviderService(DIContainer c)
+        private static ConfigsProviderService CreateConfigsProviderService(IObjectResolver c)
         {
             ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
 
@@ -163,10 +124,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             return new ConfigsProviderService(resourcesConfigLoader);
         }
 
-        private static ResourcesAssetsLoader CreateResourcesAssetsLoader(DIContainer c)
-            => new ResourcesAssetsLoader();
-
-        private static CoroutinesPerformer CreateCoroutinesPerformer(DIContainer c)
+        private static CoroutinesPerformer CreateCoroutinesPerformer(IObjectResolver c)
         {
             CoroutinesPerformer coroutinesPerformerPrefab = c.Resolve<ResourcesAssetsLoader>()
                 .Load<CoroutinesPerformer>("Utilities/CoroutinesPerformer");

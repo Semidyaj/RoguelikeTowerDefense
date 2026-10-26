@@ -1,30 +1,24 @@
 ﻿using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
 using System.Collections;
 using UnityEngine;
+using VContainer;
 
 namespace RoguelikeTD.Meta.Infrastructure
 {
     public class MainMenuBootstrap : SceneBootstrap
     {
-        private DIContainer _container;
-
         private ICoroutinesPerformer _coroutinesPerformer;
         private PlayerDataProvider _playerDataProvider;
 
-        public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
-        {
-            _container = container;
+        public override void Configure(IContainerBuilder builder, IInputSceneArgs sceneArgs = null)
+            => MainMenuContextRegistrations.Configure(builder);
 
-            MainMenuContextRegistrations.Process(_container);
-        }
-
-        public override IEnumerator Initialize()
+        public override IEnumerator Initialize(IObjectResolver resolver)
         {
-            _coroutinesPerformer = _container.Resolve<ICoroutinesPerformer>();
-            _playerDataProvider = _container.Resolve<PlayerDataProvider>();
+            _coroutinesPerformer = resolver.Resolve<ICoroutinesPerformer>();
+            _playerDataProvider = resolver.Resolve<PlayerDataProvider>();
 
             yield break;
         }

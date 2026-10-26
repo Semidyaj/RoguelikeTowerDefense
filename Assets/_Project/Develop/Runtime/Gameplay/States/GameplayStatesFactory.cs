@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Core.Conditions;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.Allies;
@@ -22,82 +21,86 @@ namespace RoguelikeTD.Gameplay.States
 {
     public class GameplayStatesFactory
     {
-        private readonly DIContainer _container;
+        private readonly LootPullingService _lootPullingService;
+        private readonly MainHeroHolderService _mainHeroHolderService;
+        private readonly TowerHolderService _towerHolderService;
+        private readonly PointClickExplosionService _pointClickExplosionService;
+        private readonly PlaceableService _placeableService;
+        private readonly PreparationTriggerService _preparationTriggerService;
+        private readonly GameplayPopupService _gameplayPopupService;
+        private readonly StageProviderService _stageProviderService;
+        private readonly EndProcessStageReleaser _endProcessStageReleaser;
+        private readonly EntitiesLifeContext _entitiesLifeContext;
+        private readonly IInputService _inputService;
+        private readonly IPauseService _pauseService;
+        private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
+        private readonly LevelsProgressionService _levelsProgressionService;
+        private readonly PlayerDataProvider _playerDataProvider;
+        private readonly ICoroutinesPerformer _coroutinesPerformer;
+        private readonly GameplayResultHandler _gameplayResultHandler;
 
-        public GameplayStatesFactory(DIContainer container)
+        public GameplayStatesFactory(
+            LootPullingService lootPullingService,
+            MainHeroHolderService mainHeroHolderService,
+            TowerHolderService towerHolderService,
+            PointClickExplosionService pointClickExplosionService,
+            PlaceableService placeableService,
+            PreparationTriggerService preparationTriggerService,
+            GameplayPopupService gameplayPopupService,
+            StageProviderService stageProviderService,
+            EndProcessStageReleaser endProcessStageReleaser,
+            EntitiesLifeContext entitiesLifeContext,
+            IInputService inputService,
+            IPauseService pauseService,
+            BoostAbilitiesShopService boostAbilitiesShopService,
+            LevelsProgressionService levelsProgressionService,
+            PlayerDataProvider playerDataProvider,
+            ICoroutinesPerformer coroutinesPerformer,
+            GameplayResultHandler gameplayResultHandler)
         {
-            _container = container;
+            _lootPullingService = lootPullingService;
+            _mainHeroHolderService = mainHeroHolderService;
+            _towerHolderService = towerHolderService;
+            _pointClickExplosionService = pointClickExplosionService;
+            _placeableService = placeableService;
+            _preparationTriggerService = preparationTriggerService;
+            _gameplayPopupService = gameplayPopupService;
+            _stageProviderService = stageProviderService;
+            _endProcessStageReleaser = endProcessStageReleaser;
+            _entitiesLifeContext = entitiesLifeContext;
+            _inputService = inputService;
+            _pauseService = pauseService;
+            _boostAbilitiesShopService = boostAbilitiesShopService;
+            _levelsProgressionService = levelsProgressionService;
+            _playerDataProvider = playerDataProvider;
+            _coroutinesPerformer = coroutinesPerformer;
+            _gameplayResultHandler = gameplayResultHandler;
         }
-
-        public CollectLootState CreateCollectLootState()
-            => new CollectLootState(
-                _container.Resolve<LootPullingService>(),
-                _container.Resolve<MainHeroHolderService>());
-
-        public PreparationState CreatePreparationState()
-            => new PreparationState(
-                _container.Resolve<PointClickExplosionService>(),
-                _container.Resolve<PlaceableService>(),
-                _container.Resolve<PreparationTriggerService>(),
-                _container.Resolve<GameplayPopupService>());
-
-        public StageProcessState CreateStageProcessState()
-            => new StageProcessState(
-                _container.Resolve<StageProviderService>(),
-                _container.Resolve<EndProcessStageReleaser>(),
-                _container.Resolve<EntitiesLifeContext>());
-
-        public WinState CreateWinState(GameplayInputArgs inputArgs)
-            => new WinState(
-                _container.Resolve<IInputService>(),
-                _container.Resolve<IPauseService>(),
-                _container.Resolve<BoostAbilitiesShopService>(),
-                _container.Resolve<LevelsProgressionService>(),
-                inputArgs,
-                _container.Resolve<PlayerDataProvider>(),
-                _container.Resolve<ICoroutinesPerformer>(),
-                _container.Resolve<GameplayResultHandler>(),
-                _container.Resolve<GameplayPopupService>());
-
-        public DefeatState CreateDefeatState()
-            => new DefeatState(
-                _container.Resolve<IInputService>(),
-                _container.Resolve<IPauseService>(),
-                _container.Resolve<BoostAbilitiesShopService>(),
-                _container.Resolve<PlayerDataProvider>(),
-                _container.Resolve<ICoroutinesPerformer>(),
-                _container.Resolve<GameplayResultHandler>(),
-                _container.Resolve<GameplayPopupService>());
 
         public GameplayStateMachine CreateGameplayStateMachine(GameplayInputArgs inputArgs)
         {
-            PreparationTriggerService preparationTriggerService = _container.Resolve<PreparationTriggerService>();
-            StageProviderService stageProviderService = _container.Resolve<StageProviderService>();
-            MainHeroHolderService mainHeroHolderService = _container.Resolve<MainHeroHolderService>();
-            TowerHolderService towerHolderService = _container.Resolve<TowerHolderService>();
-
             GameplayStateMachine coreLoopState = CreateCoreLoopState();
 
             WinState winState = CreateWinState(inputArgs);
             DefeatState defeatState = CreateDefeatState();
 
             ICompositeCondition coreLoopToWinStateCondition = new CompositeCondition()
-                .Add(new FuncCondition(() => preparationTriggerService.HasMainHeroContacts.Value))
-                .Add(new FuncCondition(() => stageProviderService.CurrentStageResult.Value == StageResults.Completed))
-                .Add(new FuncCondition(() => stageProviderService.HasNextStage() == false));
+                .Add(new FuncCondition(() => _preparationTriggerService.HasMainHeroContacts.Value))
+                .Add(new FuncCondition(() => _stageProviderService.CurrentStageResult.Value == StageResults.Completed))
+                .Add(new FuncCondition(() => _stageProviderService.HasNextStage() == false));
 
             ICompositeCondition coreLoopToDefeatStateCondition = new CompositeCondition(LogicOperations.Or)
                 .Add(new FuncCondition(() =>
                 {
-                    if (mainHeroHolderService.MainHero != null)
-                        return mainHeroHolderService.MainHero.IsDead.Value;
+                    if (_mainHeroHolderService.MainHero != null)
+                        return _mainHeroHolderService.MainHero.IsDead.Value;
 
                     return false;
                 }))
                 .Add(new FuncCondition(() =>
                 {
-                    if (towerHolderService.Tower != null)
-                        return towerHolderService.Tower.IsDead.Value;
+                    if (_towerHolderService.Tower != null)
+                        return _towerHolderService.Tower.IsDead.Value;
 
                     return false;
                 }));
@@ -114,25 +117,21 @@ namespace RoguelikeTD.Gameplay.States
             return gameplayCycle;
         }
 
-        public GameplayStateMachine CreateCoreLoopState()
+        private GameplayStateMachine CreateCoreLoopState()
         {
-            PreparationTriggerService preparationTriggerService = _container.Resolve<PreparationTriggerService>();
-            StageProviderService stageProviderService = _container.Resolve<StageProviderService>();
-            LootPullingService lootPullingService = _container.Resolve<LootPullingService>();
-
             PreparationState preparationState = CreatePreparationState();
             StageProcessState stageProcessState = CreateStageProcessState();
             CollectLootState collectLootState = CreateCollectLootState();
 
             ICompositeCondition preparationToStageProcessStateCondition = new CompositeCondition()
-                .Add(new FuncCondition(() => preparationTriggerService.HasMainHeroContacts.Value))
-                .Add(new FuncCondition(() => stageProviderService.HasNextStage()));
+                .Add(new FuncCondition(() => _preparationTriggerService.HasMainHeroContacts.Value))
+                .Add(new FuncCondition(() => _stageProviderService.HasNextStage()));
 
             FuncCondition stageProcessToCollectStateCondition = new FuncCondition(()
-                => stageProviderService.CurrentStageResult.Value == StageResults.Completed);
+                => _stageProviderService.CurrentStageResult.Value == StageResults.Completed);
 
-            FuncCondition collectStateToPreparationStateCondition = new FuncCondition(() 
-                => lootPullingService.AllCollected.Value);
+            FuncCondition collectStateToPreparationStateCondition = new FuncCondition(()
+                => _lootPullingService.AllCollected.Value);
 
             GameplayStateMachine coreLoopState = new GameplayStateMachine();
 
@@ -146,5 +145,45 @@ namespace RoguelikeTD.Gameplay.States
 
             return coreLoopState;
         }
+
+        private CollectLootState CreateCollectLootState()
+            => new CollectLootState(
+                _lootPullingService,
+                _mainHeroHolderService);
+
+        private PreparationState CreatePreparationState()
+            => new PreparationState(
+                _pointClickExplosionService,
+                _placeableService,
+                _preparationTriggerService,
+                _gameplayPopupService);
+
+        private StageProcessState CreateStageProcessState()
+            => new StageProcessState(
+                _stageProviderService,
+                _endProcessStageReleaser,
+                _entitiesLifeContext);
+
+        private WinState CreateWinState(GameplayInputArgs inputArgs)
+            => new WinState(
+                _inputService,
+                _pauseService,
+                _boostAbilitiesShopService,
+                _levelsProgressionService,
+                inputArgs,
+                _playerDataProvider,
+                _coroutinesPerformer,
+                _gameplayResultHandler,
+                _gameplayPopupService);
+
+        private DefeatState CreateDefeatState()
+            => new DefeatState(
+                _inputService,
+                _pauseService,
+                _boostAbilitiesShopService,
+                _playerDataProvider,
+                _coroutinesPerformer,
+                _gameplayResultHandler,
+                _gameplayPopupService);
     }
 }

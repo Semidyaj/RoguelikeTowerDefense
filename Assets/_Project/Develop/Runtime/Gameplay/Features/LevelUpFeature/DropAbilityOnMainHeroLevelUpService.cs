@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
@@ -9,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 {

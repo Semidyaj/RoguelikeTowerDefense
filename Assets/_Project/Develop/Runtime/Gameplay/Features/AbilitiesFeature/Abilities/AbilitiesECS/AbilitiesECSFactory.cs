@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Abilities;
 using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using System;
@@ -9,15 +8,11 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
 {
     public class AbilitiesECSFactory
     {
-        private readonly DIContainer _container;
-
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
-        public AbilitiesECSFactory(DIContainer container)
+        public AbilitiesECSFactory(EntitiesLifeContext entitiesLifeContext)
         {
-            _container = container;
-
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
+            _entitiesLifeContext = entitiesLifeContext;
         }
 
         public Entity CreateAbilityFor(Entity owner, AbilityConfig config, int currentLevel)

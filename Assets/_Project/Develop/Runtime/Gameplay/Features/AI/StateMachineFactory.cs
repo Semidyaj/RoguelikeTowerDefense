@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Core.Timer;
 using RoguelikeTD.Gameplay.EntitiesCore;
@@ -17,21 +16,21 @@ namespace RoguelikeTD.Gameplay.Features.AI
 {
     public class StateMachineFactory
     {
-        private readonly DIContainer _container;
-
         private readonly TimerServiceFactory _timerServiceFactory;
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly IInputService _inputService;
         private readonly IPauseService _pauseService;
 
-        public StateMachineFactory(DIContainer container)
+        public StateMachineFactory(
+            TimerServiceFactory timerServiceFactory,
+            EntitiesLifeContext entitiesLifeContext,
+            IInputService inputService,
+            IPauseService pauseService)
         {
-            _container = container;
-
-            _timerServiceFactory = _container.Resolve<TimerServiceFactory>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _inputService = _container.Resolve<IInputService>();
-            _pauseService = _container.Resolve<IPauseService>();
+            _timerServiceFactory = timerServiceFactory;
+            _entitiesLifeContext = entitiesLifeContext;
+            _inputService = inputService;
+            _pauseService = pauseService;
         }
 
         // MAIN BEHAVIOUR

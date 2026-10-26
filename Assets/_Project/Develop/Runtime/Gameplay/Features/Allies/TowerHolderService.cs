@@ -1,7 +1,7 @@
-﻿using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using System;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Features.Allies
 {

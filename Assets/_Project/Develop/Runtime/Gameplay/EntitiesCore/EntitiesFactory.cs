@@ -2,7 +2,6 @@
 using RoguelikeTD.Configs.Gameplay.Levels;
 using RoguelikeTD.Core;
 using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore.Mono;
 using RoguelikeTD.Gameplay.Features.ApplyDamage;
@@ -28,19 +27,19 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public class EntitiesFactory
     {
-        private readonly DIContainer _container;
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly CollidersRegistryService _colidersRegistryService;
 
         private readonly MonoEntitiesFactory _monoEntitiesFactory;
 
-        public EntitiesFactory(DIContainer container)
+        public EntitiesFactory(
+            EntitiesLifeContext entitiesLifeContext,
+            CollidersRegistryService collidersRegistryService,
+            MonoEntitiesFactory monoEntitiesFactory)
         {
-            _container = container;
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _colidersRegistryService = _container.Resolve<CollidersRegistryService>();
-
-            _monoEntitiesFactory = _container.Resolve<MonoEntitiesFactory>();
+            _entitiesLifeContext = entitiesLifeContext;
+            _colidersRegistryService = collidersRegistryService;
+            _monoEntitiesFactory = monoEntitiesFactory;
         }
 
         public Entity CreateTower(Vector3 position, TowerConfig config, TowerDefenseLevelConfig levelConfig)

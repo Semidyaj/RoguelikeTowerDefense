@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Stages;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.Enemies;
 using System;
@@ -8,11 +7,13 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
 {
     public class StagesFactory
     {
-        private readonly DIContainer _container;
+        private readonly EnemiesFactory _enemiesFactory;
+        private readonly EntitiesLifeContext _entitiesLifeContext;
 
-        public StagesFactory(DIContainer container)
+        public StagesFactory(EnemiesFactory enemiesFactory, EntitiesLifeContext entitiesLifeContext)
         {
-            _container = container;
+            _enemiesFactory = enemiesFactory;
+            _entitiesLifeContext = entitiesLifeContext;
         }
 
         public IStage Create(StageConfig stageConfig)
@@ -22,15 +23,15 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
                 case ClearAllEnemiesStageConfig clearAllEnemiesStageConfig:
                     return new ClearAllEnemiesStage(
                         clearAllEnemiesStageConfig,
-                        _container.Resolve<EnemiesFactory>(),
-                        _container.Resolve<EntitiesLifeContext>());
+                        _enemiesFactory,
+                        _entitiesLifeContext);
 
                 case TowerDefenseStageConfig towerDefenseStageConfig:
 
                     return new TowerDefenseStage(
                         towerDefenseStageConfig,
-                        _container.Resolve<EnemiesFactory>(),
-                        _container.Resolve<EntitiesLifeContext>());
+                        _enemiesFactory,
+                        _entitiesLifeContext);
 
                 default:
                     throw new ArgumentException($"Not supported {stageConfig.GetType()} type config");

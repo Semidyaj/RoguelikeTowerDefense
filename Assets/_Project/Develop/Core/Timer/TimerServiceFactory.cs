@@ -1,18 +1,17 @@
 ﻿using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 
 namespace RoguelikeTD.Core.Timer
 {
     public class TimerServiceFactory
     {
-        private readonly DIContainer _container;
+        private readonly ICoroutinesPerformer _coroutinesPerformer;
 
-        public TimerServiceFactory(DIContainer container)
+        public TimerServiceFactory(ICoroutinesPerformer coroutinesPerformer)
         {
-            _container = container;
+            _coroutinesPerformer = coroutinesPerformer;
         }
 
         public TimerService Create(float cooldown)
-            => new TimerService(cooldown, _container.Resolve<ICoroutinesPerformer>());
+            => new TimerService(cooldown, _coroutinesPerformer);
     }
 }
