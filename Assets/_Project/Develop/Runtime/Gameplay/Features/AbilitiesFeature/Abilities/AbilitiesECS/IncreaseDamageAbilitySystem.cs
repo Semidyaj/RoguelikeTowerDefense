@@ -3,7 +3,6 @@ using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using System;
-using System.Collections.Generic;
 
 namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
 {
@@ -11,7 +10,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
     {
         private ReactiveVariable<Entity> _owner;
 
-        private Dictionary<StatTypes, float> _modifiesStats;
+        private StatsEffectsList _statsEffects;
 
         private ReactiveVariable<int> _damagePercent;
 
@@ -23,7 +22,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
         {
             _owner = entity.AbilityOwner;
 
-            _modifiesStats = _owner.Value.ModifiesStats;
+            _statsEffects = _owner.Value.StatsEffects;
 
             _damagePercent = entity.AbilityIncreaseDamagePercent;
 
@@ -39,7 +38,9 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
 
         private void OnActivated()
         {
-            _modifiesStats[StatTypes.Damage] += _modifiesStats[StatTypes.Damage] * _damagePercent.Value / 100f;
+            float multiplier = 1 + _damagePercent.Value / 100f;
+
+            _statsEffects.Add(new StatsEffect(StatTypes.Damage, damage => damage * multiplier));
         }
     }
 }
