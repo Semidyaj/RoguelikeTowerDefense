@@ -1,5 +1,4 @@
-﻿using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using UnityEngine;
 
@@ -7,13 +6,13 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
     public class LootFactory
     {
-        private EntitiesFactory _entitiesFactory;
-        private EntitiesLifeContext _entitiesLifeContext;
+        private readonly EntitiesFactory _entitiesFactory;
+        private readonly EntitiesLifeContext _entitiesLifeContext;
 
-        public LootFactory(DIContainer container)
+        public LootFactory(EntitiesFactory entitiesFactory, EntitiesLifeContext entitiesLifeContext)
         {
-            _entitiesFactory = container.Resolve<EntitiesFactory>();
-            _entitiesLifeContext = container.Resolve<EntitiesLifeContext>();
+            _entitiesFactory = entitiesFactory;
+            _entitiesLifeContext = entitiesLifeContext;
         }
 
         public Entity CreateExperienceLoot(string prefabPath, Vector3 position, float experience)

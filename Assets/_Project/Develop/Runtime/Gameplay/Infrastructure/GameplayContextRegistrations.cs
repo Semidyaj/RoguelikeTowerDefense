@@ -6,6 +6,7 @@ using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Timer;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Mono;
 using RoguelikeTD.Gameplay.Features.AI;
@@ -29,6 +30,7 @@ using RoguelikeTD.Gameplay.States;
 using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI;
 using RoguelikeTD.UI.Core;
@@ -117,7 +119,12 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new PlaceableService(c.Resolve<WalletService>(), c.Resolve<MainHeroHolderService>(), c.Resolve<PlaceablesSpawner>());
 
         private static PlaceablesFactory CreatePlaceablesFactory(DIContainer c)
-            => new PlaceablesFactory(c);
+            => new PlaceablesFactory(
+                c.Resolve<MonoEntitiesFactory>(),
+                c.Resolve<EntitiesFactory>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<BrainsFactory>(),
+                c.Resolve<CollidersRegistryService>());
 
         private static PlaceablesSpawner CreatePlaceablesSpawner(DIContainer c)
             => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageReleaser>());
@@ -137,7 +144,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
                 c.Resolve<LootFactory>());
 
         private static LootFactory CreateLootFactory(DIContainer c)
-            => new LootFactory(c);
+            => new LootFactory(c.Resolve<EntitiesFactory>(), c.Resolve<EntitiesLifeContext>());
 
         private static TimeScalePauseService CreateTimeScalePauseService(DIContainer c)
             => new TimeScalePauseService();
@@ -158,7 +165,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new AbilitiesDroppingRulesService();
 
         private static AbilitiesECSFactory CreateAbilitiesECSFactory(DIContainer c)
-            => new AbilitiesECSFactory(c);
+            => new AbilitiesECSFactory(c.Resolve<EntitiesLifeContext>());
 
         private static GameplayPopupService CreateGameplayPopupService(DIContainer c)
             => new GameplayPopupService(
@@ -198,13 +205,21 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new PointClickExplosionService(c.Resolve<MainHeroHolderService>());
 
         private static StateMachineFactory CreateStateMachineFactory(DIContainer c)
-            => new StateMachineFactory(c);
+            => new StateMachineFactory(
+                c.Resolve<TimerServiceFactory>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<IInputService>(),
+                c.Resolve<IPauseService>());
 
         private static TowerHolderService CreateTowerHolderService(DIContainer c)
             => new TowerHolderService(c.Resolve<EntitiesLifeContext>());
 
         private static AlliesFactory CreateAlliesFactory(DIContainer c)
-            => new AlliesFactory(c);
+            => new AlliesFactory(
+                c.Resolve<EntitiesFactory>(),
+                c.Resolve<BrainsFactory>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<BoostAbilitiesStartGameplayApplier>());
 
         private static GameplayResultHandler CreateGameplayResultHandler(DIContainer c)
             => new GameplayResultHandler(
@@ -231,13 +246,24 @@ namespace RoguelikeTD.Gameplay.Infrastructure
                 c.Resolve<StagesFactory>());
 
         private static StagesFactory CreateStagesFactory(DIContainer c)
-            => new StagesFactory(c);
+            => new StagesFactory(c.Resolve<EnemiesFactory>(), c.Resolve<EntitiesLifeContext>());
 
         private static EnemiesFactory CreateEnemiesFactory(DIContainer c)
-            => new EnemiesFactory(c);
+            => new EnemiesFactory(
+                c.Resolve<EntitiesFactory>(),
+                c.Resolve<BrainsFactory>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<DropLootService>(),
+                c.Resolve<BoostAbilitiesStartGameplayApplier>());
 
         private static MainHeroFactory CreateMainHeroFactory(DIContainer c)
-            => new MainHeroFactory(c);
+            => new MainHeroFactory(
+                c.Resolve<EntitiesFactory>(),
+                c.Resolve<BrainsFactory>(),
+                c.Resolve<ConfigsProviderService>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<StatsUpgradeService>(),
+                c.Resolve<BoostAbilitiesStartGameplayApplier>());
 
         private static DesktopInput CreateDesktopInput(DIContainer c)
             => new DesktopInput();
@@ -246,7 +272,10 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new AIBrainsContext();
 
         private static BrainsFactory CreateBrainsFactory(DIContainer c)
-            => new BrainsFactory(c);
+            => new BrainsFactory(
+                c.Resolve<StateMachineFactory>(),
+                c.Resolve<AIBrainsContext>(),
+                c.Resolve<EntitiesLifeContext>());
 
         private static CollidersRegistryService CreateCollidersRegistryService(DIContainer c)
             => new CollidersRegistryService();
@@ -261,6 +290,9 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new EntitiesLifeContext();
 
         private static EntitiesFactory CreateEntitiesFactory(DIContainer c)
-            => new EntitiesFactory(c);
+            => new EntitiesFactory(
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<CollidersRegistryService>(),
+                c.Resolve<MonoEntitiesFactory>());
     }
 }

@@ -1,7 +1,6 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Core;
 using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Mono;
@@ -23,23 +22,24 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 {
     public class PlaceablesFactory
     {
-        private readonly DIContainer _container;
-
         private readonly MonoEntitiesFactory _monoEntitiesFactory;
         private readonly EntitiesFactory _entitiesFactory;
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly BrainsFactory _brainsFactory;
         private readonly CollidersRegistryService _collidersRegistryService;
 
-        public PlaceablesFactory(DIContainer container)
+        public PlaceablesFactory(
+            MonoEntitiesFactory monoEntitiesFactory,
+            EntitiesFactory entitiesFactory,
+            EntitiesLifeContext entitiesLifeContext,
+            BrainsFactory brainsFactory,
+            CollidersRegistryService collidersRegistryService)
         {
-            _container = container;
-
-            _monoEntitiesFactory = _container.Resolve<MonoEntitiesFactory>();
-            _entitiesFactory = _container.Resolve<EntitiesFactory>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _brainsFactory = _container.Resolve<BrainsFactory>();
-            _collidersRegistryService = _container.Resolve<CollidersRegistryService>();
+            _monoEntitiesFactory = monoEntitiesFactory;
+            _entitiesFactory = entitiesFactory;
+            _entitiesLifeContext = entitiesLifeContext;
+            _brainsFactory = brainsFactory;
+            _collidersRegistryService = collidersRegistryService;
         }
 
         public Entity CreateMine(MineConfig config, Vector3 position, Entity owner)

@@ -93,7 +93,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
         }
 
         private static TimerServiceFactory CreateTimerServiceFactory(DIContainer c)
-            => new TimerServiceFactory(c);
+            => new TimerServiceFactory(c.Resolve<ICoroutinesPerformer>());
 
         private static LevelsProgressionService CreateLevelsProgressionService(DIContainer c)
             => new LevelsProgressionService(c.Resolve<PlayerDataProvider>());

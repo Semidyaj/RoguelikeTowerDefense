@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Entities;
 using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
@@ -14,23 +13,24 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 {
     public class EnemiesFactory
     {
-        private readonly DIContainer _container;
-
         private readonly EntitiesFactory _entitiesFactory;
         private readonly BrainsFactory _brainsFactory;
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly DropLootService _dropLootService;
         private readonly BoostAbilitiesStartGameplayApplier _boostAbilitiesStartGameplayApplier;
 
-        public EnemiesFactory(DIContainer container)
+        public EnemiesFactory(
+            EntitiesFactory entitiesFactory,
+            BrainsFactory brainsFactory,
+            EntitiesLifeContext entitiesLifeContext,
+            DropLootService dropLootService,
+            BoostAbilitiesStartGameplayApplier boostAbilitiesStartGameplayApplier)
         {
-            _container = container;
-
-            _entitiesFactory = _container.Resolve<EntitiesFactory>();
-            _brainsFactory = _container.Resolve<BrainsFactory>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _dropLootService = _container.Resolve<DropLootService>();
-            _boostAbilitiesStartGameplayApplier = _container.Resolve<BoostAbilitiesStartGameplayApplier>();
+            _entitiesFactory = entitiesFactory;
+            _brainsFactory = brainsFactory;
+            _entitiesLifeContext = entitiesLifeContext;
+            _dropLootService = dropLootService;
+            _boostAbilitiesStartGameplayApplier = boostAbilitiesStartGameplayApplier;
         }
 
         public Entity Create(Vector3 position, EntityConfig config)

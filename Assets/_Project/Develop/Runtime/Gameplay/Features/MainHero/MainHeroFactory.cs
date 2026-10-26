@@ -1,7 +1,6 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Entities;
 using RoguelikeTD.Configs.Gameplay.Experience;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
@@ -18,8 +17,6 @@ namespace RoguelikeTD.Gameplay.Features.MainHero
 {
     public class MainHeroFactory
     {
-        private readonly DIContainer _container;
-
         private readonly EntitiesFactory _entitiesFactory;
         private readonly BrainsFactory _brainsFactory;
         private readonly ConfigsProviderService _configProviderService;
@@ -27,16 +24,20 @@ namespace RoguelikeTD.Gameplay.Features.MainHero
         private readonly StatsUpgradeService _statsUpgradeService;
         private readonly BoostAbilitiesStartGameplayApplier _boostAbilitiesStartGameplayApplier;
 
-        public MainHeroFactory(DIContainer container)
+        public MainHeroFactory(
+            EntitiesFactory entitiesFactory,
+            BrainsFactory brainsFactory,
+            ConfigsProviderService configProviderService,
+            EntitiesLifeContext entitiesLifeContext,
+            StatsUpgradeService statsUpgradeService,
+            BoostAbilitiesStartGameplayApplier boostAbilitiesStartGameplayApplier)
         {
-            _container = container;
-
-            _entitiesFactory = _container.Resolve<EntitiesFactory>();
-            _brainsFactory = _container.Resolve<BrainsFactory>();
-            _configProviderService = _container.Resolve<ConfigsProviderService>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _statsUpgradeService = _container.Resolve<StatsUpgradeService>();
-            _boostAbilitiesStartGameplayApplier = _container.Resolve<BoostAbilitiesStartGameplayApplier>();
+            _entitiesFactory = entitiesFactory;
+            _brainsFactory = brainsFactory;
+            _configProviderService = configProviderService;
+            _entitiesLifeContext = entitiesLifeContext;
+            _statsUpgradeService = statsUpgradeService;
+            _boostAbilitiesStartGameplayApplier = boostAbilitiesStartGameplayApplier;
         }
 
         public Entity Create(Vector3 position)
