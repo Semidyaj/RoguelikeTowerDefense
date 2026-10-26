@@ -1,8 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Infrastructure;
 using UnityEngine.SceneManagement;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
+namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 {
     public class CharacterPreviewPresenter : IPresenter
     {

@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+﻿using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Core.DI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
+namespace RoguelikeTD.Gameplay.EntitiesCore.Mono
 {
     public class MonoEntitiesFactory : IInitializable, IDisposable
     {
@@ -13,18 +13,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
 
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
-        private readonly CollidersRegistryService _colllidersRegistryService;
+        private readonly CollidersRegistryService _collidersRegistryService;
 
         private readonly Dictionary<Entity, MonoEntity> _entityToMono = new();
 
         public MonoEntitiesFactory(
             ResourcesAssetsLoader resources, 
             EntitiesLifeContext entitiesLifeContext, 
-            CollidersRegistryService colllidersRegistryService)
+            CollidersRegistryService collidersRegistryService)
         {
             _resources = resources;
             _entitiesLifeContext = entitiesLifeContext;
-            _colllidersRegistryService = colllidersRegistryService;
+            _collidersRegistryService = collidersRegistryService;
         }
 
         public MonoEntity Create(Entity entity, Vector3 position, string path)
@@ -33,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
 
             MonoEntity viewInstance = Object.Instantiate(prefab, position, Quaternion.identity, null);
 
-            viewInstance.Initialize(_colllidersRegistryService);
+            viewInstance.Initialize(_collidersRegistryService);
 
             viewInstance.Link(entity);
 

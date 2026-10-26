@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems
+﻿namespace RoguelikeTD.Gameplay.EntitiesCore.Systems
 {
     public interface IEntitySystem
     {

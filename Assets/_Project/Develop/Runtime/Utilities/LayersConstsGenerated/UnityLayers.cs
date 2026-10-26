@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated
+namespace RoguelikeTD.Utilities.LayersConstsGenerated
 {
 	public static class UnityLayers
 	{
@@ -10,7 +10,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated
 	public static readonly int LayerUI = LayerMask.NameToLayer("UI");
 	public static readonly int LayerCharacters = LayerMask.NameToLayer("Characters");
 	public static readonly int LayerProjectiles = LayerMask.NameToLayer("Projectiles");
-	public static readonly int LayerEnviroment = LayerMask.NameToLayer("Enviroment");
+	public static readonly int LayerEnvironment = LayerMask.NameToLayer("Environment");
 	public static readonly int LayerGround = LayerMask.NameToLayer("Ground");
 	public static readonly int LayerLoot = LayerMask.NameToLayer("Loot");
 	public static readonly int LayerTextureRender = LayerMask.NameToLayer("TextureRender");
@@ -22,7 +22,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated
 	public static readonly int LayerMaskUI = 1 << LayerUI;
 	public static readonly int LayerMaskCharacters = 1 << LayerCharacters;
 	public static readonly int LayerMaskProjectiles = 1 << LayerProjectiles;
-	public static readonly int LayerMaskEnviroment = 1 << LayerEnviroment;
+	public static readonly int LayerMaskEnvironment = 1 << LayerEnvironment;
 	public static readonly int LayerMaskGround = 1 << LayerGround;
 	public static readonly int LayerMaskLoot = 1 << LayerLoot;
 	public static readonly int LayerMaskTextureRender = 1 << LayerTextureRender;

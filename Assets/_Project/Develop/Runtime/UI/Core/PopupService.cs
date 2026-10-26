@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core.BoostsShopPopup;
-using Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup;
-using Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup;
+﻿using RoguelikeTD.UI.Core.BoostsShopPopup;
+using RoguelikeTD.UI.Core.LevelsMenuPopup;
+using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public abstract class PopupService : IDisposable
     {

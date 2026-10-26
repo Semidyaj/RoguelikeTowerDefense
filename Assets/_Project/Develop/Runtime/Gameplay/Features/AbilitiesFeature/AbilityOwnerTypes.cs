@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature
+﻿namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
 {
     public enum AbilityOwnerTypes
     {

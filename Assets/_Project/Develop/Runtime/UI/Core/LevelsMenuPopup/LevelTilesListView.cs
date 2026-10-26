@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
+﻿using RoguelikeTD.UI.CommonViews;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup
+namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelTilesListView : ElementsListView<LevelTileView>
     {

@@ -1,12 +1,12 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoguelikeTD.UI.Core;
 using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup
+namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 {
     public class SelectableAbilityView : MonoBehaviour, IShowableView
     {

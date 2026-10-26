@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
+﻿using RoguelikeTD.Configs.Gameplay.Entities;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Stages
+namespace RoguelikeTD.Configs.Gameplay.Stages
 {
     [Serializable]
     public class EnemyItemConfig

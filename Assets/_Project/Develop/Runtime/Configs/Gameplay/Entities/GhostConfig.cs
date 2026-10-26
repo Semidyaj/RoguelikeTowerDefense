@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
+namespace RoguelikeTD.Configs.Gameplay.Entities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Entities/NewGhostConfig", fileName = "GhostConfig")]
     public class GhostConfig : EntityConfig

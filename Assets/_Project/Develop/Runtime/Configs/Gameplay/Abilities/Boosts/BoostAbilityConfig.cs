@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
+using RoguelikeTD.Meta.Features.Wallet;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities.Boosts
+namespace RoguelikeTD.Configs.Gameplay.Abilities.Boosts
 {
     public abstract class BoostAbilityConfig : AbilityConfig
     {

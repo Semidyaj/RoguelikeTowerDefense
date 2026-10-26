@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.UI.Core;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup
+namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
 {
     public class PlaceablePopupPresenter : PopupPresenterBase
     {

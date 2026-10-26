@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE;
-using Assets._Project.Develop.Runtime.Utilities;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
+using RoguelikeTD.Gameplay.Features.Attack.AOE;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining
+namespace RoguelikeTD.Gameplay.Features.Attack.Mining
 {
     public class MineExplosionSystem : IInitializableSystem, IUpdatableSystem
     {

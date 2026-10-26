@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature
+namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 {
     public class Experience : IEntityComponent
     {

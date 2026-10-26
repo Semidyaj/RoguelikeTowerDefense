@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup
+namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelsMenuPopupPresenter : PopupPresenterBase
     {

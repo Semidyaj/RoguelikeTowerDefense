@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature
+namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
     public class LootFactory
     {

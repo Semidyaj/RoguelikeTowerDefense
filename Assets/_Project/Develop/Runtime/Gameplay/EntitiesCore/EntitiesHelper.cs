@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.Features.TeamsFeature;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public class EntitiesHelper
     {

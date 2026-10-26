@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Meta.Economy
+namespace RoguelikeTD.Configs.Meta.Economy
 {
     [CreateAssetMenu(menuName = "Configs/Meta/Economy/NewGameplayEconomyConfig", fileName = "GameplayEconomyConfig")]
     public class GameplayEconomyConfig : ScriptableObject

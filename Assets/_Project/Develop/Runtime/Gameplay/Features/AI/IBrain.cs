@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
+namespace RoguelikeTD.Gameplay.Features.AI
 {
     public interface IBrain : IDisposable
     {

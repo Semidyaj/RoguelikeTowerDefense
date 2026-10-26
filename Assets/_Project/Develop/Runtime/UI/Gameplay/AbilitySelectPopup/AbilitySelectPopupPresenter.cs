@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
+using RoguelikeTD.UI.Core;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup
+namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 {
     public class AbilitySelectPopupPresenter : PopupPresenterBase
     {

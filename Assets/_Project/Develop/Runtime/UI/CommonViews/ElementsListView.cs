@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.CommonViews
+namespace RoguelikeTD.UI.CommonViews
 {
     public class ElementsListView<TElement> : MonoBehaviour, IView where TElement : MonoBehaviour, IView
     {

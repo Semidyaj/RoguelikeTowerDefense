@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.DataManagement.DataProviders;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.Wallet
+namespace RoguelikeTD.Meta.Features.Wallet
 {
     public class WalletService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {
@@ -42,10 +42,7 @@ namespace Assets._Project.Develop.Runtime.Meta.Features.Wallet
         public void Spend(CurrencyTypes currencyType, int amount)
         {
             if(Enough(currencyType, amount) == false)
-                throw new ArgumentOutOfRangeException("Not enough: " + currencyType.ToString());
-
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+                throw new InvalidOperationException($"Not enough {currencyType}: has {_currencies[currencyType].Value}, need {amount}");
 
             _currencies[currencyType].Value -= amount;
         }

@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
+﻿using RoguelikeTD.UI.CommonViews;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup
+namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
 {
     public class PlaceableListView : ElementsListView<PlaceableView>
     {

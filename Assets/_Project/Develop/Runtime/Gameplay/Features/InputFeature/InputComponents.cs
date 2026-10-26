@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
+namespace RoguelikeTD.Gameplay.Features.InputFeature
 {
     public class InputMouseClickGroundPosition : IEntityComponent
     {
@@ -14,7 +14,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
         public ReactiveEvent Value;
     }
 
-    public class InputMouseClickPositionFindedEvent : IEntityComponent
+    public class InputMouseClickPositionFoundEvent : IEntityComponent
     {
         public ReactiveEvent Value;
     }

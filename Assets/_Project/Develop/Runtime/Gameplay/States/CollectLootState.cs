@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.Features.LootFeature;
+using RoguelikeTD.Gameplay.Features.MainHero;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class CollectLootState : State, IUpdatableState
     {

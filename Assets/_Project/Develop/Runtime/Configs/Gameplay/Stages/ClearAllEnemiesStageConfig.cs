@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Stages
+namespace RoguelikeTD.Configs.Gameplay.Stages
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Stages/NewClearAllEnemiesStage", fileName = "ClearAllEnemiesStage")]
     public class ClearAllEnemiesStageConfig : StageConfig

@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Meta.HeroStats
+namespace RoguelikeTD.Configs.Meta.HeroStats
 {
     [CreateAssetMenu(menuName = "Configs/Meta/Stats/PlayerStatsUpgradeConfig", fileName = "PlayerStatsUpgradeConfig")]
     public class PlayerStatsUpgradeConfig : ScriptableObject

@@ -1,7 +1,7 @@
-﻿using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Meta.Features.Wallet;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables
+namespace RoguelikeTD.Configs.Gameplay.Placeables
 {
     public abstract class PlaceableConfig : ScriptableObject
     {

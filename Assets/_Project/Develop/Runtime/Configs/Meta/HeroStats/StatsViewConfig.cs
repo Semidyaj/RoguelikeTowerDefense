@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
+﻿using RoguelikeTD.Gameplay.Features.StatsFeature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Meta.HeroStats
+namespace RoguelikeTD.Configs.Meta.HeroStats
 {
     [CreateAssetMenu(menuName = "Configs/Meta/Stats/StatsViewConfig", fileName = "StatsViewConfig")]
     public class StatsViewConfig : ScriptableObject

@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ResultHandler;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.Gameplay.Features.ResultHandler;
+using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.UI.Gameplay;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class DefeatState : EndGameState, IUpdatableState
     {

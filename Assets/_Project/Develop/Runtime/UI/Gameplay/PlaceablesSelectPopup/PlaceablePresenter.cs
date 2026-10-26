@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.UI.Core;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup
+namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
 {
     public class PlaceablePresenter : IPresenter
     {

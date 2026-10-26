@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup
+namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 {
     public class SelectableAbilityListView : ElementsListView<SelectableAbilityView>, IShowableView
     {

@@ -1,16 +1,16 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.UI.Gameplay;
+using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class PreparationState : State, IUpdatableState
     {
-        private readonly PreperationTriggerService _triggerService;
+        private readonly PreparationTriggerService _triggerService;
 
         private readonly PlaceableService _placeableService;
         private readonly PointClickExplosionService _explosionService;
@@ -22,7 +22,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.States
         public PreparationState(
             PointClickExplosionService explosionService,
             PlaceableService placeableService,
-            PreperationTriggerService triggerService,
+            PreparationTriggerService triggerService,
             GameplayPopupService popupService)
         {
             _triggerService = triggerService;

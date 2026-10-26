@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities.Boosts;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
+using RoguelikeTD.Infrastructure.Data;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature
+namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
 {
     public class BoostAbilitiesStartGameplayApplier
     {

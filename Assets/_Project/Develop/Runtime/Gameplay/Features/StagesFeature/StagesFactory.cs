@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Stages;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
+﻿using RoguelikeTD.Configs.Gameplay.Stages;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.Enemies;
 using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature
+namespace RoguelikeTD.Gameplay.Features.StagesFeature
 {
     public class StagesFactory
     {

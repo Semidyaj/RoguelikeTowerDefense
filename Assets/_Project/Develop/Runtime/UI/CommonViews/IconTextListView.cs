@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.UI.CommonViews
+﻿namespace RoguelikeTD.UI.CommonViews
 {
     public class IconTextListView : ElementsListView<IconTextView> { }
 

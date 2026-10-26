@@ -1,14 +1,14 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.HeroStats;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
+namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 {
     public class UpgradableStatPresenter : IPresenter
     {
@@ -66,28 +66,16 @@ namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
 
         private void OnWalletChanged(int arg1, int arg2) => UpdateBuyButtonState();
 
-        private void OnStatUpgradeLevelChanged(int arg1, int arg2) => _view.SetStatValueText(GetStatValueText());
+        private void OnStatUpgradeLevelChanged(int arg1, int arg2)
+        {
+            _view.SetStatValueText(GetStatValueText());
+            UpdateBuyButtonState();
+        }
 
         private void OnBuyButtonClicked()
         {
-            if(_statsUpgradeService.TryGetUpgradeCostFor(_statType, out CurrencyTypes currencyType, out int cost))
-            {
-                if(_walletService.Enough(currencyType, cost))
-                {
-                    if (_statsUpgradeService.TryUpgradeStat(_statType) == false)
-                        throw new Exception();
-
-                    _walletService.Spend(currencyType, cost);
-                }
-                else
-                {
-                    Debug.Log("Not enough currency");
-                }
-            }
-            else
-            {
-                Debug.Log("Already max");
-            }
+            if (_statsUpgradeService.TryBuyUpgrade(_statType) == false)
+                Debug.Log($"Can't upgrade {_statType}");
         }
 
         private void UpdateBuyButtonState()

@@ -1,12 +1,12 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup;
-using Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup;
-using Assets._Project.Develop.Runtime.UI.Gameplay.ResultPopups;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
+using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
+using RoguelikeTD.UI.Gameplay.ResultPopups;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay
+namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayPopupService : PopupService
     {

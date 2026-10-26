@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System;
 
-namespace Assets._Project.Develop.Runtime.UI.Wallet
+namespace RoguelikeTD.UI.Wallet
 {
     public class CurrencyPresenter : IPresenter
     {

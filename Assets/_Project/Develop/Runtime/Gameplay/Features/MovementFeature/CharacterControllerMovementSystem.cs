@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature
+namespace RoguelikeTD.Gameplay.Features.MovementFeature
 {
     public class CharacterControllerMovementSystem : IUpdatableSystem, IInitializableSystem
     {

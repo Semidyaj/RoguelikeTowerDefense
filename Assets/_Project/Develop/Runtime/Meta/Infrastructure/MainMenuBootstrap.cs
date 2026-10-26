@@ -1,13 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Infrastructure.Data;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Meta.Infrastructure
+namespace RoguelikeTD.Meta.Infrastructure
 {
     public class MainMenuBootstrap : SceneBootstrap
     {

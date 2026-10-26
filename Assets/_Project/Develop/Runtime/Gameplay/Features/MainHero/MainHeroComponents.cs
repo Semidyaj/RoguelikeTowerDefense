@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.MainHero
+namespace RoguelikeTD.Gameplay.Features.MainHero
 {
     public class IsMainHero : IEntityComponent
     {

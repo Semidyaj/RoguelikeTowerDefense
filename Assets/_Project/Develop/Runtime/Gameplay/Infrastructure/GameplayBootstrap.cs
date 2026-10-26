@@ -1,21 +1,21 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Entities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Allies;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.States;
-using Assets._Project.Develop.Runtime.Infrastructure;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Configs.Gameplay.Entities;
+using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.Allies;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.States;
+using RoguelikeTD.Infrastructure;
+using RoguelikeTD.UI.Gameplay;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
+namespace RoguelikeTD.Gameplay.Infrastructure
 {
     public class GameplayBootstrap : SceneBootstrap
     {

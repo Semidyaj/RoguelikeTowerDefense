@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
+﻿using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
+namespace RoguelikeTD.Gameplay.EntitiesCore
 {
     public partial class Entity : IDisposable
     {
@@ -60,9 +60,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 
         public bool TryGetComponent<TComponent>(out TComponent component) where TComponent : class, IEntityComponent
         {
-            if (_components.TryGetValue(typeof(TComponent), out IEntityComponent findedObject))
+            if (_components.TryGetValue(typeof(TComponent), out IEntityComponent foundObject))
             {
-                component = (TComponent)findedObject;
+                component = (TComponent)foundObject;
                 return true;
             }
 

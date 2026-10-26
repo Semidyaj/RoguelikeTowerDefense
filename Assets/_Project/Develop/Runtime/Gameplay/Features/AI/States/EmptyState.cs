@@ -1,6 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.StateMachineCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States
+namespace RoguelikeTD.Gameplay.Features.AI.States
 {
     public class EmptyState : State, IUpdatableState
     {

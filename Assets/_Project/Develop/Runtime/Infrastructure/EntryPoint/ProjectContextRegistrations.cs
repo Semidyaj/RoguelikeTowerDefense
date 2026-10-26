@@ -1,31 +1,32 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.Economy;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataRepository;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.KeysStorage;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.Serializers;
-using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
-using Assets._Project.Develop.Runtime.Utilities.Timer;
+﻿using RoguelikeTD.Configs.Meta.Economy;
+using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.DataManagement;
+using RoguelikeTD.Core.DataManagement.DataRepository;
+using RoguelikeTD.Core.DataManagement.KeysStorage;
+using RoguelikeTD.Core.DataManagement.Serializers;
+using RoguelikeTD.Core.LoadingScreen;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Core.Timer;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Infrastructure.Configs;
+using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
+using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI;
+using RoguelikeTD.UI.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
+namespace RoguelikeTD.Infrastructure.EntryPoint
 {
     public class ProjectContextRegistrations
     {
@@ -78,6 +79,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
         private static StatsUpgradeService CreateStatsUpgradeService(DIContainer c)
             => new StatsUpgradeService(
                 c.Resolve<ConfigsProviderService>(),
+                c.Resolve<WalletService>(),
                 c.Resolve<PlayerDataProvider>());
 
         private static GameplayStatisticsService CreateGameplayStatisticsService(DIContainer c)
@@ -138,7 +140,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
 
             ILoadingScreen loadingScreen = c.Resolve<ILoadingScreen>();
 
-            return new SceneSwitcherService(sceneLoaderService, loadingScreen, c);
+            return new SceneSwitcherService(sceneLoaderService, loadingScreen, c, Scenes.Empty);
         }
 
         private static StandardLoadingScreen CreateStandardLoadingScreen(DIContainer c)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI
+namespace RoguelikeTD.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public class SafeAreaContainer : MonoBehaviour

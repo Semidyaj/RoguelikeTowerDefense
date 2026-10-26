@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature
+namespace RoguelikeTD.Gameplay.Features.PauseFeature
 {
     public class TimeScalePauseService : IPauseService
     {

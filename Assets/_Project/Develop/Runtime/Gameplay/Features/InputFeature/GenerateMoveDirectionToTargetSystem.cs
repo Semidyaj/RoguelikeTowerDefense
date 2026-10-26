@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
+namespace RoguelikeTD.Gameplay.Features.InputFeature
 {
     public class GenerateMoveDirectionToTargetSystem : IInitializableSystem, IUpdatableSystem
     {

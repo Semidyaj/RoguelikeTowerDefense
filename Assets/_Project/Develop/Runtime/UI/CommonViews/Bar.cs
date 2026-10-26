@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.CommonViews
+namespace RoguelikeTD.UI.CommonViews
 {
     public class Bar : MonoBehaviour, IView
     {

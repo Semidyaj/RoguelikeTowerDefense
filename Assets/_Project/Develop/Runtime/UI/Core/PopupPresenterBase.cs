@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoguelikeTD.Core.CoroutinesManager;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public abstract class PopupPresenterBase : IPresenter
     {

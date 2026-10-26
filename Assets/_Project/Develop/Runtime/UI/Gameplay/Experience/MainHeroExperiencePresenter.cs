@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Experience;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.Experience
+namespace RoguelikeTD.UI.Gameplay.Experience
 {
     public class MainHeroExperiencePresenter : IPresenter
     {

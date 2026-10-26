@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle
+namespace RoguelikeTD.Gameplay.Features.LifeCycle
 {
     public class DisableCollidersOnDeathSystem : IInitializableSystem, IDisposableSystem
     {

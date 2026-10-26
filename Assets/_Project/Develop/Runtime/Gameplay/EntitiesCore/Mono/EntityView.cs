@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
+namespace RoguelikeTD.Gameplay.EntitiesCore.Mono
 {
     public abstract class EntityView : MonoBehaviour
     {

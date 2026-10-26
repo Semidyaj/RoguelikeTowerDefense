@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.States.Movement
+namespace RoguelikeTD.Gameplay.Features.AI.States.Movement
 {
     public class RotateToTargetState : State, IUpdatableState
     {

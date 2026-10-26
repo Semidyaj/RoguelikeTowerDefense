@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Meta.Economy;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
+﻿using RoguelikeTD.Configs.Meta.Economy;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Meta.Features.Wallet;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.RewardsService
+namespace RoguelikeTD.Gameplay.Features.RewardsService
 {
     public class GameplayRewardsService
     {

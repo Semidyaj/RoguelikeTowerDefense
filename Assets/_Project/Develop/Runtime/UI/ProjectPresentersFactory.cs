@@ -1,24 +1,24 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities.Boosts;
-using Assets._Project.Develop.Runtime.Configs.Meta.HeroStats;
-using Assets._Project.Develop.Runtime.Configs.Meta.Wallet;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Core.BoostsShopPopup;
-using Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup;
-using Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup;
-using Assets._Project.Develop.Runtime.UI.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Configs.Meta.Wallet;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
+using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Core.BoostsShopPopup;
+using RoguelikeTD.UI.Core.LevelsMenuPopup;
+using RoguelikeTD.UI.Core.StatsUpgradePopup;
+using RoguelikeTD.UI.Wallet;
 
-namespace Assets._Project.Develop.Runtime.UI
+namespace RoguelikeTD.UI
 {
     public class ProjectPresentersFactory
     {

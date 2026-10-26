@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.DataManagment;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
+﻿using RoguelikeTD.Core.DataManagement.DataProviders;
+using RoguelikeTD.Infrastructure.Data;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression
+namespace RoguelikeTD.Meta.Features.LevelsProgression
 {
     public class LevelsProgressionService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {

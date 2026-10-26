@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.Gameplay
+﻿namespace RoguelikeTD.Gameplay
 {
     public enum GameplayEndState
     {

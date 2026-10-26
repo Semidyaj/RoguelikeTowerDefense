@@ -1,7 +1,6 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities
+namespace RoguelikeTD.Configs.Gameplay.Abilities
 {
     public abstract class AbilityConfig : ScriptableObject
     {

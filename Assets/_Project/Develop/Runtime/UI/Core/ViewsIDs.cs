@@ -1,4 +1,4 @@
-﻿namespace Assets._Project.Develop.Runtime.UI.Core
+﻿namespace RoguelikeTD.UI.Core
 {
     public class ViewsIDs
     {

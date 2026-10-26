@@ -1,20 +1,20 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities;
+﻿using RoguelikeTD.Core;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Sensors
+namespace RoguelikeTD.Gameplay.Features.Sensors
 {
     public class BodyContactsEntitiesFilterSystem : IInitializableSystem, IUpdatableSystem
     {
         private Buffer<Collider> _contacts;
         private Buffer<Entity> _contactsEntities;
 
-        private readonly CollidersRegistryService _colllidersRegistryService;
+        private readonly CollidersRegistryService _collidersRegistryService;
 
-        public BodyContactsEntitiesFilterSystem(CollidersRegistryService colllidersRegistryService)
+        public BodyContactsEntitiesFilterSystem(CollidersRegistryService collidersRegistryService)
         {
-            _colllidersRegistryService = colllidersRegistryService;
+            _collidersRegistryService = collidersRegistryService;
         }
 
         public void OnInit(Entity entity)
@@ -31,7 +31,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Sensors
             {
                 Collider collider = _contacts.Items[i];
 
-                Entity contactEntity = _colllidersRegistryService.GetBy(collider);
+                Entity contactEntity = _collidersRegistryService.GetBy(collider);
 
                 if (contactEntity != null)
                 {

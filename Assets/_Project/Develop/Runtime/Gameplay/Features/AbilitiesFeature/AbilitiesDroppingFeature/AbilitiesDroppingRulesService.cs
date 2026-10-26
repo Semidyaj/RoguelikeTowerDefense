@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature
+namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature
 {
     public class AbilitiesDroppingRulesService
     {

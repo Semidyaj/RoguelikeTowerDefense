@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
+namespace RoguelikeTD.Gameplay.EntitiesCore.Mono
 {
     public class MonoEntity : MonoBehaviour
     {
-        private CollidersRegistryService _colllidersRegistryService;
+        private CollidersRegistryService _collidersRegistryService;
 
         private Entity _linkedEntity;
 
@@ -12,7 +12,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
 
         public void Initialize(CollidersRegistryService collidersRegistryService)
         {
-            _colllidersRegistryService = collidersRegistryService;
+            _collidersRegistryService = collidersRegistryService;
         }
 
         public void Link(Entity entity)
@@ -32,7 +32,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
                     view.Link(entity);
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
-                _colllidersRegistryService.Register(collider, entity);
+                _collidersRegistryService.Register(collider, entity);
         }
 
         public void Cleanup(Entity entity)
@@ -44,7 +44,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono
                     view.Cleanup(entity);
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
-                _colllidersRegistryService.Unregister(collider);
+                _collidersRegistryService.Unregister(collider);
 
             _linkedEntity = null;
         }

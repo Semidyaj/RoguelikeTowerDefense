@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot
+namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 {
     public class InstantShootingDirectionArgs
     {

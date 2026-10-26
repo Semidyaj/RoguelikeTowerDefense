@@ -1,12 +1,12 @@
-﻿using Assets._Project.Develop.Runtime.UI.Core;
-using DG.Tweening;
+﻿using DG.Tweening;
+using RoguelikeTD.UI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay.ResultPopups
+namespace RoguelikeTD.UI.Gameplay.ResultPopups
 {
     public class WinPopupView : PopupViewBase
     {

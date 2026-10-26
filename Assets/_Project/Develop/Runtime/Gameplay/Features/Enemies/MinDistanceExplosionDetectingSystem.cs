@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
+using RoguelikeTD.Gameplay.Features.Attack.AOE;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Enemies
+namespace RoguelikeTD.Gameplay.Features.Enemies
 {
     public class MinDistanceExplosionDetectingSystem : IInitializableSystem, IUpdatableSystem
     {

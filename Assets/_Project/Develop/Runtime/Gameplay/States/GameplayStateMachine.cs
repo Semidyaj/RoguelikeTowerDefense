@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.StateMachineCore;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class GameplayStateMachine : StateMachine<IUpdatableState>
     {

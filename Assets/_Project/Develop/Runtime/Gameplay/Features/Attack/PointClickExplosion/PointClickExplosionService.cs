@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.Attack.AOE;
+using RoguelikeTD.Gameplay.Features.MainHero;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion
+namespace RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion
 {
     public class PointClickExplosionService
     {
@@ -33,7 +33,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExp
             _entity = _mainHeroHolderService.MainHero;
 
             _raycastClickPosition = _entity.InputMouseClickGroundPosition;
-            _positionFoundEvent = _entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = _entity.InputMouseClickPositionFoundEvent;
 
             _damage = _entity.AOEDamage;
             _radius = _entity.AOERadius;
@@ -46,7 +46,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExp
 
         public void Enable()
         {
-            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFinded);
+            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFound);
 
             _isEnabled.Value = true;
         }
@@ -58,7 +58,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExp
             _isEnabled.Value = false;
         }
 
-        private void OnPositionFinded()
+        private void OnPositionFound()
         {
             if (_isEnabled.Value == false)
                 return;

@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature
+namespace RoguelikeTD.Gameplay.Features.StatsFeature
 {
     public class StatEffectsApplierSystem : IInitializableSystem, IDisposableSystem
     {

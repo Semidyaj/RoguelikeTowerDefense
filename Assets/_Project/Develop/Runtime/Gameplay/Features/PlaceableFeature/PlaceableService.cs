@@ -1,12 +1,12 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Meta.Features.Wallet;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
+namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 {
     public class PlaceableService
     {
@@ -36,7 +36,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
             _entity = _mainHeroHolderService.MainHero;
 
             _raycastClickPosition = _entity.InputMouseClickGroundPosition;
-            _positionFoundEvent = _entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = _entity.InputMouseClickPositionFoundEvent;
 
             _isEnoughMoney = _entity.PlaceableIsEnoughMoney;
             _isPlaced = _entity.PlaceableIsPlaced;
@@ -46,7 +46,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
 
         public void Enable()
         {
-            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFinded);
+            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFound);
 
             _isEnabled.Value = true;
         }
@@ -60,7 +60,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
 
         public void SetSelectedPlaceable(PlaceableConfig config) => _selectedConfig = config;
 
-        private void OnPositionFinded()
+        private void OnPositionFound()
         {
             if (_isEnabled.Value == false)
                 return;

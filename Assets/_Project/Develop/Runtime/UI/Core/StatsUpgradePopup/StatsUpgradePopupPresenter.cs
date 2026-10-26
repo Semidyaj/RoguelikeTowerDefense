@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
-using Assets._Project.Develop.Runtime.Meta.Features.StatsUpgrade;
-using Assets._Project.Develop.Runtime.UI.Wallet;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Meta.Features.StatsUpgrade;
+using RoguelikeTD.UI.Wallet;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
+namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 {
     public class StatsUpgradePopupPresenter : PopupPresenterBase
     {

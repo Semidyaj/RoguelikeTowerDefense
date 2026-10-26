@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Editor
+namespace RoguelikeTD.Editor
 {
     public class UnityLayersAPIGenerator
     {
@@ -26,7 +26,7 @@ namespace Assets._Project.Develop.Editor
 
             sb.AppendLine("using UnityEngine;");
 
-            sb.AppendLine($"namespace Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated");
+            sb.AppendLine($"namespace RoguelikeTD.Utilities.LayersConstsGenerated");
             sb.AppendLine("{");
 
             sb.AppendLine($"\tpublic static class UnityLayers");

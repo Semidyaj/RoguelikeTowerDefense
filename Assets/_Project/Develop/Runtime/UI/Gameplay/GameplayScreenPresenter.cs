@@ -1,16 +1,15 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Gameplay.Experience;
-using Assets._Project.Develop.Runtime.UI.Gameplay.HealthDisplay;
-using Assets._Project.Develop.Runtime.UI.Gameplay.PlaceablesSelectPopup;
-using Assets._Project.Develop.Runtime.UI.Gameplay.Stages;
-using Assets._Project.Develop.Runtime.UI.Wallet;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay.Experience;
+using RoguelikeTD.UI.Gameplay.HealthDisplay;
+using RoguelikeTD.UI.Gameplay.Stages;
+using RoguelikeTD.UI.Wallet;
 using System;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.UI.Gameplay
+namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayScreenPresenter : IPresenter
     {

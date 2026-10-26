@@ -1,16 +1,16 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.UI.Gameplay.AbilitySelectPopup;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.UI.Gameplay;
+using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature
+namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 {
     public class DropAbilityOnMainHeroLevelUpService : IInitializable, IDisposable
     {

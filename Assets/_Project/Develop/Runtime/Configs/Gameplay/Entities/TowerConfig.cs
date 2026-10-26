@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Entities
+namespace RoguelikeTD.Configs.Gameplay.Entities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Entities/NewTowerConfig", fileName = "TowerConfig")]
     public class TowerConfig : EntityConfig

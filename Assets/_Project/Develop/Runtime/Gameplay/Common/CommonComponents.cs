@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Common
+namespace RoguelikeTD.Gameplay.Common
 {
     public class RigidbodyComponent : IEntityComponent
     {

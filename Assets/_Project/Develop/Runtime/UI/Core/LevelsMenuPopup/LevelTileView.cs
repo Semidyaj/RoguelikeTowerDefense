@@ -1,10 +1,10 @@
 ﻿using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.LevelsMenuPopup
+namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelTileView : MonoBehaviour, IShowableView
     {

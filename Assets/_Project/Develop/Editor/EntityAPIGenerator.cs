@@ -1,4 +1,4 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,11 +8,11 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Editor
+namespace RoguelikeTD.Editor
 {
     public class EntityAPIGenerator
     {
-        private const string AssemblyName = "Assembly-CSharp";
+        private const string AssemblyName = "RoguelikeTD.Game";
         private const string ComponentSuffix = "Component";
 
         private static string OutputPath
@@ -39,7 +39,7 @@ namespace Assets._Project.Develop.Editor
                 string typeName = componentType.Name;
                 string fullTypeName = componentType.FullName;
 
-                string componentName = RemoveSuffixIsExists(typeName, ComponentSuffix);
+                string componentName = RemoveSuffixIfExists(typeName, ComponentSuffix);
                 string modifiedComponentName = componentName + "C";
 
                 //свойство для получения компонента
@@ -78,7 +78,7 @@ namespace Assets._Project.Develop.Editor
                     }
                 }
 
-                string componentParameters = GetParametrs(componentType);
+                string componentParameters = GetParameters(componentType);
 
                 sb.AppendLine($"\t\tpublic {typeof(Entity).FullName} Add{componentName}({componentParameters})");
                 sb.AppendLine("\t\t{");
@@ -91,7 +91,12 @@ namespace Assets._Project.Develop.Editor
 
             sb.AppendLine("}");
 
-            File.WriteAllText(OutputPath, sb.ToString());
+            string code = sb.ToString();
+
+            if (File.Exists(OutputPath) && File.ReadAllText(OutputPath) == code)
+                return;
+
+            File.WriteAllText(OutputPath, code);
 
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
@@ -103,10 +108,11 @@ namespace Assets._Project.Develop.Editor
                 .GetTypes()
                 .Where(type => type.IsInterface == false
                     && type.IsAbstract == false
-                    && typeof(IEntityComponent).IsAssignableFrom(type));
+                    && typeof(IEntityComponent).IsAssignableFrom(type))
+                .OrderBy(type => type.FullName);
         }
 
-        private static string RemoveSuffixIsExists(string str, string suffix)
+        private static string RemoveSuffixIfExists(string str, string suffix)
         {
             if (str.EndsWith(suffix))
                 return str.Substring(0, str.Length - suffix.Length);
@@ -135,7 +141,7 @@ namespace Assets._Project.Develop.Editor
                 && type.IsSubclassOf(typeof(UnityEngine.Object)) == false;
         }
 
-        private static string GetParametrs(Type type)
+        private static string GetParameters(Type type)
         {
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
 

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public class PopupAnimationCreator
     {

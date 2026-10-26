@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System.Collections.Generic;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage
+namespace RoguelikeTD.Gameplay.Features.ContactTakeDamage
 {
     public class DealDamageOnContactSystem : IInitializableSystem, IUpdatableSystem
     {

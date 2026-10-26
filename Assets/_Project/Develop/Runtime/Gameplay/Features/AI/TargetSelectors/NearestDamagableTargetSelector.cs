@@ -1,11 +1,11 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.ApplyDamage;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI.TargetSelectors
+namespace RoguelikeTD.Gameplay.Features.AI.TargetSelectors
 {
     public class NearestDamagableTargetSelector : ITargetSelector
     {

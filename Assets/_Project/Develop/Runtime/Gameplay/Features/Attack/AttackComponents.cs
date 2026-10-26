@@ -1,11 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.Attack.Shoot;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
+namespace RoguelikeTD.Gameplay.Features.Attack
 {
     public class IsProjectile : IEntityComponent
     {

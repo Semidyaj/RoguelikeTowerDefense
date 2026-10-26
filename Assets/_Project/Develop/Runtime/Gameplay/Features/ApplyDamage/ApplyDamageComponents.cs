@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage
+namespace RoguelikeTD.Gameplay.Features.ApplyDamage
 {
     public class TakeDamageRequest : IEntityComponent
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Levels
+namespace RoguelikeTD.Configs.Gameplay.Levels
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Levels/NewLevelsListConfig", fileName = "LevelsListConfig")]
     public class LevelsListConfig : ScriptableObject

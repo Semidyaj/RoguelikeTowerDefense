@@ -1,9 +1,9 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Mono;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack
+namespace RoguelikeTD.Gameplay.Features.Attack
 {
     [RequireComponent(typeof(Animator))]
     public class InstantAttackAnimationSpeedView : EntityView

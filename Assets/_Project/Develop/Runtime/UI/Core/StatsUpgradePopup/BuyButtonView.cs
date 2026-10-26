@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
+namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 {
     public class BuyButtonView : MonoBehaviour, IView
     {
@@ -35,8 +35,17 @@ namespace Assets._Project.Develop.Runtime.UI.Core.StatsUpgradePopup
             Click?.Invoke();
         }
 
-        public virtual void Lock() => _background.sprite = _lockedSprite;
-        public virtual void Unlock() => _background.sprite = _availableSprite;
+        public virtual void Lock()
+        {
+            _background.sprite = _lockedSprite;
+            _button.interactable = false;
+        }
+
+        public virtual void Unlock()
+        {
+            _background.sprite = _availableSprite;
+            _button.interactable = true;
+        }
 
         public void SetPriceText(string priceText) => _priceText.text = priceText;
         public void SetIcon(Sprite icon) => _priceIcon.sprite = icon;

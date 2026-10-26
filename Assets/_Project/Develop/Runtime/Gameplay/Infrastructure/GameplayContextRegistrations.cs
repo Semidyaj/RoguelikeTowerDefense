@@ -1,41 +1,41 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Levels;
-using Assets._Project.Develop.Runtime.Configs.Gameplay.Loot;
-using Assets._Project.Develop.Runtime.Configs.Meta.Economy;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Allies;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.PointClickExplosion;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Enemies;
-using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LevelUpFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LootFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MainHero;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.ResultHandler;
-using Assets._Project.Develop.Runtime.Gameplay.Features.RewardsService;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.States;
-using Assets._Project.Develop.Runtime.Gameplay.States.StageProcessStateUtilities;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
-using Assets._Project.Develop.Runtime.UI;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Gameplay;
-using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
-using Assets._Project.Develop.Runtime.Utilities.ConfigsManagment;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.DataManagment.DataProviders;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Configs.Gameplay.Loot;
+using RoguelikeTD.Configs.Meta.Economy;
+using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Mono;
+using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
+using RoguelikeTD.Gameplay.Features.Allies;
+using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
+using RoguelikeTD.Gameplay.Features.Enemies;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.LevelUpFeature;
+using RoguelikeTD.Gameplay.Features.LootFeature;
+using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.ResultHandler;
+using RoguelikeTD.Gameplay.Features.RewardsService;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.Gameplay.States;
+using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
+using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
+namespace RoguelikeTD.Gameplay.Infrastructure
 {
     public class GameplayContextRegistrations
     {
@@ -73,7 +73,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateStagesFactory);
             container.RegisterAsSingle(CreateStageProviderService);
-            container.RegisterAsSingle(CreatePreperationTriggerService);
+            container.RegisterAsSingle(CreatePreparationTriggerService);
 
             container.RegisterAsSingle(CreateGameplayStatesFactory);
             container.RegisterAsSingle(CreateGameplayStatesContext);
@@ -90,7 +90,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateDropLootService);
             container.RegisterAsSingle(CreateLootPullingService).NonLazy();
 
-            container.RegisterAsSingle<IPauseService>(CreareTimeScalePauseService);
+            container.RegisterAsSingle<IPauseService>(CreateTimeScalePauseService);
 
             container.RegisterAsSingle<IInputService>(CreateDesktopInput);
 
@@ -100,7 +100,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
             container.RegisterAsSingle(CreateGameplayResultHandler).NonLazy();
 
-            container.RegisterAsSingle(CreateEndProcessStageRealeser);
+            container.RegisterAsSingle(CreateEndProcessStageReleaser);
         }
 
         private static BoostAbilitiesStartGameplayApplier CreateBoostAbilitiesStartGameplayApplier(DIContainer c)
@@ -110,8 +110,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
                 c.Resolve<ICoroutinesPerformer>(),
                 c.Resolve<PlayerDataProvider>());
 
-        private static EndProcessStageRealeser CreateEndProcessStageRealeser(DIContainer c)
-            => new EndProcessStageRealeser(c.Resolve<EntitiesLifeContext>());
+        private static EndProcessStageReleaser CreateEndProcessStageReleaser(DIContainer c)
+            => new EndProcessStageReleaser(c.Resolve<EntitiesLifeContext>());
 
         private static PlaceableService CreatePlaceableService(DIContainer c)
             => new PlaceableService(c.Resolve<WalletService>(), c.Resolve<MainHeroHolderService>(), c.Resolve<PlaceablesSpawner>());
@@ -120,7 +120,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             => new PlaceablesFactory(c);
 
         private static PlaceablesSpawner CreatePlaceablesSpawner(DIContainer c)
-            => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageRealeser>());
+            => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageReleaser>());
 
         private static GameplayRewardsService CreateGameplayRewardsService(DIContainer c)
             => new GameplayRewardsService(
@@ -139,7 +139,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static LootFactory CreateLootFactory(DIContainer c)
             => new LootFactory(c);
 
-        private static TimeScalePauseService CreareTimeScalePauseService(DIContainer c)
+        private static TimeScalePauseService CreateTimeScalePauseService(DIContainer c)
             => new TimeScalePauseService();
 
         private static DropAbilityOnMainHeroLevelUpService CreateDropAbilityOnMainHeroLevelUpService(DIContainer c)
@@ -220,8 +220,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private static MainHeroHolderService CreateMainHeroHolderService(DIContainer c)
             => new MainHeroHolderService(c.Resolve<EntitiesLifeContext>());
 
-        private static PreperationTriggerService CreatePreperationTriggerService(DIContainer c)
-            => new PreperationTriggerService(
+        private static PreparationTriggerService CreatePreparationTriggerService(DIContainer c)
+            => new PreparationTriggerService(
                 c.Resolve<EntitiesFactory>(),
                 c.Resolve<EntitiesLifeContext>());
 

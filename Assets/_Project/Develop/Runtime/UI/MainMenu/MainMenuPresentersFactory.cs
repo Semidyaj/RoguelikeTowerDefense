@@ -1,13 +1,13 @@
-﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Meta.Features.LevelsProgression;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
-using Assets._Project.Develop.Runtime.UI.CommonViews;
-using Assets._Project.Develop.Runtime.UI.Core;
-using Assets._Project.Develop.Runtime.UI.Core.Statistics;
-using Assets._Project.Develop.Runtime.Utilities.CoroutinesManager;
-using Assets._Project.Develop.Runtime.Utilities.SceneManagment;
+﻿using RoguelikeTD.Core.CoroutinesManager;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.Meta.Features.StatisticsService;
+using RoguelikeTD.UI.CommonViews;
+using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Core.Statistics;
 
-namespace Assets._Project.Develop.Runtime.UI.MainMenu
+namespace RoguelikeTD.UI.MainMenu
 {
     public class MainMenuPresentersFactory
     {

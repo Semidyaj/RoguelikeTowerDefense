@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE
+namespace RoguelikeTD.Gameplay.Features.Attack.AOE
 {
     public readonly struct AOEInfoStruct
     {

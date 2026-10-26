@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Utilities.AssetsManagment;
+﻿using RoguelikeTD.Core.AssetsManagement;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets._Project.Develop.Runtime.UI.Core
+namespace RoguelikeTD.UI.Core
 {
     public class ViewsFactory
     {

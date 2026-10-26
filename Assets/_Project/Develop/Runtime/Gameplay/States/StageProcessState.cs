@@ -1,24 +1,24 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using Assets._Project.Develop.Runtime.Gameplay.Features.StagesFeature;
-using Assets._Project.Develop.Runtime.Gameplay.States.StageProcessStateUtilities;
-using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+﻿using RoguelikeTD.Core.StateMachineCore;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.States
+namespace RoguelikeTD.Gameplay.States
 {
     public class StageProcessState : State, IUpdatableState
     {
         private readonly StageProviderService _stageProviderService;
-        private readonly EndProcessStageRealeser _endProcessStageRealeser;
+        private readonly EndProcessStageReleaser _endProcessStageReleaser;
         private readonly EntitiesLifeContext _entitiesLifeContext;
 
         public StageProcessState(
             StageProviderService stageProviderService,
-            EndProcessStageRealeser endProcessStageRealeser,
+            EndProcessStageReleaser endProcessStageReleaser,
             EntitiesLifeContext entitiesLifeContext)
         {
             _stageProviderService = stageProviderService;
-            _endProcessStageRealeser = endProcessStageRealeser;
+            _endProcessStageReleaser = endProcessStageReleaser;
             _entitiesLifeContext = entitiesLifeContext;
         }
 
@@ -42,7 +42,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.States
             base.Exit();
 
             _stageProviderService.CleanupCurrent();
-            _endProcessStageRealeser.EndStageRelease();
+            _endProcessStageReleaser.EndStageRelease();
         }
 
         private void StartWaveAbilityActivate()

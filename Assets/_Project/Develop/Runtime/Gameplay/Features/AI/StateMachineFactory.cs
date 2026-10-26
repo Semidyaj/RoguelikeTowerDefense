@@ -1,19 +1,19 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States.Attack;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.States.Movement;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.TargetSelectors;
-using Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.PauseFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
-using Assets._Project.Develop.Runtime.Utilities.Timer;
+﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Core.Timer;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AI.States;
+using RoguelikeTD.Gameplay.Features.AI.States.Attack;
+using RoguelikeTD.Gameplay.Features.AI.States.Movement;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.AI
+namespace RoguelikeTD.Gameplay.Features.AI
 {
     public class StateMachineFactory
     {

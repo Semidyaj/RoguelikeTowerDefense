@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.RewardsService;
-using Assets._Project.Develop.Runtime.Meta.Features.StatisticsService;
+﻿using RoguelikeTD.Gameplay.Features.RewardsService;
+using RoguelikeTD.Meta.Features.StatisticsService;
 using System;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.ResultHandler
+namespace RoguelikeTD.Gameplay.Features.ResultHandler
 {
     public class GameplayResultHandler
     {

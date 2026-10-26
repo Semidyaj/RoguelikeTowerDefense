@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables
+namespace RoguelikeTD.Configs.Gameplay.Placeables
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Placeables/MineConfig", fileName = "MineConfig")]
     public class MineConfig : PlaceableConfig

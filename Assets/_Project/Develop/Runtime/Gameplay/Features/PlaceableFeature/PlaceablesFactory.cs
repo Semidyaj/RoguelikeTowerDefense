@@ -1,25 +1,25 @@
-﻿using Assets._Project.Develop.Runtime.Configs.Gameplay.Placeables;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AI.TargetSelectors;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.AOE;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Mining;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
-using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.TickableDamage;
-using Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.SpawnFeature;
-using Assets._Project.Develop.Runtime.Gameplay.Features.TeamsFeature;
-using Assets._Project.Develop.Runtime.Infrastructure.DI;
-using Assets._Project.Develop.Runtime.Utilities;
-using Assets._Project.Develop.Runtime.Utilities.Conditions;
-using Assets._Project.Develop.Runtime.Utilities.LayersConstsGenerated;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Placeables;
+using RoguelikeTD.Core;
+using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Mono;
+using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
+using RoguelikeTD.Gameplay.Features.Attack;
+using RoguelikeTD.Gameplay.Features.Attack.AOE;
+using RoguelikeTD.Gameplay.Features.Attack.Mining;
+using RoguelikeTD.Gameplay.Features.Attack.Shoot;
+using RoguelikeTD.Gameplay.Features.Attack.TickableDamage;
+using RoguelikeTD.Gameplay.Features.LifeCycle;
+using RoguelikeTD.Gameplay.Features.MovementFeature;
+using RoguelikeTD.Gameplay.Features.SpawnFeature;
+using RoguelikeTD.Gameplay.Features.TeamsFeature;
+using RoguelikeTD.Utilities.LayersConstsGenerated;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.PlaceableFeature
+namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 {
     public class PlaceablesFactory
     {

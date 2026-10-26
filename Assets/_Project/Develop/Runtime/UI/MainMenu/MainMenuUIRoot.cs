@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.UI.MainMenu
+namespace RoguelikeTD.UI.MainMenu
 {
     public class MainMenuUIRoot : MonoBehaviour
     {

@@ -1,10 +1,10 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Systems;
-using Assets._Project.Develop.Runtime.Utilities.Reactive;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
+namespace RoguelikeTD.Gameplay.Features.InputFeature
 {
     public class RaycastGroundPointFinder : IInitializableSystem, IDisposableSystem
     {
@@ -29,7 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.InputFeature
             _clickPointPosition = entity.InputMouseClickGroundPosition;
 
             _findPointRequest = entity.InputFindMouseClickPositionRequest;
-            _positionFoundEvent = entity.InputMouseClickPositionFindedEvent;
+            _positionFoundEvent = entity.InputMouseClickPositionFoundEvent;
             _isPositionFound = entity.InputIsPositionFound;
 
             _findPointRequestDisposable = _findPointRequest.Subscribe(OnFindPosition);

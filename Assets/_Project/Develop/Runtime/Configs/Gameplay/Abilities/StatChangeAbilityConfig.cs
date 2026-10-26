@@ -1,8 +1,8 @@
-﻿using Assets._Project.Develop.Runtime.Gameplay.Features.StatsFeature;
+﻿using RoguelikeTD.Gameplay.Features.StatsFeature;
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Develop.Runtime.Configs.Gameplay.Abilities
+namespace RoguelikeTD.Configs.Gameplay.Abilities
 {
     [CreateAssetMenu(menuName = "Configs/Gameplay/Abilities/StatChangeAbilityConfig", fileName = "StatChangeAbilityConfig")]
     public class StatChangeAbilityConfig : AbilityConfig
