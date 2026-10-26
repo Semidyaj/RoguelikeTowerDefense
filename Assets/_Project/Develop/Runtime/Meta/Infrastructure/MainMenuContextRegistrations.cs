@@ -1,6 +1,9 @@
 ﻿using RoguelikeTD.Configs.Meta.Economy;
 using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI;
@@ -47,7 +50,15 @@ namespace RoguelikeTD.Meta.Infrastructure
         }
 
         private static MainMenuPresentersFactory CreateMainMenuPresentersFactory(DIContainer c)
-            => new MainMenuPresentersFactory(c);
+            => new MainMenuPresentersFactory(
+                c.Resolve<ViewsFactory>(),
+                c.Resolve<GameplayStatisticsService>(),
+                c.Resolve<ResetStatistics>(),
+                c.Resolve<ProjectPresentersFactory>(),
+                c.Resolve<MainMenuPopupService>(),
+                c.Resolve<LevelsProgressionService>(),
+                c.Resolve<SceneSwitcherService>(),
+                c.Resolve<ICoroutinesPerformer>());
 
         private static MainMenuUIRoot CreateMainMenuUIRoot(DIContainer c)
         {
