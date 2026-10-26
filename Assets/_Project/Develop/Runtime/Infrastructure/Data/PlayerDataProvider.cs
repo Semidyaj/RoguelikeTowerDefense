@@ -24,11 +24,19 @@ namespace RoguelikeTD.Infrastructure.Data
             {
                 WalletData = InitWalletData(),
                 StatsUpgradeLevel = InitStatsUpgradesLevels(),
-                CompletedLevels = new(),
-                PurchasedBoostAbilitiesIDs = new(),
-                Wins = 0,
-                Defeats = 0,
             };
+        }
+
+        protected override void FillMissingData(PlayerData loadedData, PlayerData originData)
+        {
+            AddMissingKeys(loadedData.WalletData, originData.WalletData);
+            AddMissingKeys(loadedData.StatsUpgradeLevel, originData.StatsUpgradeLevel);
+        }
+
+        private static void AddMissingKeys<TKey, TValue>(Dictionary<TKey, TValue> target, Dictionary<TKey, TValue> source)
+        {
+            foreach (KeyValuePair<TKey, TValue> pair in source)
+                target.TryAdd(pair.Key, pair.Value);
         }
 
         private Dictionary<StatTypes, int> InitStatsUpgradesLevels()

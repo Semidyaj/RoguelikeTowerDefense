@@ -39,6 +39,8 @@ namespace RoguelikeTD.Core.DataManagement.DataProviders
         {
             yield return _saveLoadService.Load<TData>(loadedData => _data = loadedData);
 
+            FillMissingData(_data, GetOriginData());
+
             SendDataToReaders();
         }
 
@@ -62,6 +64,8 @@ namespace RoguelikeTD.Core.DataManagement.DataProviders
         }
 
         protected abstract TData GetOriginData();
+
+        protected virtual void FillMissingData(TData loadedData, TData originData) { }
 
         private void SendDataToReaders()
         {

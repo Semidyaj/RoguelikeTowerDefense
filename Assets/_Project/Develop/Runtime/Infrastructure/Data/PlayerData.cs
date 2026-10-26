@@ -7,13 +7,13 @@ namespace RoguelikeTD.Infrastructure.Data
 {
     public class PlayerData : ISaveData
     {
-        public Dictionary<CurrencyTypes, int> WalletData;
+        public Dictionary<CurrencyTypes, int> WalletData = new();
 
-        public List<int> CompletedLevels;
+        public List<int> CompletedLevels = new();
 
-        public Dictionary<string, int> PurchasedBoostAbilitiesIDs;
+        public Dictionary<string, int> PurchasedBoostAbilitiesIDs = new();
 
-        public Dictionary<StatTypes, int> StatsUpgradeLevel;
+        public Dictionary<StatTypes, int> StatsUpgradeLevel = new();
 
         public int Wins;
         public int Defeats;
