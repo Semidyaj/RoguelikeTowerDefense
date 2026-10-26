@@ -30,6 +30,7 @@ using RoguelikeTD.Gameplay.Features.StagesFeature;
 using RoguelikeTD.Gameplay.States;
 using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
 using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.Meta.Features.Wallet;
@@ -244,7 +245,24 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             => new GameplayStatesContext(c.Resolve<GameplayStatesFactory>().CreateGameplayStateMachine(_inputArgs));
 
         private static GameplayStatesFactory CreateGameplayStatesFactory(DIContainer c)
-            => new GameplayStatesFactory(c);
+            => new GameplayStatesFactory(
+                c.Resolve<LootPullingService>(),
+                c.Resolve<MainHeroHolderService>(),
+                c.Resolve<TowerHolderService>(),
+                c.Resolve<PointClickExplosionService>(),
+                c.Resolve<PlaceableService>(),
+                c.Resolve<PreparationTriggerService>(),
+                c.Resolve<GameplayPopupService>(),
+                c.Resolve<StageProviderService>(),
+                c.Resolve<EndProcessStageReleaser>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<IInputService>(),
+                c.Resolve<IPauseService>(),
+                c.Resolve<BoostAbilitiesShopService>(),
+                c.Resolve<LevelsProgressionService>(),
+                c.Resolve<PlayerDataProvider>(),
+                c.Resolve<ICoroutinesPerformer>(),
+                c.Resolve<GameplayResultHandler>());
 
         private static MainHeroHolderService CreateMainHeroHolderService(DIContainer c)
             => new MainHeroHolderService(c.Resolve<EntitiesLifeContext>());
