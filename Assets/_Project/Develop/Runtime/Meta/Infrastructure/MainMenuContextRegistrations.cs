@@ -1,40 +1,30 @@
-﻿using RoguelikeTD.Configs.Meta.Economy;
-using RoguelikeTD.Core.AssetsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.SceneManagement;
-using RoguelikeTD.Meta.Features.LevelsProgression;
+﻿using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Meta.Features.StatisticsService;
-using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.MainMenu;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Meta.Infrastructure
 {
     public class MainMenuContextRegistrations
     {
-        public static void Process(DIContainer container)
+        public static void Configure(IContainerBuilder builder)
         {
-            container.RegisterAsSingle(CreateMainMenuUIRoot).NonLazy();
+            builder.Register(CreateMainMenuUIRoot, Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateMainMenuPresentersFactory);
+            builder.Register<MainMenuPresentersFactory>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateMainMenuPopupService);
+            builder.Register<MainMenuPopupService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateMainMenuScreenPresenter).NonLazy();
+            builder.RegisterEntryPoint(CreateMainMenuScreenPresenter, Lifetime.Singleton).AsSelf();
 
-            container.RegisterAsSingle(CreateResetStatistics);
+            builder.Register<ResetStatistics>(Lifetime.Singleton);
         }
 
-        private static ResetStatistics CreateResetStatistics(DIContainer c)
-            => new ResetStatistics(c.Resolve<WalletService>(), c.Resolve<GameplayStatisticsService>(), c.Resolve<GameplayEconomyConfig>());
-
-        private static MainMenuPopupService CreateMainMenuPopupService(DIContainer c)
-            => new MainMenuPopupService(c.Resolve<ViewsFactory>(), c.Resolve<ProjectPresentersFactory>(), c.Resolve<MainMenuUIRoot>());
-
-        private static MainMenuScreenPresenter CreateMainMenuScreenPresenter(DIContainer c)
+        private static MainMenuScreenPresenter CreateMainMenuScreenPresenter(IObjectResolver c)
         {
             MainMenuUIRoot uiRoot = c.Resolve<MainMenuUIRoot>();
 
@@ -49,18 +39,7 @@ namespace RoguelikeTD.Meta.Infrastructure
             return presenter;
         }
 
-        private static MainMenuPresentersFactory CreateMainMenuPresentersFactory(DIContainer c)
-            => new MainMenuPresentersFactory(
-                c.Resolve<ViewsFactory>(),
-                c.Resolve<GameplayStatisticsService>(),
-                c.Resolve<ResetStatistics>(),
-                c.Resolve<ProjectPresentersFactory>(),
-                c.Resolve<MainMenuPopupService>(),
-                c.Resolve<LevelsProgressionService>(),
-                c.Resolve<SceneSwitcherService>(),
-                c.Resolve<ICoroutinesPerformer>());
-
-        private static MainMenuUIRoot CreateMainMenuUIRoot(DIContainer c)
+        private static MainMenuUIRoot CreateMainMenuUIRoot(IObjectResolver c)
         {
             MainMenuUIRoot mainMenuUIRootPrefab = c.Resolve<ResourcesAssetsLoader>()
                 .Load<MainMenuUIRoot>("UI/MainMenu/MainMenuUIRoot");

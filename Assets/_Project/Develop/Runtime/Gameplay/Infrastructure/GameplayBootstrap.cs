@@ -2,7 +2,6 @@
 using RoguelikeTD.Configs.Gameplay.Levels;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
@@ -14,12 +13,13 @@ using RoguelikeTD.UI.Gameplay;
 using System;
 using System.Collections;
 using UnityEngine;
+using VContainer;
 
 namespace RoguelikeTD.Gameplay.Infrastructure
 {
     public class GameplayBootstrap : SceneBootstrap
     {
-        private DIContainer _container;
+        private IObjectResolver _resolver;
 
         private GameplayScreenPresenter _gameplayScreenPresenter;
 
@@ -33,41 +33,41 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
         private MainHeroHolderService _mainHeroHolderService;
 
-        public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
+        public override void Configure(IContainerBuilder builder, IInputSceneArgs sceneArgs = null)
         {
-            _container = container;
-
             if (sceneArgs is not GameplayInputArgs gameplayInputArgs)
                 throw new ArgumentException($"{nameof(sceneArgs)} is not match with {typeof(GameplayInputArgs)} type");
 
             _inputArgs = gameplayInputArgs;
 
-            GameplayContextRegistrations.Process(_container, _inputArgs);
+            GameplayContextRegistrations.Configure(builder, _inputArgs);
         }
 
-        public override IEnumerator Initialize()
+        public override IEnumerator Initialize(IObjectResolver resolver)
         {
-            ConfigsProviderService configsProviderService = _container.Resolve<ConfigsProviderService>();
+            _resolver = resolver;
+
+            ConfigsProviderService configsProviderService = _resolver.Resolve<ConfigsProviderService>();
 
             yield return configsProviderService.LoadAsync();
 
-            _gameplayScreenPresenter = _container.Resolve<GameplayScreenPresenter>();
+            _gameplayScreenPresenter = _resolver.Resolve<GameplayScreenPresenter>();
 
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
-            _brainsContext = _container.Resolve<AIBrainsContext>();
+            _entitiesLifeContext = _resolver.Resolve<EntitiesLifeContext>();
+            _brainsContext = _resolver.Resolve<AIBrainsContext>();
 
-            Entity entity = _container.Resolve<MainHeroFactory>().Create(Vector3.zero + new Vector3(0, 0, -2));
+            Entity entity = _resolver.Resolve<MainHeroFactory>().Create(Vector3.zero + new Vector3(0, 0, -2));
 
-            _gameplayStatesContext = _container.Resolve<GameplayStatesContext>();
+            _gameplayStatesContext = _resolver.Resolve<GameplayStatesContext>();
 
             LevelConfig baseLevelConfig = configsProviderService.GetConfig<LevelsListConfig>().GetBy(_inputArgs.LevelNumber);
             TowerDefenseLevelConfig levelConfig = baseLevelConfig as TowerDefenseLevelConfig;
 
-            TowerConfig towerConfig = _container.Resolve<ConfigsProviderService>().GetConfig<TowerConfig>();
+            TowerConfig towerConfig = _resolver.Resolve<ConfigsProviderService>().GetConfig<TowerConfig>();
 
-            _container.Resolve<AlliesFactory>().Create(levelConfig.Position, towerConfig, levelConfig);
+            _resolver.Resolve<AlliesFactory>().Create(levelConfig.Position, towerConfig, levelConfig);
 
-            _mainHeroHolderService = _container.Resolve<MainHeroHolderService>();
+            _mainHeroHolderService = _resolver.Resolve<MainHeroHolderService>();
         }
 
         public override void Run()
@@ -83,8 +83,8 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                SceneSwitcherService sceneSwitcherService = _container.Resolve<SceneSwitcherService>();
-                ICoroutinesPerformer coroutinesPerformer = _container.Resolve<ICoroutinesPerformer>();
+                SceneSwitcherService sceneSwitcherService = _resolver.Resolve<SceneSwitcherService>();
+                ICoroutinesPerformer coroutinesPerformer = _resolver.Resolve<ICoroutinesPerformer>();
                 coroutinesPerformer.StartPerform(sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu));
             }
         }

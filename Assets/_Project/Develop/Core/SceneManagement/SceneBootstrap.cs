@@ -1,14 +1,14 @@
-﻿using RoguelikeTD.Core.DI;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using VContainer;
 
 namespace RoguelikeTD.Core.SceneManagement
 {
     public abstract class SceneBootstrap : MonoBehaviour
     {
-        public abstract void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null);
+        public abstract void Configure(IContainerBuilder builder, IInputSceneArgs sceneArgs = null);
 
-        public abstract IEnumerator Initialize();
+        public abstract IEnumerator Initialize(IObjectResolver resolver);
 
         public abstract void Run();
     }

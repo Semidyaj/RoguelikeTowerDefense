@@ -4,15 +4,10 @@ using RoguelikeTD.Configs.Gameplay.Loot;
 using RoguelikeTD.Configs.Meta.Economy;
 using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
-using RoguelikeTD.Core.SceneManagement;
-using RoguelikeTD.Core.Timer;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Mono;
 using RoguelikeTD.Gameplay.Features.AI;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
-using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.Allies;
@@ -29,163 +24,106 @@ using RoguelikeTD.Gameplay.Features.RewardsService;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
 using RoguelikeTD.Gameplay.States;
 using RoguelikeTD.Gameplay.States.StageProcessStateUtilities;
-using RoguelikeTD.Infrastructure.Data;
-using RoguelikeTD.Meta.Features.LevelsProgression;
-using RoguelikeTD.Meta.Features.StatisticsService;
-using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.Meta.Features.Wallet;
-using RoguelikeTD.UI;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Infrastructure
 {
     public class GameplayContextRegistrations
     {
-        private static GameplayInputArgs _inputArgs;
-
-        public static void Process(DIContainer container, GameplayInputArgs args)
+        public static void Configure(IContainerBuilder builder, GameplayInputArgs args)
         {
-            _inputArgs = args;
+            builder.RegisterInstance(args);
 
-            container.RegisterAsSingle(CreateMonoEntitiesFactory).NonLazy();
-            container.RegisterAsSingle(CreateEntitiesFactory);
-            container.RegisterAsSingle(CreateEntitiesLifeContext);
+            builder.RegisterEntryPoint<MonoEntitiesFactory>().AsSelf();
+            builder.Register<EntitiesFactory>(Lifetime.Singleton);
+            builder.Register<EntitiesLifeContext>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateAlliesFactory);
+            builder.Register<AlliesFactory>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateAbilitiesECSFactory);
-            container.RegisterAsSingle(CreateAbilitiesDroppingRulesService);
-            container.RegisterAsSingle(CreateAbilityDropService);
-            container.RegisterAsSingle(CreateBoostAbilitiesStartGameplayApplier);
-            container.RegisterAsSingle(CreateDropAbilityOnMainHeroLevelUpService).NonLazy();
+            builder.Register<AbilitiesECSFactory>(Lifetime.Singleton);
+            builder.Register<AbilitiesDroppingRulesService>(Lifetime.Singleton);
+            builder.Register(CreateAbilityDropService, Lifetime.Singleton);
+            builder.Register<BoostAbilitiesStartGameplayApplier>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<DropAbilityOnMainHeroLevelUpService>().AsSelf();
 
-            container.RegisterAsSingle(CreateGameplayScreenPresenter).NonLazy();
-            container.RegisterAsSingle(CreateGameplayUIRoot).NonLazy();
-            container.RegisterAsSingle(CreateGameplayPresentersFactory);
-            container.RegisterAsSingle(CreateGameplayPopupService);
+            builder.RegisterEntryPoint(CreateGameplayScreenPresenter, Lifetime.Singleton).AsSelf();
+            builder.Register(CreateGameplayUIRoot, Lifetime.Singleton);
+            builder.Register<GameplayPresentersFactory>(Lifetime.Singleton);
+            builder.Register<GameplayPopupService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateCollidersRegistryService);
+            builder.Register<CollidersRegistryService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateBrainsFactory);
-            container.RegisterAsSingle(CreateAIBrainsContext);
-            container.RegisterAsSingle(CreateStateMachineFactory);
+            builder.Register<BrainsFactory>(Lifetime.Singleton);
+            builder.Register<AIBrainsContext>(Lifetime.Singleton);
+            builder.Register<StateMachineFactory>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateMainHeroFactory);
-            container.RegisterAsSingle(CreateEnemiesFactory);
+            builder.Register<MainHeroFactory>(Lifetime.Singleton);
+            builder.Register<EnemiesFactory>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateStagesFactory);
-            container.RegisterAsSingle(CreateStageProviderService);
-            container.RegisterAsSingle(CreatePreparationTriggerService);
+            builder.Register<StagesFactory>(Lifetime.Singleton);
+            builder.Register(CreateStageProviderService, Lifetime.Singleton);
+            builder.Register<PreparationTriggerService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateGameplayStatesFactory);
-            container.RegisterAsSingle(CreateGameplayStatesContext);
+            builder.Register<GameplayStatesFactory>(Lifetime.Singleton);
+            builder.Register(CreateGameplayStatesContext, Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreatePointClickExplosionService);
+            builder.Register<PointClickExplosionService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreatePlaceablesSpawner);
-            container.RegisterAsSingle(CreatePlaceablesFactory);
-            container.RegisterAsSingle(CreatePlaceableService);
+            builder.Register<PlaceablesSpawner>(Lifetime.Singleton);
+            builder.Register<PlaceablesFactory>(Lifetime.Singleton);
+            builder.Register<PlaceableService>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateGameplayRewardsService);
+            builder.Register(CreateGameplayRewardsService, Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateLootFactory);
-            container.RegisterAsSingle(CreateDropLootService);
-            container.RegisterAsSingle(CreateLootPullingService).NonLazy();
+            builder.Register<LootFactory>(Lifetime.Singleton);
+            builder.Register(CreateDropLootService, Lifetime.Singleton);
+            builder.RegisterEntryPoint<LootPullingService>().AsSelf();
 
-            container.RegisterAsSingle<IPauseService>(CreateTimeScalePauseService);
+            builder.Register<TimeScalePauseService>(Lifetime.Singleton).As<IPauseService>();
 
-            container.RegisterAsSingle<IInputService>(CreateDesktopInput);
+            builder.Register<DesktopInput>(Lifetime.Singleton).As<IInputService>();
 
-            container.RegisterAsSingle(CreateMainHeroHolderService).NonLazy();
+            builder.RegisterEntryPoint<MainHeroHolderService>().AsSelf();
 
-            container.RegisterAsSingle(CreateTowerHolderService).NonLazy();
+            builder.RegisterEntryPoint<TowerHolderService>().AsSelf();
 
-            container.RegisterAsSingle(CreateGameplayResultHandler).NonLazy();
+            builder.Register<GameplayResultHandler>(Lifetime.Singleton);
 
-            container.RegisterAsSingle(CreateEndProcessStageReleaser);
+            builder.Register<EndProcessStageReleaser>(Lifetime.Singleton);
+
+            builder.RegisterBuildCallback(c => c.Resolve<GameplayResultHandler>());
         }
 
-        private static BoostAbilitiesStartGameplayApplier CreateBoostAbilitiesStartGameplayApplier(DIContainer c)
-            => new BoostAbilitiesStartGameplayApplier(
-                c.Resolve<BoostAbilitiesShopService>(),
-                c.Resolve<AbilitiesECSFactory>(),
-                c.Resolve<ICoroutinesPerformer>(),
-                c.Resolve<PlayerDataProvider>());
-
-        private static EndProcessStageReleaser CreateEndProcessStageReleaser(DIContainer c)
-            => new EndProcessStageReleaser(c.Resolve<EntitiesLifeContext>());
-
-        private static PlaceableService CreatePlaceableService(DIContainer c)
-            => new PlaceableService(c.Resolve<WalletService>(), c.Resolve<MainHeroHolderService>(), c.Resolve<PlaceablesSpawner>());
-
-        private static PlaceablesFactory CreatePlaceablesFactory(DIContainer c)
-            => new PlaceablesFactory(
-                c.Resolve<MonoEntitiesFactory>(),
-                c.Resolve<EntitiesFactory>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<BrainsFactory>(),
-                c.Resolve<CollidersRegistryService>());
-
-        private static PlaceablesSpawner CreatePlaceablesSpawner(DIContainer c)
-            => new PlaceablesSpawner(c.Resolve<PlaceablesFactory>(), c.Resolve<MainHeroHolderService>(), c.Resolve<EndProcessStageReleaser>());
-
-        private static GameplayRewardsService CreateGameplayRewardsService(DIContainer c)
+        private static GameplayRewardsService CreateGameplayRewardsService(IObjectResolver c)
             => new GameplayRewardsService(
-                c.Resolve<WalletService>(), 
+                c.Resolve<WalletService>(),
                 c.Resolve<MainHeroHolderService>(),
                 c.Resolve<ConfigsProviderService>().GetConfig<GameplayEconomyConfig>());
 
-        private static LootPullingService CreateLootPullingService(DIContainer c)
-            => new LootPullingService(c.Resolve<EntitiesLifeContext>());
-
-        private static DropLootService CreateDropLootService(DIContainer c)
+        private static DropLootService CreateDropLootService(IObjectResolver c)
             => new DropLootService(
                 c.Resolve<ConfigsProviderService>().GetConfig<LootListConfig>(),
                 c.Resolve<LootFactory>());
 
-        private static LootFactory CreateLootFactory(DIContainer c)
-            => new LootFactory(c.Resolve<EntitiesFactory>(), c.Resolve<EntitiesLifeContext>());
-
-        private static TimeScalePauseService CreateTimeScalePauseService(DIContainer c)
-            => new TimeScalePauseService();
-
-        private static DropAbilityOnMainHeroLevelUpService CreateDropAbilityOnMainHeroLevelUpService(DIContainer c)
-            => new DropAbilityOnMainHeroLevelUpService(
-                c.Resolve<MainHeroHolderService>(),
-                c.Resolve<GameplayPopupService>(),
-                c.Resolve<ICoroutinesPerformer>(),
-                c.Resolve<IPauseService>());
-
-        private static AbilityDropService CreateAbilityDropService(DIContainer c)
+        private static AbilityDropService CreateAbilityDropService(IObjectResolver c)
             => new AbilityDropService(
                 c.Resolve<ConfigsProviderService>().GetConfig<AbilitiesConfigsContainer>(),
                 c.Resolve<AbilitiesDroppingRulesService>());
 
-        private static AbilitiesDroppingRulesService CreateAbilitiesDroppingRulesService(DIContainer c)
-            => new AbilitiesDroppingRulesService();
-
-        private static AbilitiesECSFactory CreateAbilitiesECSFactory(DIContainer c)
-            => new AbilitiesECSFactory(c.Resolve<EntitiesLifeContext>());
-
-        private static GameplayPopupService CreateGameplayPopupService(DIContainer c)
-            => new GameplayPopupService(
-                c.Resolve<ViewsFactory>(),
-                c.Resolve<ProjectPresentersFactory>(),
-                c.Resolve<GameplayUIRoot>(),
-                c.Resolve<GameplayPresentersFactory>());
-
-        private static GameplayUIRoot CreateGameplayUIRoot(DIContainer c)
+        private static GameplayUIRoot CreateGameplayUIRoot(IObjectResolver c)
         {
-            ResourcesAssetsLoader loader = new ResourcesAssetsLoader();
-
-            GameplayUIRoot gameplayUIRootPrefab = loader.Load<GameplayUIRoot>("UI/Gameplay/GameplayUIRoot");
+            GameplayUIRoot gameplayUIRootPrefab = c.Resolve<ResourcesAssetsLoader>()
+                .Load<GameplayUIRoot>("UI/Gameplay/GameplayUIRoot");
 
             return Object.Instantiate(gameplayUIRootPrefab);
         }
 
-        private static GameplayScreenPresenter CreateGameplayScreenPresenter(DIContainer c)
+        private static GameplayScreenPresenter CreateGameplayScreenPresenter(IObjectResolver c)
         {
             GameplayUIRoot uiRoot = c.Resolve<GameplayUIRoot>();
 
@@ -200,131 +138,16 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             return presenter;
         }
 
-        private static GameplayPresentersFactory CreateGameplayPresentersFactory(DIContainer c)
-            => new GameplayPresentersFactory(
-                _inputArgs,
-                c.Resolve<SceneSwitcherService>(),
-                c.Resolve<ICoroutinesPerformer>(),
-                c.Resolve<ConfigsProviderService>(),
-                c.Resolve<ViewsFactory>(),
-                c.Resolve<ProjectPresentersFactory>(),
-                c.Resolve<MainHeroHolderService>(),
-                c.Resolve<StageProviderService>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<AbilitiesECSFactory>(),
-                c.Resolve<AbilityDropService>(),
-                c.Resolve<PlaceablesSpawner>(),
-                c.Resolve<PlaceableService>());
+        private static GameplayStatesContext CreateGameplayStatesContext(IObjectResolver c)
+            => new GameplayStatesContext(c
+                .Resolve<GameplayStatesFactory>()
+                .CreateGameplayStateMachine(c.Resolve<GameplayInputArgs>()));
 
-        private static PointClickExplosionService CreatePointClickExplosionService(DIContainer c)
-            => new PointClickExplosionService(c.Resolve<MainHeroHolderService>());
-
-        private static StateMachineFactory CreateStateMachineFactory(DIContainer c)
-            => new StateMachineFactory(
-                c.Resolve<TimerServiceFactory>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<IInputService>(),
-                c.Resolve<IPauseService>());
-
-        private static TowerHolderService CreateTowerHolderService(DIContainer c)
-            => new TowerHolderService(c.Resolve<EntitiesLifeContext>());
-
-        private static AlliesFactory CreateAlliesFactory(DIContainer c)
-            => new AlliesFactory(
-                c.Resolve<EntitiesFactory>(),
-                c.Resolve<BrainsFactory>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<BoostAbilitiesStartGameplayApplier>());
-
-        private static GameplayResultHandler CreateGameplayResultHandler(DIContainer c)
-            => new GameplayResultHandler(
-            c.Resolve<GameplayRewardsService>(),
-            c.Resolve<GameplayStatisticsService>());
-
-        private static GameplayStatesContext CreateGameplayStatesContext(DIContainer c)
-            => new GameplayStatesContext(c.Resolve<GameplayStatesFactory>().CreateGameplayStateMachine(_inputArgs));
-
-        private static GameplayStatesFactory CreateGameplayStatesFactory(DIContainer c)
-            => new GameplayStatesFactory(
-                c.Resolve<LootPullingService>(),
-                c.Resolve<MainHeroHolderService>(),
-                c.Resolve<TowerHolderService>(),
-                c.Resolve<PointClickExplosionService>(),
-                c.Resolve<PlaceableService>(),
-                c.Resolve<PreparationTriggerService>(),
-                c.Resolve<GameplayPopupService>(),
-                c.Resolve<StageProviderService>(),
-                c.Resolve<EndProcessStageReleaser>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<IInputService>(),
-                c.Resolve<IPauseService>(),
-                c.Resolve<BoostAbilitiesShopService>(),
-                c.Resolve<LevelsProgressionService>(),
-                c.Resolve<PlayerDataProvider>(),
-                c.Resolve<ICoroutinesPerformer>(),
-                c.Resolve<GameplayResultHandler>());
-
-        private static MainHeroHolderService CreateMainHeroHolderService(DIContainer c)
-            => new MainHeroHolderService(c.Resolve<EntitiesLifeContext>());
-
-        private static PreparationTriggerService CreatePreparationTriggerService(DIContainer c)
-            => new PreparationTriggerService(
-                c.Resolve<EntitiesFactory>(),
-                c.Resolve<EntitiesLifeContext>());
-
-        private static StageProviderService CreateStageProviderService(DIContainer c)
+        private static StageProviderService CreateStageProviderService(IObjectResolver c)
             => new StageProviderService(
-                c.Resolve<ConfigsProviderService>().GetConfig<LevelsListConfig>().GetBy(_inputArgs.LevelNumber),
+                c.Resolve<ConfigsProviderService>()
+                    .GetConfig<LevelsListConfig>()
+                    .GetBy(c.Resolve<GameplayInputArgs>().LevelNumber),
                 c.Resolve<StagesFactory>());
-
-        private static StagesFactory CreateStagesFactory(DIContainer c)
-            => new StagesFactory(c.Resolve<EnemiesFactory>(), c.Resolve<EntitiesLifeContext>());
-
-        private static EnemiesFactory CreateEnemiesFactory(DIContainer c)
-            => new EnemiesFactory(
-                c.Resolve<EntitiesFactory>(),
-                c.Resolve<BrainsFactory>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<DropLootService>(),
-                c.Resolve<BoostAbilitiesStartGameplayApplier>());
-
-        private static MainHeroFactory CreateMainHeroFactory(DIContainer c)
-            => new MainHeroFactory(
-                c.Resolve<EntitiesFactory>(),
-                c.Resolve<BrainsFactory>(),
-                c.Resolve<ConfigsProviderService>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<StatsUpgradeService>(),
-                c.Resolve<BoostAbilitiesStartGameplayApplier>());
-
-        private static DesktopInput CreateDesktopInput(DIContainer c)
-            => new DesktopInput();
-
-        private static AIBrainsContext CreateAIBrainsContext(DIContainer c)
-            => new AIBrainsContext();
-
-        private static BrainsFactory CreateBrainsFactory(DIContainer c)
-            => new BrainsFactory(
-                c.Resolve<StateMachineFactory>(),
-                c.Resolve<AIBrainsContext>(),
-                c.Resolve<EntitiesLifeContext>());
-
-        private static CollidersRegistryService CreateCollidersRegistryService(DIContainer c)
-            => new CollidersRegistryService();
-
-        private static MonoEntitiesFactory CreateMonoEntitiesFactory(DIContainer c)
-            => new MonoEntitiesFactory(
-                c.Resolve<ResourcesAssetsLoader>(),
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<CollidersRegistryService>());
-
-        private static EntitiesLifeContext CreateEntitiesLifeContext(DIContainer c)
-            => new EntitiesLifeContext();
-
-        private static EntitiesFactory CreateEntitiesFactory(DIContainer c)
-            => new EntitiesFactory(
-                c.Resolve<EntitiesLifeContext>(),
-                c.Resolve<CollidersRegistryService>(),
-                c.Resolve<MonoEntitiesFactory>());
     }
 }

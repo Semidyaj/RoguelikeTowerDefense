@@ -1,11 +1,12 @@
 ﻿using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.LoadingScreen;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
 using System.Collections;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Infrastructure.EntryPoint
 {
@@ -15,13 +16,12 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
         {
             SetupAddSettings();
 
-            DIContainer projectContainer = new DIContainer();
+            LifetimeScope projectScope = LifetimeScope.Create(ProjectContextRegistrations.Configure, "ProjectScope");
+            DontDestroyOnLoad(projectScope.gameObject);
 
-            ProjectContextRegistrations.Process(projectContainer);
+            IObjectResolver container = projectScope.Container;
 
-            projectContainer.Initialize();
-
-            projectContainer.Resolve<ICoroutinesPerformer>().StartPerform(Initialize(projectContainer));
+            container.Resolve<ICoroutinesPerformer>().StartPerform(Initialize(container));
         }
 
         private void SetupAddSettings()
@@ -30,7 +30,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             Application.targetFrameRate = 60;
         }
 
-        private IEnumerator Initialize(DIContainer container)
+        private IEnumerator Initialize(IObjectResolver container)
         {
             ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
             SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();

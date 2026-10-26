@@ -1,9 +1,9 @@
 ﻿using RoguelikeTD.Core.AssetsManagement;
-using RoguelikeTD.Core.DI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.EntitiesCore.Mono
 {

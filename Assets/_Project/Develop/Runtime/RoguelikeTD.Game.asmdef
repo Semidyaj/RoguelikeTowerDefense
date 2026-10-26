@@ -5,7 +5,8 @@
         "RoguelikeTD.Core",
         "DOTween.Modules",
         "Unity.TextMeshPro",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "VContainer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
