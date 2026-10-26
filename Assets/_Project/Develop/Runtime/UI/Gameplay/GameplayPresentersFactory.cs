@@ -4,7 +4,6 @@ using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
@@ -26,81 +25,117 @@ namespace RoguelikeTD.UI.Gameplay
 {
     public class GameplayPresentersFactory
     {
-        private readonly DIContainer _container;
         private readonly GameplayInputArgs _args;
 
-        public GameplayPresentersFactory(DIContainer container, GameplayInputArgs args)
+        private readonly SceneSwitcherService _sceneSwitcherService;
+        private readonly ICoroutinesPerformer _coroutinesPerformer;
+        private readonly ConfigsProviderService _configsProviderService;
+        private readonly ViewsFactory _viewsFactory;
+        private readonly ProjectPresentersFactory _projectPresentersFactory;
+        private readonly MainHeroHolderService _mainHeroHolderService;
+        private readonly StageProviderService _stageProviderService;
+        private readonly EntitiesLifeContext _entitiesLifeContext;
+        private readonly AbilitiesECSFactory _abilitiesECSFactory;
+        private readonly AbilityDropService _abilityDropService;
+        private readonly PlaceablesSpawner _placeablesSpawner;
+        private readonly PlaceableService _placeableService;
+
+        public GameplayPresentersFactory(
+            GameplayInputArgs args,
+            SceneSwitcherService sceneSwitcherService,
+            ICoroutinesPerformer coroutinesPerformer,
+            ConfigsProviderService configsProviderService,
+            ViewsFactory viewsFactory,
+            ProjectPresentersFactory projectPresentersFactory,
+            MainHeroHolderService mainHeroHolderService,
+            StageProviderService stageProviderService,
+            EntitiesLifeContext entitiesLifeContext,
+            AbilitiesECSFactory abilitiesECSFactory,
+            AbilityDropService abilityDropService,
+            PlaceablesSpawner placeablesSpawner,
+            PlaceableService placeableService)
         {
-            _container = container;
             _args = args;
+            _sceneSwitcherService = sceneSwitcherService;
+            _coroutinesPerformer = coroutinesPerformer;
+            _configsProviderService = configsProviderService;
+            _viewsFactory = viewsFactory;
+            _projectPresentersFactory = projectPresentersFactory;
+            _mainHeroHolderService = mainHeroHolderService;
+            _stageProviderService = stageProviderService;
+            _entitiesLifeContext = entitiesLifeContext;
+            _abilitiesECSFactory = abilitiesECSFactory;
+            _abilityDropService = abilityDropService;
+            _placeablesSpawner = placeablesSpawner;
+            _placeableService = placeableService;
         }
 
         public DefeatPopupPresenter CreateDefeatPopupPresenter(DefeatPopupView view)
             => new DefeatPopupPresenter(
                 view,
-                _container.Resolve<SceneSwitcherService>(),
-                _container.Resolve<ICoroutinesPerformer>(),
+                _sceneSwitcherService,
+                _coroutinesPerformer,
                 _args);
 
         public WinPopupPresenter CreateWinPopupPresenter(WinPopupView view)
             => new WinPopupPresenter(
                 view,
-                _container.Resolve<SceneSwitcherService>(),
-                _container.Resolve<ICoroutinesPerformer>());
+                _sceneSwitcherService,
+                _coroutinesPerformer);
 
         public GameplayScreenPresenter CreateGameplayScreenPresenter(GameplayScreenView view)
             => new GameplayScreenPresenter(
-                view, 
-                _container.Resolve<GameplayPresentersFactory>(),
-                _container.Resolve<ProjectPresentersFactory>(),
-                _container.Resolve<MainHeroHolderService>());
+                view,
+                this,
+                _projectPresentersFactory,
+                _mainHeroHolderService);
 
         public StagePresenter CreateStagePresenter(IconTextView view)
-            => new StagePresenter(view, _container.Resolve<StageProviderService>());
+            => new StagePresenter(view, _stageProviderService);
 
         public EntityHealthPresenter CreateEntityHealthPresenter(BarWithText view, Entity entity)
             => new EntityHealthPresenter(view, entity);
 
         public EntitiesHealthDisplayPresenter CreateEntitiesHealthDisplayPresenter(EntitiesHealthDisplay view)
             => new EntitiesHealthDisplayPresenter(
-                _container.Resolve<EntitiesLifeContext>(),
+                _entitiesLifeContext,
                 view,
                 this,
-                _container.Resolve<ViewsFactory>());
+                _viewsFactory);
 
         public SelectableAbilityPresenter CreateSelectableAbilityPresenter(AbilityConfig abilityConfig, SelectableAbilityView view, Entity entity, int level)
-            => new SelectableAbilityPresenter(abilityConfig, view, _container.Resolve<AbilitiesECSFactory>(), entity, level);
+            => new SelectableAbilityPresenter(abilityConfig, view, _abilitiesECSFactory, entity, level);
 
         public AbilitySelectPopupPresenter CreateAbilitySelectPopupPresenter(AbilitySelectPopupView view, Entity entity, int level)
             => new AbilitySelectPopupPresenter(
-                _container.Resolve<ICoroutinesPerformer>(),
+                _coroutinesPerformer,
                 view,
                 entity,
                 this,
-                _container.Resolve<AbilityDropService>(),
-                _container.Resolve<ViewsFactory>(),
+                _abilityDropService,
+                _viewsFactory,
                 level);
 
         public MainHeroExperiencePresenter CreateMainHeroExperiencePresenter(BarWithText view)
             => new MainHeroExperiencePresenter(
                 view,
-                _container.Resolve<MainHeroHolderService>(),
-                _container.Resolve<ConfigsProviderService>().GetConfig<ExperienceForUpgradeLevelConfig>());
+                _mainHeroHolderService,
+                _configsProviderService.GetConfig<ExperienceForUpgradeLevelConfig>());
 
         public PlaceablePresenter CreatePlaceablePresenter(PlaceableConfig placeableConfig, PlaceableView view)
             => new PlaceablePresenter(
-                _container.Resolve<PlaceablesSpawner>(),
+                _placeablesSpawner,
                 view,
                 placeableConfig,
-                _container.Resolve<ConfigsProviderService>().GetConfig<CurrencyIconsConfig>());
+                _configsProviderService.GetConfig<CurrencyIconsConfig>());
 
         public PlaceablePopupPresenter CreatePlaceablePopupPresenter(PlaceablePopupView view)
             => new PlaceablePopupPresenter(
-                _container.Resolve<ICoroutinesPerformer>(),
+                _coroutinesPerformer,
                 view,
                 this,
-                _container.Resolve<ViewsFactory>(),
-                _container.Resolve<ConfigsProviderService>(),
-                _container.Resolve<PlaceableService>());
+                _viewsFactory,
+                _configsProviderService,
+                _placeableService);
     }
 }

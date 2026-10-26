@@ -3,7 +3,6 @@ using RoguelikeTD.Configs.Meta.HeroStats;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Core.DI;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
@@ -22,35 +21,62 @@ namespace RoguelikeTD.UI
 {
     public class ProjectPresentersFactory
     {
-        private readonly DIContainer _container;
+        private readonly ICoroutinesPerformer _coroutinesPerformer;
+        private readonly ConfigsProviderService _configsProviderService;
+        private readonly ViewsFactory _viewsFactory;
+        private readonly LevelsProgressionService _levelsProgressionService;
+        private readonly SceneSwitcherService _sceneSwitcherService;
+        private readonly SceneLoaderService _sceneLoaderService;
+        private readonly WalletService _walletService;
+        private readonly StatsUpgradeService _statsUpgradeService;
+        private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
 
-        public ProjectPresentersFactory(DIContainer container)
+        public ProjectPresentersFactory(
+            ICoroutinesPerformer coroutinesPerformer,
+            ConfigsProviderService configsProviderService,
+            ViewsFactory viewsFactory,
+            LevelsProgressionService levelsProgressionService,
+            SceneSwitcherService sceneSwitcherService,
+            SceneLoaderService sceneLoaderService,
+            WalletService walletService,
+            StatsUpgradeService statsUpgradeService,
+            BoostAbilitiesShopService boostAbilitiesShopService)
         {
-            _container = container;
+            _coroutinesPerformer = coroutinesPerformer;
+            _configsProviderService = configsProviderService;
+            _viewsFactory = viewsFactory;
+            _levelsProgressionService = levelsProgressionService;
+            _sceneSwitcherService = sceneSwitcherService;
+            _sceneLoaderService = sceneLoaderService;
+            _walletService = walletService;
+            _statsUpgradeService = statsUpgradeService;
+            _boostAbilitiesShopService = boostAbilitiesShopService;
         }
+
+        private CurrencyIconsConfig CurrencyIconsConfig => _configsProviderService.GetConfig<CurrencyIconsConfig>();
 
         public LevelsMenuPopupPresenter CreateLevelsMenuPopupPresenter(LevelsMenuPopupView view)
             => new LevelsMenuPopupPresenter(
-                _container.Resolve<ICoroutinesPerformer>(),
-                _container.Resolve<ConfigsProviderService>(),
+                _coroutinesPerformer,
+                _configsProviderService,
                 this,
-                _container.Resolve<ViewsFactory>(),
+                _viewsFactory,
                 view);
 
         public LevelTilePresenter CreateLevelTilePresenter(int levelNumber, LevelTileView view)
             => new LevelTilePresenter(
-                _container.Resolve<LevelsProgressionService>(),
-                _container.Resolve<SceneSwitcherService>(),
-                _container.Resolve<ICoroutinesPerformer>(),
+                _levelsProgressionService,
+                _sceneSwitcherService,
+                _coroutinesPerformer,
                 levelNumber,
                 view);
 
         public WalletPresenter CreateWalletPresenter(IconTextListView listView)
         {
             return new WalletPresenter(
-                _container.Resolve<WalletService>(),
+                _walletService,
                 this,
-                _container.Resolve<ViewsFactory>(),
+                _viewsFactory,
                 listView);
         }
 
@@ -62,43 +88,43 @@ namespace RoguelikeTD.UI
             return new CurrencyPresenter(
                 currency,
                 currencyType,
-                _container.Resolve<ConfigsProviderService>().GetConfig<CurrencyIconsConfig>(),
+                CurrencyIconsConfig,
                 view);
         }
 
         public UpgradableStatPresenter CreateUpgradableStatPresenter(UpgradableStatView view, StatTypes statType)
             => new UpgradableStatPresenter(
                 view,
-                _container.Resolve<ConfigsProviderService>().GetConfig<StatsViewConfig>(),
-                _container.Resolve<StatsUpgradeService>(),
-                _container.Resolve<WalletService>(),
+                _configsProviderService.GetConfig<StatsViewConfig>(),
+                _statsUpgradeService,
+                _walletService,
                 statType,
-                _container.Resolve<ConfigsProviderService>().GetConfig<CurrencyIconsConfig>());
+                CurrencyIconsConfig);
 
         public StatsUpgradePopupPresenter CreateStatsUpgradePopupPresenter(StatsUpgradePopupView view)
             => new StatsUpgradePopupPresenter(
-                _container.Resolve<ICoroutinesPerformer>(),
+                _coroutinesPerformer,
                 view,
-                _container.Resolve<ViewsFactory>(),
-                _container.Resolve<ProjectPresentersFactory>(),
-                _container.Resolve<StatsUpgradeService>());
+                _viewsFactory,
+                this,
+                _statsUpgradeService);
 
         public CharacterPreviewPresenter CreateCharacterPreviewPresenter()
-            => new CharacterPreviewPresenter(_container.Resolve<SceneLoaderService>(), _container.Resolve<ICoroutinesPerformer>());
+            => new CharacterPreviewPresenter(_sceneLoaderService, _coroutinesPerformer);
 
         public BoostAbilityPresenter CreateBoostAbilityPresenter(BoostAbilityView view, BoostAbilityConfig config)
             => new BoostAbilityPresenter(
                 view,
-                _container.Resolve<ConfigsProviderService>().GetConfig<CurrencyIconsConfig>(),
-                _container.Resolve<BoostAbilitiesShopService>(),
+                CurrencyIconsConfig,
+                _boostAbilitiesShopService,
                 config);
 
         public BoostAbilitiesShopPopupPresenter CreateBoostAbilitiesShopPopupPresenter(BoostAbilitiesShopPopupView view)
             => new BoostAbilitiesShopPopupPresenter(
-                _container.Resolve<ICoroutinesPerformer>(),
+                _coroutinesPerformer,
                 view,
-                _container.Resolve<ViewsFactory>(),
-                _container.Resolve<ProjectPresentersFactory>(),
-                _container.Resolve<BoostAbilitiesShopService>());
+                _viewsFactory,
+                this,
+                _boostAbilitiesShopService);
     }
 }

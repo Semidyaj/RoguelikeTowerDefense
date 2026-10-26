@@ -6,6 +6,7 @@ using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DI;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Core.Timer;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Mono;
@@ -199,7 +200,20 @@ namespace RoguelikeTD.Gameplay.Infrastructure
         }
 
         private static GameplayPresentersFactory CreateGameplayPresentersFactory(DIContainer c)
-            => new GameplayPresentersFactory(c, _inputArgs);
+            => new GameplayPresentersFactory(
+                _inputArgs,
+                c.Resolve<SceneSwitcherService>(),
+                c.Resolve<ICoroutinesPerformer>(),
+                c.Resolve<ConfigsProviderService>(),
+                c.Resolve<ViewsFactory>(),
+                c.Resolve<ProjectPresentersFactory>(),
+                c.Resolve<MainHeroHolderService>(),
+                c.Resolve<StageProviderService>(),
+                c.Resolve<EntitiesLifeContext>(),
+                c.Resolve<AbilitiesECSFactory>(),
+                c.Resolve<AbilityDropService>(),
+                c.Resolve<PlaceablesSpawner>(),
+                c.Resolve<PlaceableService>());
 
         private static PointClickExplosionService CreatePointClickExplosionService(DIContainer c)
             => new PointClickExplosionService(c.Resolve<MainHeroHolderService>());

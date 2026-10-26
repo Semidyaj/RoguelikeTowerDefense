@@ -102,7 +102,16 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             => new ViewsFactory(c.Resolve<ResourcesAssetsLoader>());
 
         private static ProjectPresentersFactory CreateProjectPresentersFactory(DIContainer c)
-            => new ProjectPresentersFactory(c);
+            => new ProjectPresentersFactory(
+                c.Resolve<ICoroutinesPerformer>(),
+                c.Resolve<ConfigsProviderService>(),
+                c.Resolve<ViewsFactory>(),
+                c.Resolve<LevelsProgressionService>(),
+                c.Resolve<SceneSwitcherService>(),
+                c.Resolve<SceneLoaderService>(),
+                c.Resolve<WalletService>(),
+                c.Resolve<StatsUpgradeService>(),
+                c.Resolve<BoostAbilitiesShopService>());
 
         private static PlayerDataProvider CreatePlayerDataProvider(DIContainer c)
             => new PlayerDataProvider(c.Resolve<ISaveLoadService>(), c.Resolve<ConfigsProviderService>());

@@ -4,7 +4,6 @@ using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Meta.Features.Wallet;
 using System;
-using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 {
@@ -14,15 +13,8 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
         private readonly WalletService _walletService;
         private readonly MainHeroHolderService _mainHeroHolderService;
 
-        private Entity _entity;
-
-        private ReactiveVariable<Vector3> _raycastClickPosition;
-        private ReactiveEvent _positionFoundEvent;
-
         private IDisposable _positionFoundDisposable;
 
-        private ReactiveVariable<bool> _isEnoughMoney;
-        private ReactiveVariable<bool> _isPlaced;
         private ReactiveVariable<bool> _isEnabled = new();
 
         private PlaceableConfig _selectedConfig;
@@ -32,21 +24,15 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             _walletService = walletService;
             _mainHeroHolderService = mainHeroHolderService;
             _spawner = spawner;
-
-            _entity = _mainHeroHolderService.MainHero;
-
-            _raycastClickPosition = _entity.InputMouseClickGroundPosition;
-            _positionFoundEvent = _entity.InputMouseClickPositionFoundEvent;
-
-            _isEnoughMoney = _entity.PlaceableIsEnoughMoney;
-            _isPlaced = _entity.PlaceableIsPlaced;
         }
 
         public IReadOnlyVariable<bool> IsEnabled => _isEnabled;
 
+        private Entity Hero => _mainHeroHolderService.MainHero;
+
         public void Enable()
         {
-            _positionFoundDisposable = _positionFoundEvent.Subscribe(OnPositionFound);
+            _positionFoundDisposable = Hero.InputMouseClickPositionFoundEvent.Subscribe(OnPositionFound);
 
             _isEnabled.Value = true;
         }
@@ -73,21 +59,18 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
 
             _walletService.Spend(_selectedConfig.CurrencyType, _selectedConfig.Costs);
 
-            _spawner.Spawn(_selectedConfig, _raycastClickPosition.Value);
+            _spawner.Spawn(_selectedConfig, Hero.InputMouseClickGroundPosition.Value);
 
-            _isPlaced.Value = true;
+            Hero.PlaceableIsPlaced.Value = true;
         }
 
         private bool IsEnoughGold()
         {
-            if (_walletService.Enough(_selectedConfig.CurrencyType, _selectedConfig.Costs))
-            {
-                _isEnoughMoney.Value = true;
-                return true;
-            }
+            bool isEnough = _walletService.Enough(_selectedConfig.CurrencyType, _selectedConfig.Costs);
 
-            _isEnoughMoney.Value = false;
-            return false;
+            Hero.PlaceableIsEnoughMoney.Value = isEnough;
+
+            return isEnough;
         }
     }
 }
