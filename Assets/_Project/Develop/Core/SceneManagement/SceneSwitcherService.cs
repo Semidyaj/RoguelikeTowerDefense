@@ -26,14 +26,15 @@ namespace RoguelikeTD.Core.SceneManagement
             _loadingScreen = loadingScreen;
             _projectScope = projectScope;
             _emptySceneName = emptySceneName;
+
+            Application.quitting += OnApplicationQuitting;
         }
 
         public IEnumerator ProcessSwitchTo(string sceneName, IInputSceneArgs sceneArgs = null)
         {
             _loadingScreen.Show();
 
-            if (_currentSceneScope != null)
-                _currentSceneScope.Dispose();
+            DisposeCurrentSceneScope();
 
             yield return _sceneLoaderService.LoadAsync(_emptySceneName);
 
@@ -51,6 +52,21 @@ namespace RoguelikeTD.Core.SceneManagement
             _loadingScreen.Hide();
 
             sceneBootstrap.Run();
+        }
+
+        private void OnApplicationQuitting()
+        {
+            Application.quitting -= OnApplicationQuitting;
+
+            DisposeCurrentSceneScope();
+        }
+
+        private void DisposeCurrentSceneScope()
+        {
+            if (_currentSceneScope != null)
+                _currentSceneScope.Dispose();
+
+            _currentSceneScope = null;
         }
     }
 }
