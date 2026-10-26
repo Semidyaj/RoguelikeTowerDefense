@@ -35,8 +35,17 @@ namespace RoguelikeTD.UI.Core.StatsUpgradePopup
             Click?.Invoke();
         }
 
-        public virtual void Lock() => _background.sprite = _lockedSprite;
-        public virtual void Unlock() => _background.sprite = _availableSprite;
+        public virtual void Lock()
+        {
+            _background.sprite = _lockedSprite;
+            _button.interactable = false;
+        }
+
+        public virtual void Unlock()
+        {
+            _background.sprite = _availableSprite;
+            _button.interactable = true;
+        }
 
         public void SetPriceText(string priceText) => _priceText.text = priceText;
         public void SetIcon(Sprite icon) => _priceIcon.sprite = icon;

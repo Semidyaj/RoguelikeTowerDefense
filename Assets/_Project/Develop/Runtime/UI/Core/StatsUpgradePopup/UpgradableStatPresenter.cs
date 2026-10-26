@@ -66,28 +66,16 @@ namespace RoguelikeTD.UI.Core.StatsUpgradePopup
 
         private void OnWalletChanged(int arg1, int arg2) => UpdateBuyButtonState();
 
-        private void OnStatUpgradeLevelChanged(int arg1, int arg2) => _view.SetStatValueText(GetStatValueText());
+        private void OnStatUpgradeLevelChanged(int arg1, int arg2)
+        {
+            _view.SetStatValueText(GetStatValueText());
+            UpdateBuyButtonState();
+        }
 
         private void OnBuyButtonClicked()
         {
-            if(_statsUpgradeService.TryGetUpgradeCostFor(_statType, out CurrencyTypes currencyType, out int cost))
-            {
-                if(_walletService.Enough(currencyType, cost))
-                {
-                    if (_statsUpgradeService.TryUpgradeStat(_statType) == false)
-                        throw new Exception();
-
-                    _walletService.Spend(currencyType, cost);
-                }
-                else
-                {
-                    Debug.Log("Not enough currency");
-                }
-            }
-            else
-            {
-                Debug.Log("Already max");
-            }
+            if (_statsUpgradeService.TryBuyUpgrade(_statType) == false)
+                Debug.Log($"Can't upgrade {_statType}");
         }
 
         private void UpdateBuyButtonState()

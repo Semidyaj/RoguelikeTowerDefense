@@ -5,6 +5,7 @@ using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.Wallet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,12 +14,14 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
     public class StatsUpgradeService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {
         private ConfigsProviderService _configsProviderService;
+        private WalletService _walletService;
 
         private Dictionary<StatTypes, ReactiveVariable<int>> _statLevels = new();
 
-        public StatsUpgradeService(ConfigsProviderService configsProviderService, PlayerDataProvider playerDataProvider)
+        public StatsUpgradeService(ConfigsProviderService configsProviderService, WalletService walletService, PlayerDataProvider playerDataProvider)
         {
             _configsProviderService = configsProviderService;
+            _walletService = walletService;
 
             playerDataProvider.RegisterReader(this);
             playerDataProvider.RegisterWriter(this);
@@ -66,13 +69,18 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
             return true;
         }
 
-        public bool TryUpgradeStat(StatTypes type)
+        public bool TryBuyUpgrade(StatTypes type)
         {
-            StatUpgradeCostConfig statData = PlayerStatsUpgradeConfig.GetStatConfig(type);
-
-            if(statData.StatValues.Count <= _statLevels[type].Value)
+            if (TryGetUpgradeCostFor(type, out CurrencyTypes costType, out int cost) == false)
                 return false;
 
+            if (TryGetStatValueForNextLevel(type, out _) == false)
+                return false;
+
+            if (_walletService.Enough(costType, cost) == false)
+                return false;
+
+            _walletService.Spend(costType, cost);
             _statLevels[type].Value += 1;
             return true;
         }
@@ -81,10 +89,12 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
         {
             foreach(var statLevel in data.StatsUpgradeLevel)
             {
+                int level = ClampToConfigLevels(statLevel.Key, statLevel.Value);
+
                 if (_statLevels.ContainsKey(statLevel.Key))
-                    _statLevels[statLevel.Key].Value = statLevel.Value;
+                    _statLevels[statLevel.Key].Value = level;
                 else
-                    _statLevels.Add(statLevel.Key, new ReactiveVariable<int>(statLevel.Value));
+                    _statLevels.Add(statLevel.Key, new ReactiveVariable<int>(level));
             }
         }
 
@@ -97,6 +107,13 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
                 else
                     data.StatsUpgradeLevel.Add(stat.Key, stat.Value.Value);
             }
+        }
+
+        private int ClampToConfigLevels(StatTypes type, int level)
+        {
+            int maxLevel = PlayerStatsUpgradeConfig.GetStatConfig(type).StatValues.Count;
+
+            return Math.Clamp(level, 1, maxLevel);
         }
     }
 }

@@ -79,6 +79,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
         private static StatsUpgradeService CreateStatsUpgradeService(DIContainer c)
             => new StatsUpgradeService(
                 c.Resolve<ConfigsProviderService>(),
+                c.Resolve<WalletService>(),
                 c.Resolve<PlayerDataProvider>());
 
         private static GameplayStatisticsService CreateGameplayStatisticsService(DIContainer c)
