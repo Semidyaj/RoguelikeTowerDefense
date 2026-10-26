@@ -2,9 +2,7 @@
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Systems;
-using RoguelikeTD.Gameplay.Features.LifeCycle;
 using System;
-using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.ApplyDamage
 {
@@ -14,14 +12,10 @@ namespace RoguelikeTD.Gameplay.Features.ApplyDamage
         private ReactiveEvent<float> _damageEvent;
 
         private ReactiveVariable<float> _health;
-        private ReactiveVariable<float> _maxHealth;
 
         private ICompositeCondition _canApplyDamage;
 
         private IDisposable _requestDisposable;
-
-        private Entity _entity;
-
 
         public void OnInit(Entity entity)
         {
@@ -29,9 +23,6 @@ namespace RoguelikeTD.Gameplay.Features.ApplyDamage
             _damageEvent = entity.TakeDamageEvent;
 
             _health = entity.CurrentHealth;
-            _maxHealth = entity.MaxHealth;
-
-            _entity = entity;
 
             _canApplyDamage = entity.CanApplyDamage;
 
@@ -51,9 +42,14 @@ namespace RoguelikeTD.Gameplay.Features.ApplyDamage
             if (_canApplyDamage.Evaluate() == false)
                 return;
 
-            _health.Value = MathF.Max(_health.Value - damage, 0);
+            float dealtDamage = MathF.Min(damage, _health.Value);
 
-            _damageEvent.Invoke(damage);
+            if (dealtDamage <= 0)
+                return;
+
+            _health.Value -= dealtDamage;
+
+            _damageEvent.Invoke(dealtDamage);
         }
     }
 }
