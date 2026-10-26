@@ -49,8 +49,6 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             ConfigsProviderService configsProviderService = _resolver.Resolve<ConfigsProviderService>();
 
-            yield return configsProviderService.LoadAsync();
-
             _gameplayScreenPresenter = _resolver.Resolve<GameplayScreenPresenter>();
 
             _entitiesLifeContext = _resolver.Resolve<EntitiesLifeContext>();
@@ -63,11 +61,13 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             LevelConfig baseLevelConfig = configsProviderService.GetConfig<LevelsListConfig>().GetBy(_inputArgs.LevelNumber);
             TowerDefenseLevelConfig levelConfig = baseLevelConfig as TowerDefenseLevelConfig;
 
-            TowerConfig towerConfig = _resolver.Resolve<ConfigsProviderService>().GetConfig<TowerConfig>();
+            TowerConfig towerConfig = configsProviderService.GetConfig<TowerConfig>();
 
             _resolver.Resolve<AlliesFactory>().Create(levelConfig.Position, towerConfig, levelConfig);
 
             _mainHeroHolderService = _resolver.Resolve<MainHeroHolderService>();
+
+            yield break;
         }
 
         public override void Run()
