@@ -42,10 +42,7 @@ namespace RoguelikeTD.Meta.Features.Wallet
         public void Spend(CurrencyTypes currencyType, int amount)
         {
             if(Enough(currencyType, amount) == false)
-                throw new ArgumentOutOfRangeException("Not enough: " + currencyType.ToString());
-
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount));
+                throw new InvalidOperationException($"Not enough {currencyType}: has {_currencies[currencyType].Value}, need {amount}");
 
             _currencies[currencyType].Value -= amount;
         }
