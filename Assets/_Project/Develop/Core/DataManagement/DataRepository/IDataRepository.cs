@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 
 namespace RoguelikeTD.Core.DataManagement.DataRepository
 {
     public interface IDataRepository
     {
-        IEnumerator Read(string key, Action<string> onRead);
-        IEnumerator Write(string key, string serializedData);
-        IEnumerator Remove(string key);
-        IEnumerator Exists(string key, Action<bool> onExistsResult);
+        UniTask<string> ReadAsync(string key);
+        UniTask WriteAsync(string key, string serializedData);
+        UniTask RemoveAsync(string key);
+        UniTask<bool> ExistsAsync(string key);
     }
 }

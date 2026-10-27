@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using RoguelikeTD.Configs.Meta.HeroStats;
 using RoguelikeTD.Core.ConfigsManagement;
@@ -8,7 +9,6 @@ using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.Tests.Fakes;
-using RoguelikeTD.Tests.Helpers;
 using UnityEngine;
 
 namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
@@ -43,25 +43,25 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void ReadFrom_SetsStatLevels()
+        public async Task ReadFrom_SetsStatLevels()
         {
-            StatsUpgradeService service = CreateService(level: 2);
+            StatsUpgradeService service = await CreateService(level: 2);
 
             Assert.AreEqual(2, service.GetStatLevelFor(Stat).Value);
         }
 
         [Test]
-        public void GetCurrentStatValueFor_ReturnsValueForCurrentLevel()
+        public async Task GetCurrentStatValueFor_ReturnsValueForCurrentLevel()
         {
-            StatsUpgradeService service = CreateService(level: 2);
+            StatsUpgradeService service = await CreateService(level: 2);
 
             Assert.AreEqual(20f, service.GetCurrentStatValueFor(Stat));
         }
 
         [Test]
-        public void TryGetStatValueForNextLevel_WhenNotMax_ReturnsNextValue()
+        public async Task TryGetStatValueForNextLevel_WhenNotMax_ReturnsNextValue()
         {
-            StatsUpgradeService service = CreateService(level: 1);
+            StatsUpgradeService service = await CreateService(level: 1);
 
             bool result = service.TryGetStatValueForNextLevel(Stat, out float nextValue);
 
@@ -70,17 +70,17 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryGetStatValueForNextLevel_AtMax_ReturnsFalse()
+        public async Task TryGetStatValueForNextLevel_AtMax_ReturnsFalse()
         {
-            StatsUpgradeService service = CreateService(level: MaxLevel);
+            StatsUpgradeService service = await CreateService(level: MaxLevel);
 
             Assert.IsFalse(service.TryGetStatValueForNextLevel(Stat, out _));
         }
 
         [Test]
-        public void TryGetUpgradeCostFor_ReturnsCostForCurrentLevel()
+        public async Task TryGetUpgradeCostFor_ReturnsCostForCurrentLevel()
         {
-            StatsUpgradeService service = CreateService(level: 2);
+            StatsUpgradeService service = await CreateService(level: 2);
 
             bool result = service.TryGetUpgradeCostFor(Stat, out CurrencyTypes costType, out int cost);
 
@@ -90,20 +90,20 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryGetUpgradeCostFor_AtMax_ReturnsFalse()
+        public async Task TryGetUpgradeCostFor_AtMax_ReturnsFalse()
         {
-            StatsUpgradeService service = CreateService(level: MaxLevel);
+            StatsUpgradeService service = await CreateService(level: MaxLevel);
 
             Assert.IsFalse(service.TryGetUpgradeCostFor(Stat, out _, out _));
         }
 
         [Test]
-        public void WriteTo_ThenReadFrom_RestoresLevels()
+        public async Task WriteTo_ThenReadFrom_RestoresLevels()
         {
-            StatsUpgradeService savedService = CreateService(level: 2);
+            StatsUpgradeService savedService = await CreateService(level: 2);
             PlayerData data = new PlayerData();
             savedService.WriteTo(data);
-            StatsUpgradeService loadedService = CreateService(level: 1);
+            StatsUpgradeService loadedService = await CreateService(level: 1);
 
             loadedService.ReadFrom(data);
 
@@ -111,9 +111,9 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryBuyUpgrade_WhenEnough_SpendsCostAndIncreasesLevel()
+        public async Task TryBuyUpgrade_WhenEnough_SpendsCostAndIncreasesLevel()
         {
-            StatsUpgradeService service = CreateService(level: 1, gold: 150);
+            StatsUpgradeService service = await CreateService(level: 1, gold: 150);
 
             bool result = service.TryBuyUpgrade(Stat);
 
@@ -123,9 +123,9 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryBuyUpgrade_WhenNotEnough_ReturnsFalseAndChangesNothing()
+        public async Task TryBuyUpgrade_WhenNotEnough_ReturnsFalseAndChangesNothing()
         {
-            StatsUpgradeService service = CreateService(level: 1, gold: 99);
+            StatsUpgradeService service = await CreateService(level: 1, gold: 99);
 
             bool result = service.TryBuyUpgrade(Stat);
 
@@ -135,9 +135,9 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryBuyUpgrade_AtMax_ReturnsFalseAndChangesNothing()
+        public async Task TryBuyUpgrade_AtMax_ReturnsFalseAndChangesNothing()
         {
-            StatsUpgradeService service = CreateService(level: MaxLevel, gold: 1000);
+            StatsUpgradeService service = await CreateService(level: MaxLevel, gold: 1000);
 
             bool result = service.TryBuyUpgrade(Stat);
 
@@ -147,9 +147,9 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void TryBuyUpgrade_NotifiesLevelSubscribers()
+        public async Task TryBuyUpgrade_NotifiesLevelSubscribers()
         {
-            StatsUpgradeService service = CreateService(level: 1, gold: 150);
+            StatsUpgradeService service = await CreateService(level: 1, gold: 150);
             int receivedNew = 0;
             service.GetStatLevelFor(Stat).Subscribe((oldValue, newValue) => receivedNew = newValue);
 
@@ -159,27 +159,27 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
-        public void ReadFrom_LevelAboveMax_ClampedToMax()
+        public async Task ReadFrom_LevelAboveMax_ClampedToMax()
         {
-            StatsUpgradeService service = CreateService(level: MaxLevel + 5);
+            StatsUpgradeService service = await CreateService(level: MaxLevel + 5);
 
             Assert.AreEqual(MaxLevel, service.GetStatLevelFor(Stat).Value);
             Assert.AreEqual(30f, service.GetCurrentStatValueFor(Stat));
         }
 
         [Test]
-        public void ReadFrom_LevelBelowOne_ClampedToOne()
+        public async Task ReadFrom_LevelBelowOne_ClampedToOne()
         {
-            StatsUpgradeService service = CreateService(level: 0);
+            StatsUpgradeService service = await CreateService(level: 0);
 
             Assert.AreEqual(1, service.GetStatLevelFor(Stat).Value);
             Assert.AreEqual(10f, service.GetCurrentStatValueFor(Stat));
         }
 
-        private StatsUpgradeService CreateService(int level, int gold = 0)
+        private async Task<StatsUpgradeService> CreateService(int level, int gold = 0)
         {
             ConfigsProviderService configsProviderService = new ConfigsProviderService(new FakeConfigsLoader(_config));
-            CoroutineRunner.Run(configsProviderService.LoadAsync());
+            await configsProviderService.LoadAsync();
 
             _wallet = new WalletService(
                 new Dictionary<CurrencyTypes, ReactiveVariable<int>>

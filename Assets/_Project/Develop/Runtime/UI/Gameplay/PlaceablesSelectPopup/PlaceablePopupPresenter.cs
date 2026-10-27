@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.UI.Core;
 using System.Collections.Generic;
@@ -20,13 +19,11 @@ namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
         private PlaceablePresenter _selectedPresenter;
 
         public PlaceablePopupPresenter(
-            ICoroutinesPerformer coroutinesPerformer,
             PlaceablePopupView view,
             GameplayPresentersFactory gameplayPresentersFactory,
             ViewsFactory viewsFactory,
             ConfigsProviderService configProviderService,
             PlaceableService placeableService)
-            : base(coroutinesPerformer)
         {
             _view = view;
             _gameplayPresentersFactory = gameplayPresentersFactory;

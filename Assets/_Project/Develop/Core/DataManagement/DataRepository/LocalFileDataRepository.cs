@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 using System.IO;
 
 namespace RoguelikeTD.Core.DataManagement.DataRepository
@@ -15,39 +14,27 @@ namespace RoguelikeTD.Core.DataManagement.DataRepository
             _saveFileExtention = saveFileExtention;
         }
 
-        public IEnumerator Exists(string key, Action<bool> onExistsResult)
-        {
-            bool exists = File.Exists(FullPathFor(key));
+        public UniTask<bool> ExistsAsync(string key)
+            => UniTask.FromResult(File.Exists(FullPathFor(key)));
 
-            onExistsResult?.Invoke(exists);
+        public UniTask<string> ReadAsync(string key)
+            => UniTask.FromResult(File.ReadAllText(FullPathFor(key)));
 
-            yield break;
-        }
-
-        public IEnumerator Read(string key, Action<string> onRead)
-        {
-            string text = File.ReadAllText(FullPathFor(key));
-
-            onRead?.Invoke(text);
-
-            yield break;
-        }
-
-        public IEnumerator Remove(string key)
+        public UniTask RemoveAsync(string key)
         {
             File.Delete(FullPathFor(key));
 
-            yield break;
+            return UniTask.CompletedTask;
         }
 
-        public IEnumerator Write(string key, string serializedData)
+        public UniTask WriteAsync(string key, string serializedData)
         {
             File.WriteAllText(FullPathFor(key), serializedData);
 
-            yield break;
+            return UniTask.CompletedTask;
         }
 
-        private string FullPathFor(string key) 
+        private string FullPathFor(string key)
             => Path.Combine(_folderPath, key) + "." + _saveFileExtention;
     }
 }

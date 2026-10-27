@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +7,11 @@ namespace RoguelikeTD.UI.Core.Utilities
 {
     public class RebuildLayoutOnEnable : MonoBehaviour
     {
-        private void OnEnable() => StartCoroutine(RebuildLayout());
+        private void OnEnable() => RebuildLayoutAsync(destroyCancellationToken).Forget();
 
-        private IEnumerator RebuildLayout()
+        private async UniTaskVoid RebuildLayoutAsync(CancellationToken cancellationToken)
         {
-            yield return new WaitForEndOfFrame();
+            await UniTask.WaitForEndOfFrame(cancellationToken);
 
             if (TryGetComponent(out RectTransform component))
                 LayoutRebuilder.ForceRebuildLayoutImmediate(component);

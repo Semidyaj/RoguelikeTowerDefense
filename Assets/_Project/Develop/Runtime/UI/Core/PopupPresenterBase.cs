@@ -1,8 +1,7 @@
-﻿using DG.Tweening;
-using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
-using System.Collections;
-using UnityEngine;
+using System.Threading;
 
 namespace RoguelikeTD.UI.Core
 {
@@ -10,14 +9,7 @@ namespace RoguelikeTD.UI.Core
     {
         public event Action<PopupPresenterBase> CloseRequest;
 
-        private readonly ICoroutinesPerformer _coroutinePerformer;
-
-        private Coroutine _process;
-
-        protected PopupPresenterBase(ICoroutinesPerformer performer)
-        {
-            _coroutinePerformer = performer;
-        }
+        private CancellationTokenSource _processCancellation;
 
         protected abstract PopupViewBase PopupView { get; }
 
@@ -27,23 +19,19 @@ namespace RoguelikeTD.UI.Core
 
         public virtual void Dispose()
         {
-            KillProcess();
+            CancelProcess();
 
             PopupView.CloseRequest -= OnCloseRequest;
         }
 
         public void Show()
         {
-            KillProcess();
-
-            _process = _coroutinePerformer.StartPerform(ProcessShow());
+            ShowAsync(RestartProcess()).Forget();
         }
 
         public void Hide(Action callback = null)
         {
-            KillProcess();
-
-            _process = _coroutinePerformer.StartPerform(ProcessHide(callback));
+            HideAsync(callback, RestartProcess()).Forget();
         }
 
         protected virtual void OnPreShow()
@@ -62,30 +50,40 @@ namespace RoguelikeTD.UI.Core
 
         protected void OnCloseRequest() => CloseRequest?.Invoke(this);
 
-        private IEnumerator ProcessShow()
+        private async UniTaskVoid ShowAsync(CancellationToken cancellationToken)
         {
             OnPreShow();
 
-            yield return PopupView.Show().WaitForCompletion();
+            await PopupView.Show().ToUniTask(TweenCancelBehaviour.CancelAwait, cancellationToken);
 
             OnPostShow();
         }
 
-        private IEnumerator ProcessHide(Action callback)
+        private async UniTaskVoid HideAsync(Action callback, CancellationToken cancellationToken)
         {
             OnPreHide();
 
-            yield return PopupView?.Hide().WaitForCompletion();
+            await PopupView.Hide().ToUniTask(TweenCancelBehaviour.CancelAwait, cancellationToken);
 
             OnPostHide();
 
             callback?.Invoke();
         }
 
-        private void KillProcess()
+        private CancellationToken RestartProcess()
         {
-            if(_process != null)
-                _coroutinePerformer.StopPerform(_process);
+            CancelProcess();
+
+            _processCancellation = new CancellationTokenSource();
+
+            return _processCancellation.Token;
+        }
+
+        private void CancelProcess()
+        {
+            _processCancellation?.Cancel();
+            _processCancellation?.Dispose();
+            _processCancellation = null;
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.Reactive;
 using System;
-using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 namespace RoguelikeTD.Core.Timer
@@ -14,13 +14,11 @@ namespace RoguelikeTD.Core.Timer
 
         private ReactiveVariable<float> _currentTime;
 
-        private ICoroutinesPerformer _coroutinesPerformer;
-        private Coroutine _cooldownProcess;
+        private CancellationTokenSource _cooldownCancellation;
 
-        public TimerService(float cooldown, ICoroutinesPerformer coroutinesPerformer)
+        public TimerService(float cooldown)
         {
             _cooldown = cooldown;
-            _coroutinesPerformer = coroutinesPerformer;
 
             _cooldownEnded = new ReactiveEvent();
             _currentTime = new ReactiveVariable<float>();
@@ -37,25 +35,28 @@ namespace RoguelikeTD.Core.Timer
 
         private void Stop()
         {
-            if(_cooldownProcess != null)
-                _coroutinesPerformer.StopPerform(_cooldownProcess);
+            _cooldownCancellation?.Cancel();
+            _cooldownCancellation?.Dispose();
+            _cooldownCancellation = null;
         }
 
         public void Restart()
         {
             Stop();
 
-            _cooldownProcess = _coroutinesPerformer.StartPerform(CooldownProcess());
+            _cooldownCancellation = new CancellationTokenSource();
+
+            CooldownProcessAsync(_cooldownCancellation.Token).Forget();
         }
 
-        private IEnumerator CooldownProcess()
+        private async UniTaskVoid CooldownProcessAsync(CancellationToken cancellationToken)
         {
             _currentTime.Value = _cooldown;
 
             while (IsOver == false)
             {
                 _currentTime.Value -= Time.deltaTime;
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
 
             _cooldownEnded.Invoke();

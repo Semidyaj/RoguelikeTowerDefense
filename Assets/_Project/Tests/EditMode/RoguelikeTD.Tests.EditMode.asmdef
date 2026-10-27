@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "RoguelikeTD.Core",
-        "RoguelikeTD.Game"
+        "RoguelikeTD.Game",
+        "UniTask"
     ],
     "includePlatforms": [
         "Editor"

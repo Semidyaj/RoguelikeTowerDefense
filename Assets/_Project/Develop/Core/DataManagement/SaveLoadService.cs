@@ -1,8 +1,7 @@
-﻿using RoguelikeTD.Core.DataManagement.DataRepository;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Core.DataManagement.DataRepository;
 using RoguelikeTD.Core.DataManagement.KeysStorage;
 using RoguelikeTD.Core.DataManagement.Serializers;
-using System;
-using System.Collections;
 
 namespace RoguelikeTD.Core.DataManagement
 {
@@ -19,39 +18,27 @@ namespace RoguelikeTD.Core.DataManagement
             _repository = repository;
         }
 
-        public IEnumerator Exists<TData>(Action<bool> onExistsResult) where TData : ISaveData
+        public UniTask<bool> ExistsAsync<TData>() where TData : ISaveData
+            => _repository.ExistsAsync(_keysStorage.GetKeyFor<TData>());
+
+        public async UniTask<TData> LoadAsync<TData>() where TData : ISaveData
         {
             string key = _keysStorage.GetKeyFor<TData>();
 
-            yield return _repository.Exists(key, result => onExistsResult?.Invoke(result));
+            string serializedData = await _repository.ReadAsync(key);
+
+            return _serializer.Deserialize<TData>(serializedData);
         }
 
-        public IEnumerator Load<TData>(Action<TData> onLoad) where TData : ISaveData
-        {
-            string key = _keysStorage.GetKeyFor<TData>();
+        public UniTask RemoveAsync<TData>() where TData : ISaveData
+            => _repository.RemoveAsync(_keysStorage.GetKeyFor<TData>());
 
-            string serializedData = "";
-
-            yield return _repository.Read(key, result => serializedData = result);
-
-            TData data = _serializer.Deserialize<TData>(serializedData);
-
-            onLoad?.Invoke(data);
-        }
-
-        public IEnumerator Remove<TData>() where TData : ISaveData
-        {
-            string key = _keysStorage.GetKeyFor<TData>();
-
-            yield return _repository.Remove(key);
-        }
-
-        public IEnumerator Save<TData>(TData data) where TData : ISaveData
+        public UniTask SaveAsync<TData>(TData data) where TData : ISaveData
         {
             string serializedData = _serializer.Serialize(data);
             string key = _keysStorage.GetKeyFor<TData>();
 
-            yield return _repository.Write(key, serializedData);
+            return _repository.WriteAsync(key, serializedData);
         }
     }
 }

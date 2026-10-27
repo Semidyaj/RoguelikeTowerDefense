@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
@@ -22,7 +22,6 @@ namespace RoguelikeTD.UI.MainMenu
         private readonly MainMenuPopupService _popupService;
         private readonly ResetStatistics _resetService;
         private readonly SceneSwitcherService _sceneSwitcherService;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
 
         private readonly List<IPresenter> _childPresenters = new();
 
@@ -33,8 +32,7 @@ namespace RoguelikeTD.UI.MainMenu
             ResetStatistics resetService,
             MainMenuPresentersFactory mainMenuPresentersFactory,
             LevelsProgressionService levelsProgressionService,
-            SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer)
+            SceneSwitcherService sceneSwitcherService)
         {
             _screen = screen;
             _projectPresentersFactory = projectPresentersFactory;
@@ -43,7 +41,6 @@ namespace RoguelikeTD.UI.MainMenu
             _mainMenuPresentersFactory = mainMenuPresentersFactory;
             _levelsProgressionService = levelsProgressionService;
             _sceneSwitcherService = sceneSwitcherService;
-            _coroutinesPerformer = coroutinesPerformer;
         }
 
         public void Initialize()
@@ -92,11 +89,14 @@ namespace RoguelikeTD.UI.MainMenu
         private void OnPlayRandomLevelMenuButtonClicked()
         {
             if(_levelsProgressionService.CompletedLevels.Count == 0)
-                _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(1)));
+            {
+                _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(1)).Forget();
+                return;
+            }
 
             int randomLevel = _levelsProgressionService.CompletedLevels[Random.Range(0, _levelsProgressionService.CompletedLevels.Count)];
 
-            _coroutinesPerformer.StartPerform(_sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(randomLevel)));
+            _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(randomLevel)).Forget();
         }
 
         private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopup();

@@ -3,7 +3,6 @@ using RoguelikeTD.Configs.Gameplay.Experience;
 using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
@@ -28,7 +27,6 @@ namespace RoguelikeTD.UI.Gameplay
         private readonly GameplayInputArgs _args;
 
         private readonly SceneSwitcherService _sceneSwitcherService;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly ConfigsProviderService _configsProviderService;
         private readonly ViewsFactory _viewsFactory;
         private readonly ProjectPresentersFactory _projectPresentersFactory;
@@ -43,7 +41,6 @@ namespace RoguelikeTD.UI.Gameplay
         public GameplayPresentersFactory(
             GameplayInputArgs args,
             SceneSwitcherService sceneSwitcherService,
-            ICoroutinesPerformer coroutinesPerformer,
             ConfigsProviderService configsProviderService,
             ViewsFactory viewsFactory,
             ProjectPresentersFactory projectPresentersFactory,
@@ -57,7 +54,6 @@ namespace RoguelikeTD.UI.Gameplay
         {
             _args = args;
             _sceneSwitcherService = sceneSwitcherService;
-            _coroutinesPerformer = coroutinesPerformer;
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
             _projectPresentersFactory = projectPresentersFactory;
@@ -74,14 +70,12 @@ namespace RoguelikeTD.UI.Gameplay
             => new DefeatPopupPresenter(
                 view,
                 _sceneSwitcherService,
-                _coroutinesPerformer,
                 _args);
 
         public WinPopupPresenter CreateWinPopupPresenter(WinPopupView view)
             => new WinPopupPresenter(
                 view,
-                _sceneSwitcherService,
-                _coroutinesPerformer);
+                _sceneSwitcherService);
 
         public GameplayScreenPresenter CreateGameplayScreenPresenter(GameplayScreenView view)
             => new GameplayScreenPresenter(
@@ -108,7 +102,6 @@ namespace RoguelikeTD.UI.Gameplay
 
         public AbilitySelectPopupPresenter CreateAbilitySelectPopupPresenter(AbilitySelectPopupView view, Entity entity, int level)
             => new AbilitySelectPopupPresenter(
-                _coroutinesPerformer,
                 view,
                 entity,
                 this,
@@ -131,7 +124,6 @@ namespace RoguelikeTD.UI.Gameplay
 
         public PlaceablePopupPresenter CreatePlaceablePopupPresenter(PlaceablePopupView view)
             => new PlaceablePopupPresenter(
-                _coroutinesPerformer,
                 view,
                 this,
                 _viewsFactory,

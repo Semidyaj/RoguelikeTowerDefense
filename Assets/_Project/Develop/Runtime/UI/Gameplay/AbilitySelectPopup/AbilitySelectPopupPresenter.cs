@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Abilities;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.UI.Core;
@@ -27,14 +26,12 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         private int _level;
 
         public AbilitySelectPopupPresenter(
-            ICoroutinesPerformer performer,
             AbilitySelectPopupView view,
             Entity entity,
             GameplayPresentersFactory gameplayPresentersFactory,
             AbilityDropService abilityDropService,
             ViewsFactory viewsFactory,
             int level)
-            : base(performer)
         {
             _view = view;
             _entity = entity;

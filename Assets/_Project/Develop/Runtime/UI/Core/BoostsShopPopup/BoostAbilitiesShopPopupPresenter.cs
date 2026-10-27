@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.UI.Wallet;
 using System.Collections.Generic;
@@ -17,12 +16,10 @@ namespace RoguelikeTD.UI.Core.BoostsShopPopup
         private WalletPresenter _walletPresenter;
 
         public BoostAbilitiesShopPopupPresenter(
-            ICoroutinesPerformer coroutinesPerformer,
             BoostAbilitiesShopPopupView view,
             ViewsFactory viewsFactory,
             ProjectPresentersFactory projectPresentersFactory,
             BoostAbilitiesShopService boostAbilitiesShopService)
-            : base(coroutinesPerformer)
         {
             _view = view;
             _viewsFactory = viewsFactory;

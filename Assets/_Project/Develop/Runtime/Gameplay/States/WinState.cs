@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.StateMachineCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.InputFeature;
@@ -16,7 +16,6 @@ namespace RoguelikeTD.Gameplay.States
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly GameplayInputArgs _gameplayInputArgs;
         private readonly PlayerDataProvider _playerDataProvider;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly GameplayResultHandler _gameplayResultHandler;
         private readonly GameplayPopupService _gameplayPopupService;
 
@@ -27,14 +26,12 @@ namespace RoguelikeTD.Gameplay.States
             LevelsProgressionService levelsProgressionService,
             GameplayInputArgs gameplayInputArgs,
             PlayerDataProvider playerDataProvider,
-            ICoroutinesPerformer coroutinesPerformer,
             GameplayResultHandler gameplayResultHandler,
             GameplayPopupService gameplayPopupService) : base(inputService, pauseService, boostAbilitiesShopService)
         {
             _levelsProgressionService = levelsProgressionService;
             _gameplayInputArgs = gameplayInputArgs;
             _playerDataProvider = playerDataProvider;
-            _coroutinesPerformer = coroutinesPerformer;
             _gameplayResultHandler = gameplayResultHandler;
             _gameplayPopupService = gameplayPopupService;
         }
@@ -47,7 +44,7 @@ namespace RoguelikeTD.Gameplay.States
 
             _levelsProgressionService.AddLevelToCompleted(_gameplayInputArgs.LevelNumber);
 
-            _coroutinesPerformer.StartPerform(_playerDataProvider.SaveAsync());
+            _playerDataProvider.SaveAsync().Forget();
 
             _gameplayPopupService.OpenWinPopup();
         }

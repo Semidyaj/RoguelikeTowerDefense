@@ -1,23 +1,14 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace RoguelikeTD.Core.SceneManagement
 {
     public class SceneLoaderService
     {
-        public IEnumerator LoadAsync(string sceneName, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
-        {
-            AsyncOperation wait = SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+        public UniTask LoadAsync(string sceneName, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
+            => SceneManager.LoadSceneAsync(sceneName, loadSceneMode).ToUniTask();
 
-            yield return new WaitWhile(() => wait.isDone == false);
-        }
-
-        public IEnumerator UnloadAsync(string sceneName)
-        {
-            AsyncOperation wait = SceneManager.UnloadSceneAsync(sceneName);
-
-            yield return new WaitWhile(() => wait.isDone == false);
-        }
+        public UniTask UnloadAsync(string sceneName)
+            => SceneManager.UnloadSceneAsync(sceneName).ToUniTask();
     }
 }
