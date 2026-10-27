@@ -1,7 +1,6 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
-using System.Collections;
 using UnityEngine;
 using VContainer;
 
@@ -9,18 +8,16 @@ namespace RoguelikeTD.Meta.Infrastructure
 {
     public class MainMenuBootstrap : SceneBootstrap
     {
-        private ICoroutinesPerformer _coroutinesPerformer;
         private PlayerDataProvider _playerDataProvider;
 
         public override void Configure(IContainerBuilder builder, IInputSceneArgs sceneArgs = null)
             => MainMenuContextRegistrations.Configure(builder);
 
-        public override IEnumerator Initialize(IObjectResolver resolver)
+        public override UniTask InitializeAsync(IObjectResolver resolver)
         {
-            _coroutinesPerformer = resolver.Resolve<ICoroutinesPerformer>();
             _playerDataProvider = resolver.Resolve<PlayerDataProvider>();
 
-            yield break;
+            return UniTask.CompletedTask;
         }
 
         public override void Run()
@@ -31,7 +28,7 @@ namespace RoguelikeTD.Meta.Infrastructure
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
-                _coroutinesPerformer.StartPerform(_playerDataProvider.SaveAsync());
+                _playerDataProvider.SaveAsync().Forget();
                 Debug.Log("Saved");
             }
         }

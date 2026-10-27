@@ -1,7 +1,7 @@
-﻿using RoguelikeTD.Configs.Gameplay.Entities;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Configs.Gameplay.Entities;
 using RoguelikeTD.Configs.Gameplay.Levels;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
@@ -11,7 +11,6 @@ using RoguelikeTD.Gameplay.States;
 using RoguelikeTD.Infrastructure;
 using RoguelikeTD.UI.Gameplay;
 using System;
-using System.Collections;
 using UnityEngine;
 using VContainer;
 
@@ -43,7 +42,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             GameplayContextRegistrations.Configure(builder, _inputArgs);
         }
 
-        public override IEnumerator Initialize(IObjectResolver resolver)
+        public override UniTask InitializeAsync(IObjectResolver resolver)
         {
             _resolver = resolver;
 
@@ -67,7 +66,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             _mainHeroHolderService = _resolver.Resolve<MainHeroHolderService>();
 
-            yield break;
+            return UniTask.CompletedTask;
         }
 
         public override void Run()
@@ -84,8 +83,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SceneSwitcherService sceneSwitcherService = _resolver.Resolve<SceneSwitcherService>();
-                ICoroutinesPerformer coroutinesPerformer = _resolver.Resolve<ICoroutinesPerformer>();
-                coroutinesPerformer.StartPerform(sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu));
+                sceneSwitcherService.SwitchToAsync(Scenes.MainMenu).Forget();
             }
         }
 

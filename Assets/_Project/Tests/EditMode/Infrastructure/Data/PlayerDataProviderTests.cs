@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
@@ -9,7 +10,6 @@ using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.Tests.Fakes;
-using RoguelikeTD.Tests.Helpers;
 using UnityEngine;
 
 namespace RoguelikeTD.Tests.Infrastructure.Data
@@ -41,9 +41,9 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
         }
 
         [Test]
-        public void LoadAsync_SaveWithoutSomeStats_AddsThemWithStartLevel()
+        public async Task LoadAsync_SaveWithoutSomeStats_AddsThemWithStartLevel()
         {
-            PlayerData loaded = Load("{\"StatsUpgradeLevel\":{\"Damage\":4}}");
+            PlayerData loaded = await Load("{\"StatsUpgradeLevel\":{\"Damage\":4}}");
 
             foreach (StatTypes statType in Enum.GetValues(typeof(StatTypes)))
                 if (statType != StatTypes.Damage)
@@ -51,17 +51,17 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
         }
 
         [Test]
-        public void LoadAsync_SaveWithoutNewCurrency_AddsStartAmount()
+        public async Task LoadAsync_SaveWithoutNewCurrency_AddsStartAmount()
         {
-            PlayerData loaded = Load("{\"WalletData\":{\"Gold\":10}}");
+            PlayerData loaded = await Load("{\"WalletData\":{\"Gold\":10}}");
 
             Assert.AreEqual(StartDiamond, loaded.WalletData[CurrencyTypes.Diamond]);
         }
 
         [Test]
-        public void LoadAsync_OldSave_KeepsSavedValues()
+        public async Task LoadAsync_OldSave_KeepsSavedValues()
         {
-            PlayerData loaded = Load("{\"WalletData\":{\"Gold\":10},\"StatsUpgradeLevel\":{\"Damage\":4},\"Wins\":2}");
+            PlayerData loaded = await Load("{\"WalletData\":{\"Gold\":10},\"StatsUpgradeLevel\":{\"Damage\":4},\"Wins\":2}");
 
             Assert.AreEqual(10, loaded.WalletData[CurrencyTypes.Gold]);
             Assert.AreEqual(4, loaded.StatsUpgradeLevel[StatTypes.Damage]);
@@ -69,18 +69,18 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
         }
 
         [Test]
-        public void LoadAsync_SaveWithoutLists_ReadersGetEmptyCollections()
+        public async Task LoadAsync_SaveWithoutLists_ReadersGetEmptyCollections()
         {
-            PlayerData loaded = Load("{\"WalletData\":{\"Gold\":10,\"Diamond\":150}}");
+            PlayerData loaded = await Load("{\"WalletData\":{\"Gold\":10,\"Diamond\":150}}");
 
             CollectionAssert.IsEmpty(loaded.CompletedLevels);
             CollectionAssert.IsEmpty(loaded.PurchasedBoostAbilitiesIDs);
         }
 
         [Test]
-        public void Reset_GivesStartData()
+        public async Task Reset_GivesStartData()
         {
-            PlayerDataProvider provider = CreateProvider(new FakeSaveLoadService());
+            PlayerDataProvider provider = await CreateProvider(new FakeSaveLoadService());
             CapturingReader reader = new CapturingReader();
             provider.RegisterReader(reader);
 
@@ -102,6 +102,41 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
         }
 
         [Test]
+        public async Task SaveAsync_StoresDataFromWriters()
+        {
+            FakeSaveLoadService saveLoadService = new FakeSaveLoadService();
+            PlayerDataProvider provider = await CreateProvider(saveLoadService);
+            provider.RegisterWriter(new WinsWriter(5));
+            provider.Reset();
+
+            await provider.SaveAsync();
+
+            Assert.AreEqual(5, ((PlayerData)saveLoadService.StoredData).Wins);
+        }
+
+        [Test]
+        public async Task ExistsAsync_NoSave_ReturnsFalse()
+        {
+            PlayerDataProvider provider = await CreateProvider(new FakeSaveLoadService());
+
+            bool exists = await provider.ExistsAsync();
+
+            Assert.IsFalse(exists);
+        }
+
+        [Test]
+        public async Task ExistsAsync_AfterSave_ReturnsTrue()
+        {
+            PlayerDataProvider provider = await CreateProvider(new FakeSaveLoadService());
+            provider.Reset();
+            await provider.SaveAsync();
+
+            bool exists = await provider.ExistsAsync();
+
+            Assert.IsTrue(exists);
+        }
+
+        [Test]
         public void Deserialize_EmptyJson_HasNoNullFields()
         {
             PlayerData data = new JsonSerializer().Deserialize<PlayerData>("{}");
@@ -111,26 +146,26 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
                     Assert.IsNotNull(field.GetValue(data), $"{field.Name} must be initialized with a default value");
         }
 
-        private PlayerData Load(string savedJson)
+        private async Task<PlayerData> Load(string savedJson)
         {
             FakeSaveLoadService saveLoadService = new FakeSaveLoadService
             {
                 StoredData = new JsonSerializer().Deserialize<PlayerData>(savedJson)
             };
 
-            PlayerDataProvider provider = CreateProvider(saveLoadService);
+            PlayerDataProvider provider = await CreateProvider(saveLoadService);
             CapturingReader reader = new CapturingReader();
             provider.RegisterReader(reader);
 
-            CoroutineRunner.Run(provider.LoadAsync());
+            await provider.LoadAsync();
 
             return reader.Data;
         }
 
-        private PlayerDataProvider CreateProvider(FakeSaveLoadService saveLoadService)
+        private async Task<PlayerDataProvider> CreateProvider(FakeSaveLoadService saveLoadService)
         {
             ConfigsProviderService configsProviderService = new ConfigsProviderService(new FakeConfigsLoader(_walletConfig));
-            CoroutineRunner.Run(configsProviderService.LoadAsync());
+            await configsProviderService.LoadAsync();
 
             return new PlayerDataProvider(saveLoadService, configsProviderService);
         }
@@ -140,6 +175,15 @@ namespace RoguelikeTD.Tests.Infrastructure.Data
             public PlayerData Data { get; private set; }
 
             public void ReadFrom(PlayerData data) => Data = data;
+        }
+
+        private class WinsWriter : IDataWriter<PlayerData>
+        {
+            private readonly int _wins;
+
+            public WinsWriter(int wins) => _wins = wins;
+
+            public void WriteTo(PlayerData data) => data.Wins = _wins;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.StateMachineCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.InputFeature;
@@ -12,7 +12,6 @@ namespace RoguelikeTD.Gameplay.States
     public class DefeatState : EndGameState, IUpdatableState
     {
         private readonly PlayerDataProvider _playerDataProvider;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly GameplayResultHandler _gameplayResultHandler;
         private readonly GameplayPopupService _gameplayPopupService;
 
@@ -21,12 +20,10 @@ namespace RoguelikeTD.Gameplay.States
             IPauseService pauseService,
             BoostAbilitiesShopService boostAbilitiesShopService,
             PlayerDataProvider playerDataProvider,
-            ICoroutinesPerformer coroutinesPerformer,
             GameplayResultHandler gameplayResultHandler,
             GameplayPopupService gameplayPopupService) : base(inputService, pauseService, boostAbilitiesShopService)
         {
             _playerDataProvider = playerDataProvider;
-            _coroutinesPerformer = coroutinesPerformer;
             _gameplayResultHandler = gameplayResultHandler;
             _gameplayPopupService = gameplayPopupService;
         }
@@ -37,7 +34,7 @@ namespace RoguelikeTD.Gameplay.States
 
             _gameplayResultHandler.Apply(GameplayEndState.Defeat);
 
-            _coroutinesPerformer.StartPerform(_playerDataProvider.SaveAsync());
+            _playerDataProvider.SaveAsync().Forget();
 
             _gameplayPopupService.OpenDefeatPopup();
         }

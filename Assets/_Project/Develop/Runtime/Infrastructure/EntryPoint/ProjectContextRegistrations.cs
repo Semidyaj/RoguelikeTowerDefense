@@ -1,7 +1,6 @@
 ﻿using RoguelikeTD.Configs.Meta.Economy;
 using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DataManagement;
 using RoguelikeTD.Core.DataManagement.DataRepository;
 using RoguelikeTD.Core.DataManagement.KeysStorage;
@@ -35,7 +34,6 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
         public static void Configure(IContainerBuilder builder)
         {
-            builder.Register<ICoroutinesPerformer>(CreateCoroutinesPerformer, Lifetime.Singleton);
             builder.Register<ILoadingScreen>(CreateStandardLoadingScreen, Lifetime.Singleton);
 
             builder.Register(CreateConfigsProviderService, Lifetime.Singleton);
@@ -122,14 +120,6 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             ResourcesConfigLoader resourcesConfigLoader = new ResourcesConfigLoader(resourcesAssetsLoader);
 
             return new ConfigsProviderService(resourcesConfigLoader);
-        }
-
-        private static CoroutinesPerformer CreateCoroutinesPerformer(IObjectResolver c)
-        {
-            CoroutinesPerformer coroutinesPerformerPrefab = c.Resolve<ResourcesAssetsLoader>()
-                .Load<CoroutinesPerformer>("Utilities/CoroutinesPerformer");
-
-            return Object.Instantiate(coroutinesPerformerPrefab);
         }
     }
 }

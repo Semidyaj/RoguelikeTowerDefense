@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
@@ -11,7 +11,6 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
     {
         private readonly LevelsProgressionService _levelsService;
         private readonly SceneSwitcherService _sceneSwitcherService;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
 
         private readonly int _levelNumber;
 
@@ -20,13 +19,11 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
         public LevelTilePresenter(
             LevelsProgressionService levelsService, 
             SceneSwitcherService sceneSwitcherService, 
-            ICoroutinesPerformer coroutinesPerformer, 
             int levelNumber, 
             LevelTileView view)
         {
             _levelsService = levelsService;
             _sceneSwitcherService = sceneSwitcherService;
-            _coroutinesPerformer = coroutinesPerformer;
             _levelNumber = levelNumber;
             _view = view;
         }
@@ -73,9 +70,7 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
                 return;
             }
 
-            _coroutinesPerformer
-                .StartPerform(_sceneSwitcherService
-                    .ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(_levelNumber)));
+            _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(_levelNumber)).Forget();
         }
     }
 }

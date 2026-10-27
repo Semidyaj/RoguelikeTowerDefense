@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure;
 using RoguelikeTD.UI.Core;
@@ -11,17 +11,13 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
 
         private readonly WinPopupView _view;
         private readonly SceneSwitcherService _sceneSwitcher;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
 
         public WinPopupPresenter(
             WinPopupView view, 
-            SceneSwitcherService sceneSwitcher, 
-            ICoroutinesPerformer coroutinesPerformer) 
-            : base(coroutinesPerformer)
+            SceneSwitcherService sceneSwitcher)
         {
             _view = view;
             _sceneSwitcher = sceneSwitcher;
-            _coroutinesPerformer = coroutinesPerformer;
         }
 
         protected override PopupViewBase PopupView => _view;
@@ -51,7 +47,7 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
 
         private void OnContinueClicked()
         {
-            _coroutinesPerformer.StartPerform(_sceneSwitcher.ProcessSwitchTo(Scenes.MainMenu));
+            _sceneSwitcher.SwitchToAsync(Scenes.MainMenu).Forget();
             OnCloseRequest();
         }
     }

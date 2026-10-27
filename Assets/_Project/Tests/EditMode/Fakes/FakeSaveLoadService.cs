@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.DataManagement;
 
 namespace RoguelikeTD.Tests.Fakes
@@ -8,28 +7,22 @@ namespace RoguelikeTD.Tests.Fakes
     {
         public ISaveData StoredData { get; set; }
 
-        public IEnumerator Load<TData>(Action<TData> onLoad) where TData : ISaveData
-        {
-            onLoad?.Invoke((TData)StoredData);
-            yield break;
-        }
+        public UniTask<TData> LoadAsync<TData>() where TData : ISaveData
+            => UniTask.FromResult((TData)StoredData);
 
-        public IEnumerator Save<TData>(TData data) where TData : ISaveData
+        public UniTask SaveAsync<TData>(TData data) where TData : ISaveData
         {
             StoredData = data;
-            yield break;
+            return UniTask.CompletedTask;
         }
 
-        public IEnumerator Remove<TData>() where TData : ISaveData
+        public UniTask RemoveAsync<TData>() where TData : ISaveData
         {
             StoredData = null;
-            yield break;
+            return UniTask.CompletedTask;
         }
 
-        public IEnumerator Exists<TData>(Action<bool> onExistsResult) where TData : ISaveData
-        {
-            onExistsResult?.Invoke(StoredData != null);
-            yield break;
-        }
+        public UniTask<bool> ExistsAsync<TData>() where TData : ISaveData
+            => UniTask.FromResult(StoredData != null);
     }
 }

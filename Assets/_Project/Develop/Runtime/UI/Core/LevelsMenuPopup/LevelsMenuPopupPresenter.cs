@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Levels;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using System.Collections.Generic;
 
 namespace RoguelikeTD.UI.Core.LevelsMenuPopup
@@ -18,11 +17,9 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
         private readonly List<LevelTilePresenter> _levelTilePresenters = new();
 
         public LevelsMenuPopupPresenter(
-            ICoroutinesPerformer performer, 
             ConfigsProviderService configProviderService, 
             ProjectPresentersFactory projectPresentersFactory, 
-            ViewsFactory viewsFactory, LevelsMenuPopupView view) 
-            : base(performer)
+            ViewsFactory viewsFactory, LevelsMenuPopupView view)
         {
             _configProviderService = configProviderService;
             _projectPresentersFactory = projectPresentersFactory;

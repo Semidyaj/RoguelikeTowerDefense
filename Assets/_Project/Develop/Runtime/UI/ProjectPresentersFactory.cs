@@ -2,7 +2,6 @@
 using RoguelikeTD.Configs.Meta.HeroStats;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
@@ -21,7 +20,6 @@ namespace RoguelikeTD.UI
 {
     public class ProjectPresentersFactory
     {
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly ConfigsProviderService _configsProviderService;
         private readonly ViewsFactory _viewsFactory;
         private readonly LevelsProgressionService _levelsProgressionService;
@@ -32,7 +30,6 @@ namespace RoguelikeTD.UI
         private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
 
         public ProjectPresentersFactory(
-            ICoroutinesPerformer coroutinesPerformer,
             ConfigsProviderService configsProviderService,
             ViewsFactory viewsFactory,
             LevelsProgressionService levelsProgressionService,
@@ -42,7 +39,6 @@ namespace RoguelikeTD.UI
             StatsUpgradeService statsUpgradeService,
             BoostAbilitiesShopService boostAbilitiesShopService)
         {
-            _coroutinesPerformer = coroutinesPerformer;
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
             _levelsProgressionService = levelsProgressionService;
@@ -57,7 +53,6 @@ namespace RoguelikeTD.UI
 
         public LevelsMenuPopupPresenter CreateLevelsMenuPopupPresenter(LevelsMenuPopupView view)
             => new LevelsMenuPopupPresenter(
-                _coroutinesPerformer,
                 _configsProviderService,
                 this,
                 _viewsFactory,
@@ -67,7 +62,6 @@ namespace RoguelikeTD.UI
             => new LevelTilePresenter(
                 _levelsProgressionService,
                 _sceneSwitcherService,
-                _coroutinesPerformer,
                 levelNumber,
                 view);
 
@@ -103,14 +97,13 @@ namespace RoguelikeTD.UI
 
         public StatsUpgradePopupPresenter CreateStatsUpgradePopupPresenter(StatsUpgradePopupView view)
             => new StatsUpgradePopupPresenter(
-                _coroutinesPerformer,
                 view,
                 _viewsFactory,
                 this,
                 _statsUpgradeService);
 
         public CharacterPreviewPresenter CreateCharacterPreviewPresenter()
-            => new CharacterPreviewPresenter(_sceneLoaderService, _coroutinesPerformer);
+            => new CharacterPreviewPresenter(_sceneLoaderService);
 
         public BoostAbilityPresenter CreateBoostAbilityPresenter(BoostAbilityView view, BoostAbilityConfig config)
             => new BoostAbilityPresenter(
@@ -121,7 +114,6 @@ namespace RoguelikeTD.UI
 
         public BoostAbilitiesShopPopupPresenter CreateBoostAbilitiesShopPopupPresenter(BoostAbilitiesShopPopupView view)
             => new BoostAbilitiesShopPopupPresenter(
-                _coroutinesPerformer,
                 view,
                 _viewsFactory,
                 this,

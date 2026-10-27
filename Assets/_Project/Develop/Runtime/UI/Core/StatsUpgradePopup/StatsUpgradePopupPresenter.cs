@@ -1,5 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
-using RoguelikeTD.Gameplay.Features.StatsFeature;
+﻿using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.UI.Wallet;
 using System.Collections.Generic;
@@ -18,12 +17,10 @@ namespace RoguelikeTD.UI.Core.StatsUpgradePopup
         private CharacterPreviewPresenter _characterPreviewPresenter;
 
         public StatsUpgradePopupPresenter(
-            ICoroutinesPerformer coroutinesPerformer,
             StatsUpgradePopupView view, 
             ViewsFactory viewsFactory, 
             ProjectPresentersFactory projectPresentersFactory, 
             StatsUpgradeService statsUpgradeService)
-            : base(coroutinesPerformer)
         {
             _view = view;
             _viewsFactory = viewsFactory;

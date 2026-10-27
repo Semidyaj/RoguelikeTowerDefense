@@ -2,7 +2,8 @@
     "name": "RoguelikeTD.Core",
     "rootNamespace": "",
     "references": [
-        "VContainer"
+        "VContainer",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

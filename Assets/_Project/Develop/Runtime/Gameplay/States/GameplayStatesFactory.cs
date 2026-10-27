@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.Allies;
@@ -36,7 +35,6 @@ namespace RoguelikeTD.Gameplay.States
         private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly PlayerDataProvider _playerDataProvider;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly GameplayResultHandler _gameplayResultHandler;
 
         public GameplayStatesFactory(
@@ -55,7 +53,6 @@ namespace RoguelikeTD.Gameplay.States
             BoostAbilitiesShopService boostAbilitiesShopService,
             LevelsProgressionService levelsProgressionService,
             PlayerDataProvider playerDataProvider,
-            ICoroutinesPerformer coroutinesPerformer,
             GameplayResultHandler gameplayResultHandler)
         {
             _lootPullingService = lootPullingService;
@@ -73,7 +70,6 @@ namespace RoguelikeTD.Gameplay.States
             _boostAbilitiesShopService = boostAbilitiesShopService;
             _levelsProgressionService = levelsProgressionService;
             _playerDataProvider = playerDataProvider;
-            _coroutinesPerformer = coroutinesPerformer;
             _gameplayResultHandler = gameplayResultHandler;
         }
 
@@ -172,7 +168,6 @@ namespace RoguelikeTD.Gameplay.States
                 _levelsProgressionService,
                 inputArgs,
                 _playerDataProvider,
-                _coroutinesPerformer,
                 _gameplayResultHandler,
                 _gameplayPopupService);
 
@@ -182,7 +177,6 @@ namespace RoguelikeTD.Gameplay.States
                 _pauseService,
                 _boostAbilitiesShopService,
                 _playerDataProvider,
-                _coroutinesPerformer,
                 _gameplayResultHandler,
                 _gameplayPopupService);
     }

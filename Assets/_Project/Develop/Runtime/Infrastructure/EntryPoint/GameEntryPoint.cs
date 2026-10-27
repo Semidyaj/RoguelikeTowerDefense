@@ -1,9 +1,8 @@
-﻿using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.LoadingScreen;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
-using System.Collections;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -19,9 +18,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             LifetimeScope projectScope = LifetimeScope.Create(ProjectContextRegistrations.Configure, "ProjectScope");
             DontDestroyOnLoad(projectScope.gameObject);
 
-            IObjectResolver container = projectScope.Container;
-
-            container.Resolve<ICoroutinesPerformer>().StartPerform(Initialize(container));
+            InitializeAsync(projectScope.Container).Forget();
         }
 
         private void SetupAddSettings()
@@ -30,7 +27,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             Application.targetFrameRate = 60;
         }
 
-        private IEnumerator Initialize(IObjectResolver container)
+        private async UniTaskVoid InitializeAsync(IObjectResolver container)
         {
             ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
             SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();
@@ -38,20 +35,16 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
             loadingScreen.Show();
 
-            yield return container.Resolve<ConfigsProviderService>().LoadAsync();
+            await container.Resolve<ConfigsProviderService>().LoadAsync();
 
-            bool isPlayerDataSaveExists = false;
-
-            yield return playerDataProvider.ExistsAsync(result => isPlayerDataSaveExists = result);
-
-            if (isPlayerDataSaveExists)
-                yield return playerDataProvider.LoadAsync();
+            if (await playerDataProvider.ExistsAsync())
+                await playerDataProvider.LoadAsync();
             else
                 playerDataProvider.Reset();
 
             loadingScreen.Hide();
 
-            yield return sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu);
+            await sceneSwitcherService.SwitchToAsync(Scenes.MainMenu);
         }
     }
 }

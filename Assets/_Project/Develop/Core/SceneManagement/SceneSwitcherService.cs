@@ -1,6 +1,6 @@
-﻿using RoguelikeTD.Core.LoadingScreen;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Core.LoadingScreen;
 using System;
-using System.Collections;
 using UnityEngine;
 using VContainer.Unity;
 using Object = UnityEngine.Object;
@@ -30,15 +30,15 @@ namespace RoguelikeTD.Core.SceneManagement
             Application.quitting += OnApplicationQuitting;
         }
 
-        public IEnumerator ProcessSwitchTo(string sceneName, IInputSceneArgs sceneArgs = null)
+        public async UniTask SwitchToAsync(string sceneName, IInputSceneArgs sceneArgs = null)
         {
             _loadingScreen.Show();
 
             DisposeCurrentSceneScope();
 
-            yield return _sceneLoaderService.LoadAsync(_emptySceneName);
+            await _sceneLoaderService.LoadAsync(_emptySceneName);
 
-            yield return _sceneLoaderService.LoadAsync(sceneName);
+            await _sceneLoaderService.LoadAsync(sceneName);
 
             SceneBootstrap sceneBootstrap = Object.FindAnyObjectByType<SceneBootstrap>();
 
@@ -47,7 +47,7 @@ namespace RoguelikeTD.Core.SceneManagement
 
             _currentSceneScope = _projectScope.CreateChild(builder => sceneBootstrap.Configure(builder, sceneArgs), sceneName);
 
-            yield return sceneBootstrap.Initialize(_currentSceneScope.Container);
+            await sceneBootstrap.InitializeAsync(_currentSceneScope.Container);
 
             _loadingScreen.Hide();
 

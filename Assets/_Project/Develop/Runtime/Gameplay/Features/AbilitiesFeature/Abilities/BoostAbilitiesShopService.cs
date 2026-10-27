@@ -1,6 +1,6 @@
-﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
 using RoguelikeTD.Core.ConfigsManagement;
-using RoguelikeTD.Core.CoroutinesManager;
 using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.Wallet;
@@ -16,7 +16,6 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities
         private ConfigsProviderService _configsProviderService;
         private WalletService _walletService;
 
-        private ICoroutinesPerformer _coroutinesPerformer;
         private PlayerDataProvider _playerDataProvider;
 
         private Dictionary<string, int> _purchasedBoostAbilities = new();
@@ -24,13 +23,11 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities
         public BoostAbilitiesShopService(
             ConfigsProviderService configsProviderService,
             WalletService walletService,
-            PlayerDataProvider playerDataProvider,
-            ICoroutinesPerformer coroutinesPerformer)
+            PlayerDataProvider playerDataProvider)
         {
             _configsProviderService = configsProviderService;
             _walletService = walletService;
             _playerDataProvider = playerDataProvider;
-            _coroutinesPerformer = coroutinesPerformer;
 
             _playerDataProvider.RegisterReader(this);
             _playerDataProvider.RegisterWriter(this);
@@ -72,7 +69,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities
 
             OnBoostsChanged?.Invoke();
 
-            _coroutinesPerformer.StartPerform(_playerDataProvider.SaveAsync());
+            _playerDataProvider.SaveAsync().Forget();
         }
 
         public void ConsumeBoosts()

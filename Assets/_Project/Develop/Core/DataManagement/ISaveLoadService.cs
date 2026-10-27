@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
 
 namespace RoguelikeTD.Core.DataManagement
 {
     public interface ISaveLoadService
     {
-        IEnumerator Load<TData>(Action<TData> onLoad) where TData : ISaveData;
-        IEnumerator Save<TData>(TData data) where TData : ISaveData;
-        IEnumerator Remove<TData>() where TData : ISaveData;
-        IEnumerator Exists<TData>(Action<bool> onExistsResult) where TData : ISaveData;
+        UniTask<TData> LoadAsync<TData>() where TData : ISaveData;
+        UniTask SaveAsync<TData>(TData data) where TData : ISaveData;
+        UniTask RemoveAsync<TData>() where TData : ISaveData;
+        UniTask<bool> ExistsAsync<TData>() where TData : ISaveData;
     }
 }

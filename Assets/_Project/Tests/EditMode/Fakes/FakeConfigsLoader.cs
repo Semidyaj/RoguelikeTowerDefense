@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.ConfigsManagement;
 
 namespace RoguelikeTD.Tests.Fakes
@@ -15,10 +15,6 @@ namespace RoguelikeTD.Tests.Fakes
                 _configs.Add(config.GetType(), config);
         }
 
-        public IEnumerator LoadAsync(Action<Dictionary<Type, object>> onConfigsLoaded)
-        {
-            onConfigsLoaded?.Invoke(_configs);
-            yield break;
-        }
+        public UniTask<Dictionary<Type, object>> LoadAsync() => UniTask.FromResult(_configs);
     }
 }

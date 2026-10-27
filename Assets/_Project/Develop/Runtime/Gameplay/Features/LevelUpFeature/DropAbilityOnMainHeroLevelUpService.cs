@@ -1,13 +1,12 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
 using RoguelikeTD.UI.Gameplay;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Threading;
 using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
@@ -16,13 +15,14 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
     {
         private MainHeroHolderService _mainHeroHolderService;
         private GameplayPopupService _gameplayPopupService;
-        private ICoroutinesPerformer _coroutinesPerformer;
         private IPauseService _pauseService;
 
         private Queue<int> _levelUpRequests = new();
 
         private AbilitySelectPopupPresenter _popup;
-        private Coroutine _selectAbilityProcess;
+        private bool _isSelectingAbility;
+
+        private readonly CancellationTokenSource _disposeCancellation = new();
 
         private IDisposable _heroRegistredDisposable;
         private IDisposable _heroLevelChangedDisposable;
@@ -30,12 +30,10 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         public DropAbilityOnMainHeroLevelUpService(
             MainHeroHolderService mainHeroHolderService,
             GameplayPopupService gameplayPopupService,
-            ICoroutinesPerformer coroutinesPerformer,
             IPauseService pauseService)
         {
             _mainHeroHolderService = mainHeroHolderService;
             _gameplayPopupService = gameplayPopupService;
-            _coroutinesPerformer = coroutinesPerformer;
             _pauseService = pauseService;
         }
 
@@ -48,6 +46,9 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 
         public void Dispose()
         {
+            _disposeCancellation.Cancel();
+            _disposeCancellation.Dispose();
+
             _heroRegistredDisposable.Dispose();
             _heroLevelChangedDisposable?.Dispose();
         }
@@ -61,15 +62,17 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         {
             _levelUpRequests.Enqueue(currentLevel);
 
-            if (_selectAbilityProcess != null)
+            if (_isSelectingAbility)
                 return;
 
-            _selectAbilityProcess = _coroutinesPerformer.StartPerform(SelectAbilityProcess());
+            SelectAbilitiesAsync(_disposeCancellation.Token).Forget();
         }
 
-        private IEnumerator SelectAbilityProcess()
+        private async UniTaskVoid SelectAbilitiesAsync(CancellationToken cancellationToken)
         {
-            while(_levelUpRequests.Count > 0)
+            _isSelectingAbility = true;
+
+            while (_levelUpRequests.Count > 0)
             {
                 int level = _levelUpRequests.Dequeue();
 
@@ -80,10 +83,10 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
                     _popup = null;
                 });
 
-                yield return new WaitUntil(() => PopupIsOpened == false);
+                await UniTask.WaitUntil(() => PopupIsOpened == false, cancellationToken: cancellationToken);
             }
 
-            _selectAbilityProcess = null;
+            _isSelectingAbility = false;
         }
     }
 }

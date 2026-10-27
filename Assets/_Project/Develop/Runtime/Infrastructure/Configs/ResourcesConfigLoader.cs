@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using RoguelikeTD.Configs.Gameplay.Abilities;
 using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
 using RoguelikeTD.Configs.Gameplay.Entities;
@@ -11,7 +12,6 @@ using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.AssetsManagement;
 using RoguelikeTD.Core.ConfigsManagement;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,18 +43,17 @@ namespace RoguelikeTD.Infrastructure.Configs
             _resources = resources;
         }
 
-        public IEnumerator LoadAsync(Action<Dictionary<Type, object>> onConfigsLoaded)
+        public async UniTask<Dictionary<Type, object>> LoadAsync()
         {
             Dictionary<Type, object> loadedConfigs = new();
 
             foreach (KeyValuePair<Type, string> configResourcesPath in _configResourcesPaths)
             {
-                ScriptableObject config = _resources.Load<ScriptableObject>(configResourcesPath.Value);
+                ScriptableObject config = await _resources.LoadAsync<ScriptableObject>(configResourcesPath.Value);
                 loadedConfigs.Add(configResourcesPath.Key, config);
-                yield return null;
             }
 
-            onConfigsLoaded?.Invoke(loadedConfigs);
+            return loadedConfigs;
         }
     }
 }

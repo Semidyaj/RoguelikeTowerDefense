@@ -1,41 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace RoguelikeTD.Core.DataManagement.DataRepository
 {
     public class PlayerPrefsDataRepository : IDataRepository
     {
-        public IEnumerator Exists(string key, Action<bool> onExistsResult)
-        {
-            bool exists = PlayerPrefs.HasKey(key);
+        public UniTask<bool> ExistsAsync(string key)
+            => UniTask.FromResult(PlayerPrefs.HasKey(key));
 
-            onExistsResult?.Invoke(exists);
+        public UniTask<string> ReadAsync(string key)
+            => UniTask.FromResult(PlayerPrefs.GetString(key));
 
-            yield break;
-        }
-
-        public IEnumerator Read(string key, Action<string> onRead)
-        {
-            string text = PlayerPrefs.GetString(key);
-
-            onRead?.Invoke(text);
-
-            yield break;
-        }
-
-        public IEnumerator Remove(string key)
+        public UniTask RemoveAsync(string key)
         {
             PlayerPrefs.DeleteKey(key);
 
-            yield break;
+            return UniTask.CompletedTask;
         }
 
-        public IEnumerator Write(string key, string serializedData)
+        public UniTask WriteAsync(string key, string serializedData)
         {
             PlayerPrefs.SetString(key, serializedData);
 
-            yield break;
+            return UniTask.CompletedTask;
         }
     }
 }

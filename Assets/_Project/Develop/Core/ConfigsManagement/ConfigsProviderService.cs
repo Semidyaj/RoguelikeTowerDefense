@@ -1,5 +1,5 @@
+using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace RoguelikeTD.Core.ConfigsManagement
@@ -15,16 +15,17 @@ namespace RoguelikeTD.Core.ConfigsManagement
             _loaders = loaders;
         }
 
-        public IEnumerator LoadAsync()
+        public async UniTask LoadAsync()
         {
             _configs.Clear();
 
             foreach (IConfigsLoader loader in _loaders)
-                yield return loader.LoadAsync(loadedConfigs =>
-                {
-                    foreach (KeyValuePair<Type, object> config in loadedConfigs)
-                        _configs.Add(config.Key, config.Value);
-                });
+            {
+                Dictionary<Type, object> loadedConfigs = await loader.LoadAsync();
+
+                foreach (KeyValuePair<Type, object> config in loadedConfigs)
+                    _configs.Add(config.Key, config.Value);
+            }
         }
 
         public T GetConfig<T>() where T : class

@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
@@ -12,19 +12,15 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
 
         private readonly DefeatPopupView _view;
         private readonly SceneSwitcherService _sceneSwitcher;
-        private readonly ICoroutinesPerformer _coroutinesPerformer;
         private readonly GameplayInputArgs _currentLevelArgs;
 
         public DefeatPopupPresenter(
             DefeatPopupView view,
             SceneSwitcherService sceneSwitcher,
-            ICoroutinesPerformer coroutinesPerformer,
             GameplayInputArgs currentLevelArgs)
-            : base(coroutinesPerformer)
         {
             _view = view;
             _sceneSwitcher = sceneSwitcher;
-            _coroutinesPerformer = coroutinesPerformer;
             _currentLevelArgs = currentLevelArgs;
         }
 
@@ -58,13 +54,13 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
 
         private void OnRestartClicked()
         {
-            _coroutinesPerformer.StartPerform(_sceneSwitcher.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(_currentLevelArgs.LevelNumber)));
+            _sceneSwitcher.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(_currentLevelArgs.LevelNumber)).Forget();
             OnCloseRequest();
         }
 
         private void OnContinueClicked()
         {
-            _coroutinesPerformer.StartPerform(_sceneSwitcher.ProcessSwitchTo(Scenes.MainMenu));
+            _sceneSwitcher.SwitchToAsync(Scenes.MainMenu).Forget();
             OnCloseRequest();
         }
     }

@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Core.CoroutinesManager;
+﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Infrastructure.Data;
 
@@ -7,15 +7,13 @@ namespace RoguelikeTD.Meta.Features.StatisticsService
     public class GameplayStatisticsService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {
         private PlayerDataProvider _playerDataProvider;
-        private ICoroutinesPerformer _coroutinesPerformer;
 
         private int _winsCount;
         private int _defeatsCount;
 
-        public GameplayStatisticsService(PlayerDataProvider playerDataProvider, ICoroutinesPerformer coroutinesPerformer)
+        public GameplayStatisticsService(PlayerDataProvider playerDataProvider)
         {
             _playerDataProvider = playerDataProvider;
-            _coroutinesPerformer = coroutinesPerformer;
 
             playerDataProvider.RegisterWriter(this);
             playerDataProvider.RegisterReader(this);
@@ -32,7 +30,7 @@ namespace RoguelikeTD.Meta.Features.StatisticsService
             _winsCount = 0;
             _defeatsCount = 0;
 
-            _coroutinesPerformer.StartPerform(_playerDataProvider.SaveAsync());
+            _playerDataProvider.SaveAsync().Forget();
         }
 
         public void ReadFrom(PlayerData data)

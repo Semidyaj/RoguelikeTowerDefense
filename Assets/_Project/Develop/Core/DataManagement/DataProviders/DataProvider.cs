@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RoguelikeTD.Core.DataManagement.DataProviders
 {
@@ -35,26 +34,23 @@ namespace RoguelikeTD.Core.DataManagement.DataProviders
             _readers.Add(reader);
         }
 
-        public IEnumerator LoadAsync()
+        public async UniTask LoadAsync()
         {
-            yield return _saveLoadService.Load<TData>(loadedData => _data = loadedData);
+            _data = await _saveLoadService.LoadAsync<TData>();
 
             FillMissingData(_data, GetOriginData());
 
             SendDataToReaders();
         }
 
-        public IEnumerator SaveAsync()
+        public UniTask SaveAsync()
         {
             UpdateDataFromWriters();
 
-            yield return _saveLoadService.Save(_data);
+            return _saveLoadService.SaveAsync(_data);
         }
 
-        public IEnumerator ExistsAsync(Action<bool> onExistsResult)
-        {
-            yield return _saveLoadService.Exists<TData>(result => onExistsResult?.Invoke(result));
-        }
+        public UniTask<bool> ExistsAsync() => _saveLoadService.ExistsAsync<TData>();
 
         public void Reset()
         {
