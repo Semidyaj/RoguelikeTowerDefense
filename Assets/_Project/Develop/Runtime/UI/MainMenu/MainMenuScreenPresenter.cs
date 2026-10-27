@@ -84,24 +84,35 @@ namespace RoguelikeTD.UI.MainMenu
             _childPresenters.Add(statisticsPresenter);
         }
 
-        private void OnOpenLevelsMenuButtonClicked() => _popupService.OpenLevelsMenuPopup();
+        private void OnOpenLevelsMenuButtonClicked() => SelectLevelAsync().Forget();
+
+        private async UniTaskVoid SelectLevelAsync()
+        {
+            int? levelNumber = await _popupService.OpenLevelsMenuPopupAsync();
+
+            if (levelNumber.HasValue)
+                StartLevel(levelNumber.Value);
+        }
 
         private void OnPlayRandomLevelMenuButtonClicked()
         {
             if(_levelsProgressionService.CompletedLevels.Count == 0)
             {
-                _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(1)).Forget();
+                StartLevel(1);
                 return;
             }
 
             int randomLevel = _levelsProgressionService.CompletedLevels[Random.Range(0, _levelsProgressionService.CompletedLevels.Count)];
 
-            _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(randomLevel)).Forget();
+            StartLevel(randomLevel);
         }
 
-        private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopup();
+        private void StartLevel(int levelNumber)
+            => _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(levelNumber)).Forget();
 
-        private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopup();
+        private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopupAsync().Forget();
+
+        private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopupAsync().Forget();
 
         private void OnResetStatsButtonClicked() => _resetService.Reset();
     }

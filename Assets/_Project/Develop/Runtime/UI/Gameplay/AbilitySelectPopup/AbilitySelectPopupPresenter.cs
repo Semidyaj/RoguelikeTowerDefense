@@ -41,6 +41,8 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
             _level = level;
         }
 
+        public AbilityDropOption SelectedOption { get; private set; }
+
         protected override PopupViewBase PopupView => _view;
 
         public override void Initialize()
@@ -102,7 +104,7 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 
         private void OnSelectButtonClicked()
         {
-            _selectedPresenter.Provide();
+            SelectedOption = new AbilityDropOption(_selectedPresenter.AbilityConfig, _selectedPresenter.Level);
             OnCloseRequest();
         }
 

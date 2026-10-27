@@ -75,8 +75,6 @@ namespace RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup
             _presenters.Clear();
         }
 
-        public void Close() => OnCloseRequest();
-
         private void OnPresenterSelected(PlaceablePresenter selected)
         {
             _view.PlaceableListView.Select(selected.View);

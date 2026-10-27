@@ -1,4 +1,5 @@
 ﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.Allies;
@@ -36,6 +37,7 @@ namespace RoguelikeTD.Gameplay.States
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly PlayerDataProvider _playerDataProvider;
         private readonly GameplayResultHandler _gameplayResultHandler;
+        private readonly SceneSwitcherService _sceneSwitcherService;
 
         public GameplayStatesFactory(
             LootPullingService lootPullingService,
@@ -53,7 +55,8 @@ namespace RoguelikeTD.Gameplay.States
             BoostAbilitiesShopService boostAbilitiesShopService,
             LevelsProgressionService levelsProgressionService,
             PlayerDataProvider playerDataProvider,
-            GameplayResultHandler gameplayResultHandler)
+            GameplayResultHandler gameplayResultHandler,
+            SceneSwitcherService sceneSwitcherService)
         {
             _lootPullingService = lootPullingService;
             _mainHeroHolderService = mainHeroHolderService;
@@ -71,6 +74,7 @@ namespace RoguelikeTD.Gameplay.States
             _levelsProgressionService = levelsProgressionService;
             _playerDataProvider = playerDataProvider;
             _gameplayResultHandler = gameplayResultHandler;
+            _sceneSwitcherService = sceneSwitcherService;
         }
 
         public GameplayStateMachine CreateGameplayStateMachine(GameplayInputArgs inputArgs)
@@ -78,7 +82,7 @@ namespace RoguelikeTD.Gameplay.States
             GameplayStateMachine coreLoopState = CreateCoreLoopState();
 
             WinState winState = CreateWinState(inputArgs);
-            DefeatState defeatState = CreateDefeatState();
+            DefeatState defeatState = CreateDefeatState(inputArgs);
 
             ICompositeCondition coreLoopToWinStateCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => _preparationTriggerService.HasMainHeroContacts.Value))
@@ -169,15 +173,18 @@ namespace RoguelikeTD.Gameplay.States
                 inputArgs,
                 _playerDataProvider,
                 _gameplayResultHandler,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                _sceneSwitcherService);
 
-        private DefeatState CreateDefeatState()
+        private DefeatState CreateDefeatState(GameplayInputArgs inputArgs)
             => new DefeatState(
                 _inputService,
                 _pauseService,
                 _boostAbilitiesShopService,
                 _playerDataProvider,
                 _gameplayResultHandler,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                _sceneSwitcherService,
+                inputArgs);
     }
 }

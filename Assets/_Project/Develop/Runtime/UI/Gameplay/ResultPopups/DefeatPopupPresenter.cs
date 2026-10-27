@@ -1,8 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using RoguelikeTD.Core.SceneManagement;
-using RoguelikeTD.Gameplay.Infrastructure;
-using RoguelikeTD.Infrastructure;
-using RoguelikeTD.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 
 namespace RoguelikeTD.UI.Gameplay.ResultPopups
 {
@@ -11,18 +7,13 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
         private const string TitleName = "YOU LOST!";
 
         private readonly DefeatPopupView _view;
-        private readonly SceneSwitcherService _sceneSwitcher;
-        private readonly GameplayInputArgs _currentLevelArgs;
 
-        public DefeatPopupPresenter(
-            DefeatPopupView view,
-            SceneSwitcherService sceneSwitcher,
-            GameplayInputArgs currentLevelArgs)
+        public DefeatPopupPresenter(DefeatPopupView view)
         {
             _view = view;
-            _sceneSwitcher = sceneSwitcher;
-            _currentLevelArgs = currentLevelArgs;
         }
+
+        public DefeatPopupResult Result { get; private set; }
 
         protected override PopupViewBase PopupView => _view;
 
@@ -54,13 +45,13 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
 
         private void OnRestartClicked()
         {
-            _sceneSwitcher.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(_currentLevelArgs.LevelNumber)).Forget();
+            Result = DefeatPopupResult.Restart;
             OnCloseRequest();
         }
 
         private void OnContinueClicked()
         {
-            _sceneSwitcher.SwitchToAsync(Scenes.MainMenu).Forget();
+            Result = DefeatPopupResult.Continue;
             OnCloseRequest();
         }
     }

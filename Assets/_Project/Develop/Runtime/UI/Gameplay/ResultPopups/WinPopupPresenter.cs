@@ -1,7 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using RoguelikeTD.Core.SceneManagement;
-using RoguelikeTD.Infrastructure;
-using RoguelikeTD.UI.Core;
+﻿using RoguelikeTD.UI.Core;
 
 namespace RoguelikeTD.UI.Gameplay.ResultPopups
 {
@@ -10,14 +7,10 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
         private const string TitleName = "YOU WON";
 
         private readonly WinPopupView _view;
-        private readonly SceneSwitcherService _sceneSwitcher;
 
-        public WinPopupPresenter(
-            WinPopupView view, 
-            SceneSwitcherService sceneSwitcher)
+        public WinPopupPresenter(WinPopupView view)
         {
             _view = view;
-            _sceneSwitcher = sceneSwitcher;
         }
 
         protected override PopupViewBase PopupView => _view;
@@ -45,10 +38,6 @@ namespace RoguelikeTD.UI.Gameplay.ResultPopups
             _view.ContinueClicked -= OnContinueClicked;
         }
 
-        private void OnContinueClicked()
-        {
-            _sceneSwitcher.SwitchToAsync(Scenes.MainMenu).Forget();
-            OnCloseRequest();
-        }
+        private void OnContinueClicked() => OnCloseRequest();
     }
 }

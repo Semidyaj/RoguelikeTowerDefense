@@ -1,6 +1,5 @@
 ﻿using RoguelikeTD.Configs.Gameplay.Abilities;
 using RoguelikeTD.Gameplay.EntitiesCore;
-using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.UI.Core;
 using System;
 using System.Linq;
@@ -11,7 +10,6 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
     {
         public event Action<SelectableAbilityPresenter> Selected;
 
-        private AbilitiesECSFactory _abilitiesFactory;
         private Entity _entity;
 
         private int _level;
@@ -19,19 +17,18 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         public SelectableAbilityPresenter(
             AbilityConfig abilityConfig,
             SelectableAbilityView view,
-            AbilitiesECSFactory abilitiesFactory,
             Entity entity,
             int level)
         {
             AbilityConfig = abilityConfig;
             View = view;
-            _abilitiesFactory = abilitiesFactory;
             _entity = entity;
             _level = level;
         }
 
         public AbilityConfig AbilityConfig { get; }
         public SelectableAbilityView View { get; }
+        public int Level => _level;
 
         public void Initialize()
         {
@@ -47,25 +44,6 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         public void Dispose()
         {
             View.Clicked -= OnViewClicked;
-        }
-
-        public void Provide()
-        {
-            Entity ability;
-
-            if (AbilityConfig.IsUpgradable())
-            {
-                ability = _entity.Abilities.Elements.FirstOrDefault(abil => abil.AbilityID.Value == AbilityConfig.ID);
-
-                if (ability != null)
-                {
-                    ability.AbilityCurrentLevel.Value += _level;
-                    return;
-                }
-            }
-
-            ability = _abilitiesFactory.CreateAbilityFor(_entity, AbilityConfig, _level);
-            _entity.Abilities.Add(ability);
         }
 
         private void OnViewClicked() => Selected?.Invoke(this);

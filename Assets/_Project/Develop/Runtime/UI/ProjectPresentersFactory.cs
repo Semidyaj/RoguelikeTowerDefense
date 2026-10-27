@@ -23,7 +23,6 @@ namespace RoguelikeTD.UI
         private readonly ConfigsProviderService _configsProviderService;
         private readonly ViewsFactory _viewsFactory;
         private readonly LevelsProgressionService _levelsProgressionService;
-        private readonly SceneSwitcherService _sceneSwitcherService;
         private readonly SceneLoaderService _sceneLoaderService;
         private readonly WalletService _walletService;
         private readonly StatsUpgradeService _statsUpgradeService;
@@ -33,7 +32,6 @@ namespace RoguelikeTD.UI
             ConfigsProviderService configsProviderService,
             ViewsFactory viewsFactory,
             LevelsProgressionService levelsProgressionService,
-            SceneSwitcherService sceneSwitcherService,
             SceneLoaderService sceneLoaderService,
             WalletService walletService,
             StatsUpgradeService statsUpgradeService,
@@ -42,7 +40,6 @@ namespace RoguelikeTD.UI
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
             _levelsProgressionService = levelsProgressionService;
-            _sceneSwitcherService = sceneSwitcherService;
             _sceneLoaderService = sceneLoaderService;
             _walletService = walletService;
             _statsUpgradeService = statsUpgradeService;
@@ -61,7 +58,6 @@ namespace RoguelikeTD.UI
         public LevelTilePresenter CreateLevelTilePresenter(int levelNumber, LevelTileView view)
             => new LevelTilePresenter(
                 _levelsProgressionService,
-                _sceneSwitcherService,
                 levelNumber,
                 view);
 

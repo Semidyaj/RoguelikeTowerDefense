@@ -1,11 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
 using RoguelikeTD.UI.Gameplay;
-using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using VContainer.Unity;
 
@@ -16,10 +18,10 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         private MainHeroHolderService _mainHeroHolderService;
         private GameplayPopupService _gameplayPopupService;
         private IPauseService _pauseService;
+        private AbilitiesECSFactory _abilitiesFactory;
 
         private Queue<int> _levelUpRequests = new();
 
-        private AbilitySelectPopupPresenter _popup;
         private bool _isSelectingAbility;
 
         private readonly CancellationTokenSource _disposeCancellation = new();
@@ -30,14 +32,14 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         public DropAbilityOnMainHeroLevelUpService(
             MainHeroHolderService mainHeroHolderService,
             GameplayPopupService gameplayPopupService,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            AbilitiesECSFactory abilitiesFactory)
         {
             _mainHeroHolderService = mainHeroHolderService;
             _gameplayPopupService = gameplayPopupService;
             _pauseService = pauseService;
+            _abilitiesFactory = abilitiesFactory;
         }
-
-        public bool PopupIsOpened => _popup != null;
 
         public void Initialize()
         {
@@ -75,18 +77,36 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
             while (_levelUpRequests.Count > 0)
             {
                 int level = _levelUpRequests.Dequeue();
+                Entity hero = _mainHeroHolderService.MainHero;
 
                 _pauseService.Pause();
-                _popup = _gameplayPopupService.OpenAbilitySelectPopup(_mainHeroHolderService.MainHero, level, () =>
-                {
-                    _pauseService.Unpause();
-                    _popup = null;
-                });
 
-                await UniTask.WaitUntil(() => PopupIsOpened == false, cancellationToken: cancellationToken);
+                AbilityDropOption selected = await _gameplayPopupService.OpenAbilitySelectPopupAsync(hero, level, cancellationToken);
+
+                Provide(hero, selected);
+                _pauseService.Unpause();
             }
 
             _isSelectingAbility = false;
+        }
+
+        private void Provide(Entity hero, AbilityDropOption option)
+        {
+            Entity ability;
+
+            if (option.Config.IsUpgradable())
+            {
+                ability = hero.Abilities.Elements.FirstOrDefault(abil => abil.AbilityID.Value == option.Config.ID);
+
+                if (ability != null)
+                {
+                    ability.AbilityCurrentLevel.Value += option.Level;
+                    return;
+                }
+            }
+
+            ability = _abilitiesFactory.CreateAbilityFor(hero, option.Config, option.Level);
+            hero.Abilities.Add(ability);
         }
     }
 }

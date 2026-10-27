@@ -1,9 +1,11 @@
-﻿using RoguelikeTD.Gameplay.EntitiesCore;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
 using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
 using RoguelikeTD.UI.Gameplay.ResultPopups;
-using System;
+using System.Threading;
 using UnityEngine;
 
 namespace RoguelikeTD.UI.Gameplay
@@ -26,48 +28,44 @@ namespace RoguelikeTD.UI.Gameplay
 
         protected override Transform PopupLayer => _uiRoot.PopupsLayer;
 
-        public WinPopupPresenter OpenWinPopup(Action closedCallback = null)
+        public async UniTask OpenWinPopupAsync(CancellationToken cancellationToken)
         {
             WinPopupView view = ViewsFactory.Create<WinPopupView>(ViewsIDs.WinPopup, PopupLayer);
 
             WinPopupPresenter popup = _gameplayPresentersFactory.CreateWinPopupPresenter(view);
 
-            OnPopupCreated(popup, view, closedCallback);
-
-            return popup;
+            await OpenAsync(popup, view, cancellationToken);
         }
 
-        public DefeatPopupPresenter OpenDefeatPopup(Action closedCallback = null)
+        public async UniTask<DefeatPopupResult> OpenDefeatPopupAsync(CancellationToken cancellationToken)
         {
             DefeatPopupView view = ViewsFactory.Create<DefeatPopupView>(ViewsIDs.DefeatPopup, PopupLayer);
 
             DefeatPopupPresenter popup = _gameplayPresentersFactory.CreateDefeatPopupPresenter(view);
 
-            OnPopupCreated(popup, view, closedCallback);
+            await OpenAsync(popup, view, cancellationToken);
 
-            return popup;
+            return popup.Result;
         }
 
-        public AbilitySelectPopupPresenter OpenAbilitySelectPopup(Entity entity, int level, Action closeCallback = null)
+        public async UniTask<AbilityDropOption> OpenAbilitySelectPopupAsync(Entity entity, int level, CancellationToken cancellationToken)
         {
             AbilitySelectPopupView view = ViewsFactory.Create<AbilitySelectPopupView>(ViewsIDs.AbilitySelectPopup, PopupLayer);
 
             AbilitySelectPopupPresenter popup = _gameplayPresentersFactory.CreateAbilitySelectPopupPresenter(view, entity, level);
 
-            OnPopupCreated(popup, view, closeCallback);
+            await OpenAsync(popup, view, cancellationToken);
 
-            return popup;
+            return popup.SelectedOption;
         }
 
-        public PlaceablePopupPresenter OpenPlaceablesSelectPopup(Action closeCallback = null)
+        public async UniTask OpenPlaceablesSelectPopupAsync(CancellationToken cancellationToken)
         {
             PlaceablePopupView view = ViewsFactory.Create<PlaceablePopupView>(ViewsIDs.PlaceablePopupView, PopupLayer);
 
             PlaceablePopupPresenter popup = _gameplayPresentersFactory.CreatePlaceablePopupPresenter(view);
 
-            OnPopupCreated(popup, view, closeCallback);
-
-            return popup;
+            await OpenAsync(popup, view, cancellationToken);
         }
     }
 }
