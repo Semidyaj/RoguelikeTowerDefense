@@ -1031,6 +1031,30 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = value});
 		}
 
+		public RoguelikeTD.Gameplay.Features.Attack.AttackCooldownModifiedTime AttackCooldownModifiedTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackCooldownModifiedTime>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackCooldownModifiedTime => AttackCooldownModifiedTimeC.Value;
+
+		public bool TryGetAttackCooldownModifiedTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackCooldownModifiedTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownModifiedTime()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownModifiedTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackCooldownModifiedTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackCooldownModifiedTime() {Value = value});
+		}
+
 		public RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent AttackDelayEndEventC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent>();
 
 		public RoguelikeTD.Core.Reactive.ReactiveEvent AttackDelayEndEvent => AttackDelayEndEventC.Value;
@@ -1053,6 +1077,30 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayEndEvent(RoguelikeTD.Core.Reactive.ReactiveEvent value)
 		{
 			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.Attack.AttackDelayModifiedTime AttackDelayModifiedTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackDelayModifiedTime>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackDelayModifiedTime => AttackDelayModifiedTimeC.Value;
+
+		public bool TryGetAttackDelayModifiedTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackDelayModifiedTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayModifiedTime()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayModifiedTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackDelayModifiedTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackDelayModifiedTime() {Value = value});
 		}
 
 		public RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime AttackDelayTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackDelayTime>();
@@ -1125,6 +1173,54 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
 			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.Attack.AttackProcessModifiedTime AttackProcessModifiedTimeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackProcessModifiedTime>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackProcessModifiedTime => AttackProcessModifiedTimeC.Value;
+
+		public bool TryGetAttackProcessModifiedTime(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackProcessModifiedTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessModifiedTime()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessModifiedTime() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackProcessModifiedTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackProcessModifiedTime() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.Attack.AttackRange AttackRangeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.AttackRange>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttackRange => AttackRangeC.Value;
+
+		public bool TryGetAttackRange(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.AttackRange component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackRange()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackRange() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttackRange(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.AttackRange() {Value = value});
 		}
 
 		public RoguelikeTD.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.CanStartAttack>();
@@ -2718,6 +2814,30 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddSpawnInitialTime(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
 		{
 			return AddComponent(new RoguelikeTD.Gameplay.Features.SpawnFeature.SpawnInitialTime() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.StatsFeature.AttacksPerSecond AttacksPerSecondC => GetComponent<RoguelikeTD.Gameplay.Features.StatsFeature.AttacksPerSecond>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AttacksPerSecond => AttacksPerSecondC.Value;
+
+		public bool TryGetAttacksPerSecond(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.StatsFeature.AttacksPerSecond component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttacksPerSecond()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.AttacksPerSecond() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAttacksPerSecond(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.StatsFeature.AttacksPerSecond() {Value = value});
 		}
 
 		public RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats BaseStatsC => GetComponent<RoguelikeTD.Gameplay.Features.StatsFeature.BaseStats>();

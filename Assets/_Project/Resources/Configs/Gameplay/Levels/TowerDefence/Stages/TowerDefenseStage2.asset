@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TowerDefenseStage2
   m_EditorClassIdentifier: 
   _enemyItems:
-  - <SpawnPosition>k__BackingField: {x: -3, y: 0, z: 6}
+  - <SpawnPosition>k__BackingField: {x: -13, y: 0, z: 5}
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
-  - <SpawnPosition>k__BackingField: {x: 3, y: 0, z: 6}
+  - <SpawnPosition>k__BackingField: {x: 13, y: 0, z: 5}
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
-  - <SpawnPosition>k__BackingField: {x: 0, y: 0, z: -6}
+  - <SpawnPosition>k__BackingField: {x: -13, y: 0, z: -6}
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
       type: 2}

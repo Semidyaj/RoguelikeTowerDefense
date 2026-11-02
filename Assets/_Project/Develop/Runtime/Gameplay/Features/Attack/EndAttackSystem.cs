@@ -10,7 +10,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack
     {
         private ReactiveEvent _endAttackEvent;
         private ReactiveVariable<bool> _inAttackProcess;
-        private ReactiveVariable<float> _attackProcessInitialTime;
+        private ReactiveVariable<float> _attackProcessModifiedTime;
         private ReactiveVariable<float> _attackProcessCurrentTime;
 
         private IDisposable _timerDisposable;
@@ -19,7 +19,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack
         {
             _endAttackEvent = entity.EndAttackEvent;
             _inAttackProcess = entity.InAttackProcess;
-            _attackProcessInitialTime = entity.AttackProcessInitialTime;
+            _attackProcessModifiedTime = entity.AttackProcessModifiedTime;
             _attackProcessCurrentTime = entity.AttackProcessCurrentTime;
 
             _timerDisposable = _attackProcessCurrentTime.Subscribe(OnTimerChanged);
@@ -39,6 +39,6 @@ namespace RoguelikeTD.Gameplay.Features.Attack
             }
         }
 
-        private bool TimeIsDone(float currentTime) => currentTime >= _attackProcessInitialTime.Value;
+        private bool TimeIsDone(float currentTime) => currentTime >= _attackProcessModifiedTime.Value;
     }
 }

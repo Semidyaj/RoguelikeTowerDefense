@@ -14,6 +14,8 @@ namespace RoguelikeTD.Configs.Meta.HeroStats
 
         public StatUpgradeCostConfig GetStatConfig(StatTypes type)
             => _stats.First(c => c.Type == type);
+
+        public bool Contains(StatTypes type) => _stats.Any(c => c.Type == type);
     }
 
     [Serializable]

@@ -176,6 +176,19 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
             Assert.AreEqual(10f, service.GetCurrentStatValueFor(Stat));
         }
 
+        [Test]
+        public async Task ReadFrom_StatNotInConfig_NotInAvailableStats()
+        {
+            StatsUpgradeService service = await CreateService(level: 1);
+
+            service.ReadFrom(new PlayerData
+            {
+                StatsUpgradeLevel = new Dictionary<StatTypes, int> { { Stat, 2 }, { StatTypes.MoveSpeed, 3 } }
+            });
+
+            CollectionAssert.AreEquivalent(new[] { Stat }, service.AvailableStats);
+        }
+
         private async Task<StatsUpgradeService> CreateService(int level, int gold = 0)
         {
             ConfigsProviderService configsProviderService = new ConfigsProviderService(new FakeConfigsLoader(_config));

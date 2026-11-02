@@ -174,20 +174,25 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
             return entity;
         }
 
-        public Entity CreateHeroEntity(Vector3 position, HeroConfig config)
+        public Entity CreateHeroEntity(Vector3 position, HeroConfig config, Dictionary<StatTypes, float> baseStats)
         {
             Entity entity = CreateEmpty();
 
             _monoEntitiesFactory.Create(entity, position, "Entities/Hero");
 
+            Dictionary<StatTypes, float> modifiedStats = new(baseStats);
+
             entity
+                .AddStatsEffects()
+                .AddBaseStats(baseStats)
+                .AddModifiesStats(modifiedStats)
                 .AddMoveDirection()
-                .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
+                .AddMoveSpeed(new ReactiveVariable<float>(baseStats[StatTypes.MoveSpeed]))
                 .AddIsMoving()
                 .AddRotationDirection()
                 .AddRotationSpeed(new ReactiveVariable<float>(config.RotationSpeed))
-                .AddMaxHealth(new ReactiveVariable<float>(config.MaxHealth))
-                .AddCurrentHealth(new ReactiveVariable<float>(config.MaxHealth))
+                .AddMaxHealth(new ReactiveVariable<float>(baseStats[StatTypes.MaxHealth]))
+                .AddCurrentHealth(new ReactiveVariable<float>(baseStats[StatTypes.MaxHealth]))
                 .AddIsDead()
                 .AddInDeathProcess()
                 .AddDeathProcessInitialTime(new ReactiveVariable<float>(config.DeathProcessTime))
@@ -195,6 +200,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddAttackProcessInitialTime(new ReactiveVariable<float>(config.AttackProcessTime))
+                .AddAttackProcessModifiedTime(new ReactiveVariable<float>(config.AttackProcessTime))
                 .AddAttackProcessCurrentTime()
                 .AddInAttackProcess()
                 .AddInstantShootingDirections(new InstantShootingDirectionArgs(new InstantShotDirectionArgs(0, 1)))
@@ -202,12 +208,22 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddStartAttackEvent()
                 .AddEndAttackEvent()
                 .AddAttackDelayTime(new ReactiveVariable<float>(config.AttackDelayTime))
+                .AddAttackDelayModifiedTime(new ReactiveVariable<float>(config.AttackDelayTime))
                 .AddAttackDelayEndEvent()
-                .AddInstantAttackDamage(new ReactiveVariable<float>(config.InstantAttackDamage))
+                .AddInstantAttackDamage(new ReactiveVariable<float>(baseStats[StatTypes.Damage]))
+                .AddAttacksPerSecond(new ReactiveVariable<float>(baseStats[StatTypes.AttacksPerSecond]))
+                .AddAttackRange(new ReactiveVariable<float>(baseStats[StatTypes.AttackRange]))
                 .AddAttackCancelEvent()
                 .AddAttackCooldownInitialTime(new ReactiveVariable<float>(config.AttackCooldown))
+                .AddAttackCooldownModifiedTime(new ReactiveVariable<float>(config.AttackCooldown))
                 .AddAttackCooldownCurrentTime()
-                .AddInAttackCooldown();
+                .AddInAttackCooldown()
+                .AddInputMouseClickGroundPosition()
+                .AddInputFindMouseClickPositionRequest()
+                .AddInputMouseClickPositionFoundEvent()
+                .AddInputIsPositionFound()
+                .AddPlaceableIsPlaced()
+                .AddPlaceableIsEnoughMoney();
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -245,13 +261,21 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddMustCancelAttack(mustCancelAttack);
 
             entity
+                .AddSystem(new StatEffectsApplierSystem())
+                .AddSystem(new InstantAttackDamageStatSynchronizerSystem())
+                .AddSystem(new AttacksPerSecondStatSynchronizerSystem())
+                .AddSystem(new AttackTimeByAttackSpeedStatSynchronizerSystem())
+                .AddSystem(new AttackRangeStatSynchronizerSystem())
+                .AddSystem(new MaxHealthStatSynchronizerSystem())
+                .AddSystem(new MoveSpeedStatSynchronizerSystem())
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
+                .AddSystem(new RaycastGroundPointFinder(UnityLayers.LayerMaskGround))
                 .AddSystem(new AttackCancelSystem())
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this))
+                .AddSystem(new DirectionsInstantShootSystem(this, "Entities/Arrow", config.ProjectileSpeed))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
                 .AddSystem(new ApplyDamageSystem())
@@ -373,15 +397,18 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddShootingMinDistance(new ReactiveVariable<float>(config.ShootingMinDistance))
                 .AddIsMinDistanceToAttack()
                 .AddAttackProcessInitialTime(new ReactiveVariable<float>(config.AttackProcessTime))
+                .AddAttackProcessModifiedTime(new ReactiveVariable<float>(config.AttackProcessTime))
                 .AddAttackProcessCurrentTime()
                 .AddInAttackProcess()
                 .AddStartAttackRequest()
                 .AddStartAttackEvent()
                 .AddEndAttackEvent()
                 .AddAttackDelayTime(new ReactiveVariable<float>(config.AttackDelayTime))
+                .AddAttackDelayModifiedTime(new ReactiveVariable<float>(config.AttackDelayTime))
                 .AddAttackDelayEndEvent()
                 .AddInstantAttackDamage(new ReactiveVariable<float>(config.InstantAttackDamage))
                 .AddAttackCooldownInitialTime(new ReactiveVariable<float>(config.AttackCooldown))
+                .AddAttackCooldownModifiedTime(new ReactiveVariable<float>(config.AttackCooldown))
                 .AddAttackCooldownCurrentTime()
                 .AddInAttackCooldown()
 
@@ -434,7 +461,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new InstantShootSystem(this))
+                .AddSystem(new InstantShootSystem(this, "Entities/Projectile", 20))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
 
@@ -510,17 +537,17 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
             return entity;
         }
 
-        public Entity CreateProjectile(Vector3 position, Vector3 direction, float damage, Entity owner)
+        public Entity CreateProjectile(string prefabPath, Vector3 position, Vector3 direction, float speed, float damage, Entity owner)
         {
             Entity entity = CreateEmpty();
 
-            _monoEntitiesFactory.Create(entity, position, "Entities/Projectile");
+            _monoEntitiesFactory.Create(entity, position, prefabPath);
 
             entity
                 .AddIsProjectile()
                 .AddOwner(new ReactiveVariable<Entity>(owner))
                 .AddMoveDirection(new ReactiveVariable<Vector3>(direction))
-                .AddMoveSpeed(new ReactiveVariable<float>(20))
+                .AddMoveSpeed(new ReactiveVariable<float>(speed))
                 .AddIsMoving()
                 .AddRotationDirection(new ReactiveVariable<Vector3>(direction))
                 .AddRotationSpeed(new ReactiveVariable<float>(9000))

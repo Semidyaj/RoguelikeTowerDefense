@@ -40,6 +40,18 @@
 
 **Порядок эффектов влияет на итог.** Эффекты применяются в порядке добавления: `+5`, затем `×2` даёт `(10 + 5) × 2 = 30`, в обратном порядке — `10 × 2 + 5 = 25`. Сейчас все способности на урон — умножение (от порядка не зависит). Если появятся сложения вместе с умножениями и порядок станет проблемой — применять эффекты по фиксированным стадиям (сначала сложение, потом умножение).
 
+**Какие статы есть у героя, решает `PlayerStatsUpgradeConfig`.** `StatsUpgradeService.ReadFrom` пропускает статы, которых нет в конфиге, а `MainHeroFactory` собирает `BaseStats` только из `AvailableStats`. Поэтому стат можно убрать из игры, оставив значение в enum и в старых сохранениях (так выведен из игры `AttackRadius`, его заменила дальность `AttackRange`).
+
+**Скорость атаки** (`AttacksPerSecond`) меняет не одно время, а все три: `AttackTimeByAttackSpeedStatSynchronizerSystem` пересчитывает `AttackProcessModifiedTime`, `AttackDelayModifiedTime` и `AttackCooldownModifiedTime` из исходных, а таймеры атаки читают Modified-значения. Скорость анимации подгоняет `InstantAttackAnimationSpeedView` (множитель Initial / Modified).
+
+**Как добавить новый стат:**
+
+1. значение в `StatTypes` (не менять числа существующих — по ним стоят ассеты);
+2. строка в `PlayerStatsUpgradeConfig` (уровни прокачки и цена);
+3. строка в `StatsViewConfig` (название и иконка в окне прокачки);
+4. синхронизатор `…StatSynchronizerSystem`, переносящий `ModifiesStats` в компонент, который читает игровая система, и его подключение в `EntitiesFactory.CreateHeroEntity`;
+5. при желании — способности `IncreaseStat` на этот стат (ассет + запись в `AbilitiesConfigsContainer`).
+
 ## Реактивность
 
 Своя реализация (`Core/Reactive`): `ReactiveVariable<T>` (уведомляет `(старое, новое)` при изменении `Value`), `ReactiveEvent<T>` / `ReactiveEvent`. Подписчики хранятся в общем `SubscribersList<T>`.

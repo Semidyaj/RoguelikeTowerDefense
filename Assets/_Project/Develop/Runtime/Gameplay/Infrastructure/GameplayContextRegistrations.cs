@@ -11,7 +11,6 @@ using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.Allies;
-using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
 using RoguelikeTD.Gameplay.Features.Enemies;
 using RoguelikeTD.Gameplay.Features.InputFeature;
 using RoguelikeTD.Gameplay.Features.LevelUpFeature;
@@ -71,8 +70,6 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             builder.Register<GameplayStatesFactory>(Lifetime.Singleton);
             builder.Register(CreateGameplayStatesContext, Lifetime.Singleton);
-
-            builder.Register<PointClickExplosionService>(Lifetime.Singleton);
 
             builder.Register<PlaceablesSpawner>(Lifetime.Singleton);
             builder.Register<PlaceablesFactory>(Lifetime.Singleton);

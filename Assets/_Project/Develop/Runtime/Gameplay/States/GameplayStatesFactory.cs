@@ -3,7 +3,6 @@ using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.Allies;
-using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
 using RoguelikeTD.Gameplay.Features.InputFeature;
 using RoguelikeTD.Gameplay.Features.LootFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
@@ -24,7 +23,6 @@ namespace RoguelikeTD.Gameplay.States
         private readonly LootPullingService _lootPullingService;
         private readonly MainHeroHolderService _mainHeroHolderService;
         private readonly TowerHolderService _towerHolderService;
-        private readonly PointClickExplosionService _pointClickExplosionService;
         private readonly PlaceableService _placeableService;
         private readonly PreparationTriggerService _preparationTriggerService;
         private readonly GameplayPopupService _gameplayPopupService;
@@ -43,7 +41,6 @@ namespace RoguelikeTD.Gameplay.States
             LootPullingService lootPullingService,
             MainHeroHolderService mainHeroHolderService,
             TowerHolderService towerHolderService,
-            PointClickExplosionService pointClickExplosionService,
             PlaceableService placeableService,
             PreparationTriggerService preparationTriggerService,
             GameplayPopupService gameplayPopupService,
@@ -61,7 +58,6 @@ namespace RoguelikeTD.Gameplay.States
             _lootPullingService = lootPullingService;
             _mainHeroHolderService = mainHeroHolderService;
             _towerHolderService = towerHolderService;
-            _pointClickExplosionService = pointClickExplosionService;
             _placeableService = placeableService;
             _preparationTriggerService = preparationTriggerService;
             _gameplayPopupService = gameplayPopupService;
@@ -153,7 +149,6 @@ namespace RoguelikeTD.Gameplay.States
 
         private PreparationState CreatePreparationState()
             => new PreparationState(
-                _pointClickExplosionService,
                 _placeableService,
                 _preparationTriggerService,
                 _gameplayPopupService);

@@ -45,6 +45,17 @@ namespace RoguelikeTD.Gameplay.Features.AI
             return brain;
         }
 
+        public StateMachineBrain CreateMainHeroWithPlacementBrain(Entity entity, ITargetSelector targetSelector)
+        {
+            AIStateMachine rootStateMachine = _stateMachineFactory.CreateMainHeroWithPlacementStateMachine(entity, targetSelector);
+
+            StateMachineBrain brain = new StateMachineBrain(rootStateMachine);
+
+            _brainsContext.SetFor(entity, brain);
+
+            return brain;
+        }
+
         // ALLIES
         public StateMachineBrain CreateTowerBrain(Entity entity)
         {

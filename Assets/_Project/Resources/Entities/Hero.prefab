@@ -105,7 +105,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 988fe4621241d7440866490936c7dde7, type: 2}
+      objectReference: {fileID: 9100000, guid: 49c4d0249bdcdd54cb70c1cf5e53586f, type: 2}
     - target: {fileID: 1796003267083217271, guid: 1a8bebf95712b8040909fae23728e2a0,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -168,7 +168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8989148629678719051, guid: 1a8bebf95712b8040909fae23728e2a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8405092554719922461}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4218675922035788605, guid: 1a8bebf95712b8040909fae23728e2a0,
         type: 3}
@@ -185,7 +189,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4218675922035788605, guid: 1a8bebf95712b8040909fae23728e2a0,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4892646204739881753}
+      addedObject: {fileID: 1078440433928090466}
+    - targetCorrespondingSourceObject: {fileID: 4218675922035788605, guid: 1a8bebf95712b8040909fae23728e2a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5278737823144263722}
+    - targetCorrespondingSourceObject: {fileID: 4218675922035788605, guid: 1a8bebf95712b8040909fae23728e2a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4553890365770835727}
   m_SourcePrefab: {fileID: 100100000, guid: 1a8bebf95712b8040909fae23728e2a0, type: 3}
 --- !u!1 &160654521764493328 stripped
 GameObject:
@@ -234,7 +246,7 @@ MonoBehaviour:
   _applyDamageEffectPrefab: {fileID: 19840534, guid: 666381b24c234194882b77851e943ef1,
     type: 3}
   _effectSpawnPoint: {fileID: 4571729898602364517}
---- !u!114 &4892646204739881753
+--- !u!114 &1078440433928090466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,14 +255,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 160654521764493328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32e1e31fa31b7eb428d82e91101f240e, type: 3}
+  m_Script: {fileID: 11500000, guid: f09b0baa7950c9943adfbacbe4b6c7fc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _explosionEffectPrefab: {fileID: 19848870, guid: a7c694f0877ea874fa57e033221095c3,
-    type: 3}
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Gameplay.Features.Attack.InstantAttackView
+  _animator: {fileID: 2332251617767021146}
+--- !u!114 &5278737823144263722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160654521764493328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bced405f0286734c8ddf32ea900fb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Gameplay.Features.Attack.InstantAttackAnimationSpeedView
+  _animator: {fileID: 2332251617767021146}
+--- !u!114 &4553890365770835727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160654521764493328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481b42f31f8e16d46957907e44a21715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Gameplay.Features.Attack.CurrentTargetView
+  _backlightPrefab: {fileID: 19867586, guid: c82022460ac6d274cb9e2aefc6da9dc9, type: 3}
 --- !u!95 &2332251617767021146 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1796003267083217271, guid: 1a8bebf95712b8040909fae23728e2a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4085183818875204397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4904035185119097702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8989148629678719051, guid: 1a8bebf95712b8040909fae23728e2a0,
     type: 3}
   m_PrefabInstance: {fileID: 4085183818875204397}
   m_PrefabAsset: {fileID: 0}
@@ -259,6 +302,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5721378904832954210, guid: 1a8bebf95712b8040909fae23728e2a0,
     type: 3}
   m_PrefabInstance: {fileID: 4085183818875204397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6083550207252590060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4904035185119097702}
+    m_Modifications:
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00113
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135120137609789003, guid: b20e01b9006f4e34ea955d02f3de2be3,
+        type: 3}
+      propertyPath: m_Name
+      value: Bow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b20e01b9006f4e34ea955d02f3de2be3, type: 3}
+--- !u!4 &8405092554719922461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
+    type: 3}
+  m_PrefabInstance: {fileID: 6083550207252590060}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8457665655636038547
 PrefabInstance:
@@ -450,10 +582,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430354229237624770}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

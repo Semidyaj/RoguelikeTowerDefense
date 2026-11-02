@@ -89,6 +89,9 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
         {
             foreach(var statLevel in data.StatsUpgradeLevel)
             {
+                if (PlayerStatsUpgradeConfig.Contains(statLevel.Key) == false)
+                    continue;
+
                 int level = ClampToConfigLevels(statLevel.Key, statLevel.Value);
 
                 if (_statLevels.ContainsKey(statLevel.Key))

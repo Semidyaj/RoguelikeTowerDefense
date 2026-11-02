@@ -22,7 +22,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack
         {
             _startAttackEvent = entity.StartAttackEvent;
             _attackDelayEndEvent = entity.AttackDelayEndEvent;
-            _delay = entity.AttackDelayTime;
+            _delay = entity.AttackDelayModifiedTime;
             _attackProcessCurrentTime = entity.AttackProcessCurrentTime;
 
             _timerDisposable = _attackProcessCurrentTime.Subscribe(OnTimerChanged);

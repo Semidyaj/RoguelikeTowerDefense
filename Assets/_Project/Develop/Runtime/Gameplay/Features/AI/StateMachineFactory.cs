@@ -47,6 +47,19 @@ namespace RoguelikeTD.Gameplay.Features.AI
             return rootStateMachine;
         }
 
+        public AIStateMachine CreateMainHeroWithPlacementStateMachine(Entity entity, ITargetSelector targetSelector)
+        {
+            AIStateMachine placementState = CreateInputPlacementStateMachine(entity);
+            AIStateMachine heroState = CreateMainHeroStateMachine(entity, targetSelector);
+
+            AIParallelState parallelState = new AIParallelState(placementState, heroState);
+
+            AIStateMachine rootStateMachine = new AIStateMachine();
+            rootStateMachine.AddState(parallelState);
+
+            return rootStateMachine;
+        }
+
         public AIStateMachine CreateMainHeroStateMachine(Entity entity, ITargetSelector targetSelector)
         {
             AIStateMachine combatState = CreateAutoAttackStateMachine(entity);
@@ -169,6 +182,38 @@ namespace RoguelikeTD.Gameplay.Features.AI
 
             stateMachine.AddTransition(emptyState, mainActionState, fromEmptyToMainActionCondition);
             stateMachine.AddTransition(mainActionState, emptyState, fromMainActionToEmptyCondition);
+
+            return stateMachine;
+        }
+
+        public AIStateMachine CreateInputPlacementStateMachine(Entity entity)
+        {
+            List<IDisposable> disposables = new List<IDisposable>();
+
+            EmptyState emptyState = new EmptyState();
+            InputMiningState placementState = new InputMiningState(entity);
+
+            TimerService idleTimer = _timerServiceFactory.Create(1f);
+            disposables.Add(idleTimer);
+            disposables.Add(emptyState.Entered.Subscribe(idleTimer.Restart));
+
+            ICompositeCondition fromEmptyToPlacementCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => _inputService.IsMainActionPerformed))
+                .Add(new FuncCondition(() => _pauseService.IsPaused == false))
+                .Add(new FuncCondition(() => idleTimer.IsOver || entity.InputIsPositionFound.Value == false));
+
+            ICompositeCondition fromPlacementToEmptyCondition = new CompositeCondition(LogicOperations.Or)
+                .Add(new FuncCondition(() => entity.PlaceableIsPlaced.Value))
+                .Add(new FuncCondition(() => entity.PlaceableIsEnoughMoney.Value == false))
+                .Add(new FuncCondition(() => entity.InputIsPositionFound.Value == false));
+
+            AIStateMachine stateMachine = new AIStateMachine(disposables);
+
+            stateMachine.AddState(emptyState);
+            stateMachine.AddState(placementState);
+
+            stateMachine.AddTransition(emptyState, placementState, fromEmptyToPlacementCondition);
+            stateMachine.AddTransition(placementState, emptyState, fromPlacementToEmptyCondition);
 
             return stateMachine;
         }

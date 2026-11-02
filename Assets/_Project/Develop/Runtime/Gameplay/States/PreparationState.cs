@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.StateMachineCore;
-using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
 using Cysharp.Threading.Tasks;
@@ -14,21 +13,18 @@ namespace RoguelikeTD.Gameplay.States
         private readonly PreparationTriggerService _triggerService;
 
         private readonly PlaceableService _placeableService;
-        private readonly PointClickExplosionService _explosionService;
 
         private readonly GameplayPopupService _popupService;
 
         private CancellationTokenSource _cancellation;
 
         public PreparationState(
-            PointClickExplosionService explosionService,
             PlaceableService placeableService,
             PreparationTriggerService triggerService,
             GameplayPopupService popupService)
         {
             _triggerService = triggerService;
             _placeableService = placeableService;
-            _explosionService = explosionService;
             _popupService = popupService;
         }
 
@@ -37,7 +33,6 @@ namespace RoguelikeTD.Gameplay.States
             base.Enter();
 
             _placeableService?.Enable();
-            _explosionService?.Disable();
 
             _cancellation = new CancellationTokenSource();
             _popupService.OpenPlaceablesSelectPopupAsync(_cancellation.Token).Forget();
@@ -56,7 +51,6 @@ namespace RoguelikeTD.Gameplay.States
             base.Exit();
 
             _placeableService?.Disable();
-            _explosionService?.Enable();
 
             _cancellation.Cancel();
             _cancellation.Dispose();
