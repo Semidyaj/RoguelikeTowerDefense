@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dc32f45a3647c04384c5252b0d4ae7f, type: 3}
-  m_Name: TowerDefenseStage1
-  m_EditorClassIdentifier: 
+  m_Name: Wave1
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Configs.Gameplay.Stages.TowerDefenseStageConfig
   _enemyItems:
-  - <SpawnPosition>k__BackingField: {x: -13, y: 0, z: 5}
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: -7}
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
-  - <SpawnPosition>k__BackingField: {x: 13, y: 0, z: 5}
+    <SpawnTime>k__BackingField: 0
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: -3}
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
+    <SpawnTime>k__BackingField: 0
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+      type: 2}
+    <SpawnTime>k__BackingField: 6

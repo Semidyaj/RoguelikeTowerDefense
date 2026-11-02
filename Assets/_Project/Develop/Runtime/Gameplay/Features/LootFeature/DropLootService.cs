@@ -67,7 +67,7 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
                 .Cast<CoinsLootConfig>()
                 .ToList();
 
-            if (coinsConfigs.Count > 0 && Random.Range(MinPercent, MaxPercent) >= MinPercentToDrop)
+            if (coinsConfigs.Count > 0)
             {
                 CoinsLootConfig coinsLootConfig = coinsConfigs[Random.Range(0, coinsConfigs.Count)];
                 _lootFactory.CreateCoinsLoot(coinsLootConfig.PrefabPath, position, coinsLootConfig.Coins);

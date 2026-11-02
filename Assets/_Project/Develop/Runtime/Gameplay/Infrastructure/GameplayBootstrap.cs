@@ -53,12 +53,12 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             _entitiesLifeContext = _resolver.Resolve<EntitiesLifeContext>();
             _brainsContext = _resolver.Resolve<AIBrainsContext>();
 
-            Entity entity = _resolver.Resolve<MainHeroFactory>().Create(Vector3.zero + new Vector3(0, 0, -2));
-
-            _gameplayStatesContext = _resolver.Resolve<GameplayStatesContext>();
-
             LevelConfig baseLevelConfig = configsProviderService.GetConfig<LevelsListConfig>().GetBy(_inputArgs.LevelNumber);
             TowerDefenseLevelConfig levelConfig = baseLevelConfig as TowerDefenseLevelConfig;
+
+            Entity entity = _resolver.Resolve<MainHeroFactory>().Create(levelConfig.Position / 2);
+
+            _gameplayStatesContext = _resolver.Resolve<GameplayStatesContext>();
 
             TowerConfig towerConfig = configsProviderService.GetConfig<TowerConfig>();
 

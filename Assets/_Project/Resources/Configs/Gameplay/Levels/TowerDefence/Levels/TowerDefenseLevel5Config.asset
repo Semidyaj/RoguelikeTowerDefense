@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acef51873e41d24791d1406466c35f1, type: 3}
+  m_Name: TowerDefenseLevel5Config
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Configs.Gameplay.Levels.TowerDefenseLevelConfig
+  _stageConfigs:
+  - {fileID: 11400000, guid: 932de58a09220014caf750f1a6ccca07, type: 2}
+  - {fileID: 11400000, guid: 5f619329598c1cc438548685b78f7add, type: 2}
+  - {fileID: 11400000, guid: 604a32a68bb890747a976e74f92382c0, type: 2}
+  - {fileID: 11400000, guid: f0d9cc54b1b23cd4498a456c40b94021, type: 2}
+  - {fileID: 11400000, guid: 8b346e3fe782fbc4997882904664182c, type: 2}
+  - {fileID: 11400000, guid: 8e132a96dd1aeb342bdfe5ba362155e1, type: 2}
+  <MaxHealth>k__BackingField: 200
+  <Position>k__BackingField: {x: 14, y: 0, z: 0}
+  <EnemyHealthMultiplier>k__BackingField: 2.8
+  <EnemyDamageMultiplier>k__BackingField: 1.7

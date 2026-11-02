@@ -28,7 +28,7 @@ MonoBehaviour:
     - 20
     - 21
     <CostType>k__BackingField: 0
-    <UpgradeToNextLevelCost>k__BackingField: 320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000e2040000dc050000
+    <UpgradeToNextLevelCost>k__BackingField: 1e000000320000005000000078000000aa000000e60000002c0100007c010000d60100003a020000a8020000
   - <Type>k__BackingField: 2
     <StatValues>k__BackingField:
     - 100
@@ -44,7 +44,7 @@ MonoBehaviour:
     - 1250
     - 1500
     <CostType>k__BackingField: 0
-    <UpgradeToNextLevelCost>k__BackingField: 320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000e2040000dc050000
+    <UpgradeToNextLevelCost>k__BackingField: 1e000000320000005000000078000000aa000000e60000002c0100007c010000d60100003a020000a8020000
   - <Type>k__BackingField: 3
     <StatValues>k__BackingField:
     - 25
@@ -60,7 +60,7 @@ MonoBehaviour:
     - 350
     - 400
     <CostType>k__BackingField: 0
-    <UpgradeToNextLevelCost>k__BackingField: 320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000e2040000dc050000
+    <UpgradeToNextLevelCost>k__BackingField: 1e000000320000005000000078000000aa000000e60000002c0100007c010000d60100003a020000a8020000
   - <Type>k__BackingField: 4
     <StatValues>k__BackingField:
     - 10
@@ -76,7 +76,7 @@ MonoBehaviour:
     - 15
     - 15.5
     <CostType>k__BackingField: 0
-    <UpgradeToNextLevelCost>k__BackingField: 320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000e2040000dc050000
+    <UpgradeToNextLevelCost>k__BackingField: 1e000000320000005000000078000000aa000000e60000002c0100007c010000d60100003a020000a8020000
   - <Type>k__BackingField: 5
     <StatValues>k__BackingField:
     - 1
@@ -92,4 +92,4 @@ MonoBehaviour:
     - 3.5
     - 3.75
     <CostType>k__BackingField: 0
-    <UpgradeToNextLevelCost>k__BackingField: 320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000e2040000dc050000
+    <UpgradeToNextLevelCost>k__BackingField: 1e000000320000005000000078000000aa000000e60000002c0100007c010000d60100003a020000a8020000

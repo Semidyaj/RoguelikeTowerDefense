@@ -37,8 +37,7 @@ namespace RoguelikeTD.Gameplay.States
             _cancellation = new CancellationTokenSource();
             _popupService.OpenPlaceablesSelectPopupAsync(_cancellation.Token).Forget();
 
-            Vector3 nextStageTriggerPosition = Vector3.zero + Vector3.forward * 2;
-            _triggerService.Create(nextStageTriggerPosition);
+            _triggerService.Create(Vector3.zero);
         }
 
         public void Update(float deltaTime)
