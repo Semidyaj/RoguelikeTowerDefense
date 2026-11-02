@@ -91,6 +91,17 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
         public Func<int, List<DirectionShotConfig>> Value;
     }
 
+    // BounceProjectileAbility
+    public class AbilityBounceCountByLevel : IEntityComponent
+    {
+        public Func<int, int> Value;
+    }
+
+    public class AbilityBounceLayerMask : IEntityComponent
+    {
+        public LayerMask Value;
+    }
+
     // Config data
     public class IsAbilityAvailableToDrop : IEntityComponent
     {

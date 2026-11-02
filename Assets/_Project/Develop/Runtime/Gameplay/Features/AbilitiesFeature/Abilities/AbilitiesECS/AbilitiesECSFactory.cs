@@ -25,6 +25,9 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
                 case AdditionalDirectionsShotAbilityConfig additionalDirectionsShotAbilityConfig:
                     return CreateAdditionalDirectionsShotAbility(owner, additionalDirectionsShotAbilityConfig, currentLevel);
 
+                case BounceProjectileAbilityConfig bounceProjectileAbilityConfig:
+                    return CreateBounceProjectileAbility(owner, bounceProjectileAbilityConfig, currentLevel);
+
                 case StartWaveHealTowerAbilityConfig startWaveHealTowerAbilityConfig:
                     return CreateStartWaveHealTowerAbility(owner, startWaveHealTowerAbilityConfig, currentLevel);
 
@@ -92,6 +95,36 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
 
             entity
                 .AddSystem(new AdditionalDirectionsShotAbilitySystem());
+
+            _entitiesLifeContext.Add(entity);
+
+            return entity;
+        }
+
+        private Entity CreateBounceProjectileAbility(Entity owner, BounceProjectileAbilityConfig config, int currentLevel)
+        {
+            Entity entity = CreateEmpty();
+
+            entity
+                .AddIsAbilityAvailableToDrop(new ReactiveVariable<bool>(config.IsAvailableInDrop))
+                .AddAbilityID(new ReactiveVariable<string>(config.ID))
+                .AddAbilityMaxLevel(new ReactiveVariable<int>(config.MaxLevel))
+                .AddAbilityCurrentLevel(new ReactiveVariable<int>(currentLevel))
+                .AddAbilityName(new ReactiveVariable<string>(config.Name))
+                .AddAbilityDescription(new ReactiveVariable<string>(config.Description))
+                .AddAbilityIcon(config.Icon)
+                .AddIsAbilityUpgradable(new ReactiveVariable<bool>(config.IsUpgradable()))
+                .AddAbilityBounceCountByLevel(config.GetBounceCountBy)
+                .AddAbilityBounceLayerMask(config.LayerBounceRection)
+
+                .AddAbilityOwner(new ReactiveVariable<Entity>(owner))
+                .AddIsAbility()
+                .AddIsOnAddAbility()
+                .AddAbilityActivateRequest()
+                .AddIsAbilityUsed();
+
+            entity
+                .AddSystem(new BounceProjectileAbilitySystem(_entitiesLifeContext));
 
             _entitiesLifeContext.Add(entity);
 

@@ -131,6 +131,44 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityActivateRequest() {Value = value});
 		}
 
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceCountByLevel AbilityBounceCountByLevelC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceCountByLevel>();
+
+		public System.Func<System.Int32, System.Int32> AbilityBounceCountByLevel => AbilityBounceCountByLevelC.Value;
+
+		public bool TryGetAbilityBounceCountByLevel(out System.Func<System.Int32, System.Int32> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceCountByLevel component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(System.Func<System.Int32, System.Int32>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityBounceCountByLevel(System.Func<System.Int32, System.Int32> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceCountByLevel() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceLayerMask AbilityBounceLayerMaskC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceLayerMask>();
+
+		public UnityEngine.LayerMask AbilityBounceLayerMask => AbilityBounceLayerMaskC.Value;
+
+		public bool TryGetAbilityBounceLayerMask(out UnityEngine.LayerMask value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceLayerMask component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.LayerMask);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityBounceLayerMask(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityBounceLayerMask() {Value = value});
+		}
+
 		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType AbilityCurrencyTypeC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityCurrencyType>();
 
 		public RoguelikeTD.Meta.Features.Wallet.CurrencyTypes AbilityCurrencyType => AbilityCurrencyTypeC.Value;
@@ -1883,6 +1921,73 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddTickableTakeDamageMask(UnityEngine.LayerMask value)
 		{
 			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.TickableDamage.TickableTakeDamageMask() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.BounceFeature.BounceCount BounceCountC => GetComponent<RoguelikeTD.Gameplay.Features.BounceFeature.BounceCount>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> BounceCount => BounceCountC.Value;
+
+		public bool TryGetBounceCount(out RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.BounceFeature.BounceCount component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBounceCount()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.BounceFeature.BounceCount() {Value = new RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBounceCount(RoguelikeTD.Core.Reactive.ReactiveVariable<System.Int32> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.BounceFeature.BounceCount() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.BounceFeature.BounceEvent BounceEventC => GetComponent<RoguelikeTD.Gameplay.Features.BounceFeature.BounceEvent>();
+
+		public RoguelikeTD.Core.Reactive.ReactiveEvent<UnityEngine.RaycastHit> BounceEvent => BounceEventC.Value;
+
+		public bool TryGetBounceEvent(out RoguelikeTD.Core.Reactive.ReactiveEvent<UnityEngine.RaycastHit> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.BounceFeature.BounceEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(RoguelikeTD.Core.Reactive.ReactiveEvent<UnityEngine.RaycastHit>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBounceEvent()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.BounceFeature.BounceEvent() {Value = new RoguelikeTD.Core.Reactive.ReactiveEvent<UnityEngine.RaycastHit>() });
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddBounceEvent(RoguelikeTD.Core.Reactive.ReactiveEvent<UnityEngine.RaycastHit> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.BounceFeature.BounceEvent() {Value = value});
+		}
+
+		public RoguelikeTD.Gameplay.Features.BounceFeature.LayerToBounceReaction LayerToBounceReactionC => GetComponent<RoguelikeTD.Gameplay.Features.BounceFeature.LayerToBounceReaction>();
+
+		public UnityEngine.LayerMask LayerToBounceReaction => LayerToBounceReactionC.Value;
+
+		public bool TryGetLayerToBounceReaction(out UnityEngine.LayerMask value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.BounceFeature.LayerToBounceReaction component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.LayerMask);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddLayerToBounceReaction(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.BounceFeature.LayerToBounceReaction() {Value = value});
 		}
 
 		public RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage BodyContactDamageC => GetComponent<RoguelikeTD.Gameplay.Features.ContactTakeDamage.BodyContactDamage>();
