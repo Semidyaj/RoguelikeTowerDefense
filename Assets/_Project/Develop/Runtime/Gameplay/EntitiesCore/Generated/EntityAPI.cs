@@ -452,6 +452,25 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityPrice() {Value = value});
 		}
 
+		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityShotDirectionsByLevel AbilityShotDirectionsByLevelC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityShotDirectionsByLevel>();
+
+		public System.Func<System.Int32, System.Collections.Generic.List<RoguelikeTD.Configs.Gameplay.Abilities.DirectionShotConfig>> AbilityShotDirectionsByLevel => AbilityShotDirectionsByLevelC.Value;
+
+		public bool TryGetAbilityShotDirectionsByLevel(out System.Func<System.Int32, System.Collections.Generic.List<RoguelikeTD.Configs.Gameplay.Abilities.DirectionShotConfig>> value)
+		{
+			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityShotDirectionsByLevel component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(System.Func<System.Int32, System.Collections.Generic.List<RoguelikeTD.Configs.Gameplay.Abilities.DirectionShotConfig>>);
+			return result;
+		}
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddAbilityShotDirectionsByLevel(System.Func<System.Int32, System.Collections.Generic.List<RoguelikeTD.Configs.Gameplay.Abilities.DirectionShotConfig>> value)
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityShotDirectionsByLevel() {Value = value});
+		}
+
 		public RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue AbilityStatChangeValueC => GetComponent<RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS.AbilityStatChangeValue>();
 
 		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> AbilityStatChangeValue => AbilityStatChangeValueC.Value;

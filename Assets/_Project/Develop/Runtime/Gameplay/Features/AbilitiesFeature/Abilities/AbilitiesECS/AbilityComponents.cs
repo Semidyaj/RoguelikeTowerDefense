@@ -1,8 +1,10 @@
-﻿using RoguelikeTD.Core.Reactive;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities;
+using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Meta.Features.Wallet;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
@@ -81,6 +83,12 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
     public class AbilityStatChangeValue : IEntityComponent
     {
         public ReactiveVariable<float> Value;
+    }
+
+    // AdditionalDirectionsShotAbility
+    public class AbilityShotDirectionsByLevel : IEntityComponent
+    {
+        public Func<int, List<DirectionShotConfig>> Value;
     }
 
     // Config data
