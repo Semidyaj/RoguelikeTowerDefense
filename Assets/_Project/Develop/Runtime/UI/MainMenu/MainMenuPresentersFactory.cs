@@ -11,7 +11,6 @@ namespace RoguelikeTD.UI.MainMenu
     {
         private readonly ViewsFactory _viewsFactory;
         private readonly GameplayStatisticsService _statisticsService;
-        private readonly ResetStatistics _resetStatistics;
         private readonly ProjectPresentersFactory _projectPresentersFactory;
         private readonly MainMenuPopupService _popupService;
         private readonly LevelsProgressionService _levelsProgressionService;
@@ -20,7 +19,6 @@ namespace RoguelikeTD.UI.MainMenu
         public MainMenuPresentersFactory(
             ViewsFactory viewsFactory,
             GameplayStatisticsService statisticsService,
-            ResetStatistics resetStatistics,
             ProjectPresentersFactory projectPresentersFactory,
             MainMenuPopupService popupService,
             LevelsProgressionService levelsProgressionService,
@@ -28,7 +26,6 @@ namespace RoguelikeTD.UI.MainMenu
         {
             _viewsFactory = viewsFactory;
             _statisticsService = statisticsService;
-            _resetStatistics = resetStatistics;
             _projectPresentersFactory = projectPresentersFactory;
             _popupService = popupService;
             _levelsProgressionService = levelsProgressionService;
@@ -39,17 +36,16 @@ namespace RoguelikeTD.UI.MainMenu
             => new StatisticsPresenter(this, _viewsFactory, listView);
 
         public DefeatStatsPresenter CreateDefeatStatsPresenter(IconTextView view)
-            => new DefeatStatsPresenter(view, _statisticsService, _resetStatistics);
+            => new DefeatStatsPresenter(view, _statisticsService);
 
         public WinStatsPresenter CreateWinStatsPresenter(IconTextView view)
-            => new WinStatsPresenter(view, _statisticsService, _resetStatistics);
+            => new WinStatsPresenter(view, _statisticsService);
 
         public MainMenuScreenPresenter CreateMainMenuScreen(MainMenuScreenView view)
             => new MainMenuScreenPresenter(
                 view,
                 _projectPresentersFactory,
                 _popupService,
-                _resetStatistics,
                 this,
                 _levelsProgressionService,
                 _sceneSwitcherService);

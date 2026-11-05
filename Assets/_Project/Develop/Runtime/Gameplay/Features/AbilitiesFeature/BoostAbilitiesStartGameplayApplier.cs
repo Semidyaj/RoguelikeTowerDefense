@@ -1,9 +1,7 @@
-﻿using Cysharp.Threading.Tasks;
-using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
+﻿using RoguelikeTD.Configs.Gameplay.Abilities.Boosts;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
-using RoguelikeTD.Infrastructure.Data;
 
 namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
 {
@@ -11,16 +9,13 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
     {
         private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
         private readonly AbilitiesECSFactory _abilitiesFactory;
-        private readonly PlayerDataProvider _playerDataProvider;
 
         public BoostAbilitiesStartGameplayApplier(
             BoostAbilitiesShopService boostAbilitiesShopService,
-            AbilitiesECSFactory abilitiesFactory, 
-            PlayerDataProvider playerDataProvider)
+            AbilitiesECSFactory abilitiesFactory)
         {
             _boostAbilitiesShopService = boostAbilitiesShopService;
             _abilitiesFactory = abilitiesFactory;
-            _playerDataProvider = playerDataProvider;
         }
 
         public void Apply(Entity entity, AbilityOwnerTypes ownerType)
@@ -35,8 +30,6 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature
                     entity.Abilities.Add(ability);
                 }
             }
-
-            _playerDataProvider.SaveAsync().Forget();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.ApplyDamage;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace RoguelikeTD.Gameplay.Features.AI.TargetSelectors
     {
         private Entity _source;
         private Transform _sourceTransform;
+        private ReactiveVariable<float> _attackRange;
 
         public NearestDamagableTargetSelector(Entity entity)
         {
             _source = entity;
             _sourceTransform = entity.Transform;
+            entity.TryGetAttackRange(out _attackRange);
         }
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)
@@ -32,6 +35,8 @@ namespace RoguelikeTD.Gameplay.Features.AI.TargetSelectors
                 result = result && EntitiesHelper.IsSameTeam(_source, target) == false;
 
                 result = result && target != _source;
+
+                result = result && IsInAttackRange(target);
 
                 return result;
             });
@@ -56,7 +61,10 @@ namespace RoguelikeTD.Gameplay.Features.AI.TargetSelectors
             return closestTarget;
         }
 
-        private float GetDistanceTo(Entity target) 
+        private float GetDistanceTo(Entity target)
             => (_sourceTransform.position - target.Transform.position).magnitude;
+
+        private bool IsInAttackRange(Entity target)
+            => _attackRange == null || GetDistanceTo(target) <= _attackRange.Value;
     }
 }

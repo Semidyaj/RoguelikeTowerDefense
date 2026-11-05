@@ -34,12 +34,12 @@ namespace RoguelikeTD.Gameplay.Features.AI
         }
 
         // MAIN BEHAVIOUR
-        public AIStateMachine CreateMainHeroMoveAndAttackStateMachine(Entity entity)
+        public AIStateMachine CreateMainHeroWithPlacementStateMachine(Entity entity, ITargetSelector targetSelector)
         {
-            AIStateMachine mainActionState = CreateInputMainActionStateMachine(entity);
-            AIStateMachine movementState = CreateMainHeroMovementStateMachine(entity);
+            AIStateMachine placementState = CreateInputPlacementStateMachine(entity);
+            AIStateMachine heroState = CreateMainHeroStateMachine(entity, targetSelector);
 
-            AIParallelState parallelState = new AIParallelState(mainActionState, movementState);
+            AIParallelState parallelState = new AIParallelState(placementState, heroState);
 
             AIStateMachine rootStateMachine = new AIStateMachine();
             rootStateMachine.AddState(parallelState);
@@ -118,57 +118,34 @@ namespace RoguelikeTD.Gameplay.Features.AI
             return stateMachine;
         }
 
-        public AIStateMachine CreateInputAttackStateMachine(Entity entity)
-        {
-            PlayerInputRotationState rotationState = new PlayerInputRotationState(entity, _inputService);
-            AttackTriggerState attackState = new AttackTriggerState(entity);
-
-            ICompositeCondition fromRotateToAttackCondition = new CompositeCondition()
-                .Add(entity.CanStartAttack)
-                .Add(new FuncCondition(() => _inputService.IsMainActionPerformed));
-
-            FuncCondition fromAttackToRotateCondition = new FuncCondition(() => entity.InAttackProcess.Value == false);
-
-            AIStateMachine stateMachine = new AIStateMachine();
-
-            stateMachine.AddState(rotationState);
-            stateMachine.AddState(attackState);
-
-            stateMachine.AddTransition(rotationState, attackState, fromRotateToAttackCondition);
-            stateMachine.AddTransition(attackState, rotationState, fromAttackToRotateCondition);
-
-            return stateMachine;
-        }
-
-        public AIStateMachine CreateInputMainActionStateMachine(Entity entity)
+        public AIStateMachine CreateInputPlacementStateMachine(Entity entity)
         {
             List<IDisposable> disposables = new List<IDisposable>();
 
             EmptyState emptyState = new EmptyState();
-            InputMainActionState mainActionState = new InputMainActionState(entity);
+            InputMiningState placementState = new InputMiningState(entity);
 
             TimerService idleTimer = _timerServiceFactory.Create(1f);
             disposables.Add(idleTimer);
             disposables.Add(emptyState.Entered.Subscribe(idleTimer.Restart));
 
-            ICompositeCondition fromEmptyToMainActionCondition = new CompositeCondition()
+            ICompositeCondition fromEmptyToPlacementCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => _inputService.IsMainActionPerformed))
                 .Add(new FuncCondition(() => _pauseService.IsPaused == false))
                 .Add(new FuncCondition(() => idleTimer.IsOver || entity.InputIsPositionFound.Value == false));
 
-            ICompositeCondition fromMainActionToEmptyCondition = new CompositeCondition(LogicOperations.Or)
-                .Add(new FuncCondition(() => entity.IsAOEAttackEnded.Value))
+            ICompositeCondition fromPlacementToEmptyCondition = new CompositeCondition(LogicOperations.Or)
                 .Add(new FuncCondition(() => entity.PlaceableIsPlaced.Value))
                 .Add(new FuncCondition(() => entity.PlaceableIsEnoughMoney.Value == false))
                 .Add(new FuncCondition(() => entity.InputIsPositionFound.Value == false));
 
-            AIStateMachine stateMachine = new AIStateMachine();
+            AIStateMachine stateMachine = new AIStateMachine(disposables);
 
             stateMachine.AddState(emptyState);
-            stateMachine.AddState(mainActionState);
+            stateMachine.AddState(placementState);
 
-            stateMachine.AddTransition(emptyState, mainActionState, fromEmptyToMainActionCondition);
-            stateMachine.AddTransition(mainActionState, emptyState, fromMainActionToEmptyCondition);
+            stateMachine.AddTransition(emptyState, placementState, fromEmptyToPlacementCondition);
+            stateMachine.AddTransition(placementState, emptyState, fromPlacementToEmptyCondition);
 
             return stateMachine;
         }
@@ -192,73 +169,6 @@ namespace RoguelikeTD.Gameplay.Features.AI
             stateMachine.AddTransition(movementState, emptyState, fromMovementToEmptyStateCondition);
 
             return stateMachine;
-        }
-
-        public AIStateMachine CreateMainHeroMovementStateMachine(Entity entity)
-        {
-            EmptyState emptyState = new EmptyState();
-            PlayerInputMovementState movementState = new PlayerInputMovementState(entity, _inputService);
-
-            FuncCondition fromEmptyToMovementCondition = new FuncCondition(() => _inputService.Direction != Vector3.zero);
-            FuncCondition fromMovementToEmptyCondition = new FuncCondition(() => _inputService.Direction == Vector3.zero);
-
-            AIStateMachine stateMachine = new AIStateMachine();
-
-            stateMachine.AddState(emptyState);
-            stateMachine.AddState(movementState);
-
-            stateMachine.AddTransition(emptyState, movementState, fromEmptyToMovementCondition);
-            stateMachine.AddTransition(movementState, emptyState, fromMovementToEmptyCondition);
-
-            return stateMachine;
-        }
-
-        public AIStateMachine CreateMainInputHeroStateMachine(Entity entity)
-        {
-            AIStateMachine combatState = CreateInputAttackStateMachine(entity);
-            PlayerInputMovementState movementState = new PlayerInputMovementState(entity, _inputService);
-
-            FuncCondition fromMovementToCombatCondition = new FuncCondition(() => _inputService.Direction == Vector3.zero);
-            FuncCondition fromCombatToMovementCondition = new FuncCondition(() => _inputService.Direction != Vector3.zero);
-
-            AIStateMachine stateMachine = new AIStateMachine();
-
-            stateMachine.AddState(combatState);
-            stateMachine.AddState(movementState);
-
-            stateMachine.AddTransition(movementState, combatState, fromMovementToCombatCondition);
-            stateMachine.AddTransition(combatState, movementState, fromCombatToMovementCondition);
-
-            return stateMachine;
-        }
-
-        public AIStateMachine CreateRandomMovementStateMachine(Entity entity)
-        {
-            List<IDisposable> disposables = new List<IDisposable>();
-
-            RandomMovementState randomMovementState = new RandomMovementState(entity, 0.5f);
-            EmptyState emptyState = new EmptyState();
-
-            TimerService movementTimer = _timerServiceFactory.Create(2f);
-            disposables.Add(movementTimer);
-            disposables.Add(randomMovementState.Entered.Subscribe(movementTimer.Restart));
-
-            TimerService idleTimer = _timerServiceFactory.Create(3f);
-            disposables.Add(idleTimer);
-            disposables.Add(emptyState.Entered.Subscribe(idleTimer.Restart));
-
-            FuncCondition movementTimerEndedCondition = new FuncCondition(() => movementTimer.IsOver);
-            FuncCondition idleTimerEndedCondition = new FuncCondition(() => idleTimer.IsOver);
-
-            AIStateMachine aIStateMachine = new AIStateMachine(disposables);
-
-            aIStateMachine.AddState(randomMovementState);
-            aIStateMachine.AddState(emptyState);
-
-            aIStateMachine.AddTransition(randomMovementState, emptyState, movementTimerEndedCondition);
-            aIStateMachine.AddTransition(emptyState, randomMovementState, idleTimerEndedCondition);
-
-            return aIStateMachine;
         }
     }
 }

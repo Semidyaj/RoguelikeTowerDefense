@@ -1,29 +1,25 @@
-﻿using Cysharp.Threading.Tasks;
-using RoguelikeTD.Core.SceneManagement;
-using RoguelikeTD.Gameplay.Infrastructure;
-using RoguelikeTD.Infrastructure;
-using RoguelikeTD.Meta.Features.LevelsProgression;
+﻿using RoguelikeTD.Meta.Features.LevelsProgression;
+using System;
 using UnityEngine;
 
 namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 {
     public class LevelTilePresenter : ISubscribedPresenter
     {
+        public event Action<int> Selected;
+
         private readonly LevelsProgressionService _levelsService;
-        private readonly SceneSwitcherService _sceneSwitcherService;
 
         private readonly int _levelNumber;
 
         private readonly LevelTileView _view;
 
         public LevelTilePresenter(
-            LevelsProgressionService levelsService, 
-            SceneSwitcherService sceneSwitcherService, 
-            int levelNumber, 
+            LevelsProgressionService levelsService,
+            int levelNumber,
             LevelTileView view)
         {
             _levelsService = levelsService;
-            _sceneSwitcherService = sceneSwitcherService;
             _levelNumber = levelNumber;
             _view = view;
         }
@@ -70,7 +66,7 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
                 return;
             }
 
-            _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(_levelNumber)).Forget();
+            Selected?.Invoke(_levelNumber);
         }
     }
 }

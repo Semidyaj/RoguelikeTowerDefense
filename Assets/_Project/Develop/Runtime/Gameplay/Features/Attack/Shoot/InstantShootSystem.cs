@@ -9,6 +9,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
     public class InstantShootSystem : IInitializableSystem, IDisposableSystem
     {
         private readonly EntitiesFactory _entitiesFactory;
+        private readonly string _projectilePrefabPath;
+        private readonly float _projectileSpeed;
 
         private Entity _entity;
 
@@ -18,9 +20,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private IDisposable _attackDelayEndDisposable;
 
-        public InstantShootSystem(EntitiesFactory entitiesFactory)
+        public InstantShootSystem(EntitiesFactory entitiesFactory, string projectilePrefabPath, float projectileSpeed)
         {
             _entitiesFactory = entitiesFactory;
+            _projectilePrefabPath = projectilePrefabPath;
+            _projectileSpeed = projectileSpeed;
         }
 
         public void OnInit(Entity entity)
@@ -41,7 +45,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private void OnAttackDelayEnd()
         {
-            _entitiesFactory.CreateProjectile(_shootPoint.position, _shootPoint.forward, _damage.Value, _entity);
+            _entitiesFactory.CreateProjectile(_projectilePrefabPath, _shootPoint.position, _shootPoint.forward, _projectileSpeed, _damage.Value, _entity);
         }
     }
 }

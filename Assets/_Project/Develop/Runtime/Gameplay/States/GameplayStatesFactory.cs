@@ -1,8 +1,8 @@
 ﻿using RoguelikeTD.Core.Conditions;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.Allies;
-using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
 using RoguelikeTD.Gameplay.Features.InputFeature;
 using RoguelikeTD.Gameplay.Features.LootFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
@@ -23,7 +23,6 @@ namespace RoguelikeTD.Gameplay.States
         private readonly LootPullingService _lootPullingService;
         private readonly MainHeroHolderService _mainHeroHolderService;
         private readonly TowerHolderService _towerHolderService;
-        private readonly PointClickExplosionService _pointClickExplosionService;
         private readonly PlaceableService _placeableService;
         private readonly PreparationTriggerService _preparationTriggerService;
         private readonly GameplayPopupService _gameplayPopupService;
@@ -36,12 +35,12 @@ namespace RoguelikeTD.Gameplay.States
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly PlayerDataProvider _playerDataProvider;
         private readonly GameplayResultHandler _gameplayResultHandler;
+        private readonly SceneSwitcherService _sceneSwitcherService;
 
         public GameplayStatesFactory(
             LootPullingService lootPullingService,
             MainHeroHolderService mainHeroHolderService,
             TowerHolderService towerHolderService,
-            PointClickExplosionService pointClickExplosionService,
             PlaceableService placeableService,
             PreparationTriggerService preparationTriggerService,
             GameplayPopupService gameplayPopupService,
@@ -53,12 +52,12 @@ namespace RoguelikeTD.Gameplay.States
             BoostAbilitiesShopService boostAbilitiesShopService,
             LevelsProgressionService levelsProgressionService,
             PlayerDataProvider playerDataProvider,
-            GameplayResultHandler gameplayResultHandler)
+            GameplayResultHandler gameplayResultHandler,
+            SceneSwitcherService sceneSwitcherService)
         {
             _lootPullingService = lootPullingService;
             _mainHeroHolderService = mainHeroHolderService;
             _towerHolderService = towerHolderService;
-            _pointClickExplosionService = pointClickExplosionService;
             _placeableService = placeableService;
             _preparationTriggerService = preparationTriggerService;
             _gameplayPopupService = gameplayPopupService;
@@ -71,14 +70,15 @@ namespace RoguelikeTD.Gameplay.States
             _levelsProgressionService = levelsProgressionService;
             _playerDataProvider = playerDataProvider;
             _gameplayResultHandler = gameplayResultHandler;
+            _sceneSwitcherService = sceneSwitcherService;
         }
 
         public GameplayStateMachine CreateGameplayStateMachine(GameplayInputArgs inputArgs)
         {
-            GameplayStateMachine coreLoopState = CreateCoreLoopState();
+            GameplayStateMachine coreLoopState = CreateCoreLoopState(inputArgs);
 
             WinState winState = CreateWinState(inputArgs);
-            DefeatState defeatState = CreateDefeatState();
+            DefeatState defeatState = CreateDefeatState(inputArgs);
 
             ICompositeCondition coreLoopToWinStateCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => _preparationTriggerService.HasMainHeroContacts.Value))
@@ -113,9 +113,9 @@ namespace RoguelikeTD.Gameplay.States
             return gameplayCycle;
         }
 
-        private GameplayStateMachine CreateCoreLoopState()
+        private GameplayStateMachine CreateCoreLoopState(GameplayInputArgs inputArgs)
         {
-            PreparationState preparationState = CreatePreparationState();
+            PreparationState preparationState = CreatePreparationState(inputArgs.WavesEnabled);
             StageProcessState stageProcessState = CreateStageProcessState();
             CollectLootState collectLootState = CreateCollectLootState();
 
@@ -147,12 +147,12 @@ namespace RoguelikeTD.Gameplay.States
                 _lootPullingService,
                 _mainHeroHolderService);
 
-        private PreparationState CreatePreparationState()
+        private PreparationState CreatePreparationState(bool wavesEnabled)
             => new PreparationState(
-                _pointClickExplosionService,
                 _placeableService,
                 _preparationTriggerService,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                wavesEnabled);
 
         private StageProcessState CreateStageProcessState()
             => new StageProcessState(
@@ -169,15 +169,18 @@ namespace RoguelikeTD.Gameplay.States
                 inputArgs,
                 _playerDataProvider,
                 _gameplayResultHandler,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                _sceneSwitcherService);
 
-        private DefeatState CreateDefeatState()
+        private DefeatState CreateDefeatState(GameplayInputArgs inputArgs)
             => new DefeatState(
                 _inputService,
                 _pauseService,
                 _boostAbilitiesShopService,
                 _playerDataProvider,
                 _gameplayResultHandler,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                _sceneSwitcherService,
+                inputArgs);
     }
 }

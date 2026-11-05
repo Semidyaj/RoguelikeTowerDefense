@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4461c24ff55d3b6418116d647baa6f61, type: 3}
   m_Name: GameplayEconomyConfig
   m_EditorClassIdentifier: 
-  <StatsResetPrice>k__BackingField: 30
   <GoldVictoryReward>k__BackingField: 0
   <DiamondVictoryReward>k__BackingField: 10
   <DefeatFee>k__BackingField: 0

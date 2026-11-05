@@ -5,6 +5,7 @@
         MoveSpeed = 1,
         MaxHealth = 2,
         Damage = 3,
-        AttackRadius = 4,
+        AttackRange = 4,
+        AttacksPerSecond = 5,
     }
 }

@@ -9,5 +9,6 @@ namespace RoguelikeTD.Configs.Gameplay.Stages
     {
         [field: SerializeField] public Vector3 SpawnPosition {  get; private set; }
         [field: SerializeField] public EntityConfig EnemyConfig {  get; private set; }
+        [field: SerializeField, Min(0)] public float SpawnTime { get; private set; }
     }
 }

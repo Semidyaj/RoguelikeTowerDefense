@@ -22,14 +22,20 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
                 case StatChangeAbilityConfig statChangeAbilityConfig:
                     return CreateStatChangeAbility(owner, statChangeAbilityConfig, currentLevel);
 
+                case AdditionalDirectionsShotAbilityConfig additionalDirectionsShotAbilityConfig:
+                    return CreateAdditionalDirectionsShotAbility(owner, additionalDirectionsShotAbilityConfig, currentLevel);
+
+                case BounceProjectileAbilityConfig bounceProjectileAbilityConfig:
+                    return CreateBounceProjectileAbility(owner, bounceProjectileAbilityConfig, currentLevel);
+
                 case StartWaveHealTowerAbilityConfig startWaveHealTowerAbilityConfig:
                     return CreateStartWaveHealTowerAbility(owner, startWaveHealTowerAbilityConfig, currentLevel);
 
                 case StartWaveDealDamageToEnemiesAbilityConfig startWaveDealDamageToEnemiesAbilityConfig:
                     return CreateStartWaveTakeDamageAbility(owner, startWaveDealDamageToEnemiesAbilityConfig, currentLevel);
 
-                case MainHeroIncreaseExplosionDamageAbilityConfig mainHeroIncreaseExplosionDamageAbilityConfig:
-                    return CreateIncreaseDamageAbility(owner, mainHeroIncreaseExplosionDamageAbilityConfig, currentLevel);
+                case MainHeroIncreaseDamageAbilityConfig mainHeroIncreaseDamageAbilityConfig:
+                    return CreateIncreaseDamageAbility(owner, mainHeroIncreaseDamageAbilityConfig, currentLevel);
 
                 default:
                     throw new ArgumentException();
@@ -60,6 +66,65 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
 
             entity
                 .AddSystem(new StatChangeAbilitySystem());
+
+            _entitiesLifeContext.Add(entity);
+
+            return entity;
+        }
+
+        private Entity CreateAdditionalDirectionsShotAbility(Entity owner, AdditionalDirectionsShotAbilityConfig config, int currentLevel)
+        {
+            Entity entity = CreateEmpty();
+
+            entity
+                .AddIsAbilityAvailableToDrop(new ReactiveVariable<bool>(config.IsAvailableInDrop))
+                .AddAbilityID(new ReactiveVariable<string>(config.ID))
+                .AddAbilityMaxLevel(new ReactiveVariable<int>(config.MaxLevel))
+                .AddAbilityCurrentLevel(new ReactiveVariable<int>(currentLevel))
+                .AddAbilityName(new ReactiveVariable<string>(config.Name))
+                .AddAbilityDescription(new ReactiveVariable<string>(config.Description))
+                .AddAbilityIcon(config.Icon)
+                .AddIsAbilityUpgradable(new ReactiveVariable<bool>(config.IsUpgradable()))
+                .AddAbilityShotDirectionsByLevel(config.GetBy)
+
+                .AddAbilityOwner(new ReactiveVariable<Entity>(owner))
+                .AddIsAbility()
+                .AddIsOnAddAbility()
+                .AddAbilityActivateRequest()
+                .AddIsAbilityUsed();
+
+            entity
+                .AddSystem(new AdditionalDirectionsShotAbilitySystem());
+
+            _entitiesLifeContext.Add(entity);
+
+            return entity;
+        }
+
+        private Entity CreateBounceProjectileAbility(Entity owner, BounceProjectileAbilityConfig config, int currentLevel)
+        {
+            Entity entity = CreateEmpty();
+
+            entity
+                .AddIsAbilityAvailableToDrop(new ReactiveVariable<bool>(config.IsAvailableInDrop))
+                .AddAbilityID(new ReactiveVariable<string>(config.ID))
+                .AddAbilityMaxLevel(new ReactiveVariable<int>(config.MaxLevel))
+                .AddAbilityCurrentLevel(new ReactiveVariable<int>(currentLevel))
+                .AddAbilityName(new ReactiveVariable<string>(config.Name))
+                .AddAbilityDescription(new ReactiveVariable<string>(config.Description))
+                .AddAbilityIcon(config.Icon)
+                .AddIsAbilityUpgradable(new ReactiveVariable<bool>(config.IsUpgradable()))
+                .AddAbilityBounceCountByLevel(config.GetBounceCountBy)
+                .AddAbilityBounceLayerMask(config.LayerBounceRection)
+
+                .AddAbilityOwner(new ReactiveVariable<Entity>(owner))
+                .AddIsAbility()
+                .AddIsOnAddAbility()
+                .AddAbilityActivateRequest()
+                .AddIsAbilityUsed();
+
+            entity
+                .AddSystem(new BounceProjectileAbilitySystem(_entitiesLifeContext));
 
             _entitiesLifeContext.Add(entity);
 
@@ -128,7 +193,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
             return entity;
         }
 
-        private Entity CreateIncreaseDamageAbility(Entity owner, MainHeroIncreaseExplosionDamageAbilityConfig config, int currentLevel)
+        private Entity CreateIncreaseDamageAbility(Entity owner, MainHeroIncreaseDamageAbilityConfig config, int currentLevel)
         {
             Entity entity = CreateEmpty();
 

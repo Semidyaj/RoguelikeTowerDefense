@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: TowerDefenseLevel1Config
   m_EditorClassIdentifier: 
   _stageConfigs:
-  - {fileID: 11400000, guid: fdfc588f61ce03a46aec30bdf8532b6f, type: 2}
-  - {fileID: 11400000, guid: 4389209290977c54e96014bd550896b3, type: 2}
-  - {fileID: 11400000, guid: b13b6d72e4624264284037c939446c83, type: 2}
-  <MaxHealth>k__BackingField: 150
+  - {fileID: 11400000, guid: 84dcfd4c007841441a70e27caaea1e60, type: 2}
+  - {fileID: 11400000, guid: 3c014c2c9005b7243b6daaba92f76587, type: 2}
+  - {fileID: 11400000, guid: 3868d97d9035bba42a88e330f0b79ca9, type: 2}
+  - {fileID: 11400000, guid: 2ec18ca0b5a4fe144a2bff9e751d65dc, type: 2}
+  - {fileID: 11400000, guid: c330e00f745adec40abc36206f21a6c7, type: 2}
+  <MaxHealth>k__BackingField: 300
+  <Position>k__BackingField: {x: 14, y: 0, z: 0}
+  <EnemyHealthMultiplier>k__BackingField: 1
+  <EnemyDamageMultiplier>k__BackingField: 1

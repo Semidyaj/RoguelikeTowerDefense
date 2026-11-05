@@ -36,7 +36,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
                 arg.ProjectileCounts -= instantShotDirectionArgs.ProjectileCounts;
 
                 if (arg.ProjectileCounts <= 0)
-                    _args.Remove(instantShotDirectionArgs);
+                    _args.Remove(arg);
             }
         }
     }

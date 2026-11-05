@@ -27,6 +27,8 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
             _view = view;
         }
 
+        public int? SelectedLevel { get; private set; }
+
         protected override PopupViewBase PopupView => _view;
 
         public override void Initialize()
@@ -45,6 +47,7 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 
                 LevelTilePresenter levelTilePresenter = _projectPresentersFactory.CreateLevelTilePresenter(i + 1, levelTileView);
 
+                levelTilePresenter.Selected += OnLevelSelected;
                 levelTilePresenter.Initialize();
 
                 _levelTilePresenters.Add(levelTilePresenter);
@@ -57,6 +60,7 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 
             foreach(LevelTilePresenter levelTilePresenter in _levelTilePresenters)
             {
+                levelTilePresenter.Selected -= OnLevelSelected;
                 _view.LevelTilesListView.Remove(levelTilePresenter.View);
                 _viewsFactory.Release(levelTilePresenter.View);
                 levelTilePresenter.Dispose();
@@ -79,6 +83,12 @@ namespace RoguelikeTD.UI.Core.LevelsMenuPopup
 
             foreach (LevelTilePresenter levelTilePresenter in _levelTilePresenters)
                 levelTilePresenter.Unsubscribe();
+        }
+
+        private void OnLevelSelected(int levelNumber)
+        {
+            SelectedLevel = levelNumber;
+            OnCloseRequest();
         }
     }
 }

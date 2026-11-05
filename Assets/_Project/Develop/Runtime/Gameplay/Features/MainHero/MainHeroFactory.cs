@@ -4,12 +4,12 @@ using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
 using RoguelikeTD.Gameplay.Features.LevelUpFeature;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +44,7 @@ namespace RoguelikeTD.Gameplay.Features.MainHero
         {
             HeroConfig config = _configProviderService.GetConfig<HeroConfig>();
 
-            Entity entity = _entitiesFactory.CreateHeroTowerDefenderEntity(position, config, GetStats());
+            Entity entity = _entitiesFactory.CreateHeroEntity(position, config, GetStats());
 
             entity
                 .AddIsMainHero()
@@ -64,7 +64,8 @@ namespace RoguelikeTD.Gameplay.Features.MainHero
                 .AddExperience()
                 .AddSystem(new LevelUpSystem(_configProviderService.GetConfig<ExperienceForUpgradeLevelConfig>()));
 
-            _brainsFactory.CreateMainInputHeroBrain(entity);
+            entity.AddCurrentTarget();
+            _brainsFactory.CreateMainHeroWithPlacementBrain(entity, new NearestDamagableTargetSelector(entity));
 
             _entitiesLifeContext.Add(entity);
 
@@ -77,7 +78,7 @@ namespace RoguelikeTD.Gameplay.Features.MainHero
         {
             Dictionary<StatTypes, float> stats = new();
 
-            foreach (StatTypes statType in Enum.GetValues(typeof(StatTypes)))
+            foreach (StatTypes statType in _statsUpgradeService.AvailableStats)
                 stats.Add(statType, _statsUpgradeService.GetCurrentStatValueFor(statType));
 
             return stats;

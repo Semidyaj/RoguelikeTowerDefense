@@ -35,6 +35,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack
         public ReactiveVariable<float> Value;
     }
 
+    public class AttackProcessModifiedTime : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
+    }
+
     public class AttackProcessCurrentTime : IEntityComponent
     {
         public ReactiveVariable<float> Value;
@@ -46,6 +51,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack
     }
 
     public class AttackDelayTime : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
+    }
+
+    public class AttackDelayModifiedTime : IEntityComponent
     {
         public ReactiveVariable<float> Value;
     }
@@ -80,6 +90,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack
         public ReactiveVariable<float> Value;
     }
 
+    public class AttackCooldownModifiedTime : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
+    }
+
     public class AttackCooldownCurrentTime : IEntityComponent
     {
         public ReactiveVariable<float> Value;
@@ -103,5 +118,10 @@ namespace RoguelikeTD.Gameplay.Features.Attack
     public class IsMinDistanceToAttack : IEntityComponent
     {
         public ReactiveVariable<bool> Value;
+    }
+
+    public class AttackRange : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
     }
 }

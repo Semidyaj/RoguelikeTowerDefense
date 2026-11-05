@@ -1,9 +1,9 @@
 ﻿using RoguelikeTD.Core.StateMachineCore;
-using RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
+using Cysharp.Threading.Tasks;
 using RoguelikeTD.UI.Gameplay;
-using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
+using System.Threading;
 using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.States
@@ -13,22 +13,23 @@ namespace RoguelikeTD.Gameplay.States
         private readonly PreparationTriggerService _triggerService;
 
         private readonly PlaceableService _placeableService;
-        private readonly PointClickExplosionService _explosionService;
 
         private readonly GameplayPopupService _popupService;
 
-        private PlaceablePopupPresenter _popup;
+        private readonly bool _wavesEnabled;
+
+        private CancellationTokenSource _cancellation;
 
         public PreparationState(
-            PointClickExplosionService explosionService,
             PlaceableService placeableService,
             PreparationTriggerService triggerService,
-            GameplayPopupService popupService)
+            GameplayPopupService popupService,
+            bool wavesEnabled)
         {
             _triggerService = triggerService;
             _placeableService = placeableService;
-            _explosionService = explosionService;
             _popupService = popupService;
+            _wavesEnabled = wavesEnabled;
         }
 
         public override void Enter()
@@ -36,12 +37,12 @@ namespace RoguelikeTD.Gameplay.States
             base.Enter();
 
             _placeableService?.Enable();
-            _explosionService?.Disable();
 
-            _popup = _popupService.OpenPlaceablesSelectPopup(() => _popup = null);
+            _cancellation = new CancellationTokenSource();
+            _popupService.OpenPlaceablesSelectPopupAsync(_cancellation.Token).Forget();
 
-            Vector3 nextStageTriggerPosition = Vector3.zero + Vector3.forward * 2;
-            _triggerService.Create(nextStageTriggerPosition);
+            if (_wavesEnabled)
+                _triggerService.Create(Vector3.zero);
         }
 
         public void Update(float deltaTime)
@@ -54,11 +55,13 @@ namespace RoguelikeTD.Gameplay.States
             base.Exit();
 
             _placeableService?.Disable();
-            _explosionService?.Enable();
 
-            _popup?.Close();
+            _cancellation.Cancel();
+            _cancellation.Dispose();
+            _cancellation = null;
 
-            _triggerService.Cleanup();
+            if (_wavesEnabled)
+                _triggerService.Cleanup();
         }
     }
 }

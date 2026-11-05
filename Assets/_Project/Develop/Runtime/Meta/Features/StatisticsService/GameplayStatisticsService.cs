@@ -1,20 +1,15 @@
-﻿using Cysharp.Threading.Tasks;
-using RoguelikeTD.Core.DataManagement.DataProviders;
+﻿using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Infrastructure.Data;
 
 namespace RoguelikeTD.Meta.Features.StatisticsService
 {
     public class GameplayStatisticsService : IDataReader<PlayerData>, IDataWriter<PlayerData>
     {
-        private PlayerDataProvider _playerDataProvider;
-
         private int _winsCount;
         private int _defeatsCount;
 
         public GameplayStatisticsService(PlayerDataProvider playerDataProvider)
         {
-            _playerDataProvider = playerDataProvider;
-
             playerDataProvider.RegisterWriter(this);
             playerDataProvider.RegisterReader(this);
         }
@@ -24,14 +19,6 @@ namespace RoguelikeTD.Meta.Features.StatisticsService
 
         public void AddVictory() => _winsCount++;
         public void AddDefeat() => _defeatsCount++;
-
-        public void Reset()
-        {
-            _winsCount = 0;
-            _defeatsCount = 0;
-
-            _playerDataProvider.SaveAsync().Forget();
-        }
 
         public void ReadFrom(PlayerData data)
         {

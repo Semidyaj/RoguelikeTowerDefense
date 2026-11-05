@@ -1,8 +1,10 @@
-﻿using RoguelikeTD.UI.Core.BoostsShopPopup;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.UI.Core.BoostsShopPopup;
 using RoguelikeTD.UI.Core.LevelsMenuPopup;
 using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace RoguelikeTD.UI.Core
@@ -23,91 +25,109 @@ namespace RoguelikeTD.UI.Core
 
         protected abstract Transform PopupLayer { get; }
 
-        public LevelsMenuPopupPresenter OpenLevelsMenuPopup()
+        public async UniTask<int?> OpenLevelsMenuPopupAsync(CancellationToken cancellationToken = default)
         {
             LevelsMenuPopupView view = ViewsFactory.Create<LevelsMenuPopupView>(ViewsIDs.LevelsMenuPopup, PopupLayer);
 
             LevelsMenuPopupPresenter popup = _presentersFactory.CreateLevelsMenuPopupPresenter(view);
 
-            OnPopupCreated(popup, view);
+            await OpenAsync(popup, view, cancellationToken);
 
-            return popup;
+            return popup.SelectedLevel;
         }
 
-        public StatsUpgradePopupPresenter OpenStatsUpgradePopup()
+        public UniTask OpenStatsUpgradePopupAsync(CancellationToken cancellationToken = default)
         {
             StatsUpgradePopupView view = ViewsFactory.Create<StatsUpgradePopupView>(ViewsIDs.StatsUpgradePopupView, PopupLayer);
 
             StatsUpgradePopupPresenter popup = _presentersFactory.CreateStatsUpgradePopupPresenter(view);
 
-            OnPopupCreated(popup, view);
-
-            return popup;
+            return OpenAsync(popup, view, cancellationToken);
         }
 
-        public BoostAbilitiesShopPopupPresenter OpenBoostsShopPopup()
+        public UniTask OpenBoostsShopPopupAsync(CancellationToken cancellationToken = default)
         {
             BoostAbilitiesShopPopupView view = ViewsFactory.Create<BoostAbilitiesShopPopupView>(ViewsIDs.BoostAbilitiesShopPopupView, PopupLayer);
 
             BoostAbilitiesShopPopupPresenter popup = _presentersFactory.CreateBoostAbilitiesShopPopupPresenter(view);
 
-            OnPopupCreated(popup, view);
-
-            return popup;
+            return OpenAsync(popup, view, cancellationToken);
         }
 
         public void ClosePopup(PopupPresenterBase popup)
         {
+            if (_presenterToInfo.TryGetValue(popup, out PopupInfo popupInfo) == false || popupInfo.IsClosing)
+                return;
+
+            popupInfo.IsClosing = true;
             popup.CloseRequest -= ClosePopup;
 
             popup.Hide(() =>
             {
-                _presenterToInfo[popup].ClosedCallback?.Invoke();
-
-                DisposeFor(popup);
+                DisposeFor(popup, popupInfo.View);
                 _presenterToInfo.Remove(popup);
+
+                popupInfo.Closed.TrySetResult();
             });
         }
 
         public void Dispose()
         {
-            foreach (PopupPresenterBase popup in _presenterToInfo.Keys)
-            {
-                popup.CloseRequest -= ClosePopup;
-                DisposeFor(popup);
-            }
+            List<KeyValuePair<PopupPresenterBase, PopupInfo>> openedPopups = new(_presenterToInfo);
 
             _presenterToInfo.Clear();
+
+            foreach (KeyValuePair<PopupPresenterBase, PopupInfo> openedPopup in openedPopups)
+            {
+                openedPopup.Key.CloseRequest -= ClosePopup;
+                DisposeFor(openedPopup.Key, openedPopup.Value.View);
+
+                openedPopup.Value.Closed.TrySetCanceled();
+            }
         }
 
-        protected void OnPopupCreated(PopupPresenterBase popup, PopupViewBase view, Action closedCallback = null)
+        protected async UniTask OpenAsync(PopupPresenterBase popup, PopupViewBase view, CancellationToken cancellationToken = default)
         {
-            PopupInfo popupInfo = new PopupInfo(view, closedCallback);
+            PopupInfo popupInfo = Register(popup, view);
+
+            using (cancellationToken.Register(() => ClosePopup(popup)))
+                await popupInfo.Closed.Task;
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        private PopupInfo Register(PopupPresenterBase popup, PopupViewBase view)
+        {
+            PopupInfo popupInfo = new PopupInfo(view);
 
             _presenterToInfo.Add(popup, popupInfo);
 
-            popup.Initialize();
-            popup.Show();
-
             popup.CloseRequest += ClosePopup;
+
+            popup.Initialize();
+
+            if (popupInfo.IsClosing == false)
+                popup.Show();
+
+            return popupInfo;
         }
 
-        private void DisposeFor(PopupPresenterBase popup)
+        private void DisposeFor(PopupPresenterBase popup, PopupViewBase view)
         {
             popup.Dispose();
-            ViewsFactory.Release(_presenterToInfo[popup].View);
+            ViewsFactory.Release(view);
         }
 
         private class PopupInfo
         {
-            public PopupInfo(PopupViewBase view, Action closeCallback)
+            public PopupInfo(PopupViewBase view)
             {
                 View = view;
-                ClosedCallback = closeCallback;
             }
 
             public PopupViewBase View { get; }
-            public Action ClosedCallback { get; }
+            public UniTaskCompletionSource Closed { get; } = new();
+            public bool IsClosing { get; set; }
         }
     }
 }

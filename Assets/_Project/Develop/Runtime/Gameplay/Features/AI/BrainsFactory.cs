@@ -23,20 +23,9 @@ namespace RoguelikeTD.Gameplay.Features.AI
         }
 
         // MAIN HERO
-        public StateMachineBrain CreateMainInputHeroBrain(Entity entity)
+        public StateMachineBrain CreateMainHeroWithPlacementBrain(Entity entity, ITargetSelector targetSelector)
         {
-            AIStateMachine stateMachine = _stateMachineFactory.CreateMainHeroMoveAndAttackStateMachine(entity);
-
-            StateMachineBrain brain = new StateMachineBrain(stateMachine);
-
-            _brainsContext.SetFor(entity, brain);
-
-            return brain;
-        }
-
-        public StateMachineBrain CreateMainHeroBrain(Entity entity, ITargetSelector targetSelector)
-        {
-            AIStateMachine rootStateMachine = _stateMachineFactory.CreateMainHeroStateMachine(entity, targetSelector);
+            AIStateMachine rootStateMachine = _stateMachineFactory.CreateMainHeroWithPlacementStateMachine(entity, targetSelector);
 
             StateMachineBrain brain = new StateMachineBrain(rootStateMachine);
 
@@ -103,17 +92,6 @@ namespace RoguelikeTD.Gameplay.Features.AI
             stateMachine.AddState(shootingState);
 
             stateMachine.AddTransition(movementState, shootingState, fromMovementToShootingCondition);
-
-            StateMachineBrain brain = new StateMachineBrain(stateMachine);
-
-            _brainsContext.SetFor(entity, brain);
-
-            return brain;
-        }
-
-        public StateMachineBrain CreateGhostBrain(Entity entity)
-        {
-            AIStateMachine stateMachine = _stateMachineFactory.CreateRandomMovementStateMachine(entity);
 
             StateMachineBrain brain = new StateMachineBrain(stateMachine);
 

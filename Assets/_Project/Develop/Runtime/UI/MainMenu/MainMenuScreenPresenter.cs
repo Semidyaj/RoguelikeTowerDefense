@@ -3,7 +3,6 @@ using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
 using RoguelikeTD.Meta.Features.LevelsProgression;
-using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Core.Statistics;
 using RoguelikeTD.UI.Wallet;
@@ -20,7 +19,6 @@ namespace RoguelikeTD.UI.MainMenu
 
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly MainMenuPopupService _popupService;
-        private readonly ResetStatistics _resetService;
         private readonly SceneSwitcherService _sceneSwitcherService;
 
         private readonly List<IPresenter> _childPresenters = new();
@@ -29,7 +27,6 @@ namespace RoguelikeTD.UI.MainMenu
             MainMenuScreenView screen,
             ProjectPresentersFactory projectPresentersFactory,
             MainMenuPopupService popupService,
-            ResetStatistics resetService,
             MainMenuPresentersFactory mainMenuPresentersFactory,
             LevelsProgressionService levelsProgressionService,
             SceneSwitcherService sceneSwitcherService)
@@ -37,7 +34,6 @@ namespace RoguelikeTD.UI.MainMenu
             _screen = screen;
             _projectPresentersFactory = projectPresentersFactory;
             _popupService = popupService;
-            _resetService = resetService;
             _mainMenuPresentersFactory = mainMenuPresentersFactory;
             _levelsProgressionService = levelsProgressionService;
             _sceneSwitcherService = sceneSwitcherService;
@@ -49,7 +45,6 @@ namespace RoguelikeTD.UI.MainMenu
             _screen.PlayRandomLevelMenuButtonClicked += OnPlayRandomLevelMenuButtonClicked;
             _screen.OpenStatsUpgradeButtonClicked += OnOpenStatsUpgradeButtonClicked;
             _screen.OpenBoostsShopButtonClicked += OnOpenBoostsShopButtonClicked;
-            _screen.ResetStatsButtonClicked += OnResetStatsButtonClicked;
 
             CreateWallet();
             CreateStatisticsView();
@@ -64,7 +59,6 @@ namespace RoguelikeTD.UI.MainMenu
             _screen.PlayRandomLevelMenuButtonClicked -= OnPlayRandomLevelMenuButtonClicked;
             _screen.OpenStatsUpgradeButtonClicked -= OnOpenStatsUpgradeButtonClicked;
             _screen.OpenBoostsShopButtonClicked -= OnOpenBoostsShopButtonClicked;
-            _screen.ResetStatsButtonClicked -= OnResetStatsButtonClicked;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Dispose();
@@ -84,25 +78,34 @@ namespace RoguelikeTD.UI.MainMenu
             _childPresenters.Add(statisticsPresenter);
         }
 
-        private void OnOpenLevelsMenuButtonClicked() => _popupService.OpenLevelsMenuPopup();
+        private void OnOpenLevelsMenuButtonClicked() => SelectLevelAsync().Forget();
+
+        private async UniTaskVoid SelectLevelAsync()
+        {
+            int? levelNumber = await _popupService.OpenLevelsMenuPopupAsync();
+
+            if (levelNumber.HasValue)
+                StartLevel(levelNumber.Value);
+        }
 
         private void OnPlayRandomLevelMenuButtonClicked()
         {
             if(_levelsProgressionService.CompletedLevels.Count == 0)
             {
-                _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(1)).Forget();
+                StartLevel(1);
                 return;
             }
 
             int randomLevel = _levelsProgressionService.CompletedLevels[Random.Range(0, _levelsProgressionService.CompletedLevels.Count)];
 
-            _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(randomLevel)).Forget();
+            StartLevel(randomLevel);
         }
 
-        private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopup();
+        private void StartLevel(int levelNumber)
+            => _sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, new GameplayInputArgs(levelNumber)).Forget();
 
-        private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopup();
+        private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopupAsync().Forget();
 
-        private void OnResetStatsButtonClicked() => _resetService.Reset();
+        private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopupAsync().Forget();
     }
 }

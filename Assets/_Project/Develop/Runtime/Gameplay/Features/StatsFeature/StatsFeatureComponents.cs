@@ -1,4 +1,5 @@
-﻿using RoguelikeTD.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Core.Reactive;
+using RoguelikeTD.Gameplay.EntitiesCore;
 using System.Collections.Generic;
 
 namespace RoguelikeTD.Gameplay.Features.StatsFeature
@@ -16,5 +17,10 @@ namespace RoguelikeTD.Gameplay.Features.StatsFeature
     public class StatsEffects : IEntityComponent
     {
         public StatsEffectsList Value;
+    }
+
+    public class AttacksPerSecond : IEntityComponent
+    {
+        public ReactiveVariable<float> Value;
     }
 }

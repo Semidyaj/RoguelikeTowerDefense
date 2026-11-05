@@ -1,4 +1,5 @@
-﻿using RoguelikeTD.Configs.Meta.HeroStats;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Configs.Meta.HeroStats;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.DataManagement.DataProviders;
 using RoguelikeTD.Core.Reactive;
@@ -15,6 +16,7 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
     {
         private ConfigsProviderService _configsProviderService;
         private WalletService _walletService;
+        private PlayerDataProvider _playerDataProvider;
 
         private Dictionary<StatTypes, ReactiveVariable<int>> _statLevels = new();
 
@@ -22,6 +24,7 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
         {
             _configsProviderService = configsProviderService;
             _walletService = walletService;
+            _playerDataProvider = playerDataProvider;
 
             playerDataProvider.RegisterReader(this);
             playerDataProvider.RegisterWriter(this);
@@ -82,6 +85,9 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
 
             _walletService.Spend(costType, cost);
             _statLevels[type].Value += 1;
+
+            _playerDataProvider.SaveAsync().Forget();
+
             return true;
         }
 
@@ -89,6 +95,9 @@ namespace RoguelikeTD.Meta.Features.StatsUpgrade
         {
             foreach(var statLevel in data.StatsUpgradeLevel)
             {
+                if (PlayerStatsUpgradeConfig.Contains(statLevel.Key) == false)
+                    continue;
+
                 int level = ClampToConfigLevels(statLevel.Key, statLevel.Value);
 
                 if (_statLevels.ContainsKey(statLevel.Key))

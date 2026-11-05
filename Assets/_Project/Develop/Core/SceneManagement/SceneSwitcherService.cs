@@ -45,7 +45,7 @@ namespace RoguelikeTD.Core.SceneManagement
             if(sceneBootstrap == null)
                 throw new NullReferenceException(nameof(sceneBootstrap) + " not found");
 
-            _currentSceneScope = _projectScope.CreateChild(builder => sceneBootstrap.Configure(builder, sceneArgs), sceneName);
+            _currentSceneScope = _projectScope.CreateChild(sceneBootstrap.CreateInstaller(sceneArgs), sceneName);
 
             await sceneBootstrap.InitializeAsync(_currentSceneScope.Container);
 

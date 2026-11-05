@@ -9,8 +9,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
     public class DirectionsInstantShootSystem : IInitializableSystem, IDisposableSystem
     {
         private readonly EntitiesFactory _entitiesFactory;
+        private readonly string _projectilePrefabPath;
+        private readonly float _projectileSpeed;
 
         private InstantShootingDirectionArgs _directions;
+        private ReactiveVariable<Entity> _currentTarget;
         private ReactiveEvent _attackDelayEndEvent;
 
         private Entity _entity;
@@ -20,9 +23,11 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private IDisposable _attackDelayEndDisposable;
 
-        public DirectionsInstantShootSystem(EntitiesFactory entitiesFactory)
+        public DirectionsInstantShootSystem(EntitiesFactory entitiesFactory, string projectilePrefabPath, float projectileSpeed)
         {
             _entitiesFactory = entitiesFactory;
+            _projectilePrefabPath = projectilePrefabPath;
+            _projectileSpeed = projectileSpeed;
         }
 
         public void OnInit(Entity entity)
@@ -34,6 +39,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
             _damage = entity.InstantAttackDamage;
             _shootPoint = entity.ShootPoint;
+            entity.TryGetCurrentTarget(out _currentTarget);
 
             _attackDelayEndDisposable = _attackDelayEndEvent.Subscribe(OnAttackDelayEnded);
         }
@@ -45,13 +51,32 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private void OnAttackDelayEnded()
         {
+            Vector3 baseDirection = GetBaseDirection();
+
             foreach (var arg in _directions.Args)
-                Shoot(arg.Angle, arg.ProjectileCounts);
+                Shoot(baseDirection, arg.Angle, arg.ProjectileCounts);
         }
 
-        private void Shoot(int angle, int projectileCounts)
+        private Vector3 GetBaseDirection()
         {
-            Vector3 directionForShoot = Quaternion.Euler(new Vector3(0, angle, 0)) * _shootPoint.forward;
+            Entity target = _currentTarget?.Value;
+
+            if (target == null)
+                return _shootPoint.forward;
+
+            Vector3 targetVelocity = target.TryGetRigidbody(out Rigidbody rigidbody) ? rigidbody.linearVelocity : Vector3.zero;
+
+            InterceptCalculator.TryGetInterceptPoint(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, out Vector3 interceptPoint);
+
+            Vector3 direction = interceptPoint - _shootPoint.position;
+            direction.y = 0;
+
+            return direction.sqrMagnitude > 0 ? direction.normalized : _shootPoint.forward;
+        }
+
+        private void Shoot(Vector3 baseDirection, int angle, int projectileCounts)
+        {
+            Vector3 directionForShoot = Quaternion.Euler(new Vector3(0, angle, 0)) * baseDirection;
             Vector2 perpindicular = Vector2.Perpendicular(new Vector2(directionForShoot.x, directionForShoot.z)).normalized;
 
             float offsetBetweenProjectiles = 0.6f;
@@ -59,9 +84,9 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
             for (int i = 0; i < projectileCounts; i++)
             {
                 Vector2 offset = perpindicular * (-offsetBetweenProjectiles / 2f * (projectileCounts - 1) + i * offsetBetweenProjectiles);
-                Vector3 position = new Vector3(_shootPoint.position.x * offset.x, _shootPoint.position.y, _shootPoint.position.z + offset.y);
+                Vector3 position = new Vector3(_shootPoint.position.x + offset.x, _shootPoint.position.y, _shootPoint.position.z + offset.y);
 
-                _entitiesFactory.CreateProjectile(position, directionForShoot, _damage.Value, _entity);
+                _entitiesFactory.CreateProjectile(_projectilePrefabPath, position, directionForShoot, _projectileSpeed, _damage.Value, _entity);
             }
         }
     }
