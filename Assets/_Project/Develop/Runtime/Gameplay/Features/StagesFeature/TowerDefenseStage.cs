@@ -50,6 +50,10 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
                 return;
 
             _elapsedTime += deltaTime;
+
+            if (_spawnedEnemiesToRemoveReason.Count == 0 && _nextEnemyIndex < _enemyItems.Count)
+                _elapsedTime = Math.Max(_elapsedTime, _enemyItems[_nextEnemyIndex].SpawnTime);
+
             SpawnDueEnemies();
 
             if (_nextEnemyIndex == _enemyItems.Count && _spawnedEnemiesToRemoveReason.Count == 0)
