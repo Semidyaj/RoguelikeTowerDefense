@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using RoguelikeTD.Configs.Meta.HeroStats;
+using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
@@ -19,7 +20,9 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         private const int MaxLevel = 3;
 
         private PlayerStatsUpgradeConfig _config;
+        private StartWalletConfig _walletConfig;
         private WalletService _wallet;
+        private FakeSaveLoadService _saveLoadService;
 
         [SetUp]
         public void SetUp()
@@ -34,12 +37,21 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
                 "\"<UpgradeToNextLevelCost>k__BackingField\":[100,200]" +
                 "}]}",
                 _config);
+
+            _walletConfig = ScriptableObject.CreateInstance<StartWalletConfig>();
+            JsonUtility.FromJsonOverwrite(
+                "{\"_values\":[" +
+                $"{{\"<Type>k__BackingField\":{(int)CurrencyTypes.Gold},\"<Value>k__BackingField\":0}}," +
+                $"{{\"<Type>k__BackingField\":{(int)CurrencyTypes.Diamond},\"<Value>k__BackingField\":0}}" +
+                "]}",
+                _walletConfig);
         }
 
         [TearDown]
         public void TearDown()
         {
             Object.DestroyImmediate(_config);
+            Object.DestroyImmediate(_walletConfig);
         }
 
         [Test]
@@ -123,6 +135,18 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
         }
 
         [Test]
+        public async Task TryBuyUpgrade_WhenEnough_SavesNewLevelAndGold()
+        {
+            StatsUpgradeService service = await CreateService(level: 1, gold: 150);
+
+            service.TryBuyUpgrade(Stat);
+
+            PlayerData saved = (PlayerData)_saveLoadService.StoredData;
+            Assert.AreEqual(2, saved.StatsUpgradeLevel[Stat]);
+            Assert.AreEqual(50, saved.WalletData[CurrencyTypes.Gold]);
+        }
+
+        [Test]
         public async Task TryBuyUpgrade_WhenNotEnough_ReturnsFalseAndChangesNothing()
         {
             StatsUpgradeService service = await CreateService(level: 1, gold: 99);
@@ -191,19 +215,31 @@ namespace RoguelikeTD.Tests.Meta.Features.StatsUpgrade
 
         private async Task<StatsUpgradeService> CreateService(int level, int gold = 0)
         {
-            ConfigsProviderService configsProviderService = new ConfigsProviderService(new FakeConfigsLoader(_config));
+            ConfigsProviderService configsProviderService = new ConfigsProviderService(new FakeConfigsLoader(_config, _walletConfig));
             await configsProviderService.LoadAsync();
+
+            _saveLoadService = new FakeSaveLoadService
+            {
+                StoredData = new PlayerData
+                {
+                    WalletData = new Dictionary<CurrencyTypes, int> { { CurrencyTypes.Gold, gold } },
+                    StatsUpgradeLevel = new Dictionary<StatTypes, int> { { Stat, level } }
+                }
+            };
+
+            PlayerDataProvider provider = new PlayerDataProvider(_saveLoadService, configsProviderService);
 
             _wallet = new WalletService(
                 new Dictionary<CurrencyTypes, ReactiveVariable<int>>
                 {
-                    { CurrencyTypes.Gold, new ReactiveVariable<int>(gold) },
-                    { CurrencyTypes.Diamond, new ReactiveVariable<int>(0) },
+                    { CurrencyTypes.Gold, new ReactiveVariable<int>() },
+                    { CurrencyTypes.Diamond, new ReactiveVariable<int>() },
                 },
-                new PlayerDataProvider(null, null));
+                provider);
 
-            StatsUpgradeService service = new StatsUpgradeService(configsProviderService, _wallet, new PlayerDataProvider(null, null));
-            service.ReadFrom(new PlayerData { StatsUpgradeLevel = new Dictionary<StatTypes, int> { { Stat, level } } });
+            StatsUpgradeService service = new StatsUpgradeService(configsProviderService, _wallet, provider);
+
+            await provider.LoadAsync();
 
             return service;
         }
