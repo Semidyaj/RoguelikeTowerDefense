@@ -1,6 +1,9 @@
 ﻿using DG.Tweening;
+using RoguelikeTD.Configs.Gameplay.Loot;
+using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.MainHero;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +12,11 @@ using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
-    public class LootPullingService : IInitializable, IDisposable
+    public class LootPullingService : IInitializable, ITickable, IDisposable
     {
         private EntitiesLifeContext _entitiesLifeContext;
+        private readonly MainHeroHolderService _mainHeroHolderService;
+        private readonly float _pickupRadius;
 
         private ReactiveVariable<bool> _allCollected = new();
 
@@ -19,9 +24,14 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
 
         private bool _isActivated;
 
-        public LootPullingService(EntitiesLifeContext entitiesLifeContext)
+        public LootPullingService(
+            EntitiesLifeContext entitiesLifeContext,
+            MainHeroHolderService mainHeroHolderService,
+            ConfigsProviderService configsProviderService)
         {
             _entitiesLifeContext = entitiesLifeContext;
+            _mainHeroHolderService = mainHeroHolderService;
+            _pickupRadius = configsProviderService.GetConfig<LootListConfig>().PickupRadius;
         }
 
         public IReadOnlyVariable<bool> AllCollected => _allCollected;
@@ -30,6 +40,18 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
         {
             _entitiesLifeContext.Added += OnEntityAdded;
             _entitiesLifeContext.Released += OnEntityReleased;
+        }
+
+        public void Tick()
+        {
+            Entity hero = _mainHeroHolderService.MainHero;
+
+            if (hero == null || hero.IsDead.Value)
+                return;
+
+            foreach (Entity loot in _loot)
+                if (CanPickup(loot, hero))
+                    PullLoot(loot, hero);
         }
 
         public void Dispose()
@@ -63,7 +85,7 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
         {
             bool lootRemoved = _loot.Remove(entity);
 
-            if (lootRemoved && _loot.Count == 0)
+            if (lootRemoved && _loot.Count == 0 && _isActivated)
                 _allCollected.Value = true;
         }
 
@@ -81,16 +103,24 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
             }
 
             foreach (Entity loot in _loot)
-            {
-                loot.CurrentTarget.Value = entity;
-                loot.InPullingProcess.Value = true;
-            }
+                PullLoot(loot, entity);
         }
 
         public void Reset()
         {
             _isActivated = false;
             _allCollected.Value = false;
+        }
+
+        private bool CanPickup(Entity loot, Entity hero)
+            => loot.InSpawnProcess.Value == false
+            && loot.InPullingProcess.Value == false
+            && (loot.Transform.position - hero.Transform.position).magnitude <= _pickupRadius;
+
+        private void PullLoot(Entity loot, Entity target)
+        {
+            loot.CurrentTarget.Value = target;
+            loot.InPullingProcess.Value = true;
         }
     }
 }
