@@ -21,7 +21,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeatur
 
             foreach(AbilityConfig abilityConfig in _abilitiesConfigsContainer.AbilityConfigs)
             {
-                if (_abilitiesDroppingRulesService.IsAvailable(entity, abilityConfig, 1))
+                if (_abilitiesDroppingRulesService.IsAvailable(entity, abilityConfig))
                     availableAbilities.Add(new AbilityDropOption(abilityConfig, 1));
             }
 

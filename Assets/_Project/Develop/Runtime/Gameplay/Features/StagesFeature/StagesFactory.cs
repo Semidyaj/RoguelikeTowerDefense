@@ -20,12 +20,6 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
         {
             switch (stageConfig)
             {
-                case ClearAllEnemiesStageConfig clearAllEnemiesStageConfig:
-                    return new ClearAllEnemiesStage(
-                        clearAllEnemiesStageConfig,
-                        _enemiesFactory,
-                        _entitiesLifeContext);
-
                 case TowerDefenseStageConfig towerDefenseStageConfig:
 
                     return new TowerDefenseStage(

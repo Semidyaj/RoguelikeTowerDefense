@@ -1660,25 +1660,6 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.MustCancelAttack() {Value = value});
 		}
 
-		public RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode CanExplodeC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode>();
-
-		public RoguelikeTD.Core.Conditions.ICompositeCondition CanExplode => CanExplodeC.Value;
-
-		public bool TryGetCanExplode(out RoguelikeTD.Core.Conditions.ICompositeCondition value)
-		{
-			bool result = TryGetComponent(out RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(RoguelikeTD.Core.Conditions.ICompositeCondition);
-			return result;
-		}
-
-		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddCanExplode(RoguelikeTD.Core.Conditions.ICompositeCondition value)
-		{
-			return AddComponent(new RoguelikeTD.Gameplay.Features.Attack.PointClickExplosion.CanExplode() {Value = value});
-		}
-
 		public RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance ShootingMinDistanceC => GetComponent<RoguelikeTD.Gameplay.Features.Attack.ShootingMinDistance>();
 
 		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Single> ShootingMinDistance => ShootingMinDistanceC.Value;

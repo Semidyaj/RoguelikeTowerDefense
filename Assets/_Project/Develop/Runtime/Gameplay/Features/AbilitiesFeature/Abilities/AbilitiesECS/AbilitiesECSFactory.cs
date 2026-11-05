@@ -34,8 +34,8 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
                 case StartWaveDealDamageToEnemiesAbilityConfig startWaveDealDamageToEnemiesAbilityConfig:
                     return CreateStartWaveTakeDamageAbility(owner, startWaveDealDamageToEnemiesAbilityConfig, currentLevel);
 
-                case MainHeroIncreaseExplosionDamageAbilityConfig mainHeroIncreaseExplosionDamageAbilityConfig:
-                    return CreateIncreaseDamageAbility(owner, mainHeroIncreaseExplosionDamageAbilityConfig, currentLevel);
+                case MainHeroIncreaseDamageAbilityConfig mainHeroIncreaseDamageAbilityConfig:
+                    return CreateIncreaseDamageAbility(owner, mainHeroIncreaseDamageAbilityConfig, currentLevel);
 
                 default:
                     throw new ArgumentException();
@@ -193,7 +193,7 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS
             return entity;
         }
 
-        private Entity CreateIncreaseDamageAbility(Entity owner, MainHeroIncreaseExplosionDamageAbilityConfig config, int currentLevel)
+        private Entity CreateIncreaseDamageAbility(Entity owner, MainHeroIncreaseDamageAbilityConfig config, int currentLevel)
         {
             Entity entity = CreateEmpty();
 

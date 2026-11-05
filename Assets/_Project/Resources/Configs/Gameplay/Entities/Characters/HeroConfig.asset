@@ -19,7 +19,6 @@ MonoBehaviour:
   <AttackDelayTime>k__BackingField: 1.2666
   <AttackCooldown>k__BackingField: 1
   <InstantAttackDamage>k__BackingField: 50
-  <AOEAttackDamage>k__BackingField: 25
-  <AOEAttackRadius>k__BackingField: 3
+  <ProjectileSpeed>k__BackingField: 20
   <MaxHealth>k__BackingField: 100
   <DeathProcessTime>k__BackingField: 3.5

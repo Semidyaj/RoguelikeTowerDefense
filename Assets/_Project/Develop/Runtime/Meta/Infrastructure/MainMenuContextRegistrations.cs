@@ -21,7 +21,6 @@ namespace RoguelikeTD.Meta.Infrastructure
 
             builder.RegisterEntryPoint(CreateMainMenuScreenPresenter, Lifetime.Singleton).AsSelf();
 
-            builder.Register<ResetStatistics>(Lifetime.Singleton);
         }
 
         private static MainMenuScreenPresenter CreateMainMenuScreenPresenter(IObjectResolver c)

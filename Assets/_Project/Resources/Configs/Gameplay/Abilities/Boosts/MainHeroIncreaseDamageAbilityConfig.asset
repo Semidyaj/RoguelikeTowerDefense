@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 705fcfd46f2756b4fba785751b6d3dfc, type: 3}
-  m_Name: MainHeroIncreaseExplosionDamageAbilityConfig
+  m_Name: MainHeroIncreaseDamageAbilityConfig
   m_EditorClassIdentifier: 
   <IsAvailableInDrop>k__BackingField: 0
   <ID>k__BackingField: IncreaseDamageBoost

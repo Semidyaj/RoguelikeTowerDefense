@@ -48,11 +48,6 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 
             switch (config)
             {
-                case GhostConfig ghostConfig:
-                    entity = _entitiesFactory.CreateGhostEntity(position, ghostConfig);
-                    _brainsFactory.CreateGhostBrain(entity);
-                    break;
-
                 case BarbarianConfig barbarianConfig:
                     entity = _entitiesFactory.CreateBarbarian(position, barbarianConfig);
                     _brainsFactory.CreateBarbarianBrain(entity);

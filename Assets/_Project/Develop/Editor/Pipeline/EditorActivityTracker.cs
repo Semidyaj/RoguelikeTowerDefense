@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEditor;
+using UnityEditorInternal;
 
 namespace RoguelikeTD.Editor.Pipeline
 {
@@ -42,6 +43,9 @@ namespace RoguelikeTD.Editor.Pipeline
 
         private static void MarkChange(string kind)
         {
+            if (InternalEditorUtility.isApplicationActive == false)
+                return;
+
             SessionState.SetString(LastChangeTicksKey, DateTime.UtcNow.Ticks.ToString());
             SessionState.SetString(LastChangeKindKey, kind);
         }

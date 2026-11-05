@@ -7,6 +7,5 @@
         Damage = 3,
         AttackRange = 4,
         AttacksPerSecond = 5,
-        AttackRadius = 6,
     }
 }

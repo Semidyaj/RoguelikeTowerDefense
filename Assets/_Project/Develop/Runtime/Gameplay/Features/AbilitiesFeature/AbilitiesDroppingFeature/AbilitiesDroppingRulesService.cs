@@ -6,14 +6,14 @@ namespace RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeatur
 {
     public class AbilitiesDroppingRulesService
     {
-        public bool IsAvailable(Entity entity, AbilityConfig config, int abilityLevel)
+        public bool IsAvailable(Entity entity, AbilityConfig config)
         {
             if(config.IsAvailableInDrop == false)
                 return false;
 
             if (config.IsUpgradable())
             {
-                if (entity.Abilities.Elements.Any(ability => ability.AbilityID.Value == config.ID && ability.AbilityCurrentLevel.Value + abilityLevel > ability.AbilityMaxLevel.Value))
+                if (entity.Abilities.Elements.Any(ability => ability.AbilityID.Value == config.ID && ability.AbilityCurrentLevel.Value >= ability.AbilityMaxLevel.Value))
                     return false;
             }
 
