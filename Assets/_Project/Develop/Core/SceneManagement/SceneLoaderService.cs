@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RoguelikeTD.Core.SceneManagement
@@ -9,6 +10,10 @@ namespace RoguelikeTD.Core.SceneManagement
             => SceneManager.LoadSceneAsync(sceneName, loadSceneMode).ToUniTask();
 
         public UniTask UnloadAsync(string sceneName)
-            => SceneManager.UnloadSceneAsync(sceneName).ToUniTask();
+        {
+            AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneName);
+
+            return operation == null ? UniTask.CompletedTask : operation.ToUniTask();
+        }
     }
 }
