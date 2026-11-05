@@ -99,12 +99,17 @@ namespace RoguelikeTD.Gameplay.Features.AI
 
             FuncCondition fromMovementToShootingCondition = new FuncCondition(() => entity.CanStartAttack.Evaluate());
 
+            ICompositeCondition fromShootingToMovementCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsMinDistanceToAttack.Value == false))
+                .Add(new FuncCondition(() => entity.InAttackProcess.Value == false));
+
             AIStateMachine behaviour = new AIStateMachine();
 
             behaviour.AddState(movementState);
             behaviour.AddState(shootingState);
 
             behaviour.AddTransition(movementState, shootingState, fromMovementToShootingCondition);
+            behaviour.AddTransition(shootingState, movementState, fromShootingToMovementCondition);
 
             FindTargetState findTargetState = new FindTargetState(targetSelector, _entitiesLifeContext, entity);
             AIParallelState parallelState = new AIParallelState(findTargetState, behaviour);
@@ -119,7 +124,7 @@ namespace RoguelikeTD.Gameplay.Features.AI
         public AIStateMachine CreateAutoAttackStateMachine(Entity entity)
         {
             RotateToTargetState rotateToTargetState = new RotateToTargetState(entity);
-            AttackTriggerState attackTriggerState = new AttackTriggerState(entity);
+            AIParallelState attackTriggerState = new AIParallelState(new AttackTriggerState(entity), new RotateToTargetState(entity));
 
             ICondition canAttack = entity.CanStartAttack;
             Transform transform = entity.Transform;

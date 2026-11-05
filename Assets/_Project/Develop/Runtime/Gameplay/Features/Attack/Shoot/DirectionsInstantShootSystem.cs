@@ -66,12 +66,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
             Vector3 targetVelocity = target.TryGetRigidbody(out Rigidbody rigidbody) ? rigidbody.linearVelocity : Vector3.zero;
 
-            InterceptCalculator.TryGetInterceptPoint(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, out Vector3 interceptPoint);
-
-            Vector3 direction = interceptPoint - _shootPoint.position;
-            direction.y = 0;
-
-            return direction.sqrMagnitude > 0 ? direction.normalized : _shootPoint.forward;
+            return InterceptCalculator.GetAimDirection(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, _shootPoint.forward);
         }
 
         private void Shoot(Vector3 baseDirection, int angle, int projectileCounts)

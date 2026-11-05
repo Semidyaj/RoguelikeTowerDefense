@@ -13,6 +13,7 @@ namespace RoguelikeTD.Configs.Gameplay.Entities
         [field: SerializeField, Min(0)] public float AttackDelayTime { get; private set; } = 0.75f;
         [field: SerializeField, Min(0)] public float AttackCooldown { get; private set; } = 1;
         [field: SerializeField, Min(0)] public float InstantAttackDamage { get; private set; } = 50;
+        [field: SerializeField, Min(0)] public float ProjectileSpeed { get; private set; } = 12;
         [field: SerializeField, Min(0)] public float ShootingMinDistance { get; private set; } = 4;
         [field: SerializeField, Min(0)] public float AggroRadius { get; private set; } = 7;
         [field: SerializeField, Min(0)] public float DeathProcessTime { get; private set; } = 2;

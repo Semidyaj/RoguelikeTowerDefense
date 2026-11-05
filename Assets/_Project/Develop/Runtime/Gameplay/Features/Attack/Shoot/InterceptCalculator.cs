@@ -6,6 +6,21 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
     {
         private const float Epsilon = 0.0001f;
 
+        public static Vector3 GetAimDirection(
+            Vector3 shooterPosition,
+            Vector3 targetPosition,
+            Vector3 targetVelocity,
+            float projectileSpeed,
+            Vector3 fallbackDirection)
+        {
+            TryGetInterceptPoint(shooterPosition, targetPosition, targetVelocity, projectileSpeed, out Vector3 interceptPoint);
+
+            Vector3 direction = interceptPoint - shooterPosition;
+            direction.y = 0;
+
+            return direction.sqrMagnitude > 0 ? direction.normalized : fallbackDirection;
+        }
+
         public static bool TryGetInterceptPoint(
             Vector3 shooterPosition,
             Vector3 targetPosition,

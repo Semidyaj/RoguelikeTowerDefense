@@ -26,8 +26,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
         {
             float distanceToTarget = (_currentTargetPoint.Value.Transform.position - _transform.position).magnitude;
 
-            if (distanceToTarget <= _shootingMinDistance.Value)
-                _isMinDistance.Value = true;
+            _isMinDistance.Value = distanceToTarget <= _shootingMinDistance.Value;
         }
     }
 }
