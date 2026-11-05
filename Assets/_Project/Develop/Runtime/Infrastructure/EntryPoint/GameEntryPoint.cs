@@ -4,6 +4,7 @@ using RoguelikeTD.Core.LoadingScreen;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Infrastructure.Launch;
+using RoguelikeTD.Infrastructure.PlaythroughTracking;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -45,6 +46,8 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
                 await playerDataProvider.LoadAsync();
             else
                 playerDataProvider.Reset();
+
+            container.Resolve<PlaythroughTracker>().StartSession();
 
             loadingScreen.Hide();
 
