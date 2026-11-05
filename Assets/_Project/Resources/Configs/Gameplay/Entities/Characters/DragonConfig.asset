@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonConfig
   m_EditorClassIdentifier: 
   <PrefabPath>k__BackingField: Entities/Dragon
-  <MoveSpeed>k__BackingField: 2
+  <MoveSpeed>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 900
   <MaxHealth>k__BackingField: 100
   <AttackProcessTime>k__BackingField: 1.5
@@ -21,5 +21,6 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 1
   <InstantAttackDamage>k__BackingField: 50
   <ShootingMinDistance>k__BackingField: 4
+  <AggroRadius>k__BackingField: 7
   <DeathProcessTime>k__BackingField: 2
   <SpawnProcessTime>k__BackingField: 1

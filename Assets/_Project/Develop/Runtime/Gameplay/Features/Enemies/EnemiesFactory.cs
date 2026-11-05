@@ -5,6 +5,7 @@ using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
 using RoguelikeTD.Gameplay.Features.LootFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
@@ -50,12 +51,12 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
             {
                 case BarbarianConfig barbarianConfig:
                     entity = _entitiesFactory.CreateBarbarian(position, barbarianConfig);
-                    _brainsFactory.CreateBarbarianBrain(entity);
+                    _brainsFactory.CreateBarbarianBrain(entity, new EnemyTargetSelector(entity, barbarianConfig.AggroRadius));
                     break;
 
                 case DragonConfig dragonConfig:
                     entity = _entitiesFactory.CreateDragon(position, dragonConfig);
-                    _brainsFactory.CreateDragonBrain(entity);
+                    _brainsFactory.CreateDragonBrain(entity, new EnemyTargetSelector(entity, dragonConfig.AggroRadius));
                     break;
 
                 default:

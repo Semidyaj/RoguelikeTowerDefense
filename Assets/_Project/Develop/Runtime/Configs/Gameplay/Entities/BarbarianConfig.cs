@@ -11,6 +11,7 @@ namespace RoguelikeTD.Configs.Gameplay.Entities
         [field: SerializeField, Min(0)] public float MaxHealth { get; private set; } = 100;
         [field: SerializeField, Min(0)] public float Damage { get; private set; } = 50;
         [field: SerializeField, Min(0)] public float AttackRadius { get; private set; } = 2;
+        [field: SerializeField, Min(0)] public float AggroRadius { get; private set; } = 5;
         [field: SerializeField, Min(0)] public float DeathProcessTime { get; private set; } = 2;
         [field: SerializeField, Min(0)] public float SpawnProcessTime { get; private set; } = 1;
     }

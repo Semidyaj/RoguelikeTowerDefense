@@ -1,5 +1,4 @@
-﻿using RoguelikeTD.Core.Conditions;
-using RoguelikeTD.Gameplay.EntitiesCore;
+﻿using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI.States;
 using RoguelikeTD.Gameplay.Features.AI.States.Attack;
 using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
@@ -68,9 +67,9 @@ namespace RoguelikeTD.Gameplay.Features.AI
         }
 
         // ENEMIES
-        public StateMachineBrain CreateBarbarianBrain(Entity entity)
+        public StateMachineBrain CreateBarbarianBrain(Entity entity, ITargetSelector targetSelector)
         {
-            AIStateMachine stateMachine = _stateMachineFactory.CreateMovementToPointStateMachine(entity);
+            AIStateMachine stateMachine = _stateMachineFactory.CreateBarbarianStateMachine(entity, targetSelector);
 
             StateMachineBrain brain = new StateMachineBrain(stateMachine);
 
@@ -79,19 +78,9 @@ namespace RoguelikeTD.Gameplay.Features.AI
             return brain;
         }
 
-        public StateMachineBrain CreateDragonBrain(Entity entity)
+        public StateMachineBrain CreateDragonBrain(Entity entity, ITargetSelector targetSelector)
         {
-            AIStateMachine movementState = _stateMachineFactory.CreateMovementToPointStateMachine(entity);
-            AIStateMachine shootingState = _stateMachineFactory.CreateAutoAttackStateMachine(entity);
-
-            AIStateMachine stateMachine = new AIStateMachine();
-
-            FuncCondition fromMovementToShootingCondition = new FuncCondition(() => entity.CanStartAttack.Evaluate());
-
-            stateMachine.AddState(movementState);
-            stateMachine.AddState(shootingState);
-
-            stateMachine.AddTransition(movementState, shootingState, fromMovementToShootingCondition);
+            AIStateMachine stateMachine = _stateMachineFactory.CreateDragonStateMachine(entity, targetSelector);
 
             StateMachineBrain brain = new StateMachineBrain(stateMachine);
 

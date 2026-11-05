@@ -79,6 +79,42 @@ namespace RoguelikeTD.Gameplay.Features.AI
             return rootStateMachine;
         }
 
+        public AIStateMachine CreateBarbarianStateMachine(Entity entity, ITargetSelector targetSelector)
+        {
+            AIStateMachine movementState = CreateMovementToPointStateMachine(entity);
+
+            FindTargetState findTargetState = new FindTargetState(targetSelector, _entitiesLifeContext, entity);
+            AIParallelState parallelState = new AIParallelState(findTargetState, movementState);
+
+            AIStateMachine rootStateMachine = new AIStateMachine();
+            rootStateMachine.AddState(parallelState);
+
+            return rootStateMachine;
+        }
+
+        public AIStateMachine CreateDragonStateMachine(Entity entity, ITargetSelector targetSelector)
+        {
+            AIStateMachine movementState = CreateMovementToPointStateMachine(entity);
+            AIStateMachine shootingState = CreateAutoAttackStateMachine(entity);
+
+            FuncCondition fromMovementToShootingCondition = new FuncCondition(() => entity.CanStartAttack.Evaluate());
+
+            AIStateMachine behaviour = new AIStateMachine();
+
+            behaviour.AddState(movementState);
+            behaviour.AddState(shootingState);
+
+            behaviour.AddTransition(movementState, shootingState, fromMovementToShootingCondition);
+
+            FindTargetState findTargetState = new FindTargetState(targetSelector, _entitiesLifeContext, entity);
+            AIParallelState parallelState = new AIParallelState(findTargetState, behaviour);
+
+            AIStateMachine rootStateMachine = new AIStateMachine();
+            rootStateMachine.AddState(parallelState);
+
+            return rootStateMachine;
+        }
+
         // ATTACK
         public AIStateMachine CreateAutoAttackStateMachine(Entity entity)
         {
@@ -154,7 +190,7 @@ namespace RoguelikeTD.Gameplay.Features.AI
         public AIStateMachine CreateMovementToPointStateMachine(Entity entity)
         {
             EmptyState emptyState = new EmptyState();
-            MovementToPointState movementState = new MovementToPointState(entity, _entitiesLifeContext);
+            MovementToPointState movementState = new MovementToPointState(entity);
 
             FuncCondition fromEmptyToMovementStateCondition = new FuncCondition(() => entity.IsDead.Value == false);
 

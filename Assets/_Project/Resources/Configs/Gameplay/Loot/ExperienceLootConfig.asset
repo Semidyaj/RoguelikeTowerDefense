@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: Exp1
   <PrefabPath>k__BackingField: Entities/Loot/ExpLoot
-  <Experience>k__BackingField: 100
+  <Experience>k__BackingField: 50

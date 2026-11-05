@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BarbarianConfig
   m_EditorClassIdentifier: 
   <PrefabPath>k__BackingField: Entities/Barbarian
-  <MoveSpeed>k__BackingField: 2
+  <MoveSpeed>k__BackingField: 2.5
   <RotationSpeed>k__BackingField: 900
   <MaxHealth>k__BackingField: 100
-  <Damage>k__BackingField: 50
+  <Damage>k__BackingField: 25
   <AttackRadius>k__BackingField: 2
+  <AggroRadius>k__BackingField: 4
   <DeathProcessTime>k__BackingField: 1.2
   <SpawnProcessTime>k__BackingField: 0.8333
