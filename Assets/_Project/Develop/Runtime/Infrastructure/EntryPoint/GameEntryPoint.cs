@@ -3,6 +3,7 @@ using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.LoadingScreen;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Infrastructure.Launch;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,10 +16,15 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
         {
             SetupAddSettings();
 
-            LifetimeScope projectScope = LifetimeScope.Create(ProjectContextRegistrations.Configure, "ProjectScope");
+            LaunchSettings launchSettings = LaunchSettingsReader.Read();
+
+            LifetimeScope projectScope = LifetimeScope.Create(
+                builder => ProjectContextRegistrations.Configure(builder, launchSettings),
+                "ProjectScope");
+
             DontDestroyOnLoad(projectScope.gameObject);
 
-            InitializeAsync(projectScope.Container).Forget();
+            InitializeAsync(projectScope.Container, launchSettings).Forget();
         }
 
         private void SetupAddSettings()
@@ -27,7 +33,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             Application.targetFrameRate = 60;
         }
 
-        private async UniTaskVoid InitializeAsync(IObjectResolver container)
+        private async UniTaskVoid InitializeAsync(IObjectResolver container, LaunchSettings launchSettings)
         {
             ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
             SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();
@@ -44,7 +50,10 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
             loadingScreen.Hide();
 
-            await sceneSwitcherService.SwitchToAsync(Scenes.MainMenu);
+            if (launchSettings.StartsInGameplay)
+                await sceneSwitcherService.SwitchToAsync(Scenes.Gameplay, launchSettings.StartGameplayArgs);
+            else
+                await sceneSwitcherService.SwitchToAsync(Scenes.MainMenu);
         }
     }
 }

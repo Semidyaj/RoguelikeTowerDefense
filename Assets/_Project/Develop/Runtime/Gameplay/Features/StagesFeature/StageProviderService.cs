@@ -16,10 +16,14 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
 
         private IDisposable _stageEndedDisposable;
 
-        public StageProviderService(LevelConfig levelConfig, StagesFactory stagesFactory)
+        public StageProviderService(LevelConfig levelConfig, StagesFactory stagesFactory, int startStageNumber = 1)
         {
+            if (startStageNumber < 1 || startStageNumber > levelConfig.StageConfigs.Count)
+                throw new ArgumentOutOfRangeException(nameof(startStageNumber));
+
             _levelConfig = levelConfig;
             _stagesFactory = stagesFactory;
+            _currentStageNumber.Value = startStageNumber - 1;
         }
 
         public IReadOnlyVariable<int> CurrentStageNumber => _currentStageNumber;

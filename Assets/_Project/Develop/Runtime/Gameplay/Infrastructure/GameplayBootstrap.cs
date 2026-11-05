@@ -8,7 +8,6 @@ using RoguelikeTD.Gameplay.Features.AI;
 using RoguelikeTD.Gameplay.Features.Allies;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.States;
-using RoguelikeTD.Infrastructure;
 using RoguelikeTD.UI.Gameplay;
 using System;
 using UnityEngine;
@@ -79,12 +78,6 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             _brainsContext?.Update(Time.deltaTime);
             _entitiesLifeContext?.Update(Time.deltaTime);
             _gameplayStatesContext?.Update(Time.deltaTime);
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                SceneSwitcherService sceneSwitcherService = _resolver.Resolve<SceneSwitcherService>();
-                sceneSwitcherService.SwitchToAsync(Scenes.MainMenu).Forget();
-            }
         }
 
         private void LateUpdate()

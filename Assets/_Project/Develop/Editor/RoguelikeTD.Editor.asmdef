@@ -4,7 +4,9 @@
     "references": [
         "RoguelikeTD.Core",
         "RoguelikeTD.Game",
-        "Unity.Pipeline.Attributes"
+        "Unity.Pipeline.Attributes",
+        "VContainer",
+        "UniTask"
     ],
     "includePlatforms": [
         "Editor"

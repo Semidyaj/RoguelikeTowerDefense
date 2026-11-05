@@ -1,3 +1,4 @@
+using RoguelikeTD.Infrastructure.Launch;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -18,7 +19,9 @@ namespace RoguelikeTD.Editor
         {
             if(state == PlayModeStateChange.ExitingEditMode)
             {
-                if(EditorPrefs.GetBool(PlayFromBootstrapKey) == false)
+                bool isDebugLaunch = string.IsNullOrEmpty(SessionState.GetString(DebugLaunchRequest.SessionKey, string.Empty)) == false;
+
+                if(EditorPrefs.GetBool(PlayFromBootstrapKey) == false && isDebugLaunch == false)
                 {
                     EditorSceneManager.playModeStartScene = null;
                     return;

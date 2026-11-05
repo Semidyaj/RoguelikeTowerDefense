@@ -12,6 +12,7 @@ using RoguelikeTD.Core.Timer;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Infrastructure.Configs;
 using RoguelikeTD.Infrastructure.Data;
+using RoguelikeTD.Infrastructure.Launch;
 using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
@@ -30,10 +31,10 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 {
     public class ProjectContextRegistrations
     {
-        private const string EditorSavesFolderName = "Saves";
-
-        public static void Configure(IContainerBuilder builder)
+        public static void Configure(IContainerBuilder builder, LaunchSettings launchSettings)
         {
+            builder.RegisterInstance(launchSettings);
+
             builder.Register<ILoadingScreen>(CreateStandardLoadingScreen, Lifetime.Singleton);
 
             builder.Register(CreateConfigsProviderService, Lifetime.Singleton);
@@ -78,7 +79,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             IDataKeysStorage keysStorage = new MapDataKeysStorage();
 
             string saveFolderPath = Application.isEditor
-                ? Path.Combine(Path.GetDirectoryName(Application.dataPath), EditorSavesFolderName)
+                ? Path.Combine(Path.GetDirectoryName(Application.dataPath), c.Resolve<LaunchSettings>().EditorSavesFolder)
                 : Application.persistentDataPath;
 
             Directory.CreateDirectory(saveFolderPath);

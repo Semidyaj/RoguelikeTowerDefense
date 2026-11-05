@@ -4,7 +4,6 @@ using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
-using RoguelikeTD.UI.Gameplay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
     public class DropAbilityOnMainHeroLevelUpService : IInitializable, IDisposable
     {
         private MainHeroHolderService _mainHeroHolderService;
-        private GameplayPopupService _gameplayPopupService;
+        private IAbilitySelector _abilitySelector;
         private IPauseService _pauseService;
         private AbilitiesECSFactory _abilitiesFactory;
 
@@ -31,12 +30,12 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 
         public DropAbilityOnMainHeroLevelUpService(
             MainHeroHolderService mainHeroHolderService,
-            GameplayPopupService gameplayPopupService,
+            IAbilitySelector abilitySelector,
             IPauseService pauseService,
             AbilitiesECSFactory abilitiesFactory)
         {
             _mainHeroHolderService = mainHeroHolderService;
-            _gameplayPopupService = gameplayPopupService;
+            _abilitySelector = abilitySelector;
             _pauseService = pauseService;
             _abilitiesFactory = abilitiesFactory;
         }
@@ -81,16 +80,18 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 
                 _pauseService.Pause();
 
-                AbilityDropOption selected = await _gameplayPopupService.OpenAbilitySelectPopupAsync(hero, level, cancellationToken);
+                AbilityDropOption selected = await _abilitySelector.SelectAsync(hero, level, cancellationToken);
 
-                Provide(hero, selected);
+                if (selected != null)
+                    Provide(hero, selected);
+
                 _pauseService.Unpause();
             }
 
             _isSelectingAbility = false;
         }
 
-        private void Provide(Entity hero, AbilityDropOption option)
+        public void Provide(Entity hero, AbilityDropOption option)
         {
             Entity ability;
 

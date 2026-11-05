@@ -75,7 +75,7 @@ namespace RoguelikeTD.Gameplay.States
 
         public GameplayStateMachine CreateGameplayStateMachine(GameplayInputArgs inputArgs)
         {
-            GameplayStateMachine coreLoopState = CreateCoreLoopState();
+            GameplayStateMachine coreLoopState = CreateCoreLoopState(inputArgs);
 
             WinState winState = CreateWinState(inputArgs);
             DefeatState defeatState = CreateDefeatState(inputArgs);
@@ -113,9 +113,9 @@ namespace RoguelikeTD.Gameplay.States
             return gameplayCycle;
         }
 
-        private GameplayStateMachine CreateCoreLoopState()
+        private GameplayStateMachine CreateCoreLoopState(GameplayInputArgs inputArgs)
         {
-            PreparationState preparationState = CreatePreparationState();
+            PreparationState preparationState = CreatePreparationState(inputArgs.WavesEnabled);
             StageProcessState stageProcessState = CreateStageProcessState();
             CollectLootState collectLootState = CreateCollectLootState();
 
@@ -147,11 +147,12 @@ namespace RoguelikeTD.Gameplay.States
                 _lootPullingService,
                 _mainHeroHolderService);
 
-        private PreparationState CreatePreparationState()
+        private PreparationState CreatePreparationState(bool wavesEnabled)
             => new PreparationState(
                 _placeableService,
                 _preparationTriggerService,
-                _gameplayPopupService);
+                _gameplayPopupService,
+                wavesEnabled);
 
         private StageProcessState CreateStageProcessState()
             => new StageProcessState(

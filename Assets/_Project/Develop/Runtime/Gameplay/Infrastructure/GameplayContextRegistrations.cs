@@ -48,6 +48,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             builder.Register<AbilitiesDroppingRulesService>(Lifetime.Singleton);
             builder.Register(CreateAbilityDropService, Lifetime.Singleton);
             builder.Register<BoostAbilitiesStartGameplayApplier>(Lifetime.Singleton);
+            RegisterAbilitySelector(builder, args.AbilitySelection);
             builder.RegisterEntryPoint<DropAbilityOnMainHeroLevelUpService>().AsSelf();
 
             builder.RegisterEntryPoint(CreateGameplayScreenPresenter, Lifetime.Singleton).AsSelf();
@@ -141,10 +142,36 @@ namespace RoguelikeTD.Gameplay.Infrastructure
                 .CreateGameplayStateMachine(c.Resolve<GameplayInputArgs>()));
 
         private static StageProviderService CreateStageProviderService(IObjectResolver c)
-            => new StageProviderService(
+        {
+            GameplayInputArgs args = c.Resolve<GameplayInputArgs>();
+
+            return new StageProviderService(
                 c.Resolve<ConfigsProviderService>()
                     .GetConfig<LevelsListConfig>()
-                    .GetBy(c.Resolve<GameplayInputArgs>().LevelNumber),
-                c.Resolve<StagesFactory>());
+                    .GetBy(args.LevelNumber),
+                c.Resolve<StagesFactory>(),
+                args.StartWave);
+        }
+
+        private static void RegisterAbilitySelector(IContainerBuilder builder, AbilitySelectionModes mode)
+        {
+            switch (mode)
+            {
+                case AbilitySelectionModes.Popup:
+                    builder.Register<PopupAbilitySelector>(Lifetime.Singleton).As<IAbilitySelector>();
+                    break;
+
+                case AbilitySelectionModes.Random:
+                    builder.Register<RandomAbilitySelector>(Lifetime.Singleton).As<IAbilitySelector>();
+                    break;
+
+                case AbilitySelectionModes.Skip:
+                    builder.Register<SkipAbilitySelector>(Lifetime.Singleton).As<IAbilitySelector>();
+                    break;
+
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(mode));
+            }
+        }
     }
 }
