@@ -29,11 +29,18 @@ using Object = UnityEngine.Object;
 
 namespace RoguelikeTD.Infrastructure.EntryPoint
 {
-    public class ProjectContextRegistrations
+    public class ProjectScopeInstaller : IInstaller
     {
-        public static void Configure(IContainerBuilder builder, LaunchSettings launchSettings)
+        private readonly LaunchSettings _launchSettings;
+
+        public ProjectScopeInstaller(LaunchSettings launchSettings)
         {
-            builder.RegisterInstance(launchSettings);
+            _launchSettings = launchSettings;
+        }
+
+        public void Install(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_launchSettings);
 
             builder.Register<ILoadingScreen>(CreateStandardLoadingScreen, Lifetime.Singleton);
 
@@ -41,7 +48,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             builder.Register<ResourcesAssetsLoader>(Lifetime.Singleton);
 
             builder.Register<SceneLoaderService>(Lifetime.Singleton);
-            builder.Register(CreateSceneSwitcherService, Lifetime.Singleton);
+            builder.Register<SceneSwitcherService>(Lifetime.Singleton).WithParameter("emptySceneName", Scenes.Empty);
 
             builder.Register(CreateWalletService, Lifetime.Singleton);
             builder.Register<ISaveLoadService>(CreateSaveLoadService, Lifetime.Singleton);
@@ -98,13 +105,6 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
             return new WalletService(currencies, c.Resolve<PlayerDataProvider>());
         }
-
-        private static SceneSwitcherService CreateSceneSwitcherService(IObjectResolver c)
-            => new SceneSwitcherService(
-                c.Resolve<SceneLoaderService>(),
-                c.Resolve<ILoadingScreen>(),
-                c.Resolve<LifetimeScope>(),
-                Scenes.Empty);
 
         private static StandardLoadingScreen CreateStandardLoadingScreen(IObjectResolver c)
         {

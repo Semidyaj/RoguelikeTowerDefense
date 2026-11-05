@@ -18,9 +18,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
             LaunchSettings launchSettings = LaunchSettingsReader.Read();
 
-            LifetimeScope projectScope = LifetimeScope.Create(
-                builder => ProjectContextRegistrations.Configure(builder, launchSettings),
-                "ProjectScope");
+            LifetimeScope projectScope = LifetimeScope.Create(new ProjectScopeInstaller(launchSettings), "ProjectScope");
 
             DontDestroyOnLoad(projectScope.gameObject);
 

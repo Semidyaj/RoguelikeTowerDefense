@@ -32,11 +32,18 @@ using VContainer.Unity;
 
 namespace RoguelikeTD.Gameplay.Infrastructure
 {
-    public class GameplayContextRegistrations
+    public class GameplayScopeInstaller : IInstaller
     {
-        public static void Configure(IContainerBuilder builder, GameplayInputArgs args)
+        private readonly GameplayInputArgs _args;
+
+        public GameplayScopeInstaller(GameplayInputArgs args)
         {
-            builder.RegisterInstance(args);
+            _args = args;
+        }
+
+        public void Install(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_args);
 
             builder.RegisterEntryPoint<MonoEntitiesFactory>().AsSelf();
             builder.Register<EntitiesFactory>(Lifetime.Singleton);
@@ -48,7 +55,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             builder.Register<AbilitiesDroppingRulesService>(Lifetime.Singleton);
             builder.Register(CreateAbilityDropService, Lifetime.Singleton);
             builder.Register<BoostAbilitiesStartGameplayApplier>(Lifetime.Singleton);
-            RegisterAbilitySelector(builder, args.AbilitySelection);
+            RegisterAbilitySelector(builder, _args.AbilitySelection);
             builder.RegisterEntryPoint<DropAbilityOnMainHeroLevelUpService>().AsSelf();
 
             builder.RegisterEntryPoint(CreateGameplayScreenPresenter, Lifetime.Singleton).AsSelf();
@@ -71,6 +78,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             builder.Register<GameplayStatesFactory>(Lifetime.Singleton);
             builder.Register(CreateGameplayStatesContext, Lifetime.Singleton);
+            builder.RegisterEntryPoint<GameplayLoop>();
 
             builder.Register<PlaceablesSpawner>(Lifetime.Singleton);
             builder.Register<PlaceablesFactory>(Lifetime.Singleton);

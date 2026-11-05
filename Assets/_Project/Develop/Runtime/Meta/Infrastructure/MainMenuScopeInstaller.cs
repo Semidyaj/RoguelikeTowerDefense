@@ -1,5 +1,4 @@
 ﻿using RoguelikeTD.Core.AssetsManagement;
-using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.UI;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.MainMenu;
@@ -9,9 +8,9 @@ using VContainer.Unity;
 
 namespace RoguelikeTD.Meta.Infrastructure
 {
-    public class MainMenuContextRegistrations
+    public class MainMenuScopeInstaller : IInstaller
     {
-        public static void Configure(IContainerBuilder builder)
+        public void Install(IContainerBuilder builder)
         {
             builder.Register(CreateMainMenuUIRoot, Lifetime.Singleton);
 
@@ -20,7 +19,6 @@ namespace RoguelikeTD.Meta.Infrastructure
             builder.Register<MainMenuPopupService>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint(CreateMainMenuScreenPresenter, Lifetime.Singleton).AsSelf();
-
         }
 
         private static MainMenuScreenPresenter CreateMainMenuScreenPresenter(IObjectResolver c)

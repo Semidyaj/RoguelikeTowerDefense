@@ -72,7 +72,7 @@
 
 **Решение.** Перейти на VContainer 1.19.0.
 
-1. Сначала убрать service locator на старом контейнере: зависимости — через конструктор, контейнер видит только корень композиции (`*ContextRegistrations`, `*Bootstrap`, `GameEntryPoint`). После этого замена контейнера свелась к регистрациям.
+1. Сначала убрать service locator на старом контейнере: зависимости — через конструктор, контейнер видит только корень композиции (`*ScopeInstaller`, `*Bootstrap`, `GameEntryPoint`). После этого замена контейнера свелась к регистрациям.
 2. Области создаются **из кода**: корневая — `LifetimeScope.Create` в `GameEntryPoint` (`DontDestroyOnLoad`), сцены — `CreateChild` в `SceneSwitcherService`. Сцены и префабы не меняются.
 3. Регистрации — автосвязывание (`builder.Register<T>(Lifetime.Singleton)`); лямбды — только для конфигов (читаются при первом запросе, после загрузки), префабов (`Instantiate`) и аргументов сцены (`RegisterInstance`).
 4. Сервисы с `Initialize` — точки входа (`RegisterEntryPoint().AsSelf()`): VContainer создаёт их при построении области и вызывает `Initialize` по порядку регистрации. VContainer вызывает `Initialize` **только у точек входа** — сервис с `IInitializable`, зарегистрированный обычным `Register`, его не получит.
@@ -91,6 +91,13 @@
 - Освобождение области вызывает `Dispose` у всех созданных `IDisposable`: сервисы, меняющие глобальное состояние, обязаны вернуть его в `Dispose` (пример — `TimeScalePauseService` снимает паузу).
 - **Риск для WebGL/IL2CPP:** VContainer создаёт объекты через рефлексию по конструкторам; агрессивное вырезание кода (managed stripping) может удалить «неиспользуемые» конструкторы. Проверить на WebGL-сборке; решение — `link.xml` или source generator VContainer.
 - Известная временная связность, оставленная как есть: сервисы-читатели сохранения регистрируются в `PlayerDataProvider` в своём конструкторе (отсюда `RegisterBuildCallback`).
+
+**Ревью по документации VContainer (05.11.2026).** Конструкторное внедрение, области из кода с `CreateChild` и явным `Dispose`, `RegisterEntryPoint`, `RegisterBuildCallback` для раннего создания — так, как описано в документации.
+
+- **Игровой цикл — точка входа `GameplayLoop` (`ITickable`, `ILateTickable`)** вместо `Update`/`LateUpdate` в `GameplayBootstrap`, который вручную доставал сервисы из контейнера. Документация советует побочные эффекты держать в точках входа, а ручной `Resolve` — только когда другие способы не подходят. Один класс-цикл, а не `ITickable` у каждого сервиса: VContainer вызывает их в порядке регистрации, а порядок «мозги → сущности → состояния» важен для логики — в `GameplayLoop` он записан явно, и сервисы не зависят от фреймворка. Бутстрап только создаёт героя и башню и запускает машину состояний.
+- **Регистрации — установщики `IInstaller`** (`ProjectScopeInstaller`, `MainMenuScopeInstaller`, `GameplayScopeInstaller`) вместо статических `*ContextRegistrations.Configure`: «Context» — словарь Zenject, в VContainer это «scope» и «installer». Аргументы области (`LaunchSettings`, `GameplayInputArgs`) — в конструкторе установщика; `SceneBootstrap.CreateInstaller(args)` отдаёт установщик, `SceneSwitcherService` передаёт его в `CreateChild(installer, name)`. Делегат `CreateSceneSwitcherService` заменён на `Register<SceneSwitcherService>(...).WithParameter("emptySceneName", Scenes.Empty)`.
+- **Source generator / `link.xml` не ставим заранее**: делаем, если в WebGL/IL2CPP-сборке появятся ошибки создания объектов (решение пользователя).
+- **`IPresenter` наследует `IInitializable` из `VContainer.Unity`** (UI зависит от интерфейса DI) — оставлено как есть, чтобы не трогать работающие окна (решение пользователя).
 
 ## Асинхронность: UniTask (ADR)
 
@@ -172,7 +179,7 @@
 
 1. Фабрика делает одно дело — собирает граф состояний; длинный конструктор здесь честный список того, что нужно состояниям, а не признак лишней ответственности.
 2. VContainer проверяет все зависимости фабрики при построении области сцены: незарегистрированный сервис роняет сцену сразу на старте.
-3. Контейнер (`IObjectResolver`) по-прежнему видят только методы `Create...` в `*ContextRegistrations` — место сборки зависимостей.
+3. Контейнер (`IObjectResolver`) по-прежнему видят только методы `Create...` в `*ScopeInstaller` — место сборки зависимостей.
 
 **Альтернативы.**
 
@@ -195,7 +202,7 @@
 1. **Передача настроек.** Окно редактора `Tools/Debug Launch` (сборка `RoguelikeTD.Editor`) пишет `DebugLaunchRequest` в `SessionState` и запускает Play Mode. `LaunchSettingsReader` при старте читает и стирает запрос (под `#if UNITY_EDITOR`); в сборке и при обычном запуске — `LaunchSettings.Normal` (Null Object, без `null`).
 2. **Точка входа.** `GameEntryPoint` регистрирует `LaunchSettings` в контейнере: от них зависит папка сохранений (`Saves/Debug` вместо `Saves`) и стартовая сцена (сразу `Gameplay` вместо меню).
 3. **Параметры боя — обычные аргументы сцены.** `GameplayInputArgs` получил стартовую волну, флаг «волны включены» и режим выбора способности. `StageProviderService` принимает номер стартовой волны, `PreparationState` — флаг волн. Это настройки уровня, а не «отладка», поэтому классы о ней не знают.
-4. **Выбор способности — стратегия.** `IAbilitySelector` с реализациями `PopupAbilitySelector` (игра), `RandomAbilitySelector`, `SkipAbilitySelector`; нужную регистрирует `GameplayContextRegistrations` по аргументам сцены.
+4. **Выбор способности — стратегия.** `IAbilitySelector` с реализациями `PopupAbilitySelector` (игра), `RandomAbilitySelector`, `SkipAbilitySelector`; нужную регистрирует `GameplayScopeInstaller` по аргументам сцены.
 5. **Читы — только в сборке редактора.** Бессмертие, спавн, выдача способностей, уровень героя, манекен работают через существующие сервисы и компоненты (`EnemiesFactory`, `DropAbilityOnMainHeroLevelUpService.Provide`, `TakeDamageEvent`) из `DebugSession`. Команды CLI: `debug_start`, `debug_action`, `debug_state`.
 
 **Альтернативы.**
