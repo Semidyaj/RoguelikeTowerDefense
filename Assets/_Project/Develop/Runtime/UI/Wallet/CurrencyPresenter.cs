@@ -1,31 +1,27 @@
-﻿using RoguelikeTD.Configs.Meta.Wallet;
-using RoguelikeTD.Core.Reactive;
-using RoguelikeTD.Meta.Features.Wallet;
+﻿using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using System;
+using UnityEngine;
 
 namespace RoguelikeTD.UI.Wallet
 {
     public class CurrencyPresenter : IPresenter
     {
         private readonly IReadOnlyVariable<int> _currency;
-        private readonly CurrencyTypes _currencyType;
-        private readonly CurrencyIconsConfig _currencyIconsConfig;
+        private readonly Sprite _icon;
 
         private IconTextView _view;
 
         private IDisposable _disposable;
 
         public CurrencyPresenter(
-            IReadOnlyVariable<int> currency, 
-            CurrencyTypes currencyType, 
-            CurrencyIconsConfig currencyIconsConfig, 
+            IReadOnlyVariable<int> currency,
+            Sprite icon,
             IconTextView view)
         {
             _currency = currency;
-            _currencyType = currencyType;
-            _currencyIconsConfig = currencyIconsConfig;
+            _icon = icon;
             _view = view;
         }
 
@@ -34,7 +30,7 @@ namespace RoguelikeTD.UI.Wallet
         public void Initialize()
         {
             UpdateValue(_currency.Value);
-            _view.SetIcon(_currencyIconsConfig.GetSpriteFor(_currencyType));
+            _view.SetIcon(_icon);
 
             _disposable = _currency.Subscribe(OnCurrencyChanged);
         }

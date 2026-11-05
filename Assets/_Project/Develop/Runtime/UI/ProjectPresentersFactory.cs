@@ -15,6 +15,7 @@ using RoguelikeTD.UI.Core.BoostsShopPopup;
 using RoguelikeTD.UI.Core.LevelsMenuPopup;
 using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using RoguelikeTD.UI.Wallet;
+using UnityEngine;
 
 namespace RoguelikeTD.UI
 {
@@ -74,13 +75,13 @@ namespace RoguelikeTD.UI
             IconTextView view,
             IReadOnlyVariable<int> currency,
             CurrencyTypes currencyType)
-        {
-            return new CurrencyPresenter(
-                currency,
-                currencyType,
-                CurrencyIconsConfig,
-                view);
-        }
+            => CreateCurrencyPresenter(view, currency, CurrencyIconsConfig.GetSpriteFor(currencyType));
+
+        public CurrencyPresenter CreateCurrencyPresenter(
+            IconTextView view,
+            IReadOnlyVariable<int> currency,
+            Sprite icon)
+            => new CurrencyPresenter(currency, icon, view);
 
         public UpgradableStatPresenter CreateUpgradableStatPresenter(UpgradableStatView view, StatTypes statType)
             => new UpgradableStatPresenter(
