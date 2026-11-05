@@ -4,6 +4,7 @@ using RoguelikeTD.Gameplay.Features.Allies;
 using RoguelikeTD.Gameplay.Features.ApplyDamage;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.ResultHandler;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
 using RoguelikeTD.Gameplay.Infrastructure;
@@ -24,6 +25,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
         private readonly MainHeroHolderService _mainHeroHolderService;
         private readonly TowerHolderService _towerHolderService;
         private readonly EntitiesLifeContext _entitiesLifeContext;
+        private readonly GameplayResultHandler _gameplayResultHandler;
 
         private readonly List<IDisposable> _subscriptions = new();
         private readonly Dictionary<Entity, List<IDisposable>> _enemySubscriptions = new();
@@ -35,6 +37,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
         private bool _isActive;
         private bool _isEnded;
         private float _battleStartTime;
+        private int _winsOnStart;
         private string _abilitiesSnapshot = string.Empty;
 
         private WaveStats _wave;
@@ -45,7 +48,8 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
             StageProviderService stageProviderService,
             MainHeroHolderService mainHeroHolderService,
             TowerHolderService towerHolderService,
-            EntitiesLifeContext entitiesLifeContext)
+            EntitiesLifeContext entitiesLifeContext,
+            GameplayResultHandler gameplayResultHandler)
         {
             _tracker = tracker;
             _args = args;
@@ -53,6 +57,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
             _mainHeroHolderService = mainHeroHolderService;
             _towerHolderService = towerHolderService;
             _entitiesLifeContext = entitiesLifeContext;
+            _gameplayResultHandler = gameplayResultHandler;
         }
 
         private float BattleTime => Time.time - _battleStartTime;
@@ -64,6 +69,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
 
             _isActive = true;
             _battleStartTime = Time.time;
+            _winsOnStart = _gameplayResultHandler.Wins;
 
             _subscriptions.Add(_mainHeroHolderService.HeroRegistred.Subscribe(OnHeroRegistered));
             _subscriptions.Add(_towerHolderService.TowerRegistred.Subscribe(OnTowerRegistered));
@@ -93,7 +99,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
                 return;
 
             if (_isEnded == false)
-                WriteBattleEnd("quit");
+                WriteBattleEnd(_gameplayResultHandler.Wins > _winsOnStart ? "victory" : "quit");
 
             Write("battle_exit", new Dictionary<string, object> { ["wallet"] = _tracker.GetWallet() });
 
@@ -183,9 +189,6 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
             });
 
             _wave = null;
-
-            if (_stageProviderService.HasNextStage() == false)
-                WriteBattleEnd("victory");
         }
 
         private void OnEntityAdded(Entity entity)

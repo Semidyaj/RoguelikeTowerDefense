@@ -24,7 +24,7 @@ namespace RoguelikeTD.Gameplay.Features.AI.States.Movement
 
         public void Update(float deltaTime)
         {
-            if (_currentTargetPoint.Value.IsDead.Value)
+            if (_currentTargetPoint.Value == null || _currentTargetPoint.Value.IsDead.Value)
             {
                 _movementDirection.Value = Vector3.zero;
                 _rotationDirection.Value = Vector3.zero;

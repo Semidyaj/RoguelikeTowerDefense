@@ -11,6 +11,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Mining
     {
         private readonly CollidersRegistryService _collidersRegistryService;
 
+        private Entity _entity;
+
         private ReactiveVariable<float> _damage;
         private ReactiveVariable<float> _triggerRadius;
 
@@ -32,6 +34,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Mining
 
         public void OnInit(Entity entity)
         {
+            _entity = entity;
+
             _damage = entity.MineDamage;
             _triggerRadius = entity.MineTriggerRadius;
 
@@ -79,7 +83,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Mining
 
                 Entity contactEntity = _collidersRegistryService.GetBy(collider);
 
-                if (contactEntity != null)
+                if (contactEntity != null && EntitiesHelper.IsSameTeam(_entity, contactEntity) == false)
                 {
                     _detectedEntities.Items[_detectedEntities.Count] = contactEntity;
                     _detectedEntities.Count++;

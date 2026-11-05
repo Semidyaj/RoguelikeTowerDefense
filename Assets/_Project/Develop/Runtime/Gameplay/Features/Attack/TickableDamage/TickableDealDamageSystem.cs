@@ -2,7 +2,6 @@
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Systems;
-using RoguelikeTD.Gameplay.Features.ApplyDamage;
 using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.Attack.TickableDamage
@@ -10,6 +9,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.TickableDamage
     public class TickableDealDamageSystem : IInitializableSystem, IUpdatableSystem
     {
         private readonly CollidersRegistryService _collidersRegistryService;
+
+        private Entity _entity;
 
         private ReactiveVariable<float> _damage;
         private ReactiveVariable<float> _radius;
@@ -30,6 +31,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.TickableDamage
 
         public void OnInit(Entity entity)
         {
+            _entity = entity;
+
             _damage = entity.TickableDamage;
             _radius = entity.TickableRadius;
 
@@ -60,12 +63,8 @@ namespace RoguelikeTD.Gameplay.Features.Attack.TickableDamage
         {
             GetDamagableContacts();
 
-            if (_detectedEntities.Count > 0)
-            {
-                for (int i = 0; i < _detectedEntities.Count; i++)
-                    if (_detectedEntities.Items[i].HasComponent<TakeDamageRequest>())
-                        _detectedEntities.Items[i].TakeDamageRequest.Invoke(_damage.Value);
-            }
+            for (int i = 0; i < _detectedEntities.Count; i++)
+                EntitiesHelper.TryTakeDamageFrom(_entity, _detectedEntities.Items[i], _damage.Value);
         }
 
         private void GetDamagableContacts()

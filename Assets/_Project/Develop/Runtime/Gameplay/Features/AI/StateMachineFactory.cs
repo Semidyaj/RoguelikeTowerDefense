@@ -97,7 +97,7 @@ namespace RoguelikeTD.Gameplay.Features.AI
             AIStateMachine movementState = CreateMovementToPointStateMachine(entity);
             AIStateMachine shootingState = CreateAutoAttackStateMachine(entity);
 
-            FuncCondition fromMovementToShootingCondition = new FuncCondition(() => entity.CanStartAttack.Evaluate());
+            FuncCondition fromMovementToShootingCondition = new FuncCondition(() => entity.IsMinDistanceToAttack.Value);
 
             ICompositeCondition fromShootingToMovementCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsMinDistanceToAttack.Value == false))
@@ -199,7 +199,7 @@ namespace RoguelikeTD.Gameplay.Features.AI
 
             FuncCondition fromEmptyToMovementStateCondition = new FuncCondition(() => entity.IsDead.Value == false);
 
-            FuncCondition fromMovementToEmptyStateCondition = new FuncCondition(() => entity.CurrentTarget.Value.IsDead.Value);
+            FuncCondition fromMovementToEmptyStateCondition = new FuncCondition(() => entity.CurrentTarget.Value != null && entity.CurrentTarget.Value.IsDead.Value);
 
             AIStateMachine stateMachine = new AIStateMachine();
 

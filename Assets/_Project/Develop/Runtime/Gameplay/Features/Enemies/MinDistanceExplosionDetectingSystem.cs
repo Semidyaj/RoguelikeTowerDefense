@@ -33,7 +33,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 
         public void OnUpdate(float deltaTime)
         {
-            if (_isExploded)
+            if (_isExploded || _currentTargetPoint.Value == null)
                 return;
 
             float distanceToTarget = (_currentTargetPoint.Value.Transform.position - _transform.position).magnitude;
