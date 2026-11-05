@@ -19,7 +19,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0d9cc54b1b23cd4498a456c40b94021, type: 2}
   - {fileID: 11400000, guid: 8b346e3fe782fbc4997882904664182c, type: 2}
   - {fileID: 11400000, guid: 8e132a96dd1aeb342bdfe5ba362155e1, type: 2}
+  - {fileID: 11400000, guid: c07e803924feccb4bae953110c32ed8e, type: 2}
+  - {fileID: 11400000, guid: 5d9465b44b1997e4dad45d940d87a29c, type: 2}
+  - {fileID: 11400000, guid: 0f621d043e981d844842df70dd1a61a7, type: 2}
+  - {fileID: 11400000, guid: f6a754de27b563a4c98fc68cb3c23ae0, type: 2}
   <MaxHealth>k__BackingField: 200
   <Position>k__BackingField: {x: 14, y: 0, z: 0}
   <EnemyHealthMultiplier>k__BackingField: 2.8
   <EnemyDamageMultiplier>k__BackingField: 1.7
+  <EnemyStatsGrowthPerWave>k__BackingField: 0.1

@@ -43,7 +43,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
                 .GetBy(gameplayInputArgs.LevelNumber);
         }
 
-        public Entity Create(Vector3 position, EntityConfig config)
+        public Entity Create(Vector3 position, EntityConfig config, int waveNumber)
         {
             Entity entity;
 
@@ -63,7 +63,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
                     throw new ArgumentException($"Not support {config.GetType()} type config");
             }
 
-            ApplyLevelMultipliers(entity);
+            ApplyLevelMultipliers(entity, waveNumber);
 
             AddDropLootBehaviourTo(entity);
 
@@ -76,19 +76,23 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
             return entity;
         }
 
-        private void ApplyLevelMultipliers(Entity entity)
+        private void ApplyLevelMultipliers(Entity entity, int waveNumber)
         {
-            entity.MaxHealth.Value *= _levelConfig.EnemyHealthMultiplier;
+            float waveGrowth = 1 + _levelConfig.EnemyStatsGrowthPerWave * (waveNumber - 1);
+            float healthMultiplier = _levelConfig.EnemyHealthMultiplier * waveGrowth;
+            float damageMultiplier = _levelConfig.EnemyDamageMultiplier * waveGrowth;
+
+            entity.MaxHealth.Value *= healthMultiplier;
             entity.CurrentHealth.Value = entity.MaxHealth.Value;
 
             if (entity.TryGetAOEDamage(out ReactiveVariable<float> aoeDamage))
-                aoeDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                aoeDamage.Value *= damageMultiplier;
 
             if (entity.TryGetBodyContactDamage(out ReactiveVariable<float> bodyContactDamage))
-                bodyContactDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                bodyContactDamage.Value *= damageMultiplier;
 
             if (entity.TryGetInstantAttackDamage(out ReactiveVariable<float> instantAttackDamage))
-                instantAttackDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                instantAttackDamage.Value *= damageMultiplier;
         }
 
         private void AddDropLootBehaviourTo(Entity entity)

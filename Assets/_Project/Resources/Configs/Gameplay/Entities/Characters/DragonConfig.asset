@@ -19,8 +19,9 @@ MonoBehaviour:
   <AttackProcessTime>k__BackingField: 1.5
   <AttackDelayTime>k__BackingField: 0.75
   <AttackCooldown>k__BackingField: 1
-  <InstantAttackDamage>k__BackingField: 50
-  <ShootingMinDistance>k__BackingField: 4
-  <AggroRadius>k__BackingField: 7
+  <InstantAttackDamage>k__BackingField: 30
+  <ProjectileSpeed>k__BackingField: 12
+  <ShootingMinDistance>k__BackingField: 8
+  <AggroRadius>k__BackingField: 9
   <DeathProcessTime>k__BackingField: 2
   <SpawnProcessTime>k__BackingField: 1

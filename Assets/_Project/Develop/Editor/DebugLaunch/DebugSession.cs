@@ -10,6 +10,7 @@ using RoguelikeTD.Gameplay.Features.Allies;
 using RoguelikeTD.Gameplay.Features.Enemies;
 using RoguelikeTD.Gameplay.Features.LevelUpFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
 using RoguelikeTD.Infrastructure.Data;
 using System;
@@ -110,7 +111,7 @@ namespace RoguelikeTD.Editor.DebugLaunch
             => GetHero(gameplay).Level.Value = Math.Max(1, level);
 
         public static Entity SpawnEnemy(IObjectResolver gameplay, EntityConfig config, Vector3 position)
-            => gameplay.Resolve<EnemiesFactory>().Create(position, config);
+            => gameplay.Resolve<EnemiesFactory>().Create(position, config, Math.Max(1, gameplay.Resolve<StageProviderService>().CurrentStageNumber.Value));
 
         public static bool TryGiveAbility(IObjectResolver gameplay, AbilityConfig config)
         {
