@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3342fa64140d784690755c73aa810fd, type: 3}
   m_Name: FrontAdditionalArrowConfig
   m_EditorClassIdentifier: 
+  <IsAvailableInDrop>k__BackingField: 1
+  <IsLegendary>k__BackingField: 1
   <ID>k__BackingField: AdditionFrontArrows
   <Name>k__BackingField: Front arrow+
   <Description>k__BackingField: Add new front arrows per shot

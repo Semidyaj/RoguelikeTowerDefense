@@ -11,6 +11,7 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         private const int AbilitiesCount = 3;
 
         private const string Title = "LEVEL {0} UPGRADE";
+        private const string LegendaryTitle = "LEVEL {0} LEGENDARY UPGRADE";
         private const string SelectAbilityText = "Select new ability";
 
         private readonly AbilitySelectPopupView _view;
@@ -49,13 +50,14 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         {
             base.Initialize();
 
-            _view.SetTitle(string.Format(Title, _level));
+            string title = _abilityDropService.IsLegendaryLevel(_level) ? LegendaryTitle : Title;
+            _view.SetTitle(string.Format(title, _level));
             _view.SetAdditionalText(SelectAbilityText);
             _view.SelectButtonOff();
 
             _view.SelectButtonClicked += OnSelectButtonClicked;
 
-            List<AbilityDropOption> dropOptions = _abilityDropService.Drop(AbilitiesCount, _entity);
+            List<AbilityDropOption> dropOptions = _abilityDropService.Drop(AbilitiesCount, _entity, _level);
 
             for (int i = 0; i < dropOptions.Count; i++)
             {

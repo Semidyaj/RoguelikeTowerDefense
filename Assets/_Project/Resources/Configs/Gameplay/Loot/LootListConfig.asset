@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ebd9f462760bf54f953527bbf6d82de, type: 2}
   - {fileID: 11400000, guid: f8afa909cad84ff4aa6fd11d75615616, type: 2}
   - {fileID: 11400000, guid: 6661ead839965f04498bb2d42b80ef48, type: 2}
+  <PickupRadius>k__BackingField: 2

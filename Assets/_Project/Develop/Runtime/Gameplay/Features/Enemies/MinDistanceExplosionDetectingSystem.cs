@@ -8,6 +8,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 {
     public class MinDistanceExplosionDetectingSystem : IInitializableSystem, IUpdatableSystem
     {
+        private ReactiveVariable<bool> _isDead;
         private ReactiveVariable<Entity> _currentTargetPoint;
         private Transform _transform;
 
@@ -21,6 +22,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 
         public void OnInit(Entity entity)
         {
+            _isDead = entity.IsDead;
             _currentTargetPoint = entity.CurrentTarget;
             _transform = entity.Transform;
 
@@ -33,7 +35,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
 
         public void OnUpdate(float deltaTime)
         {
-            if (_isExploded)
+            if (_isExploded || _isDead.Value || _currentTargetPoint.Value == null)
                 return;
 
             float distanceToTarget = (_currentTargetPoint.Value.Transform.position - _transform.position).magnitude;

@@ -22,3 +22,8 @@ MonoBehaviour:
   <ProjectileSpeed>k__BackingField: 20
   <MaxHealth>k__BackingField: 100
   <DeathProcessTime>k__BackingField: 3.5
+  _arrowDamageMultiplierByCount:
+  - 1
+  - 0.7
+  - 0.6
+  - 0.6

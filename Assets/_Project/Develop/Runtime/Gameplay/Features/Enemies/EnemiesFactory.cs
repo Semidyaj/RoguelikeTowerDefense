@@ -5,6 +5,7 @@ using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AI;
+using RoguelikeTD.Gameplay.Features.AI.TargetSelectors;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature;
 using RoguelikeTD.Gameplay.Features.LootFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
@@ -42,7 +43,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
                 .GetBy(gameplayInputArgs.LevelNumber);
         }
 
-        public Entity Create(Vector3 position, EntityConfig config)
+        public Entity Create(Vector3 position, EntityConfig config, int waveNumber)
         {
             Entity entity;
 
@@ -50,19 +51,19 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
             {
                 case BarbarianConfig barbarianConfig:
                     entity = _entitiesFactory.CreateBarbarian(position, barbarianConfig);
-                    _brainsFactory.CreateBarbarianBrain(entity);
+                    _brainsFactory.CreateBarbarianBrain(entity, new EnemyTargetSelector(entity, barbarianConfig.AggroRadius));
                     break;
 
                 case DragonConfig dragonConfig:
                     entity = _entitiesFactory.CreateDragon(position, dragonConfig);
-                    _brainsFactory.CreateDragonBrain(entity);
+                    _brainsFactory.CreateDragonBrain(entity, new EnemyTargetSelector(entity, dragonConfig.AggroRadius));
                     break;
 
                 default:
                     throw new ArgumentException($"Not support {config.GetType()} type config");
             }
 
-            ApplyLevelMultipliers(entity);
+            ApplyLevelMultipliers(entity, waveNumber);
 
             AddDropLootBehaviourTo(entity);
 
@@ -75,19 +76,23 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
             return entity;
         }
 
-        private void ApplyLevelMultipliers(Entity entity)
+        private void ApplyLevelMultipliers(Entity entity, int waveNumber)
         {
-            entity.MaxHealth.Value *= _levelConfig.EnemyHealthMultiplier;
+            float waveGrowth = 1 + _levelConfig.EnemyStatsGrowthPerWave * (waveNumber - 1);
+            float healthMultiplier = _levelConfig.EnemyHealthMultiplier * waveGrowth;
+            float damageMultiplier = _levelConfig.EnemyDamageMultiplier * waveGrowth;
+
+            entity.MaxHealth.Value *= healthMultiplier;
             entity.CurrentHealth.Value = entity.MaxHealth.Value;
 
             if (entity.TryGetAOEDamage(out ReactiveVariable<float> aoeDamage))
-                aoeDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                aoeDamage.Value *= damageMultiplier;
 
             if (entity.TryGetBodyContactDamage(out ReactiveVariable<float> bodyContactDamage))
-                bodyContactDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                bodyContactDamage.Value *= damageMultiplier;
 
             if (entity.TryGetInstantAttackDamage(out ReactiveVariable<float> instantAttackDamage))
-                instantAttackDamage.Value *= _levelConfig.EnemyDamageMultiplier;
+                instantAttackDamage.Value *= damageMultiplier;
         }
 
         private void AddDropLootBehaviourTo(Entity entity)

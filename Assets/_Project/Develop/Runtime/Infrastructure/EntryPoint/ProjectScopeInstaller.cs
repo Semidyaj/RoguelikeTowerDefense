@@ -13,6 +13,7 @@ using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Infrastructure.Configs;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Infrastructure.Launch;
+using RoguelikeTD.Infrastructure.PlaythroughTracking;
 using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
@@ -63,6 +64,8 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             builder.Register<GameplayStatisticsService>(Lifetime.Singleton);
             builder.Register<StatsUpgradeService>(Lifetime.Singleton);
             builder.Register<BoostAbilitiesShopService>(Lifetime.Singleton);
+
+            builder.Register<PlaythroughTracker>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(CreatePlayerDataReadersAndWriters);
         }

@@ -29,7 +29,7 @@ namespace RoguelikeTD.Gameplay.Features.ResultHandler
 
                 case GameplayEndState.Defeat:
                     _statisticsService.AddDefeat();
-                    _rewardService.ApplyDefeatFee();
+                    _rewardService.ApplyDefeatReward();
                     break;
 
                 default:

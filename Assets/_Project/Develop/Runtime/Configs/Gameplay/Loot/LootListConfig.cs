@@ -8,6 +8,7 @@ namespace RoguelikeTD.Configs.Gameplay.Loot
     public class LootListConfig : ScriptableObject
     {
         [SerializeField] private List<LootConfig> _lootConfigs;
+        [field: SerializeField, Min(0)] public float PickupRadius { get; private set; } = 2;
 
         public IReadOnlyList<LootConfig> LootConfigs => _lootConfigs;
 

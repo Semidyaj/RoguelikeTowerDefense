@@ -18,6 +18,7 @@ using RoguelikeTD.Gameplay.Features.LootFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
+using RoguelikeTD.Gameplay.Features.PlaythroughTracking;
 using RoguelikeTD.Gameplay.Features.ResultHandler;
 using RoguelikeTD.Gameplay.Features.RewardsService;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
@@ -101,6 +102,8 @@ namespace RoguelikeTD.Gameplay.Infrastructure
             builder.Register<GameplayResultHandler>(Lifetime.Singleton);
 
             builder.Register<EndProcessStageReleaser>(Lifetime.Singleton);
+
+            builder.RegisterEntryPoint<BattleTracker>();
 
             builder.RegisterBuildCallback(c => c.Resolve<GameplayResultHandler>());
         }

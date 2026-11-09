@@ -42,7 +42,7 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
             _currentStageNumber.Value++;
             _currentStageResult.Value = StageResults.Uncompleted;
 
-            _currentStage = _stagesFactory.Create(_levelConfig.StageConfigs[_currentStageNumber.Value - 1]);
+            _currentStage = _stagesFactory.Create(_levelConfig.StageConfigs[_currentStageNumber.Value - 1], _currentStageNumber.Value);
         }
 
         public bool HasNextStage() => CurrentStageNumber.Value < StagesCount;

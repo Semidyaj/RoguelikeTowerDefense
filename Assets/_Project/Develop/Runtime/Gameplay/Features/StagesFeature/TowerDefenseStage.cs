@@ -11,6 +11,7 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
     public class TowerDefenseStage : IStage
     {
         private readonly List<EnemyItemConfig> _enemyItems;
+        private readonly int _stageNumber;
 
         private ReactiveEvent _completed = new();
 
@@ -23,9 +24,10 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
 
         private Dictionary<Entity, IDisposable> _spawnedEnemiesToRemoveReason = new();
 
-        public TowerDefenseStage(TowerDefenseStageConfig stageConfig, EnemiesFactory enemiesFactory, EntitiesLifeContext entitiesLifeContext)
+        public TowerDefenseStage(TowerDefenseStageConfig stageConfig, int stageNumber, EnemiesFactory enemiesFactory, EntitiesLifeContext entitiesLifeContext)
         {
             _enemyItems = stageConfig.EnemyItems.OrderBy(item => item.SpawnTime).ToList();
+            _stageNumber = stageNumber;
             _enemiesFactory = enemiesFactory;
             _entitiesLifeContext = entitiesLifeContext;
         }
@@ -94,7 +96,7 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
 
         private void SpawnEnemy(EnemyItemConfig enemyItemConfig)
         {
-            Entity spawnedEnemy = _enemiesFactory.Create(enemyItemConfig.SpawnPosition, enemyItemConfig.EnemyConfig);
+            Entity spawnedEnemy = _enemiesFactory.Create(enemyItemConfig.SpawnPosition, enemyItemConfig.EnemyConfig, _stageNumber);
 
             IDisposable removeReason = spawnedEnemy.IsDead.Subscribe((oldValue, isDead) =>
             {

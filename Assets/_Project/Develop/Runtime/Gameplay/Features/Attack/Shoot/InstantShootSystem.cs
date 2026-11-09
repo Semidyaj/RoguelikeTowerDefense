@@ -16,6 +16,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private ReactiveEvent _attackDelayEndEvent;
         private ReactiveVariable<float> _damage;
+        private ReactiveVariable<Entity> _currentTarget;
         private Transform _shootPoint;
 
         private IDisposable _attackDelayEndDisposable;
@@ -34,6 +35,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
             _attackDelayEndEvent = entity.AttackDelayEndEvent;
             _damage = entity.InstantAttackDamage;
             _shootPoint = entity.ShootPoint;
+            entity.TryGetCurrentTarget(out _currentTarget);
 
             _attackDelayEndDisposable = _attackDelayEndEvent.Subscribe(OnAttackDelayEnd);
         }
@@ -45,7 +47,19 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private void OnAttackDelayEnd()
         {
-            _entitiesFactory.CreateProjectile(_projectilePrefabPath, _shootPoint.position, _shootPoint.forward, _projectileSpeed, _damage.Value, _entity);
+            _entitiesFactory.CreateProjectile(_projectilePrefabPath, _shootPoint.position, GetDirection(), _projectileSpeed, _damage.Value, _entity);
+        }
+
+        private Vector3 GetDirection()
+        {
+            Entity target = _currentTarget?.Value;
+
+            if (target == null)
+                return _shootPoint.forward;
+
+            Vector3 targetVelocity = target.TryGetRigidbody(out Rigidbody rigidbody) ? rigidbody.linearVelocity : Vector3.zero;
+
+            return InterceptCalculator.GetAimDirection(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, _shootPoint.forward);
         }
     }
 }

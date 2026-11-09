@@ -15,6 +15,6 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         }
 
         public UniTask<AbilityDropOption> SelectAsync(Entity hero, int level, CancellationToken cancellationToken)
-            => UniTask.FromResult(_abilityDropService.Drop(1, hero)[0]);
+            => UniTask.FromResult(_abilityDropService.Drop(1, hero, level)[0]);
     }
 }

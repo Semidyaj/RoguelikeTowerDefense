@@ -190,7 +190,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this, "Entities/Arrow", config.ProjectileSpeed))
+                .AddSystem(new DirectionsInstantShootSystem(this, "Entities/Arrow", config.ProjectileSpeed, config.ArrowDamageMultiplierByCount))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
                 .AddSystem(new ApplyDamageSystem())
@@ -249,7 +249,8 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .Add(new FuncCondition(() => entity.InSpawnProcess.Value == false));
 
             ICompositeCondition canApplyDamage = new CompositeCondition()
-                .Add(new FuncCondition(() => entity.IsDead.Value == false));
+                .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InSpawnProcess.Value == false));
 
             ICompositeCondition mustDie = new CompositeCondition(LogicOperations.Or)
                 .Add(new FuncCondition(() => entity.IsAOEAttackEnded.Value))
@@ -322,6 +323,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddAttackDelayModifiedTime(new ReactiveVariable<float>(config.AttackDelayTime))
                 .AddAttackDelayEndEvent()
                 .AddInstantAttackDamage(new ReactiveVariable<float>(config.InstantAttackDamage))
+                .AddAttackCancelEvent()
                 .AddAttackCooldownInitialTime(new ReactiveVariable<float>(config.AttackCooldown))
                 .AddAttackCooldownModifiedTime(new ReactiveVariable<float>(config.AttackCooldown))
                 .AddAttackCooldownCurrentTime()
@@ -345,21 +347,28 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 
             ICompositeCondition canStartAttack = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InSpawnProcess.Value == false))
                 .Add(new FuncCondition(() => entity.IsMinDistanceToAttack.Value))
                 .Add(new FuncCondition(() => entity.InAttackProcess.Value == false))
                 .Add(new FuncCondition(() => entity.InAttackCooldown.Value == false));
 
             ICompositeCondition canApplyDamage = new CompositeCondition()
-                .Add(new FuncCondition(() => entity.IsDead.Value == false));
+                .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InSpawnProcess.Value == false));
 
             ICompositeCondition mustDie = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.CurrentHealth.Value <= 0));
+
+            ICompositeCondition mustCancelAttack = new CompositeCondition(LogicOperations.Or)
+                .Add(new FuncCondition(() => entity.IsDead.Value))
+                .Add(new FuncCondition(() => entity.IsMinDistanceToAttack.Value == false));
 
             entity
                 .AddCanMove(canMove)
                 .AddCanRotate(canRotate)
                 .AddCanApplyDamage(canApplyDamage)
                 .AddCanStartAttack(canStartAttack)
+                .AddMustCancelAttack(mustCancelAttack)
                 .AddMustDie(mustDie)
                 .AddMustSelfRelease(mustSelfRelease);
 
@@ -373,10 +382,11 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddSystem(new DealDamageOnContactSystem())
 
                 .AddSystem(new MinDistanceShootingDetectingSystem())
+                .AddSystem(new AttackCancelSystem())
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new InstantShootSystem(this, "Entities/Projectile", 20))
+                .AddSystem(new InstantShootSystem(this, "Entities/Projectile", config.ProjectileSpeed))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
 

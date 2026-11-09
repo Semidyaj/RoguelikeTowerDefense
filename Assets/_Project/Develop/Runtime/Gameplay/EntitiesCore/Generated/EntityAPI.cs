@@ -2651,6 +2651,13 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
 			return AddComponent(new RoguelikeTD.Gameplay.Features.MovementFeature.RotationSpeed() {Value = value});
 		}
 
+		public RoguelikeTD.Gameplay.Features.PlaceableFeature.IsPlaceable IsPlaceableC => GetComponent<RoguelikeTD.Gameplay.Features.PlaceableFeature.IsPlaceable>();
+
+		public RoguelikeTD.Gameplay.EntitiesCore.Entity AddIsPlaceable()
+		{
+			return AddComponent(new RoguelikeTD.Gameplay.Features.PlaceableFeature.IsPlaceable() );
+		}
+
 		public RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney PlaceableIsEnoughMoneyC => GetComponent<RoguelikeTD.Gameplay.Features.PlaceableFeature.PlaceableIsEnoughMoney>();
 
 		public RoguelikeTD.Core.Reactive.ReactiveVariable<System.Boolean> PlaceableIsEnoughMoney => PlaceableIsEnoughMoneyC.Value;

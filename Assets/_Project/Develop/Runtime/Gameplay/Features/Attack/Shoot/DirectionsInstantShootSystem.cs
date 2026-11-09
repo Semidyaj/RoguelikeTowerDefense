@@ -2,6 +2,7 @@
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.EntitiesCore.Systems;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
@@ -11,6 +12,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
         private readonly EntitiesFactory _entitiesFactory;
         private readonly string _projectilePrefabPath;
         private readonly float _projectileSpeed;
+        private readonly IReadOnlyList<float> _damageMultiplierByCount;
 
         private InstantShootingDirectionArgs _directions;
         private ReactiveVariable<Entity> _currentTarget;
@@ -23,11 +25,16 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
         private IDisposable _attackDelayEndDisposable;
 
-        public DirectionsInstantShootSystem(EntitiesFactory entitiesFactory, string projectilePrefabPath, float projectileSpeed)
+        public DirectionsInstantShootSystem(
+            EntitiesFactory entitiesFactory,
+            string projectilePrefabPath,
+            float projectileSpeed,
+            IReadOnlyList<float> damageMultiplierByCount)
         {
             _entitiesFactory = entitiesFactory;
             _projectilePrefabPath = projectilePrefabPath;
             _projectileSpeed = projectileSpeed;
+            _damageMultiplierByCount = damageMultiplierByCount;
         }
 
         public void OnInit(Entity entity)
@@ -66,12 +73,7 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
 
             Vector3 targetVelocity = target.TryGetRigidbody(out Rigidbody rigidbody) ? rigidbody.linearVelocity : Vector3.zero;
 
-            InterceptCalculator.TryGetInterceptPoint(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, out Vector3 interceptPoint);
-
-            Vector3 direction = interceptPoint - _shootPoint.position;
-            direction.y = 0;
-
-            return direction.sqrMagnitude > 0 ? direction.normalized : _shootPoint.forward;
+            return InterceptCalculator.GetAimDirection(_shootPoint.position, target.Transform.position, targetVelocity, _projectileSpeed, _shootPoint.forward);
         }
 
         private void Shoot(Vector3 baseDirection, int angle, int projectileCounts)
@@ -80,13 +82,14 @@ namespace RoguelikeTD.Gameplay.Features.Attack.Shoot
             Vector2 perpindicular = Vector2.Perpendicular(new Vector2(directionForShoot.x, directionForShoot.z)).normalized;
 
             float offsetBetweenProjectiles = 0.6f;
+            float damage = _damage.Value * _damageMultiplierByCount[Mathf.Min(projectileCounts, _damageMultiplierByCount.Count) - 1];
 
             for (int i = 0; i < projectileCounts; i++)
             {
                 Vector2 offset = perpindicular * (-offsetBetweenProjectiles / 2f * (projectileCounts - 1) + i * offsetBetweenProjectiles);
                 Vector3 position = new Vector3(_shootPoint.position.x + offset.x, _shootPoint.position.y, _shootPoint.position.z + offset.y);
 
-                _entitiesFactory.CreateProjectile(_projectilePrefabPath, position, directionForShoot, _projectileSpeed, _damage.Value, _entity);
+                _entitiesFactory.CreateProjectile(_projectilePrefabPath, position, directionForShoot, _projectileSpeed, damage, _entity);
             }
         }
     }

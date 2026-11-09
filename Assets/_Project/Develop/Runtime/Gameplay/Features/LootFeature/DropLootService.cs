@@ -9,8 +9,6 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
     public class DropLootService
     {
         private const int ExpInOnePotion = 300;
-        private const int MinPercentToDrop = 50;
-        private const int MinPercent = 0;
         private const int MaxPercent = 100;
 
         private LootListConfig _lootListConfig;
@@ -42,6 +40,9 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
             {
                 ExperienceLootConfig experienceLootConfig = expConfigs[Random.Range(0, expConfigs.Count)];
 
+                if (IsDropped(experienceLootConfig) == false)
+                    return;
+
                 int expInOnePotion = ExpInOnePotion;
 
                 if (experienceLootConfig.Experience < expInOnePotion)
@@ -70,6 +71,10 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
             if (coinsConfigs.Count > 0)
             {
                 CoinsLootConfig coinsLootConfig = coinsConfigs[Random.Range(0, coinsConfigs.Count)];
+
+                if (IsDropped(coinsLootConfig) == false)
+                    return;
+
                 _lootFactory.CreateCoinsLoot(coinsLootConfig.PrefabPath, position, coinsLootConfig.Coins);
             }
         }
@@ -81,11 +86,17 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
                 .Cast<HealthLootConfig>()
                 .ToList();
 
-            if (healthConfigs.Count > 0 && Random.Range(MinPercent, MaxPercent) >= MinPercentToDrop)
+            if (healthConfigs.Count > 0)
             {
                 HealthLootConfig healthLootConfig = healthConfigs[Random.Range(0, healthConfigs.Count)];
+
+                if (IsDropped(healthLootConfig) == false)
+                    return;
+
                 _lootFactory.CreateHealthLoot(healthLootConfig.PrefabPath, position, healthLootConfig.Health);
             }
         }
+
+        private bool IsDropped(LootConfig config) => Random.Range(0, MaxPercent) < config.DropChancePercent;
     }
 }

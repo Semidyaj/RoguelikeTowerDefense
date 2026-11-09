@@ -46,5 +46,23 @@ namespace RoguelikeTD.Tests.Gameplay.Features.Attack.Shoot
 
             Assert.IsFalse(found);
         }
+
+        [Test]
+        public void GetAimDirection_StandingTarget_ReturnsFlatNormalizedDirectionToTarget()
+        {
+            Vector3 target = new Vector3(10, 2, 0);
+
+            Vector3 direction = InterceptCalculator.GetAimDirection(Vector3.zero, target, Vector3.zero, ProjectileSpeed, Vector3.forward);
+
+            Assert.AreEqual(0f, Vector3.Distance(Vector3.right, direction), Tolerance);
+        }
+
+        [Test]
+        public void GetAimDirection_TargetAtShooterPosition_ReturnsFallbackDirection()
+        {
+            Vector3 direction = InterceptCalculator.GetAimDirection(Vector3.zero, Vector3.zero, Vector3.zero, ProjectileSpeed, Vector3.forward);
+
+            Assert.AreEqual(Vector3.forward, direction);
+        }
     }
 }

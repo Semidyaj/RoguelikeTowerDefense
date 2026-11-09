@@ -8,6 +8,7 @@ using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
+using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
@@ -30,6 +31,7 @@ namespace RoguelikeTD.UI.Gameplay
         private readonly AbilityDropService _abilityDropService;
         private readonly PlaceablesSpawner _placeablesSpawner;
         private readonly PlaceableService _placeableService;
+        private readonly WalletService _walletService;
 
         public GameplayPresentersFactory(
             ConfigsProviderService configsProviderService,
@@ -40,7 +42,8 @@ namespace RoguelikeTD.UI.Gameplay
             EntitiesLifeContext entitiesLifeContext,
             AbilityDropService abilityDropService,
             PlaceablesSpawner placeablesSpawner,
-            PlaceableService placeableService)
+            PlaceableService placeableService,
+            WalletService walletService)
         {
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
@@ -51,6 +54,7 @@ namespace RoguelikeTD.UI.Gameplay
             _abilityDropService = abilityDropService;
             _placeablesSpawner = placeablesSpawner;
             _placeableService = placeableService;
+            _walletService = walletService;
         }
 
         public DefeatPopupPresenter CreateDefeatPopupPresenter(DefeatPopupView view)
@@ -64,7 +68,8 @@ namespace RoguelikeTD.UI.Gameplay
                 view,
                 this,
                 _projectPresentersFactory,
-                _mainHeroHolderService);
+                _mainHeroHolderService,
+                _walletService);
 
         public StagePresenter CreateStagePresenter(IconTextView view)
             => new StagePresenter(view, _stageProviderService);

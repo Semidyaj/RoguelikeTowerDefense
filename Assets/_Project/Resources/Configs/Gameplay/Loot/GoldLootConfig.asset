@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: Coins1
   <PrefabPath>k__BackingField: Entities/Loot/CoinLoot
-  <Coins>k__BackingField: 20
+  <DropChancePercent>k__BackingField: 80
+  <Coins>k__BackingField: 10

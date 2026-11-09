@@ -6,6 +6,7 @@ namespace RoguelikeTD.Configs.Gameplay.Abilities
     {
         [field: Header("Data settings")]
         [field: SerializeField] public bool IsAvailableInDrop { get; private set; } = true;
+        [field: SerializeField] public bool IsLegendary { get; private set; }
         [field: SerializeField] public string ID { get; private set; }
         public abstract int MaxLevel { get; }
 

@@ -49,6 +49,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             _monoEntitiesFactory.Create(entity, position, "Entities/Mine");
 
             entity
+                .AddIsPlaceable()
                 .AddIsDead()
                 .AddAOEAttackRequest()
                 .AddAOEAttackEvent()
@@ -93,6 +94,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             _monoEntitiesFactory.Create(entity, position, "Entities/Turret");
 
             entity
+                .AddIsPlaceable()
                 .AddIsDead()
                 .AddRotationDirection()
                 .AddRotationSpeed(new ReactiveVariable<float>(config.RotationSpeed))
@@ -112,6 +114,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
                 .AddAttackDelayModifiedTime(new ReactiveVariable<float>(config.AttackDelayTime))
                 .AddAttackDelayEndEvent()
                 .AddInstantAttackDamage(new ReactiveVariable<float>(config.InstantAttackDamage))
+                .AddAttackRange(new ReactiveVariable<float>(config.AttackRange))
                 .AddAttackCooldownInitialTime(new ReactiveVariable<float>(config.AttackCooldownInitialTime))
                 .AddAttackCooldownModifiedTime(new ReactiveVariable<float>(config.AttackCooldownInitialTime))
                 .AddAttackCooldownCurrentTime()
@@ -167,6 +170,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             _monoEntitiesFactory.Create(entity, position, "Entities/Acid");
 
             entity
+                .AddIsPlaceable()
                 .AddPlaceableToRelease()
 
                 .AddTickableDamage(new ReactiveVariable<float>(config.Damage))

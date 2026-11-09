@@ -16,4 +16,8 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
     public class PlaceableToRelease : IEntityComponent
     {
     }
+
+    public class IsPlaceable : IEntityComponent
+    {
+    }
 }

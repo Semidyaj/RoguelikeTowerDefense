@@ -19,6 +19,7 @@ namespace RoguelikeTD.UI.Gameplay
         private readonly ProjectPresentersFactory _projectPresentersFactory;
 
         private readonly MainHeroHolderService _mainHeroHolderService;
+        private readonly WalletService _walletService;
         private IDisposable _mainHeroHolderServiceDisposable;
         private CurrencyPresenter _mainHeroCoinsPresenter;
 
@@ -30,17 +31,20 @@ namespace RoguelikeTD.UI.Gameplay
             GameplayScreenView screen,
             GameplayPresentersFactory presentersFactory,
             ProjectPresentersFactory projectPresentersFactory,
-            MainHeroHolderService mainHeroHolderService)
+            MainHeroHolderService mainHeroHolderService,
+            WalletService walletService)
         {
             _screen = screen;
             _gameplayPresentersFactory = presentersFactory;
             _projectPresentersFactory = projectPresentersFactory;
             _mainHeroHolderService = mainHeroHolderService;
+            _walletService = walletService;
         }
 
         public void Initialize()
         {
             CreateStageNumber();
+            CreateWalletCoins();
             CreateEntitiesHealthDisplay();
             CreateExpirienceView();
 
@@ -77,6 +81,16 @@ namespace RoguelikeTD.UI.Gameplay
             StagePresenter stagePresenter = _gameplayPresentersFactory.CreateStagePresenter(_screen.StageNumberView);
 
             _childPresenters.Add(stagePresenter);
+        }
+
+        private void CreateWalletCoins()
+        {
+            CurrencyPresenter walletCoinsPresenter = _projectPresentersFactory.CreateCurrencyPresenter(
+                _screen.WalletCoinsView,
+                _walletService.GetCurrency(CurrencyTypes.Gold),
+                _screen.WalletIcon);
+
+            _childPresenters.Add(walletCoinsPresenter);
         }
 
         private void CreateEntitiesHealthDisplay()

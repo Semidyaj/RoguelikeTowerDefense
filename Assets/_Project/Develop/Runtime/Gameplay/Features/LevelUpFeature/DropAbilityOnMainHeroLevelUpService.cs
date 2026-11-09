@@ -4,6 +4,7 @@ using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities.AbilitiesECS;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.Gameplay.Features.StagesFeature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
         private IAbilitySelector _abilitySelector;
         private IPauseService _pauseService;
         private AbilitiesECSFactory _abilitiesFactory;
+        private StageProviderService _stageProviderService;
 
         private Queue<int> _levelUpRequests = new();
 
@@ -32,12 +34,14 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
             MainHeroHolderService mainHeroHolderService,
             IAbilitySelector abilitySelector,
             IPauseService pauseService,
-            AbilitiesECSFactory abilitiesFactory)
+            AbilitiesECSFactory abilitiesFactory,
+            StageProviderService stageProviderService)
         {
             _mainHeroHolderService = mainHeroHolderService;
             _abilitySelector = abilitySelector;
             _pauseService = pauseService;
             _abilitiesFactory = abilitiesFactory;
+            _stageProviderService = stageProviderService;
         }
 
         public void Initialize()
@@ -61,6 +65,9 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 
         private void OnHeroLevelChanged(int arg1, int currentLevel)
         {
+            if (IsLastStageCompleted())
+                return;
+
             _levelUpRequests.Enqueue(currentLevel);
 
             if (_isSelectingAbility)
@@ -90,6 +97,9 @@ namespace RoguelikeTD.Gameplay.Features.LevelUpFeature
 
             _isSelectingAbility = false;
         }
+
+        private bool IsLastStageCompleted()
+            => _stageProviderService.CurrentStageResult.Value == StageResults.Completed && _stageProviderService.HasNextStage() == false;
 
         public void Provide(Entity hero, AbilityDropOption option)
         {

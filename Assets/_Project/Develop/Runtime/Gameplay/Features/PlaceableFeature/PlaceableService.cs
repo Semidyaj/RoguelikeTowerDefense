@@ -54,23 +54,38 @@ namespace RoguelikeTD.Gameplay.Features.PlaceableFeature
             if (_selectedConfig == null) 
                 return;
 
-            if (IsEnoughGold() == false)
+            if (IsEnoughMoney() == false)
                 return;
 
-            _walletService.Spend(_selectedConfig.CurrencyType, _selectedConfig.Costs);
+            Pay();
 
             _spawner.Spawn(_selectedConfig, Hero.InputMouseClickGroundPosition.Value);
 
             Hero.PlaceableIsPlaced.Value = true;
         }
 
-        private bool IsEnoughGold()
+        private bool IsEnoughMoney()
         {
-            bool isEnough = _walletService.Enough(_selectedConfig.CurrencyType, _selectedConfig.Costs);
+            int available = GetRunCoins() + _walletService.GetCurrency(_selectedConfig.CurrencyType).Value;
+            bool isEnough = available >= _selectedConfig.Costs;
 
             Hero.PlaceableIsEnoughMoney.Value = isEnough;
 
             return isEnough;
         }
+
+        private void Pay()
+        {
+            int fromRun = Math.Min(GetRunCoins(), _selectedConfig.Costs);
+            Hero.Coins.Value -= fromRun;
+
+            int fromWallet = _selectedConfig.Costs - fromRun;
+
+            if (fromWallet > 0)
+                _walletService.Spend(_selectedConfig.CurrencyType, fromWallet);
+        }
+
+        private int GetRunCoins()
+            => _selectedConfig.CurrencyType == CurrencyTypes.Gold ? Hero.Coins.Value : 0;
     }
 }
