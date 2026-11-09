@@ -9,6 +9,8 @@ namespace RoguelikeTD.Configs.Gameplay.Abilities
     {
         [SerializeField] private List<AbilityConfig> _abilityConfigs;
 
+        [field: SerializeField, Min(1)] public int LegendaryLevelStep { get; private set; } = 5;
+
         public IReadOnlyList<AbilityConfig> AbilityConfigs => _abilityConfigs;
 
         public AbilityConfig GetConfigBy(string ID) => _abilityConfigs.First(config => config.ID == ID);

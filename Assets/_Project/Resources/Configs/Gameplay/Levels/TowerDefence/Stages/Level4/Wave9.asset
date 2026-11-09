@@ -81,3 +81,27 @@ MonoBehaviour:
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
     <SpawnTime>k__BackingField: 42
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: -7}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+      type: 2}
+    <SpawnTime>k__BackingField: 46.5
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 5}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
+      type: 2}
+    <SpawnTime>k__BackingField: 46.5
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+      type: 2}
+    <SpawnTime>k__BackingField: 46.5
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: -7}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+      type: 2}
+    <SpawnTime>k__BackingField: 51
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 5}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
+      type: 2}
+    <SpawnTime>k__BackingField: 51
+  - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+      type: 2}
+    <SpawnTime>k__BackingField: 51

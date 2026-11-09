@@ -190,7 +190,7 @@ namespace RoguelikeTD.Gameplay.EntitiesCore
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new AttackProcessTimerSystem())
                 .AddSystem(new AttackDelayEndTriggerSystem())
-                .AddSystem(new DirectionsInstantShootSystem(this, "Entities/Arrow", config.ProjectileSpeed))
+                .AddSystem(new DirectionsInstantShootSystem(this, "Entities/Arrow", config.ProjectileSpeed, config.ArrowDamageMultiplierByCount))
                 .AddSystem(new EndAttackSystem())
                 .AddSystem(new AttackCooldownTimerSystem())
                 .AddSystem(new ApplyDamageSystem())

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace RoguelikeTD.Configs.Gameplay.Entities
 {
@@ -15,5 +16,8 @@ namespace RoguelikeTD.Configs.Gameplay.Entities
         [field: SerializeField, Min(0)] public float ProjectileSpeed { get; private set; } = 20;
         [field: SerializeField, Min(0)] public float MaxHealth { get; private set; } = 100;
         [field: SerializeField, Min(0)] public float DeathProcessTime { get; private set; } = 2;
+        [SerializeField] private List<float> _arrowDamageMultiplierByCount = new() { 1, 0.7f, 0.6f, 0.6f };
+
+        public IReadOnlyList<float> ArrowDamageMultiplierByCount => _arrowDamageMultiplierByCount;
     }
 }

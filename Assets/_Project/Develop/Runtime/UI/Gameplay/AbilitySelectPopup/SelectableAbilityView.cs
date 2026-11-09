@@ -24,6 +24,9 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
 
         [SerializeField] private Image _selectImage;
 
+        [SerializeField] private Image _background;
+        [SerializeField] private Sprite _legendaryBackground;
+
         private Sequence _currentAnimation;
         private float _startYOffset = 100;
 
@@ -47,6 +50,7 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
         public void SetName(string name) => _name.text = name;
         public void SetDescription(string description) => _description.text = description;
         public void SetTabletText(string tabletText) => _textOnTablet.text = tabletText;
+        public void SetLegendaryBackground() => _background.sprite = _legendaryBackground;
 
         public void Select() => _selectImage.gameObject.SetActive(true);
         public void Unselect() => _selectImage.gameObject.SetActive(false);

@@ -36,6 +36,9 @@ namespace RoguelikeTD.UI.Gameplay.AbilitySelectPopup
             View.SetDescription(AbilityConfig.Description);
             View.Icon.SetIcon(AbilityConfig.Icon);
 
+            if (AbilityConfig.IsLegendary)
+                View.SetLegendaryBackground();
+
             InitByAbilityConfig();
 
             View.Clicked += OnViewClicked;

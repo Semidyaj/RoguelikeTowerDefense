@@ -6,5 +6,6 @@ namespace RoguelikeTD.Configs.Gameplay.Loot
     {
         [field: SerializeField] public string ID {  get; private set; }
         [field: SerializeField] public string PrefabPath {  get; private set; }
+        [field: SerializeField, Range(0, 100)] public int DropChancePercent { get; private set; } = 100;
     }
 }

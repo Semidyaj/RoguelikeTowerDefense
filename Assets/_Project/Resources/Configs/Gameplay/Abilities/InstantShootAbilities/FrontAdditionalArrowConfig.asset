@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: FrontAdditionalArrowConfig
   m_EditorClassIdentifier: 
   <IsAvailableInDrop>k__BackingField: 1
+  <IsLegendary>k__BackingField: 1
   <ID>k__BackingField: AdditionFrontArrows
   <Name>k__BackingField: Front arrow+
   <Description>k__BackingField: Add new front arrows per shot
   <Icon>k__BackingField: {fileID: 21300000, guid: 829a1f1299a9844eca7c899f14d3dea5,
     type: 3}
   _additionalArrowsByLevel:
+  - <DirectionShotConfigs>k__BackingField:
+    - <Angle>k__BackingField: 0
+      <NumberOfProjectiles>k__BackingField: 1
   - <DirectionShotConfigs>k__BackingField:
     - <Angle>k__BackingField: 0
       <NumberOfProjectiles>k__BackingField: 1
