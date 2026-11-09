@@ -193,7 +193,7 @@ namespace RoguelikeTD.Gameplay.Features.PlaythroughTracking
 
         private void OnEntityAdded(Entity entity)
         {
-            if (entity.HasComponent<PlaceableToRelease>())
+            if (entity.HasComponent<IsPlaceable>())
             {
                 Write("placeable_built", new Dictionary<string, object>
                 {

@@ -1,6 +1,7 @@
 ﻿using RoguelikeTD.Configs.Meta.Economy;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Meta.Features.Wallet;
+using UnityEngine;
 
 namespace RoguelikeTD.Gameplay.Features.RewardsService
 {
@@ -26,8 +27,12 @@ namespace RoguelikeTD.Gameplay.Features.RewardsService
             _wallet.Add(CurrencyTypes.Diamond, _gameplayEconomyConfig.DiamondVictoryReward);
         }
 
-        public void ApplyDefeatFee()
+        public void ApplyDefeatReward()
         {
+            float share = _mainHeroHolderService.MainHero.Coins.Value * _gameplayEconomyConfig.DefeatGoldShare;
+            int rounding = _gameplayEconomyConfig.DefeatGoldRounding;
+
+            _wallet.Add(CurrencyTypes.Gold, Mathf.CeilToInt(share / rounding) * rounding);
         }
     }
 }

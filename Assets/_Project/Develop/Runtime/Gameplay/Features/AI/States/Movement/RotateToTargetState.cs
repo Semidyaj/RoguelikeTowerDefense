@@ -20,8 +20,13 @@ namespace RoguelikeTD.Gameplay.Features.AI.States.Movement
 
         public void Update(float deltaTime)
         {
-            if(_currentTarget.Value != null)
-                _rotationDirection.Value = (_currentTarget.Value.Transform.position - _transform.position).normalized;
+            if (_currentTarget.Value == null)
+                return;
+
+            Vector3 direction = _currentTarget.Value.Transform.position - _transform.position;
+            direction.y = 0;
+
+            _rotationDirection.Value = direction.normalized;
         }
     }
 }

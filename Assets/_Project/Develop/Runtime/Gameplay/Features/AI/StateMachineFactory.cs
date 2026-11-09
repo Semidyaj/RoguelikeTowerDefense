@@ -128,6 +128,7 @@ namespace RoguelikeTD.Gameplay.Features.AI
 
             ICondition canAttack = entity.CanStartAttack;
             Transform transform = entity.Transform;
+            Rigidbody rigidbody = entity.Rigidbody;
             ReactiveVariable<Entity> currentTarget = entity.CurrentTarget;
 
             ICompositeCondition fromRotateToAttackCondition = new CompositeCondition()
@@ -139,7 +140,10 @@ namespace RoguelikeTD.Gameplay.Features.AI
                     if (target == null)
                         return false;
 
-                    float angleToTarget = Quaternion.Angle(transform.rotation, Quaternion.LookRotation(target.Transform.position - transform.position));
+                    Vector3 direction = target.Transform.position - transform.position;
+                    direction.y = 0;
+
+                    float angleToTarget = Quaternion.Angle(rigidbody.rotation, Quaternion.LookRotation(direction));
 
                     return angleToTarget < 3f;
                 }));

@@ -11,6 +11,7 @@ namespace RoguelikeTD.Gameplay.Features.ContactTakeDamage
         private Entity _entity;
         private Buffer<Entity> _contacts;
         private ReactiveVariable<float> _damage;
+        private ReactiveVariable<bool> _isDead;
 
         private List<Entity> _processedEntities;
 
@@ -20,12 +21,16 @@ namespace RoguelikeTD.Gameplay.Features.ContactTakeDamage
 
             _contacts = entity.ContactEntitiesBuffer;
             _damage = entity.BodyContactDamage;
+            entity.TryGetIsDead(out _isDead);
 
             _processedEntities = new List<Entity>(_contacts.Items.Length);
         }
 
         public void OnUpdate(float deltaTime)
         {
+            if (_isDead != null && _isDead.Value)
+                return;
+
             for (int i = 0; i < _contacts.Count; i++)
             {
                 Entity contactEntity = _contacts.Items[i];

@@ -27,4 +27,4 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 14, y: 0, z: 0}
   <EnemyHealthMultiplier>k__BackingField: 1.7
   <EnemyDamageMultiplier>k__BackingField: 1.3
-  <EnemyStatsGrowthPerWave>k__BackingField: 0.1
+  <EnemyStatsGrowthPerWave>k__BackingField: 0.2

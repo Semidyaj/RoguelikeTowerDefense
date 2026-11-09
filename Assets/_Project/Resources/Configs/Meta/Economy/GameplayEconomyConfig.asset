@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GoldVictoryReward>k__BackingField: 0
   <DiamondVictoryReward>k__BackingField: 10
-  <DefeatFee>k__BackingField: 0
+  <DefeatGoldShare>k__BackingField: 0.25
+  <DefeatGoldRounding>k__BackingField: 10
