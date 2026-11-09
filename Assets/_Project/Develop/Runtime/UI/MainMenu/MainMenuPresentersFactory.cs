@@ -1,4 +1,5 @@
 ﻿using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatisticsService;
 using RoguelikeTD.UI.CommonViews;
@@ -15,6 +16,7 @@ namespace RoguelikeTD.UI.MainMenu
         private readonly MainMenuPopupService _popupService;
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly SceneSwitcherService _sceneSwitcherService;
+        private readonly PlayerDataProvider _playerDataProvider;
 
         public MainMenuPresentersFactory(
             ViewsFactory viewsFactory,
@@ -22,7 +24,8 @@ namespace RoguelikeTD.UI.MainMenu
             ProjectPresentersFactory projectPresentersFactory,
             MainMenuPopupService popupService,
             LevelsProgressionService levelsProgressionService,
-            SceneSwitcherService sceneSwitcherService)
+            SceneSwitcherService sceneSwitcherService,
+            PlayerDataProvider playerDataProvider)
         {
             _viewsFactory = viewsFactory;
             _statisticsService = statisticsService;
@@ -30,6 +33,7 @@ namespace RoguelikeTD.UI.MainMenu
             _popupService = popupService;
             _levelsProgressionService = levelsProgressionService;
             _sceneSwitcherService = sceneSwitcherService;
+            _playerDataProvider = playerDataProvider;
         }
 
         public StatisticsPresenter CreateStatisticsPresenter(IconTextListView listView)
@@ -48,6 +52,7 @@ namespace RoguelikeTD.UI.MainMenu
                 _popupService,
                 this,
                 _levelsProgressionService,
-                _sceneSwitcherService);
+                _sceneSwitcherService,
+                _playerDataProvider);
     }
 }

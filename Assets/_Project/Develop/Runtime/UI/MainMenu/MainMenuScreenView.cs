@@ -12,11 +12,13 @@ namespace RoguelikeTD.UI.MainMenu
         public event Action PlayRandomLevelMenuButtonClicked;
         public event Action OpenStatsUpgradeButtonClicked;
         public event Action OpenBoostsShopButtonClicked;
+        public event Action DeleteSaveButtonClicked;
 
         [SerializeField] private Button _openLevelsMenuButton;
         [SerializeField] private Button _playRandomCompletedLevelMenuButton;
         [SerializeField] private Button _openStatsUpgradeButton;
         [SerializeField] private Button _openBoostsShopButton;
+        [SerializeField] private Button _deleteSaveButton;
 
         [field: SerializeField] public IconTextListView WalletView { get; private set; }
         [field: SerializeField] public IconTextListView StatisticsView { get; private set; }
@@ -27,6 +29,7 @@ namespace RoguelikeTD.UI.MainMenu
             _playRandomCompletedLevelMenuButton.onClick.AddListener(OnPlayRandomLevelMenuButtonClicked);
             _openStatsUpgradeButton.onClick.AddListener(OnOpenStatsUpgradeButtonClicked);
             _openBoostsShopButton.onClick.AddListener(OnOpenBoostsShopButtonClicked);
+            _deleteSaveButton.onClick.AddListener(OnDeleteSaveButtonClicked);
         }
 
         private void OnDisable()
@@ -35,11 +38,13 @@ namespace RoguelikeTD.UI.MainMenu
             _playRandomCompletedLevelMenuButton.onClick.RemoveListener(OnPlayRandomLevelMenuButtonClicked);
             _openStatsUpgradeButton.onClick.RemoveListener(OnOpenStatsUpgradeButtonClicked);
             _openBoostsShopButton.onClick.RemoveListener(OnOpenBoostsShopButtonClicked);
+            _deleteSaveButton.onClick.RemoveListener(OnDeleteSaveButtonClicked);
         }
 
         private void OnOpenLevelsMenuButtonClicked() => OpenLevelsMenuButtonClicked?.Invoke();
         private void OnPlayRandomLevelMenuButtonClicked() => PlayRandomLevelMenuButtonClicked?.Invoke();
         private void OnOpenStatsUpgradeButtonClicked() => OpenStatsUpgradeButtonClicked?.Invoke();
         private void OnOpenBoostsShopButtonClicked() => OpenBoostsShopButtonClicked?.Invoke();
+        private void OnDeleteSaveButtonClicked() => DeleteSaveButtonClicked?.Invoke();
     }
 }

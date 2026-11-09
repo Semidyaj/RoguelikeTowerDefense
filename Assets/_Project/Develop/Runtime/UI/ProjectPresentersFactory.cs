@@ -12,6 +12,7 @@ using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Core.BoostsShopPopup;
+using RoguelikeTD.UI.Core.DeleteSavePopup;
 using RoguelikeTD.UI.Core.LevelsMenuPopup;
 using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using RoguelikeTD.UI.Wallet;
@@ -115,5 +116,8 @@ namespace RoguelikeTD.UI
                 _viewsFactory,
                 this,
                 _boostAbilitiesShopService);
+
+        public DeleteSavePopupPresenter CreateDeleteSavePopupPresenter(DeleteSavePopupView view)
+            => new DeleteSavePopupPresenter(view);
     }
 }

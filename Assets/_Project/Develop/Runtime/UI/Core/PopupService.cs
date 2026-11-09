@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using RoguelikeTD.UI.Core.BoostsShopPopup;
+using RoguelikeTD.UI.Core.DeleteSavePopup;
 using RoguelikeTD.UI.Core.LevelsMenuPopup;
 using RoguelikeTD.UI.Core.StatsUpgradePopup;
 using System;
@@ -52,6 +53,17 @@ namespace RoguelikeTD.UI.Core
             BoostAbilitiesShopPopupPresenter popup = _presentersFactory.CreateBoostAbilitiesShopPopupPresenter(view);
 
             return OpenAsync(popup, view, cancellationToken);
+        }
+
+        public async UniTask<bool> OpenDeleteSavePopupAsync(CancellationToken cancellationToken = default)
+        {
+            DeleteSavePopupView view = ViewsFactory.Create<DeleteSavePopupView>(ViewsIDs.DeleteSavePopup, PopupLayer);
+
+            DeleteSavePopupPresenter popup = _presentersFactory.CreateDeleteSavePopupPresenter(view);
+
+            await OpenAsync(popup, view, cancellationToken);
+
+            return popup.IsConfirmed;
         }
 
         public void ClosePopup(PopupPresenterBase popup)

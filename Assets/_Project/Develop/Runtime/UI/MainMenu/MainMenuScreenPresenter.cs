@@ -2,6 +2,7 @@
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
+using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Core.Statistics;
@@ -20,6 +21,7 @@ namespace RoguelikeTD.UI.MainMenu
         private readonly LevelsProgressionService _levelsProgressionService;
         private readonly MainMenuPopupService _popupService;
         private readonly SceneSwitcherService _sceneSwitcherService;
+        private readonly PlayerDataProvider _playerDataProvider;
 
         private readonly List<IPresenter> _childPresenters = new();
 
@@ -29,7 +31,8 @@ namespace RoguelikeTD.UI.MainMenu
             MainMenuPopupService popupService,
             MainMenuPresentersFactory mainMenuPresentersFactory,
             LevelsProgressionService levelsProgressionService,
-            SceneSwitcherService sceneSwitcherService)
+            SceneSwitcherService sceneSwitcherService,
+            PlayerDataProvider playerDataProvider)
         {
             _screen = screen;
             _projectPresentersFactory = projectPresentersFactory;
@@ -37,6 +40,7 @@ namespace RoguelikeTD.UI.MainMenu
             _mainMenuPresentersFactory = mainMenuPresentersFactory;
             _levelsProgressionService = levelsProgressionService;
             _sceneSwitcherService = sceneSwitcherService;
+            _playerDataProvider = playerDataProvider;
         }
 
         public void Initialize()
@@ -45,6 +49,7 @@ namespace RoguelikeTD.UI.MainMenu
             _screen.PlayRandomLevelMenuButtonClicked += OnPlayRandomLevelMenuButtonClicked;
             _screen.OpenStatsUpgradeButtonClicked += OnOpenStatsUpgradeButtonClicked;
             _screen.OpenBoostsShopButtonClicked += OnOpenBoostsShopButtonClicked;
+            _screen.DeleteSaveButtonClicked += OnDeleteSaveButtonClicked;
 
             CreateWallet();
             CreateStatisticsView();
@@ -59,6 +64,7 @@ namespace RoguelikeTD.UI.MainMenu
             _screen.PlayRandomLevelMenuButtonClicked -= OnPlayRandomLevelMenuButtonClicked;
             _screen.OpenStatsUpgradeButtonClicked -= OnOpenStatsUpgradeButtonClicked;
             _screen.OpenBoostsShopButtonClicked -= OnOpenBoostsShopButtonClicked;
+            _screen.DeleteSaveButtonClicked -= OnDeleteSaveButtonClicked;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Dispose();
@@ -107,5 +113,20 @@ namespace RoguelikeTD.UI.MainMenu
         private void OnOpenStatsUpgradeButtonClicked() => _popupService.OpenStatsUpgradePopupAsync().Forget();
 
         private void OnOpenBoostsShopButtonClicked() => _popupService.OpenBoostsShopPopupAsync().Forget();
+
+        private void OnDeleteSaveButtonClicked() => DeleteSaveAsync().Forget();
+
+        private async UniTaskVoid DeleteSaveAsync()
+        {
+            bool isConfirmed = await _popupService.OpenDeleteSavePopupAsync();
+
+            if (isConfirmed == false)
+                return;
+
+            _playerDataProvider.Reset();
+            await _playerDataProvider.SaveAsync();
+
+            await _sceneSwitcherService.SwitchToAsync(Scenes.MainMenu);
+        }
     }
 }

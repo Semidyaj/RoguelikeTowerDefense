@@ -21,5 +21,6 @@
         public const string PlaceablePopupView = nameof(PlaceablePopupView);
         public const string BoostAbilityView = nameof(BoostAbilityView);
         public const string BoostAbilitiesShopPopupView = nameof(BoostAbilitiesShopPopupView);
+        public const string DeleteSavePopup = nameof(DeleteSavePopup);
     }
 }
