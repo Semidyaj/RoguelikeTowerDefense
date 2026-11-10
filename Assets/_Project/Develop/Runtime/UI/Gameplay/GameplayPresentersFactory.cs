@@ -12,6 +12,7 @@ using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
+using RoguelikeTD.UI.Gameplay.DamageNumbers;
 using RoguelikeTD.UI.Gameplay.Experience;
 using RoguelikeTD.UI.Gameplay.HealthDisplay;
 using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
@@ -83,6 +84,9 @@ namespace RoguelikeTD.UI.Gameplay
                 view,
                 this,
                 _viewsFactory);
+
+        public DamageNumbersPresenter CreateDamageNumbersPresenter(DamageNumbersDisplay view)
+            => new DamageNumbersPresenter(_entitiesLifeContext, view, _viewsFactory);
 
         public SelectableAbilityPresenter CreateSelectableAbilityPresenter(AbilityConfig abilityConfig, SelectableAbilityView view, Entity entity, int level)
             => new SelectableAbilityPresenter(abilityConfig, view, entity, level);

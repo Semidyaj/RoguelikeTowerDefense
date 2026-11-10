@@ -32,6 +32,7 @@ namespace RoguelikeTD.UI.Core
             {ViewsIDs.BoostAbilityView, "UI/BoostsShop/BoostAbilityView" },
             {ViewsIDs.BoostAbilitiesShopPopupView, "UI/BoostsShop/BoostsShopPopup" },
             {ViewsIDs.DeleteSavePopup, "UI/MainMenu/DeleteSavePopup" },
+            {ViewsIDs.DamageNumberView, "UI/Gameplay/DamageNumbers/DamageNumberView" },
         };
 
         public ViewsFactory(ResourcesAssetsLoader resourcesAssetsLoader)

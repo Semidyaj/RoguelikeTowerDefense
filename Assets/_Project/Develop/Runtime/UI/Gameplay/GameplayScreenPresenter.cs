@@ -2,6 +2,7 @@
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.Core;
+using RoguelikeTD.UI.Gameplay.DamageNumbers;
 using RoguelikeTD.UI.Gameplay.Experience;
 using RoguelikeTD.UI.Gameplay.HealthDisplay;
 using RoguelikeTD.UI.Gameplay.Stages;
@@ -24,6 +25,7 @@ namespace RoguelikeTD.UI.Gameplay
         private CurrencyPresenter _mainHeroCoinsPresenter;
 
         private EntitiesHealthDisplayPresenter _entitiesHealthDisplayPresenter;
+        private DamageNumbersPresenter _damageNumbersPresenter;
 
         private readonly List<IPresenter> _childPresenters = new();
 
@@ -46,6 +48,7 @@ namespace RoguelikeTD.UI.Gameplay
             CreateStageNumber();
             CreateWalletCoins();
             CreateEntitiesHealthDisplay();
+            CreateDamageNumbers();
             CreateExpirienceView();
 
             _mainHeroHolderServiceDisposable = _mainHeroHolderService.HeroRegistred.Subscribe(OnHeroRegistered);
@@ -57,6 +60,7 @@ namespace RoguelikeTD.UI.Gameplay
         public void LateUpdate()
         {
             _entitiesHealthDisplayPresenter.LateUpdate();
+            _damageNumbersPresenter.LateUpdate();
         }
 
         public void Dispose()
@@ -98,6 +102,13 @@ namespace RoguelikeTD.UI.Gameplay
             _entitiesHealthDisplayPresenter = _gameplayPresentersFactory.CreateEntitiesHealthDisplayPresenter(_screen.EntitiesHealthDisplay);
 
             _childPresenters.Add(_entitiesHealthDisplayPresenter);
+        }
+
+        private void CreateDamageNumbers()
+        {
+            _damageNumbersPresenter = _gameplayPresentersFactory.CreateDamageNumbersPresenter(_screen.DamageNumbersDisplay);
+
+            _childPresenters.Add(_damageNumbersPresenter);
         }
 
         private void CreateExpirienceView()
