@@ -1,5 +1,10 @@
-﻿using RoguelikeTD.Gameplay.EntitiesCore;
+﻿using Cysharp.Threading.Tasks;
+using RoguelikeTD.Core.SceneManagement;
+using RoguelikeTD.Gameplay.EntitiesCore;
+using RoguelikeTD.Gameplay.Features.InputFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
+using RoguelikeTD.Infrastructure;
 using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.DamageNumbers;
@@ -9,6 +14,7 @@ using RoguelikeTD.UI.Gameplay.Stages;
 using RoguelikeTD.UI.Wallet;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace RoguelikeTD.UI.Gameplay
 {
@@ -27,6 +33,14 @@ namespace RoguelikeTD.UI.Gameplay
         private EntitiesHealthDisplayPresenter _entitiesHealthDisplayPresenter;
         private DamageNumbersPresenter _damageNumbersPresenter;
 
+        private readonly IInputService _inputService;
+        private readonly IPauseService _pauseService;
+        private readonly GameplayPopupService _popupService;
+        private readonly SceneSwitcherService _sceneSwitcherService;
+
+        private readonly CancellationTokenSource _cancellation = new();
+        private bool _isPauseOpened;
+
         private readonly List<IPresenter> _childPresenters = new();
 
         public GameplayScreenPresenter(
@@ -34,13 +48,21 @@ namespace RoguelikeTD.UI.Gameplay
             GameplayPresentersFactory presentersFactory,
             ProjectPresentersFactory projectPresentersFactory,
             MainHeroHolderService mainHeroHolderService,
-            WalletService walletService)
+            WalletService walletService,
+            IInputService inputService,
+            IPauseService pauseService,
+            GameplayPopupService popupService,
+            SceneSwitcherService sceneSwitcherService)
         {
             _screen = screen;
             _gameplayPresentersFactory = presentersFactory;
             _projectPresentersFactory = projectPresentersFactory;
             _mainHeroHolderService = mainHeroHolderService;
             _walletService = walletService;
+            _inputService = inputService;
+            _pauseService = pauseService;
+            _popupService = popupService;
+            _sceneSwitcherService = sceneSwitcherService;
         }
 
         public void Initialize()
@@ -52,6 +74,7 @@ namespace RoguelikeTD.UI.Gameplay
             CreateExpirienceView();
 
             _mainHeroHolderServiceDisposable = _mainHeroHolderService.HeroRegistred.Subscribe(OnHeroRegistered);
+            _screen.PauseButtonClicked += OnPauseRequested;
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Initialize();
@@ -61,10 +84,17 @@ namespace RoguelikeTD.UI.Gameplay
         {
             _entitiesHealthDisplayPresenter.LateUpdate();
             _damageNumbersPresenter.LateUpdate();
+
+            if (_inputService.IsPausePressed)
+                OnPauseRequested();
         }
 
         public void Dispose()
         {
+            _screen.PauseButtonClicked -= OnPauseRequested;
+            _cancellation.Cancel();
+            _cancellation.Dispose();
+
             _mainHeroHolderServiceDisposable.Dispose();
             _mainHeroCoinsPresenter?.Dispose();
 
@@ -72,6 +102,28 @@ namespace RoguelikeTD.UI.Gameplay
                 presenter.Dispose();
 
             _childPresenters.Clear();
+        }
+
+        private void OnPauseRequested()
+        {
+            if (_isPauseOpened)
+                return;
+
+            PauseAsync(_cancellation.Token).Forget();
+        }
+
+        private async UniTaskVoid PauseAsync(CancellationToken cancellationToken)
+        {
+            _isPauseOpened = true;
+            _pauseService.Pause();
+
+            bool isExitRequested = await _popupService.OpenPausePopupAsync(cancellationToken);
+
+            _pauseService.Unpause();
+            _isPauseOpened = false;
+
+            if (isExitRequested)
+                await _sceneSwitcherService.SwitchToAsync(Scenes.MainMenu);
         }
 
         private void OnHeroRegistered(Entity entity)
