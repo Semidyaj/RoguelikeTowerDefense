@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.SoundPlayer
   _audioSource: {fileID: 1168549693651611298}
-  _clip: {fileID: 8300000, guid: 1ed52c47f49fe7140ad044210a24626d, type: 3}
+  _clip: {fileID: 8300000, guid: f95aeeb34f41a9a43841677666af9b96, type: 3}
   _volume: 0.6
   _pitchVariation: 0.05
   _volumeVariation: 0
