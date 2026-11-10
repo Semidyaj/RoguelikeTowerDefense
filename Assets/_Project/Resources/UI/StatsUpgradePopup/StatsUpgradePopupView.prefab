@@ -1248,13 +1248,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2000549786771010090}
     - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1368892243036636249}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnCloseButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RoguelikeTD.UI.Core.PopupViewBase, RoguelikeTD.Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RoguelikeTD.Core.Audio.OneShotSoundSpawner, RoguelikeTD.Core
       objectReference: {fileID: 0}
     - target: {fileID: 6815399828339247463, guid: 126784d22bbe1dd45947f7f0462bd907,
         type: 3}
@@ -1361,6 +1391,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 126784d22bbe1dd45947f7f0462bd907, type: 3}
+--- !u!114 &1368892243036636249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115042689662138722, guid: 126784d22bbe1dd45947f7f0462bd907,
+    type: 3}
+  m_PrefabInstance: {fileID: 3162892222905302331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3fe4aa0fd4cd468db83f4a4d63659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.OneShotSoundSpawner
 --- !u!224 &8462813115727672412 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6815399828339247463, guid: 126784d22bbe1dd45947f7f0462bd907,

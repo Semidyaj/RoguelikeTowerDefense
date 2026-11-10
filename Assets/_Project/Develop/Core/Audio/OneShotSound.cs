@@ -12,8 +12,9 @@ namespace RoguelikeTD.Core.Audio
             _soundPlayer ??= GetComponent<SoundPlayer>();
         }
 
-        private void Start()
+        private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             _soundPlayer.Play();
             Destroy(gameObject, _soundPlayer.Duration);
         }

@@ -586,20 +586,23 @@ MonoBehaviour:
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -632,9 +635,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1219137643395637859}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8227505835671925256}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCloseButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RoguelikeTD.UI.Core.PopupViewBase, RoguelikeTD.Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610838559436939704, guid: 126784d22bbe1dd45947f7f0462bd907,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RoguelikeTD.Core.Audio.OneShotSoundSpawner, RoguelikeTD.Core
+      objectReference: {fileID: 0}
     - target: {fileID: 6815399828339247463, guid: 126784d22bbe1dd45947f7f0462bd907,
         type: 3}
       propertyPath: m_Pivot.x
@@ -746,6 +784,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5419635137691028330}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8227505835671925256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115042689662138722, guid: 126784d22bbe1dd45947f7f0462bd907,
+    type: 3}
+  m_PrefabInstance: {fileID: 5419635137691028330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3fe4aa0fd4cd468db83f4a4d63659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.OneShotSoundSpawner
 --- !u!1001 &6841325321357189887
 PrefabInstance:
   m_ObjectHideFlags: 0
