@@ -7454,6 +7454,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20e01b9006f4e34ea955d02f3de2be3, type: 3}
+--- !u!23 &7273260595074527858 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3495588634173120414, guid: b20e01b9006f4e34ea955d02f3de2be3,
+    type: 3}
+  m_PrefabInstance: {fileID: 6083550207252590060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8405092554719922461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2362700452146439409, guid: b20e01b9006f4e34ea955d02f3de2be3,
@@ -7571,6 +7577,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -4212062343711792925}
+    - targetCorrespondingSourceObject: {fileID: 8117534911578946641, guid: 1bc249167e368174095cfe11238587da,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3686102135235265740}
   m_SourcePrefab: {fileID: 100100000, guid: 1bc249167e368174095cfe11238587da, type: 3}
 --- !u!1 &430354229237624770 stripped
 GameObject:
@@ -7693,6 +7703,23 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &3686102135235265740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430354229237624770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bea1506fe8c00f4492eda5495878265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Gameplay.Features.ApplyDamage.HitFlashView
+  _renderers:
+  - {fileID: 1352679044015672872}
+  - {fileID: 7273260595074527858}
+  _flashTint: {r: 5, g: 5, b: 5, a: 1}
+  _flashDuration: 0.2
 --- !u!4 &1211874990632718870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7318028304632693125, guid: 1bc249167e368174095cfe11238587da,
