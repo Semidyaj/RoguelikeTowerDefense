@@ -184,7 +184,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2415293228233614252}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8677000377578841053, guid: ce8808d2a31644c4fb97424e3d432b3f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 627226301465240296}
   m_SourcePrefab: {fileID: 100100000, guid: ce8808d2a31644c4fb97424e3d432b3f, type: 3}
 --- !u!4 &571087283910717223 stripped
 Transform:
@@ -192,3 +196,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3876042663325304716}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5593644025237726289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8677000377578841053, guid: ce8808d2a31644c4fb97424e3d432b3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3876042663325304716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &627226301465240296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593644025237726289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770e83426fe68184482cfbc205318da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Game::RoguelikeTD.Gameplay.Features.LootFeature.LootCollectSoundView
+  _collectSoundPrefab: {fileID: 6782256539319371004, guid: 79014a35222d7074bb98be21d47f21c0,
+    type: 3}
