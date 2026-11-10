@@ -9,5 +9,6 @@ namespace RoguelikeTD.Gameplay.Features.InputFeature
         Vector3 Direction { get; }
         Vector3 RotationX { get; }
         bool IsMainActionPerformed { get; }
+        bool IsPausePressed { get; }
     }
 }

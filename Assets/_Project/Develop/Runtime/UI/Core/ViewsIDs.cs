@@ -22,5 +22,7 @@
         public const string BoostAbilityView = nameof(BoostAbilityView);
         public const string BoostAbilitiesShopPopupView = nameof(BoostAbilitiesShopPopupView);
         public const string DeleteSavePopup = nameof(DeleteSavePopup);
+        public const string DamageNumberView = nameof(DamageNumberView);
+        public const string PausePopup = nameof(PausePopup);
     }
 }

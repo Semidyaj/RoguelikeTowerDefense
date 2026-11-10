@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6852986545843427316}
   - component: {fileID: 444558040143353753}
   - component: {fileID: 4244418563392501226}
+  - component: {fileID: 2989471397270690225}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -428,7 +429,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6889508736559507364}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2989471397270690225}
+        m_TargetAssemblyTypeName: RoguelikeTD.Core.Audio.OneShotSoundSpawner, RoguelikeTD.Core
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6852986545843427316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,3 +499,17 @@ MonoBehaviour:
   _priceText: {fileID: 2093166604551633814}
   _priceIcon: {fileID: 119721323220051369}
   _purchasedIcon: {fileID: 1027069423764628252}
+--- !u!114 &2989471397270690225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6520484870431749647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3fe4aa0fd4cd468db83f4a4d63659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.OneShotSoundSpawner
+  _soundPrefab: {fileID: 4709851438616568499, guid: f18e836d90726dd479c2eb172156fc93,
+    type: 3}

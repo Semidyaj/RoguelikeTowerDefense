@@ -3,6 +3,7 @@ using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
+using RoguelikeTD.UI.Gameplay.PausePopup;
 using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
 using RoguelikeTD.UI.Gameplay.ResultPopups;
 using System.Threading;
@@ -66,6 +67,17 @@ namespace RoguelikeTD.UI.Gameplay
             PlaceablePopupPresenter popup = _gameplayPresentersFactory.CreatePlaceablePopupPresenter(view);
 
             await OpenAsync(popup, view, cancellationToken);
+        }
+
+        public async UniTask<bool> OpenPausePopupAsync(CancellationToken cancellationToken)
+        {
+            PausePopupView view = ViewsFactory.Create<PausePopupView>(ViewsIDs.PausePopup, PopupLayer);
+
+            PausePopupPresenter popup = _gameplayPresentersFactory.CreatePausePopupPresenter(view);
+
+            await OpenAsync(popup, view, cancellationToken);
+
+            return popup.IsExitRequested;
         }
     }
 }

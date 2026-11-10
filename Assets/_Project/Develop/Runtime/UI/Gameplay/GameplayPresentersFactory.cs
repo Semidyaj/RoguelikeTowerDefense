@@ -3,8 +3,11 @@ using RoguelikeTD.Configs.Gameplay.Experience;
 using RoguelikeTD.Configs.Gameplay.Placeables;
 using RoguelikeTD.Configs.Meta.Wallet;
 using RoguelikeTD.Core.ConfigsManagement;
+using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.AbilitiesDroppingFeature;
+using RoguelikeTD.Gameplay.Features.InputFeature;
+using RoguelikeTD.Gameplay.Features.PauseFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PlaceableFeature;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
@@ -12,8 +15,10 @@ using RoguelikeTD.Meta.Features.Wallet;
 using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.AbilitySelectPopup;
+using RoguelikeTD.UI.Gameplay.DamageNumbers;
 using RoguelikeTD.UI.Gameplay.Experience;
 using RoguelikeTD.UI.Gameplay.HealthDisplay;
+using RoguelikeTD.UI.Gameplay.PausePopup;
 using RoguelikeTD.UI.Gameplay.PlaceablesSelectPopup;
 using RoguelikeTD.UI.Gameplay.ResultPopups;
 using RoguelikeTD.UI.Gameplay.Stages;
@@ -32,6 +37,9 @@ namespace RoguelikeTD.UI.Gameplay
         private readonly PlaceablesSpawner _placeablesSpawner;
         private readonly PlaceableService _placeableService;
         private readonly WalletService _walletService;
+        private readonly IInputService _inputService;
+        private readonly IPauseService _pauseService;
+        private readonly SceneSwitcherService _sceneSwitcherService;
 
         public GameplayPresentersFactory(
             ConfigsProviderService configsProviderService,
@@ -43,7 +51,10 @@ namespace RoguelikeTD.UI.Gameplay
             AbilityDropService abilityDropService,
             PlaceablesSpawner placeablesSpawner,
             PlaceableService placeableService,
-            WalletService walletService)
+            WalletService walletService,
+            IInputService inputService,
+            IPauseService pauseService,
+            SceneSwitcherService sceneSwitcherService)
         {
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
@@ -55,6 +66,9 @@ namespace RoguelikeTD.UI.Gameplay
             _placeablesSpawner = placeablesSpawner;
             _placeableService = placeableService;
             _walletService = walletService;
+            _inputService = inputService;
+            _pauseService = pauseService;
+            _sceneSwitcherService = sceneSwitcherService;
         }
 
         public DefeatPopupPresenter CreateDefeatPopupPresenter(DefeatPopupView view)
@@ -63,13 +77,20 @@ namespace RoguelikeTD.UI.Gameplay
         public WinPopupPresenter CreateWinPopupPresenter(WinPopupView view)
             => new WinPopupPresenter(view);
 
-        public GameplayScreenPresenter CreateGameplayScreenPresenter(GameplayScreenView view)
+        public GameplayScreenPresenter CreateGameplayScreenPresenter(GameplayScreenView view, GameplayPopupService popupService)
             => new GameplayScreenPresenter(
                 view,
                 this,
                 _projectPresentersFactory,
                 _mainHeroHolderService,
-                _walletService);
+                _walletService,
+                _inputService,
+                _pauseService,
+                popupService,
+                _sceneSwitcherService);
+
+        public PausePopupPresenter CreatePausePopupPresenter(PausePopupView view)
+            => new PausePopupPresenter(view);
 
         public StagePresenter CreateStagePresenter(IconTextView view)
             => new StagePresenter(view, _stageProviderService);
@@ -83,6 +104,9 @@ namespace RoguelikeTD.UI.Gameplay
                 view,
                 this,
                 _viewsFactory);
+
+        public DamageNumbersPresenter CreateDamageNumbersPresenter(DamageNumbersDisplay view)
+            => new DamageNumbersPresenter(_entitiesLifeContext, view, _viewsFactory);
 
         public SelectableAbilityPresenter CreateSelectableAbilityPresenter(AbilityConfig abilityConfig, SelectableAbilityView view, Entity entity, int level)
             => new SelectableAbilityPresenter(abilityConfig, view, entity, level);

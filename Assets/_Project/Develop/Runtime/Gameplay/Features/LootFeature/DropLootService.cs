@@ -1,4 +1,4 @@
-﻿using RoguelikeTD.Configs.Gameplay.Loot;
+﻿﻿using RoguelikeTD.Configs.Gameplay.Loot;
 using RoguelikeTD.Gameplay.EntitiesCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,95 +8,46 @@ namespace RoguelikeTD.Gameplay.Features.LootFeature
 {
     public class DropLootService
     {
-        private const int ExpInOnePotion = 300;
         private const int MaxPercent = 100;
 
-        private LootListConfig _lootListConfig;
-        private LootFactory _lootFactory;
+        private readonly LootFactory _lootFactory;
+
+        private readonly List<ExperienceLootConfig> _expConfigs;
+        private readonly List<CoinsLootConfig> _coinsConfigs;
+        private readonly List<HealthLootConfig> _healthConfigs;
 
         public DropLootService(LootListConfig lootListConfig, LootFactory lootFactory)
         {
-            _lootListConfig = lootListConfig;
             _lootFactory = lootFactory;
+
+            _expConfigs = lootListConfig.LootConfigs.OfType<ExperienceLootConfig>().ToList();
+            _coinsConfigs = lootListConfig.LootConfigs.OfType<CoinsLootConfig>().ToList();
+            _healthConfigs = lootListConfig.LootConfigs.OfType<HealthLootConfig>().ToList();
         }
 
         public void DropLootFor(Entity entity)
         {
-            Transform entityTransform = entity.Transform;
+            Vector3 position = entity.Transform.position;
 
-            DropExp(entityTransform.position);
-            DropCoins(entityTransform.position);
-            DropHealth(entityTransform.position);
+            if (TryPick(_expConfigs, out ExperienceLootConfig expConfig))
+                _lootFactory.CreateExperienceLoot(expConfig.PrefabPath, position, expConfig.Experience);
+
+            if (TryPick(_coinsConfigs, out CoinsLootConfig coinsConfig))
+                _lootFactory.CreateCoinsLoot(coinsConfig.PrefabPath, position, coinsConfig.Coins);
+
+            if (TryPick(_healthConfigs, out HealthLootConfig healthConfig))
+                _lootFactory.CreateHealthLoot(healthConfig.PrefabPath, position, healthConfig.Health);
         }
 
-        private void DropExp(Vector3 position)
+        private bool TryPick<TConfig>(List<TConfig> configs, out TConfig config) where TConfig : LootConfig
         {
-            List<ExperienceLootConfig> expConfigs = _lootListConfig.LootConfigs
-                .Where(loot => loot.GetType() == typeof(ExperienceLootConfig))
-                .Cast<ExperienceLootConfig>()
-                .ToList();
+            config = null;
 
-            if (expConfigs.Count > 0)
-            {
-                ExperienceLootConfig experienceLootConfig = expConfigs[Random.Range(0, expConfigs.Count)];
+            if (configs.Count == 0)
+                return false;
 
-                if (IsDropped(experienceLootConfig) == false)
-                    return;
-
-                int expInOnePotion = ExpInOnePotion;
-
-                if (experienceLootConfig.Experience < expInOnePotion)
-                {
-                    _lootFactory.CreateExperienceLoot(experienceLootConfig.PrefabPath, position, experienceLootConfig.Experience);
-                }
-                else
-                {
-                    int restOfExp = experienceLootConfig.Experience % expInOnePotion;
-
-                    int potionNumbers = (experienceLootConfig.Experience - restOfExp) / expInOnePotion;
-
-                    for (int i = 0; i < potionNumbers; i++)
-                        _lootFactory.CreateExperienceLoot(experienceLootConfig.PrefabPath, position, expInOnePotion);
-                }
-            }
+            config = configs[Random.Range(0, configs.Count)];
+            return Random.Range(0, MaxPercent) < config.DropChancePercent;
         }
-
-        private void DropCoins(Vector3 position)
-        {
-            List<CoinsLootConfig> coinsConfigs = _lootListConfig.LootConfigs
-                .Where(loot => loot.GetType() == typeof(CoinsLootConfig))
-                .Cast<CoinsLootConfig>()
-                .ToList();
-
-            if (coinsConfigs.Count > 0)
-            {
-                CoinsLootConfig coinsLootConfig = coinsConfigs[Random.Range(0, coinsConfigs.Count)];
-
-                if (IsDropped(coinsLootConfig) == false)
-                    return;
-
-                _lootFactory.CreateCoinsLoot(coinsLootConfig.PrefabPath, position, coinsLootConfig.Coins);
-            }
-        }
-
-        private void DropHealth(Vector3 position)
-        {
-            List<HealthLootConfig> healthConfigs = _lootListConfig.LootConfigs
-                .Where(loot => loot.GetType() == typeof(HealthLootConfig))
-                .Cast<HealthLootConfig>()
-                .ToList();
-
-            if (healthConfigs.Count > 0)
-            {
-                HealthLootConfig healthLootConfig = healthConfigs[Random.Range(0, healthConfigs.Count)];
-
-                if (IsDropped(healthLootConfig) == false)
-                    return;
-
-                _lootFactory.CreateHealthLoot(healthLootConfig.PrefabPath, position, healthLootConfig.Health);
-            }
-        }
-
-        private bool IsDropped(LootConfig config) => Random.Range(0, MaxPercent) < config.DropChancePercent;
     }
 }

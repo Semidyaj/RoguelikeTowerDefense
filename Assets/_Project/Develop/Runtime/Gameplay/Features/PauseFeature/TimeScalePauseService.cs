@@ -5,24 +5,34 @@ namespace RoguelikeTD.Gameplay.Features.PauseFeature
 {
     public class TimeScalePauseService : IPauseService, IDisposable
     {
-        public bool IsPaused { get; private set; }
+        private int _pauseRequests;
+
+        public bool IsPaused => _pauseRequests > 0;
 
         public void Pause()
         {
+            _pauseRequests++;
             Time.timeScale = 0;
-            IsPaused = true;
         }
 
         public void Unpause()
         {
-            Time.timeScale = 1;
-            IsPaused = false;
+            if (_pauseRequests == 0)
+                throw new InvalidOperationException("Unpause without matching Pause");
+
+            _pauseRequests--;
+
+            if (_pauseRequests == 0)
+                Time.timeScale = 1;
         }
 
         public void Dispose()
         {
             if (IsPaused)
-                Unpause();
+            {
+                _pauseRequests = 0;
+                Time.timeScale = 1;
+            }
         }
     }
 }

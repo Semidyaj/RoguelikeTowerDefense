@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 6700698074855448418}
   - component: {fileID: 7536320322851424659}
   - component: {fileID: 2995739734451717328}
+  - component: {fileID: 8277300266516953863}
   m_Layer: 5
   m_Name: SelectionAbilityView
   m_TagString: Untagged
@@ -602,7 +603,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6700698074855448418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8277300266516953863}
+        m_TargetAssemblyTypeName: RoguelikeTD.Core.Audio.OneShotSoundSpawner, RoguelikeTD.Core
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2995739734451717328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +637,20 @@ MonoBehaviour:
   _selectImage: {fileID: 798713180378280848}
   _background: {fileID: 6700698074855448418}
   _legendaryBackground: {fileID: 21300000, guid: b61d54ada442843bb81c0b4ae4c744fa,
+    type: 3}
+--- !u!114 &8277300266516953863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239368615504814935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3fe4aa0fd4cd468db83f4a4d63659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.OneShotSoundSpawner
+  _soundPrefab: {fileID: 4709851438616568499, guid: f18e836d90726dd479c2eb172156fc93,
     type: 3}
 --- !u!1 &3575137252495959867
 GameObject:

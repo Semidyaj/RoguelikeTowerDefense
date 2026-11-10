@@ -142,7 +142,7 @@ namespace RoguelikeTD.Gameplay.Infrastructure
 
             GameplayScreenPresenter presenter = c
                 .Resolve<GameplayPresentersFactory>()
-                .CreateGameplayScreenPresenter(view);
+                .CreateGameplayScreenPresenter(view, c.Resolve<GameplayPopupService>());
 
             return presenter;
         }

@@ -6,6 +6,8 @@ using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Core.SceneManagement;
 using RoguelikeTD.Gameplay.Features.AbilitiesFeature.Abilities;
 using RoguelikeTD.Gameplay.Features.StatsFeature;
+using RoguelikeTD.Infrastructure.Audio;
+using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.LevelsProgression;
 using RoguelikeTD.Meta.Features.StatsUpgrade;
 using RoguelikeTD.Meta.Features.Wallet;
@@ -29,6 +31,8 @@ namespace RoguelikeTD.UI
         private readonly WalletService _walletService;
         private readonly StatsUpgradeService _statsUpgradeService;
         private readonly BoostAbilitiesShopService _boostAbilitiesShopService;
+        private readonly AudioService _audioService;
+        private readonly PlayerDataProvider _playerDataProvider;
 
         public ProjectPresentersFactory(
             ConfigsProviderService configsProviderService,
@@ -37,8 +41,12 @@ namespace RoguelikeTD.UI
             SceneLoaderService sceneLoaderService,
             WalletService walletService,
             StatsUpgradeService statsUpgradeService,
-            BoostAbilitiesShopService boostAbilitiesShopService)
+            BoostAbilitiesShopService boostAbilitiesShopService,
+            AudioService audioService,
+            PlayerDataProvider playerDataProvider)
         {
+            _audioService = audioService;
+            _playerDataProvider = playerDataProvider;
             _configsProviderService = configsProviderService;
             _viewsFactory = viewsFactory;
             _levelsProgressionService = levelsProgressionService;
@@ -119,5 +127,8 @@ namespace RoguelikeTD.UI
 
         public DeleteSavePopupPresenter CreateDeleteSavePopupPresenter(DeleteSavePopupView view)
             => new DeleteSavePopupPresenter(view);
+
+        public SoundTogglePresenter CreateSoundTogglePresenter(SoundToggleView view)
+            => new SoundTogglePresenter(view, _audioService, _playerDataProvider);
     }
 }

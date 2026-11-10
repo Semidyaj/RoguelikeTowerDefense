@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5851819793613562338}
   - component: {fileID: 213658837892541579}
   - component: {fileID: 4268489786530714575}
+  - component: {fileID: 4102097119220186446}
   m_Layer: 5
   m_Name: LevelTile
   m_TagString: Untagged
@@ -91,7 +92,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 213658837892541579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4102097119220186446}
+        m_TargetAssemblyTypeName: RoguelikeTD.Core.Audio.OneShotSoundSpawner, RoguelikeTD.Core
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &213658837892541579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +153,20 @@ MonoBehaviour:
   _activeColor: {r: 1, g: 0.77420425, b: 0, a: 1}
   _completedColor: {r: 0.740566, g: 0.84039223, b: 1, a: 1}
   _blockedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+--- !u!114 &4102097119220186446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493521984238221218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3fe4aa0fd4cd468db83f4a4d63659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RoguelikeTD.Core::RoguelikeTD.Core.Audio.OneShotSoundSpawner
+  _soundPrefab: {fileID: 4709851438616568499, guid: f18e836d90726dd479c2eb172156fc93,
+    type: 3}
 --- !u!1 &7130556882757651167
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,20 +271,23 @@ MonoBehaviour:
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0

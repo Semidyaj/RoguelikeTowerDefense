@@ -1,5 +1,6 @@
 ﻿using RoguelikeTD.Configs.Meta.Economy;
 using RoguelikeTD.Core.AssetsManagement;
+using RoguelikeTD.Infrastructure.Audio;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.DataManagement;
 using RoguelikeTD.Core.DataManagement.DataRepository;
@@ -54,6 +55,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
             builder.Register(CreateWalletService, Lifetime.Singleton);
             builder.Register<ISaveLoadService>(CreateSaveLoadService, Lifetime.Singleton);
             builder.Register<PlayerDataProvider>(Lifetime.Singleton);
+            builder.Register<AudioService>(Lifetime.Singleton);
 
             builder.Register<ProjectPresentersFactory>(Lifetime.Singleton);
             builder.Register<ViewsFactory>(Lifetime.Singleton);
@@ -73,6 +75,7 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
         private static void CreatePlayerDataReadersAndWriters(IObjectResolver c)
         {
             c.Resolve<WalletService>();
+            c.Resolve<AudioService>();
             c.Resolve<LevelsProgressionService>();
             c.Resolve<GameplayStatisticsService>();
             c.Resolve<StatsUpgradeService>();

@@ -42,5 +42,7 @@ namespace RoguelikeTD.Gameplay.Features.InputFeature
                 return Input.GetMouseButtonDown(0);
             }
         }
+
+        public bool IsPausePressed => Input.GetKeyDown(KeyCode.Escape);
     }
 }
