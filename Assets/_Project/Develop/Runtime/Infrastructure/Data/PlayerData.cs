@@ -17,5 +17,7 @@ namespace RoguelikeTD.Infrastructure.Data
 
         public int Wins;
         public int Defeats;
+
+        public bool IsSoundEnabled = true;
     }
 }

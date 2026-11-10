@@ -4,6 +4,7 @@ using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure;
 using RoguelikeTD.Infrastructure.Data;
 using RoguelikeTD.Meta.Features.LevelsProgression;
+using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Core.Statistics;
 using RoguelikeTD.UI.Wallet;
@@ -53,6 +54,7 @@ namespace RoguelikeTD.UI.MainMenu
 
             CreateWallet();
             CreateStatisticsView();
+            CreateSoundToggle();
 
             foreach (IPresenter presenter in _childPresenters)
                 presenter.Initialize();
@@ -76,6 +78,12 @@ namespace RoguelikeTD.UI.MainMenu
         {
             WalletPresenter walletPresenter = _projectPresentersFactory.CreateWalletPresenter(_screen.WalletView);
             _childPresenters.Add(walletPresenter);
+        }
+
+        private void CreateSoundToggle()
+        {
+            SoundTogglePresenter soundTogglePresenter = _projectPresentersFactory.CreateSoundTogglePresenter(_screen.SoundToggleView);
+            _childPresenters.Add(soundTogglePresenter);
         }
 
         private void CreateStatisticsView()

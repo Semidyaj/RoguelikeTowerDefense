@@ -6,6 +6,7 @@ using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.PauseFeature;
 using RoguelikeTD.Infrastructure;
 using RoguelikeTD.Meta.Features.Wallet;
+using RoguelikeTD.UI.CommonViews;
 using RoguelikeTD.UI.Core;
 using RoguelikeTD.UI.Gameplay.DamageNumbers;
 using RoguelikeTD.UI.Gameplay.Experience;
@@ -72,6 +73,7 @@ namespace RoguelikeTD.UI.Gameplay
             CreateEntitiesHealthDisplay();
             CreateDamageNumbers();
             CreateExpirienceView();
+            CreateSoundToggle();
 
             _mainHeroHolderServiceDisposable = _mainHeroHolderService.HeroRegistred.Subscribe(OnHeroRegistered);
             _screen.PauseButtonClicked += OnPauseRequested;
@@ -161,6 +163,13 @@ namespace RoguelikeTD.UI.Gameplay
             _damageNumbersPresenter = _gameplayPresentersFactory.CreateDamageNumbersPresenter(_screen.DamageNumbersDisplay);
 
             _childPresenters.Add(_damageNumbersPresenter);
+        }
+
+        private void CreateSoundToggle()
+        {
+            SoundTogglePresenter soundTogglePresenter = _projectPresentersFactory.CreateSoundTogglePresenter(_screen.SoundToggleView);
+
+            _childPresenters.Add(soundTogglePresenter);
         }
 
         private void CreateExpirienceView()

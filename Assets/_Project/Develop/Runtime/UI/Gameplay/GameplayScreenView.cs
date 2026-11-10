@@ -21,6 +21,7 @@ namespace RoguelikeTD.UI.Gameplay
         [field: SerializeField] public EntitiesHealthDisplay EntitiesHealthDisplay { get; private set; }
         [field: SerializeField] public DamageNumbersDisplay DamageNumbersDisplay { get; private set; }
         [field: SerializeField] public BarWithText ExperienceBarView { get; private set; }
+        [field: SerializeField] public SoundToggleView SoundToggleView { get; private set; }
 
         private void OnEnable()
         {

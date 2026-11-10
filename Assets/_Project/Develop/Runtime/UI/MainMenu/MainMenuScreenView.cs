@@ -22,6 +22,7 @@ namespace RoguelikeTD.UI.MainMenu
 
         [field: SerializeField] public IconTextListView WalletView { get; private set; }
         [field: SerializeField] public IconTextListView StatisticsView { get; private set; }
+        [field: SerializeField] public SoundToggleView SoundToggleView { get; private set; }
 
         private void OnEnable()
         {
