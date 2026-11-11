@@ -1123,12 +1123,17 @@ PrefabInstance:
     - target: {fileID: 3553862232172966947, guid: e8e2f45f6c4d85a4a9686f2797b74831,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 3553862232172966947, guid: e8e2f45f6c4d85a4a9686f2797b74831,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 45
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862232172966947, guid: e8e2f45f6c4d85a4a9686f2797b74831,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5454021491650906792, guid: e8e2f45f6c4d85a4a9686f2797b74831,
         type: 3}
