@@ -43,7 +43,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
                 .GetBy(gameplayInputArgs.LevelNumber);
         }
 
-        public Entity Create(Vector3 position, EntityConfig config, int waveNumber)
+        public Entity Create(Vector3 position, EntityConfig config, float waveStatsMultiplier)
         {
             Entity entity;
 
@@ -63,7 +63,7 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
                     throw new ArgumentException($"Not support {config.GetType()} type config");
             }
 
-            ApplyLevelMultipliers(entity, waveNumber);
+            ApplyLevelMultipliers(entity, waveStatsMultiplier);
 
             AddDropLootBehaviourTo(entity);
 
@@ -76,11 +76,10 @@ namespace RoguelikeTD.Gameplay.Features.Enemies
             return entity;
         }
 
-        private void ApplyLevelMultipliers(Entity entity, int waveNumber)
+        private void ApplyLevelMultipliers(Entity entity, float waveStatsMultiplier)
         {
-            float waveGrowth = 1 + _levelConfig.EnemyStatsGrowthPerWave * (waveNumber - 1);
-            float healthMultiplier = _levelConfig.EnemyHealthMultiplier * waveGrowth;
-            float damageMultiplier = _levelConfig.EnemyDamageMultiplier * waveGrowth;
+            float healthMultiplier = _levelConfig.EnemyHealthMultiplier * waveStatsMultiplier;
+            float damageMultiplier = _levelConfig.EnemyDamageMultiplier * waveStatsMultiplier;
 
             entity.MaxHealth.Value *= healthMultiplier;
             entity.CurrentHealth.Value = entity.MaxHealth.Value;

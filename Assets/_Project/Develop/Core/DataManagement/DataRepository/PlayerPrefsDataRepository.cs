@@ -14,6 +14,7 @@ namespace RoguelikeTD.Core.DataManagement.DataRepository
         public UniTask RemoveAsync(string key)
         {
             PlayerPrefs.DeleteKey(key);
+            PlayerPrefs.Save();
 
             return UniTask.CompletedTask;
         }
@@ -21,6 +22,7 @@ namespace RoguelikeTD.Core.DataManagement.DataRepository
         public UniTask WriteAsync(string key, string serializedData)
         {
             PlayerPrefs.SetString(key, serializedData);
+            PlayerPrefs.Save();
 
             return UniTask.CompletedTask;
         }

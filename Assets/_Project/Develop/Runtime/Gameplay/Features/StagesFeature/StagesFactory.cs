@@ -16,7 +16,7 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
             _entitiesLifeContext = entitiesLifeContext;
         }
 
-        public IStage Create(StageConfig stageConfig, int stageNumber)
+        public IStage Create(StageConfig stageConfig)
         {
             switch (stageConfig)
             {
@@ -24,7 +24,6 @@ namespace RoguelikeTD.Gameplay.Features.StagesFeature
 
                     return new TowerDefenseStage(
                         towerDefenseStageConfig,
-                        stageNumber,
                         _enemiesFactory,
                         _entitiesLifeContext);
 

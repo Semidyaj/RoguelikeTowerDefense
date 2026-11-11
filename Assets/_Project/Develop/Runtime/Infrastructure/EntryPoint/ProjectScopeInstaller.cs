@@ -91,15 +91,21 @@ namespace RoguelikeTD.Infrastructure.EntryPoint
 
             IDataKeysStorage keysStorage = new MapDataKeysStorage();
 
+            return new SaveLoadService(serializer, keysStorage, CreateDataRepository(c));
+        }
+
+        private static IDataRepository CreateDataRepository(IObjectResolver c)
+        {
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+                return new PlayerPrefsDataRepository();
+
             string saveFolderPath = Application.isEditor
                 ? Path.Combine(Path.GetDirectoryName(Application.dataPath), c.Resolve<LaunchSettings>().EditorSavesFolder)
                 : Application.persistentDataPath;
 
             Directory.CreateDirectory(saveFolderPath);
 
-            IDataRepository repository = new LocalFileDataRepository(saveFolderPath, "json");
-
-            return new SaveLoadService(serializer, keysStorage, repository);
+            return new LocalFileDataRepository(saveFolderPath, "json");
         }
 
         private static WalletService CreateWalletService(IObjectResolver c)

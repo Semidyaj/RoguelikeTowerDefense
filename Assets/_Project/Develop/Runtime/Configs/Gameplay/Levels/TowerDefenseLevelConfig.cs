@@ -9,6 +9,5 @@ namespace RoguelikeTD.Configs.Gameplay.Levels
         [field: SerializeField] public Vector3 Position { get; private set; }
         [field: SerializeField, Min(0)] public float EnemyHealthMultiplier { get; private set; } = 1;
         [field: SerializeField, Min(0)] public float EnemyDamageMultiplier { get; private set; } = 1;
-        [field: SerializeField, Min(0)] public float EnemyStatsGrowthPerWave { get; private set; } = 0.1f;
     }
 }
