@@ -24,7 +24,11 @@
 
 ### Враги
 
-![Враги](docs/media/enemies.gif)
+<p>
+  <img src="docs/media/enemies_barbarian.gif" alt="Варвар" width="48%">
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/media/enemies_dragon.gif" alt="Дракон" width="48%">
+</p>
 
 Варвар бежит к ближайшей цели и взрывается. Дракон держит дистанцию и стреляет огненным шаром с упреждением — от него надо уходить. Враги переключаются с башни на героя, если он подошёл близко.
 
