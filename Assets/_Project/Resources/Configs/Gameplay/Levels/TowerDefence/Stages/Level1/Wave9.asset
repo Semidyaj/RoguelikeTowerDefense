@@ -22,7 +22,7 @@ MonoBehaviour:
       type: 2}
     <SpawnTime>k__BackingField: 0
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
-    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
       type: 2}
     <SpawnTime>k__BackingField: 6
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 5}
@@ -38,7 +38,7 @@ MonoBehaviour:
       type: 2}
     <SpawnTime>k__BackingField: 12
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
-    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
       type: 2}
     <SpawnTime>k__BackingField: 18
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 5}
@@ -54,7 +54,7 @@ MonoBehaviour:
       type: 2}
     <SpawnTime>k__BackingField: 33
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
-    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
       type: 2}
     <SpawnTime>k__BackingField: 38
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
@@ -70,7 +70,7 @@ MonoBehaviour:
       type: 2}
     <SpawnTime>k__BackingField: 43
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: 1}
-    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
+    <EnemyConfig>k__BackingField: {fileID: 11400000, guid: e1255dbd18195d34dada2ee5a431732c,
       type: 2}
     <SpawnTime>k__BackingField: 48
   - <SpawnPosition>k__BackingField: {x: -15, y: 0, z: -3}
@@ -81,3 +81,4 @@ MonoBehaviour:
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
     <SpawnTime>k__BackingField: 48
+  <EnemyStatsMultiplier>k__BackingField: 2.2

@@ -8,6 +8,8 @@ namespace RoguelikeTD.Configs.Gameplay.Stages
     {
         [SerializeField] private List<EnemyItemConfig> _enemyItems;
 
+        [field: SerializeField, Min(0)] public float EnemyStatsMultiplier { get; private set; } = 1;
+
         public IReadOnlyList<EnemyItemConfig> EnemyItems => _enemyItems;
     }
 }

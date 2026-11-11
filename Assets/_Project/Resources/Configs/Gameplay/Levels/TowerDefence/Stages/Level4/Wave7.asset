@@ -93,3 +93,4 @@ MonoBehaviour:
     <EnemyConfig>k__BackingField: {fileID: 11400000, guid: 3b690ca10c7c04e47b1898bdc1c6127b,
       type: 2}
     <SpawnTime>k__BackingField: 41
+  <EnemyStatsMultiplier>k__BackingField: 2.2

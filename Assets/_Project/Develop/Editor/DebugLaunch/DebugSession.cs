@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using RoguelikeTD.Configs.Gameplay.Abilities;
 using RoguelikeTD.Configs.Gameplay.Entities;
+using RoguelikeTD.Configs.Gameplay.Levels;
+using RoguelikeTD.Configs.Gameplay.Stages;
 using RoguelikeTD.Core.ConfigsManagement;
 using RoguelikeTD.Core.Reactive;
 using RoguelikeTD.Core.SceneManagement;
@@ -12,6 +14,7 @@ using RoguelikeTD.Gameplay.Features.LevelUpFeature;
 using RoguelikeTD.Gameplay.Features.MainHero;
 using RoguelikeTD.Gameplay.Features.StagesFeature;
 using RoguelikeTD.Gameplay.Features.TeamsFeature;
+using RoguelikeTD.Gameplay.Infrastructure;
 using RoguelikeTD.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -111,7 +114,16 @@ namespace RoguelikeTD.Editor.DebugLaunch
             => GetHero(gameplay).Level.Value = Math.Max(1, level);
 
         public static Entity SpawnEnemy(IObjectResolver gameplay, EntityConfig config, Vector3 position)
-            => gameplay.Resolve<EnemiesFactory>().Create(position, config, Math.Max(1, gameplay.Resolve<StageProviderService>().CurrentStageNumber.Value));
+        {
+            LevelConfig levelConfig = gameplay.Resolve<ConfigsProviderService>()
+                .GetConfig<LevelsListConfig>()
+                .GetBy(gameplay.Resolve<GameplayInputArgs>().LevelNumber);
+
+            int stageNumber = Math.Max(1, gameplay.Resolve<StageProviderService>().CurrentStageNumber.Value);
+            TowerDefenseStageConfig stageConfig = (TowerDefenseStageConfig)levelConfig.StageConfigs[stageNumber - 1];
+
+            return gameplay.Resolve<EnemiesFactory>().Create(position, config, stageConfig.EnemyStatsMultiplier);
+        }
 
         public static bool TryGiveAbility(IObjectResolver gameplay, AbilityConfig config)
         {

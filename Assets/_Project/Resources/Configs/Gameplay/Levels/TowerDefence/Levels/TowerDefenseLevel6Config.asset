@@ -23,8 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5cae4a6afe049b4fa942e587ba21877, type: 2}
   - {fileID: 11400000, guid: a5f143da8d324da439a3148c818e4cd4, type: 2}
   - {fileID: 11400000, guid: 401059a656147be42839b8a338e6d0f5, type: 2}
-  <MaxHealth>k__BackingField: 200
+  <MaxHealth>k__BackingField: 400
   <Position>k__BackingField: {x: 14, y: 0, z: 0}
   <EnemyHealthMultiplier>k__BackingField: 3.5
   <EnemyDamageMultiplier>k__BackingField: 2
-  <EnemyStatsGrowthPerWave>k__BackingField: 0.2
